@@ -178,6 +178,63 @@
     </a>
 </div>
   
+
+
+
+<div class="container text-center">    
+  <h3>What We Do</h3><br>
+  <div class="row">
+    <div class="col-sm-4">
+      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+      <p>Current Project</p>
+    </div>
+    <div class="col-sm-4"> 
+      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+      <p>Project 1</p>    
+    </div>
+    <div class="col-sm-4"> 
+      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+      <p>Project 2</p>    
+    </div>
+    <div class="col-sm-4"> 
+      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+      <p>Project 3</p>    
+    </div>
+    <div class="col-sm-4"> 
+      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+      <p>Project 4</p>    
+    </div>
+    <div class="col-sm-4"> 
+      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+      <p>Project 5</p>    
+    </div>
+    <div class="col-sm-4"> 
+      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+      <p>Project 6</p>    
+    </div>
+    <div class="col-sm-4"> 
+      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+      <p>Project 7</p>    
+    </div>
+    <div class="col-sm-4"> 
+      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+      <p>Project 8</p>    
+    </div>
+    <div class="col-sm-4"> 
+      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+      <p>Project 9</p>    
+    </div>
+    <div class="col-sm-4">
+      <div class="well">
+       <p>Some text..</p>
+      </div>
+      <div class="well">
+       <p>Some text..</p>
+      </div>
+    </div>
+  </div>
+</div><br>
+
 <div class="container text-center">    
   <h2>1RM</h2><br> 
   <div class="row">
@@ -203,57 +260,16 @@
        <h3>RESULT</h3>
        <c:forEach begin="1" end="10" varStatus="status">
 	   			<table style="text-align: center;">
-	   				<tr >
-	   					<td style="border: solid 2px" text-align:center; width: 178; height: 26px;" class="num${status.count}"></td>
-	   					<td style="border: solid 1px" text-align:center; width: 178; height: 26px;" class="result${status.count}"></td>
+	   				<tr>
+	   				</tr>
+	   				<tr>
+	   					<td style="border: solid 1px; text-align:center; width: 178px; height: 26px;" class="num${status.count}"></td>
+	   					<td style="border: solid 1px; text-align:center; width: 178px; height: 26px;" class="result${status.count}"></td>
 	   				</tr>
 	   			</table>
 	   </c:forEach>
     </div>
     
-  </div>
-</div><br>
-
-
-<div class="container text-center">    
-  <h3>What We Do</h3><br>
-  <div class="row">
-    <div class="	">
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-      <p>Current Project</p>
-    </div>
-    <div class="col-sm-4"> 
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-      <p>Project 2</p>    
-    </div>
-    <div class="col-sm-4">
-      <div class="well">
-       <p>Some text..</p>
-      </div>
-      <div class="well">
-       <p>Some text..</p>
-      </div>
-    </div>
-  </div>
-</div><br>
-<div class="container text-center">    
-  <h3>1RM</h3><br>
-  <div class="row">
-    <div class="col-sm-4">
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-    </div>
-    <div class="col-sm-4"> 
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-      <p>Project 2</p>    
-    </div>
-    <div class="col-sm-4">
-      <div class="well">
-       <p>Some text..</p>
-      </div>
-      <div class="well">
-       <p>Some text..</p>
-      </div>
-    </div>
   </div>
 </div><br>
 
