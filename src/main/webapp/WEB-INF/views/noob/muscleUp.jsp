@@ -104,7 +104,7 @@
   .navbar {
       margin-bottom: 0;
       border-radius: 0;
-      background-color: #3d3b3c	;
+      background-color: #000000	;
     }
   .navbar li a, .navbar .navbar-brand { 
     color: #d5d5d5 !important;
@@ -130,7 +130,7 @@
     background-color: red !important;
   }
   footer {
-    background-color: #2d2d30;
+    background-color: #000000;
     color: #f5f5f5;
     padding: 32px;
   }
@@ -213,8 +213,8 @@ $(document).ready(function(){
   </div>
 </nav> 
 <div class="container-fluid text-center">
- <div class="row content">
-	<div class="col-sm-2 sidenav">
+ <div class="row content" >
+	<div class="col-sm-2 sidenav" >
  	 <p>운동 목적</p>
  	 <p><a href="muscleUp">근성장</a></p>
  	 <p><a href="diet">다이어트</a></p>
@@ -250,7 +250,7 @@ $(document).ready(function(){
     <div class="col-sm-4">
       <p class="text-center"><strong>가슴/등/하체</strong></p><br>
       <a href="#demo2" data-toggle="collapse">
-      <img src="resources/image/list.jpg" class="img-circle person" alt="2분할" width="50" height="50">
+      <img src="resources/image/list.jpg" class="img-circle person" alt="3분할" width="50" height="50">
       </a>
       <div id="demo2" class="collapse">
         <p><a href = "muscleChest">가슴</a></p>
@@ -261,7 +261,7 @@ $(document).ready(function(){
     <div class="col-sm-4">
       <p class="text-center"><strong>가슴/하체/등/어깨/팔</strong></p><br>
       <a href="#demo3" data-toggle="collapse">
-      <img src="resources/image/list.jpg" class="img-circle person" alt="2분할" width="50" height="50">
+      <img src="resources/image/list.jpg" class="img-circle person" alt="5분할" width="50" height="50">
       </a>
       <div id="demo3" class="collapse">
         <p><a href = "muscleChest5">가슴</a></p>

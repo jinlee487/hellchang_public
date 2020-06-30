@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>5분할 하체운동</title>
+  <title>3분할 하체운동</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -50,17 +50,20 @@
 </nav> 
 
 <div class="jumbotron">
-  <div class="container text-center">
-    <h1>5분할</h1>      
-    <p>★ 5분할 운동은 고급자를 위한 운동입니다★
-    </p>
+  <div class="container text-center" id = "div1">
+    <h1>3분할</h1>      
+    <p>3분할 운동법은 한 부위를 조금 더 강도 있게 운동할 수 있는 반면 휴식 기간이 길다.<br>
+    그러므로 고강도 운동이 어려운 초급자나 중급자에게는 맞지 않을 수도 있다.
+	</p>
   </div>
 </div>
   
 <div class="container-fluid bg-3 text-center">    
-  <h3>5분할 하체</h3><br>
   <div class="row">
-  
+  <div>스트레칭 - 스쿼트 - 레그프레스 - 레그익스텐션 -
+  		레그컬 - 밀리터리프레스 - 숄더프레스 - 사이드레터럴레이즈</div>
+  <hr>
+  	
     <!-- 하체운동 -->
     
     <div class="col-sm-3">
@@ -81,12 +84,11 @@
       width="100%" height="250"></a>
     </div>
     
-    <div class="col-sm-3">
-      <a onclick="sDeadlift()">4.스티프 데드리프트
-	  <img src = "resources/image/sDeadlift.png"
+    <div class="col-sm-3"> 
+      <a onclick="legEx()">4.레그익스텐션
+	  <img src = "resources/image/legEx.png"
       width="100%" height="250"></a>
     </div>
-  
     
     
   </div>
@@ -94,34 +96,30 @@
 
 <div class="container-fluid bg-3 text-center">    
   <div class="row">
-  
-    <div class="col-sm-3"> 
-      <a onclick="legEx()">5.레그익스텐션
-	  <img src = "resources/image/legEx.png"
-      width="100%" height="250"></a>
-    </div>
-  	
   	<div class="col-sm-3"> 
-      <a onclick="legCurl()">6.레그컬
+      <a onclick="legCurl()">5.레그컬
 	  <img src = "resources/image/legCurl.jpg"
       width="100%" height="250"></a>
     </div> 
     
+    <!-- 어깨운동  -->
     <div class="col-sm-3"> 
-     <a onclick="innerThigh()">7.이너싸이
-	  <img src = "resources/image/innerThigh.jpg"
+     <a onclick="ohp()">6.밀리터리프레스
+	  <img src = "resources/image/ohp.jpg"
+      width="100%" height="250"></a>
+    </div>
+    
+    <div class="col-sm-3">
+      <a onclick="sholderP()">7.숄더프레스
+	  <img src = "resources/image/sholderP.png"
       width="100%" height="250"></a>
     </div>
     
     <div class="col-sm-3"> 
-     <a onclick="lunge()">8.런지
-	  <img src = "resources/image/lunge.jpg"
+     <a onclick="sideRaise()">8.사이드레터럴레이즈
+	  <img src = "resources/image/sideRaise.png"
       width="100%" height="250"></a>
     </div>
-    
-    
-    
-    
   </div>
 </div><br><br>
 

@@ -1,13 +1,17 @@
+<!-- 리스트 클릭하면 popup으로 동영상 -->
+
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>2분할 밀기운동</title>
+  <title>2분할 당기기운동</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src = "resources/jqLib/jquery-3.2.1.min.js"></script>
+  <script src = "resources/jqLib/popUp.js"></script>
   <style>
     /* Remove the navbar's default margin-bottom and rounded borders */ 
     .navbar {
@@ -22,6 +26,7 @@
       padding: 25px;
     }
   </style>
+  
 </head>
 <body style="background-color: #f1f1f1">
 
@@ -47,7 +52,14 @@
 </nav> 
 
 <div class="jumbotron">
-  <div class="container text-center">
+<div class="col-sm-2 sidenav">
+      <p><h4>Push</h4></p>
+      <h5>스트레칭 -> 데드리프트 -></h5>
+      <h5>바벨로우 -> 풀업 -></h5>
+      <h5>바벨컬 -> 사이드레터럴레이즈 -></h5>
+      <h5>레그컬 -> 스트레칭 </h5>
+    </div>
+  <div class="container text-center" id = "div1">
     <h1>2분할</h1>      
     <p>2분할루틴은 상체와 하체 
 이 두가지 안에서 루틴이 돌아가기 떄문에 
@@ -57,41 +69,35 @@
 곧 볼륨이 높아진다는 뜻과 같다. </p>
   </div>
 </div>
-  
-<div class="container-fluid bg-3 text-center">    
-  <h3>2분할 Pull</h3><br>
+
+<div>
+
+<div class="container-fluid bg-3 text-center">   
   <div class="row">
+  <div>스트레칭 - 데드리프트 - 바벨로우 - 풀업 -
+  		바벨컬 - 사이드레터럴레이즈 - 레그컬 - 스트레칭</div>
+  	<hr>
+  
+  <div>
     <div class="col-sm-3">
-      <p>1.스트레칭</p>
-      <iframe width="100%" height="250"
-	  src="https://www.youtube.com/embed/ahbAnkN4KJ0" 
-	  frameborder="0" allow="accelerometer; autoplay; 
-	  encrypted-media; gyroscope; picture-in-picture" 
-	  allowfullscreen></iframe>
+      <a onclick="stretch1()">1.스트레칭<br>
+      <img src = "resources/image/stretch.gif"
+      width="100%" height="250"></a>
     </div>
     <div class="col-sm-3"> 
-      <p>2.데드리프트</p>
-	  <iframe width="100%" height="250" 
-	  src="https://www.youtube.com/embed/XwybtFgfSRU" 
-	  frameborder="0" allow="accelerometer; autoplay; 
-	  encrypted-media; gyroscope; picture-in-picture"
-	  allowfullscreen></iframe>
+      <a onclick="deadlift()">2.데드리프트
+	  <img src = "resources/image/deadlift.jpg"
+      width="100%" height="250"></a>
     </div>
     <div class="col-sm-3"> 
-      <p>3.바벨로우</p>
-      <iframe width="100%" height="250"
-      src="https://www.youtube.com/embed/4bx17wuyJ2o" 
-      frameborder="0" allow="accelerometer; autoplay; 
-      encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen></iframe>
+      <a onclick="barbellrow()">3.바벨로우
+	  <img src = "resources/image/barbellRow.jpg"
+      width="100%" height="250"></a>
     </div>
     <div class="col-sm-3">
-      <p>4.풀업</p>
-      <iframe width="100%" height="250"
-      src="https://www.youtube.com/embed/cp6zC0Z9Vt8" 
-      frameborder="0" allow="accelerometer; autoplay; 
-      encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen></iframe>
+     <a onclick="pullUp()">4.풀업
+	  <img src = "resources/image/pullUp.jpg"
+      width="100%" height="250"></a>
     </div>
   </div>
 </div><br>
@@ -99,38 +105,28 @@
 <div class="container-fluid bg-3 text-center">    
   <div class="row">
     <div class="col-sm-3">
-      <p>5.바벨컬</p>
-      <iframe width="100%" height="250"
-      src="https://www.youtube.com/embed/A3AWaC2uKnU"
-      frameborder="0" allow="accelerometer; autoplay; 
-      encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen></iframe>
+      <a onclick="barbellCurl()">5.바벨컬
+	  <img src = "resources/image/barbellCurl.jpg"
+      width="100%" height="250"></a>
     </div>
     <div class="col-sm-3"> 
-      <p>6.사이드레터럴레이즈</p>
-      <iframe width="100%" height="250" 
-      src="https://www.youtube.com/embed/dE5be4sTjxM" 
-      frameborder="0" allow="accelerometer; autoplay; 
-      encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen></iframe>
+     <a onclick="sideRaise()">6.사이드레터럴레이즈
+	  <img src = "resources/image/sideRaise.png"
+      width="100%" height="250"></a>
     </div>
     <div class="col-sm-3"> 
-      <p>7.레그컬</p>
-      <iframe width="100%" height="250" 
-      src="https://www.youtube.com/embed/DZehXLrA8A0" 
-      frameborder="0" allow="accelerometer; autoplay; 
-      encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen></iframe>
+      <a onclick="legCurl()">7.레그컬
+	  <img src = "resources/image/legCurl.jpg"
+      width="100%" height="250"></a>
     </div>
     <div class="col-sm-3">
-      <p>8.스트레칭</p>
-      <iframe width="100%" height="250"
-      src="https://www.youtube.com/embed/qE4FLBAKxrA" 
-      frameborder="0" allow="accelerometer; autoplay; 
-      encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen></iframe>
+     <a onclick="stretch2()">8.스트레칭
+	  <img src = "resources/image/stretch.gif"
+      width="100%" height="250"></a>
+    </div>
     </div>
   </div>
+</div>
 </div><br><br>
 
 <footer class="container-fluid text-center">

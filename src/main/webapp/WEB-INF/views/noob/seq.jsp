@@ -13,21 +13,19 @@
     .navbar {
       margin-bottom: 0;
       border-radius: 0;
-      background-color: #3d3b3c	;
+      background-color: #00000;
     }
     
     .row.content {height: 450px}
     
     .sidenav {
       padding-top: 20px;
-      background-color: #f1f1f1;
       height: 100%;
     }
     
-    footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
+     footer {
+      background-color: #000000;
+      padding: 25px;
     }
     
     /* On small screens, set height to 'auto' for sidenav and grid */
@@ -76,7 +74,7 @@
       <p><a href="diet">다이어트</a></p>
       <p><a href="maintain">유지어트</a></p>
     </div>
-    <div class="col-sm-8 text-center">
+    <div class="col-sm-8 text-center" >
       <h2 align="center">운동을 해야 하는 진짜 이유는?</h2>
       <iframe width="500" height="390"
       src="https://www.youtube.com/embed/_WuS6IuIDGo" 

@@ -1,10 +1,9 @@
-<!-- 리스트 클릭하면 popup으로 동영상 -->
 
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>5분할 가슴운동</title>
+  <title>3분할 등운동</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -51,62 +50,73 @@
 </nav> 
 
 <div class="jumbotron">
-  <div class="container text-center">
-    <h1>5분할</h1>      
-    <p>★ 5분할 운동은 고급자를 위한 운동입니다★	</p>
+  <div class="container text-center" id = "div1">
+    <h1>3분할</h1>      
+    <p>3분할 운동법은 한 부위를 조금 더 강도 있게 운동할 수 있는 반면 휴식 기간이 길다.<br>
+    그러므로 고강도 운동이 어려운 초급자나 중급자에게는 맞지 않을 수도 있다.
+	</p>
   </div>
 </div>
   
 <div class="container-fluid bg-3 text-center">    
-  <h3>5분할 가슴</h3><br>
   <div class="row">
+  <div>스트레칭  - 데드리프트 - 바벨로우 - 풀업 -
+  		랫풀다운 - 바벨컬 - 해머컬 - 케이블컬</div>
+  <hr>
   
-    <!-- 가슴운동 -->
+    <!-- 등운동 -->
     
     <div class="col-sm-3">
-      <a onclick="cStretch()">1.스트레칭<br>
+      <a onclick="bStretch()">1.스트레칭<br>
       <img src = "resources/image/stretch.gif"
       width="100%" height="250"></a>
     </div>
+    
     <div class="col-sm-3"> 
-       <a onclick="bench()">2.벤치프레스
-	  <img src = "resources/image/bench.png"
+      <a onclick="deadlift()">2.데드리프트
+	  <img src = "resources/image/deadlift.jpg"
       width="100%" height="250"></a>
     </div>
+    
+    <div class="col-sm-3"> 
+      <a onclick="barbellrow()">3.바벨로우
+	  <img src = "resources/image/barbellRow.jpg"
+      width="100%" height="250"></a>
+    </div>
+    
     <div class="col-sm-3">
-     <a onclick="ibench()">3.인클라인 벤치프레스
-	  <img src = "resources/image/ibench.jpg"
+     <a onclick="pullUp()">4.풀업
+	  <img src = "resources/image/pullUp.jpg"
       width="100%" height="250"></a>
     </div>
-    <div class="col-sm-3"> 
-	  <a onclick="dBench()">4.덤벨프레스
-	  <img src = "resources/image/dBench.jpg"
-      width="100%" height="250"></a>
-    </div>
+    
   </div>
 </div><br>
 
 <div class="container-fluid bg-3 text-center">    
   <div class="row">
   	<div class="col-sm-3"> 
-      <a onclick="dIbench()">5.인클라인 덤벨프레스
-	  <img src = "resources/image/dIbench.jpg"
+      <a onclick="latPull()">5.랫풀다운
+	  <img src = "resources/image/latPull.jpg"
       width="100%" height="250"></a>
     </div>
+    
+    <!-- 이두운동  -->
     <div class="col-sm-3">
-       <a onclick="dips()">6.딥스
-	  <img src = "resources/image/dips.jpg"
+      <a onclick="barbellCurl()">6.바벨컬
+	  <img src = "resources/image/barbellCurl.jpg"
       width="100%" height="250"></a>
     </div>
-        
-    <div class="col-sm-3"> 
-      <a onclick="dFly()">7.덤벨플라이
-	  <img src = "resources/image/dFly.png"
-      width="100%" height="250"></a>
-    </div>
+    
     <div class="col-sm-3">
-      <a onclick="fly()">8.펙덱플라이
-	  <img src = "resources/image/fly.jpg"
+      <a onclick="hammerCurl()">7.해머컬
+	  <img src = "resources/image/hammerCurl.jpg"
+      width="100%" height="250"></a>
+    </div>
+    
+    <div class="col-sm-3">
+      <a onclick="cableCurl()">8.케이블컬
+	  <img src = "resources/image/cableCurl.jpg"
       width="100%" height="250"></a>
     </div>
   </div>
