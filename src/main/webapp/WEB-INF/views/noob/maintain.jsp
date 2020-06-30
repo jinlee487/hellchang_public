@@ -210,7 +210,7 @@ $(document).ready(function(){
       <ul class="nav navbar-nav">
         <li><a href="noob">Noob</a></li>
         <li><a href="#">Routine</a></li>
-        <li><a href="##">Inbody</a></li>
+        <li><a href="#">Inbody</a></li>
         <li><a href="one">RM</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
