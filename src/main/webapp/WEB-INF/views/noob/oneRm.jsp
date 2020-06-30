@@ -132,7 +132,7 @@
         <li ><a href="#">Home</a></li>
         <li><a href="noob">noob</a></li>
         <li><a href="#">Routine</a></li>
-        <li><a href="#">Inbody</a></li>
+        <li><a href="one">One RM</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
       	<li><a href="joinf">회원가입</a></li>
