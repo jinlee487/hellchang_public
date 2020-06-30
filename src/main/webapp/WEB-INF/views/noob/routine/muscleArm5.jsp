@@ -13,18 +13,7 @@
   <script src = "resources/jqLib/jquery-3.2.1.min.js"></script>
   <script src = "resources/jqLib/popUp.js"></script>
   <style>
-    /* Remove the navbar's default margin-bottom and rounded borders */ 
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-      background-color: #3d3b3c	;
-    }
-    
-    /* Add a gray background color and some padding to the footer */
-    footer {
-      background-color: #f2f2f2;
-      padding: 25px;
-    }
+
   </style>
 </head>
 <body style="background-color: #f1f1f1">

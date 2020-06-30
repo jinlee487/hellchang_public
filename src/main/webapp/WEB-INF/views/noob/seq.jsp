@@ -13,7 +13,7 @@
     .navbar {
       margin-bottom: 0;
       border-radius: 0;
-      background-color: #00000;
+      background-color: #000000;
     }
     
     .row.content {height: 450px}
