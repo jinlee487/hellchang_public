@@ -134,7 +134,7 @@
         <li><a href="#">Inbody</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-      	<li><a href="joinf">회원가입</a></li>
+      	<li><a href="joinf">회원가입1</a></li>
         <li><a href="loginf"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul>
     </div>
