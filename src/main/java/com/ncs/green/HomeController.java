@@ -25,7 +25,7 @@ public class HomeController {
 	public ModelAndView one(ModelAndView mv) {
 		mv.setViewName("noob/oneRm");
 		return mv; 
-	} // atestf
+	}
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	

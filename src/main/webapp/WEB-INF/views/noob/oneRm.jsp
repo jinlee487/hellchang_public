@@ -130,7 +130,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li ><a href="#">Home</a></li>
-        <li><a href="noob">Blog</a></li>
+        <li><a href="noob">noob</a></li>
         <li><a href="#">Routine</a></li>
         <li><a href="#">Inbody</a></li>
       </ul>
