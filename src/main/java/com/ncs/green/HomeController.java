@@ -123,6 +123,13 @@ public class HomeController {
 	} // 근성장 5분할 어깨
 	
 	
+	// AjaxTest
+	@RequestMapping(value = "/one")
+	public ModelAndView one(ModelAndView mv) {
+		mv.setViewName("noob/oneRm");
+		return mv; 
+	}
+	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@RequestMapping(value = {"/","home"}, method = RequestMethod.GET)
