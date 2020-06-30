@@ -30,7 +30,7 @@
         <li><a href="noob">Noob</a></li>
         <li><a href="#">Routine</a></li>
         <li><a href="#">Inbody</a></li>
-        <li><a href="#">1rm</a></li>
+        <li><a href="one">1rm</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
