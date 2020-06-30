@@ -20,6 +20,13 @@ public class HomeController {
 		return mv; 
 	} // atestf
 	
+	// AjaxTest
+	@RequestMapping(value = "/one")
+	public ModelAndView one(ModelAndView mv) {
+		mv.setViewName("noob/oneRm");
+		return mv; 
+	} // atestf
+	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@RequestMapping(value = {"/","home"}, method = RequestMethod.GET)
