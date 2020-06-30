@@ -1,5 +1,3 @@
-<!-- 리스트 클릭하면 popup으로 동영상 -->
-
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +47,7 @@
 </nav> 
 
 <div class="jumbotron">
-  <div class="container text-center">
+  <div class="container text-center" id = "div1">
     <h1>2분할</h1>      
     <p>2분할루틴은 상체와 하체 
 이 두가지 안에서 루틴이 돌아가기 떄문에 
@@ -61,7 +59,7 @@
 </div>
   
 <div class="container-fluid bg-3 text-center">    
-  <h3>2분할 Push</h3><br>
+  <h3>2분할 Pull</h3><br>
   <div class="row">
     <div class="col-sm-3">
       <p>1.스트레칭</p>
@@ -72,25 +70,25 @@
 	  allowfullscreen></iframe>
     </div>
     <div class="col-sm-3"> 
-      <p>2.스쿼트</p>
-	  <iframe width="100%" height="250"
-	  src="https://www.youtube.com/embed/jNs7_-Z8MMw" 
+      <p>2.데드리프트</p>
+	  <iframe width="100%" height="250" 
+	  src="https://www.youtube.com/embed/XwybtFgfSRU" 
 	  frameborder="0" allow="accelerometer; autoplay; 
-	  encrypted-media; gyroscope; picture-in-picture" 
+	  encrypted-media; gyroscope; picture-in-picture"
 	  allowfullscreen></iframe>
     </div>
     <div class="col-sm-3"> 
-      <p>3.벤치프레스</p>
-      <iframe width="100%" height="250" 
-      src="https://www.youtube.com/embed/Et2yw2b5D4k" 
+      <p>3.바벨로우</p>
+      <iframe width="100%" height="250"
+      src="https://www.youtube.com/embed/4bx17wuyJ2o" 
       frameborder="0" allow="accelerometer; autoplay; 
       encrypted-media; gyroscope; picture-in-picture" 
       allowfullscreen></iframe>
     </div>
     <div class="col-sm-3">
-      <p>4.인클라인 벤치프레스</p>
-      <iframe width="100%" height="250" 
-      src="https://www.youtube.com/embed/sIZTgao-YT4"
+      <p>4.풀업</p>
+      <iframe width="100%" height="250"
+      src="https://www.youtube.com/embed/cp6zC0Z9Vt8" 
       frameborder="0" allow="accelerometer; autoplay; 
       encrypted-media; gyroscope; picture-in-picture" 
       allowfullscreen></iframe>
@@ -101,25 +99,25 @@
 <div class="container-fluid bg-3 text-center">    
   <div class="row">
     <div class="col-sm-3">
-      <p>5.딥스</p>
-      <iframe width="100%" height="250" 
-      src="https://www.youtube.com/embed/XwGpJmoqwXI" 
-      frameborder="0" allow="accelerometer; autoplay; 
-      encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen></iframe>
-    </div>
-    <div class="col-sm-3"> 
-      <p>6.밀리터리프레스</p>
-      <iframe width="100%" height="250" 
-      src="https://www.youtube.com/embed/8DByXGrk4Ps" 
-      frameborder="0" allow="accelerometer; autoplay; 
-      encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen></iframe>
-    </div>
-    <div class="col-sm-3"> 
-      <p>7.레그익스텐션</p>
+      <p>5.바벨컬</p>
       <iframe width="100%" height="250"
-      src="https://www.youtube.com/embed/BsNxEFKNLvY" 
+      src="https://www.youtube.com/embed/A3AWaC2uKnU"
+      frameborder="0" allow="accelerometer; autoplay; 
+      encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen></iframe>
+    </div>
+    <div class="col-sm-3"> 
+      <p>6.사이드레터럴레이즈</p>
+      <iframe width="100%" height="250" 
+      src="https://www.youtube.com/embed/dE5be4sTjxM" 
+      frameborder="0" allow="accelerometer; autoplay; 
+      encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen></iframe>
+    </div>
+    <div class="col-sm-3"> 
+      <p>7.레그컬</p>
+      <iframe width="100%" height="250" 
+      src="https://www.youtube.com/embed/DZehXLrA8A0" 
       frameborder="0" allow="accelerometer; autoplay; 
       encrypted-media; gyroscope; picture-in-picture" 
       allowfullscreen></iframe>

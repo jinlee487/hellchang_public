@@ -104,7 +104,7 @@
   .navbar {
       margin-bottom: 0;
       border-radius: 0;
-      background-color: #3d3b3c	;
+      background-color: #000000	;
     }
   .navbar li a, .navbar .navbar-brand { 
     color: #d5d5d5 !important;
@@ -130,7 +130,7 @@
     background-color: red !important;
   }
   footer {
-    background-color: #2d2d30;
+    background-color: #000000;
     color: #f5f5f5;
     padding: 32px;
   }
@@ -207,7 +207,7 @@ $(document).ready(function(){
   </div>
 </nav> 
 <div class="container-fluid text-center">
- <div class="row content">
+ <div class="row content" >
 	<div class="col-sm-2 sidenav">
  	 <p>운동 목적</p>
  	 <p><a href="muscleUp">근성장</a></p>
@@ -232,21 +232,28 @@ $(document).ready(function(){
   <div class="row">
     <div class="row">
     <div class="col-sm-4">
+      <p class="text-center"><strong>전신</strong></p><br>
+      <a href="#demo3" data-toggle="collapse">
+      <img src="resources/image/list.jpg" class="img-circle person" alt="무분할" width="50" height="50">
+      </a>
+      <div id="demo3" class="collapse">
+        <p><a href = "noSeq">무분할</a></p>
+      </div>
+    </div>
+    <div class="col-sm-4">
       <p class="text-center"><strong>밀기/당기기</strong></p><br>
       <a href="#demo" data-toggle="collapse">
       <img src="resources/image/list.jpg" class="img-circle person" alt="2분할" width="50" height="50">
       </a>
       <div id="demo" class="collapse">
-        <p><a href = "muscleUpPush">밀기</a></p>
-        <p><a href = "muscleUpPushP">밀기PopUp</a></p>
-        <p><a href = "muscleUpPull">당기기</a></p>
-        <p><a href = "muscleUpPullP">당기기PopUp</a></p>
+        <p><a href = "muscleUpPushP">밀기</a></p>
+        <p><a href = "muscleUpPullP">당기기</a></p>
       </div>
     </div>
     <div class="col-sm-4">
       <p class="text-center"><strong>가슴/등/하체</strong></p><br>
       <a href="#demo2" data-toggle="collapse">
-      <img src="resources/image/list.jpg" class="img-circle person" alt="2분할" width="50" height="50">
+      <img src="resources/image/list.jpg" class="img-circle person" alt="3분할" width="50" height="50">
       </a>
       <div id="demo2" class="collapse">
         <p><a href = "muscleChest">가슴</a></p>
@@ -254,19 +261,7 @@ $(document).ready(function(){
         <p><a href = "muscleLeg">하체</a></p>
       </div>
     </div>
-    <div class="col-sm-4">
-      <p class="text-center"><strong>가슴/하체/등/어깨/팔</strong></p><br>
-      <a href="#demo3" data-toggle="collapse">
-      <img src="resources/image/list.jpg" class="img-circle person" alt="2분할" width="50" height="50">
-      </a>
-      <div id="demo3" class="collapse">
-        <p><a href = "muscleChest5">가슴</a></p>
-        <p><a href = "muscleLeg5">하체</a></p>
-        <p><a href = "muscleBack5">등</a></p>
-        <p><a href = "muscleSholder5">어깨</a></p>
-        <p><a href = "muscleArm5">팔</a></p>
-      </div>
-    </div>
+    
   </div>
   </div>
   </div>
