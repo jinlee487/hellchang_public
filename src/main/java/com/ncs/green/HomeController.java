@@ -16,7 +16,7 @@ public class HomeController {
 	// AjaxTest
 	@RequestMapping(value = "/noob")
 	public ModelAndView atestf(ModelAndView mv) {
-		mv.setViewName("Myinfo");
+		mv.setViewName("noob/seq");
 		return mv; 
 	} // atestf
 	
