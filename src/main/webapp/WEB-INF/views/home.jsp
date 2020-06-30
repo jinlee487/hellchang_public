@@ -84,7 +84,7 @@
     .navbar {
       margin-bottom: 0;
       border-radius: 0;
-      background-color: #3d3b3c;
+      background-color: #000000;
     }
     
     /* Add a gray background color and some padding to the footer */
@@ -114,7 +114,10 @@
   </style>
 </head>
 <body>
-
+<div>
+    <img src = "resources/image/arnold.jpg" width="100%">
+    
+    
 <nav  class="navbar navbar-inverse" id="top_na">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -127,6 +130,7 @@
       <img src = "resources/image/logo.jpg" width="80" height="25">
       </a>
     </div>
+    
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li ><a href="#">Home</a></li>
@@ -144,7 +148,7 @@
     </div>
   </div>
 </nav>
-
+</div>
 
 
 
