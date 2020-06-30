@@ -24,6 +24,12 @@
   .container {
     padding: 80px 120px;
   }
+  .container-fluid{
+  	margin-bottom: 0px;
+  }
+  .text-center{
+  	margin-bottom: 0px;
+  }
   .person {
     border: 10px solid transparent;
     margin-bottom: 25px;
@@ -205,7 +211,7 @@ $(document).ready(function(){
         <li><a href="noob">Noob</a></li>
         <li><a href="#">Routine</a></li>
         <li><a href="#">Inbody</a></li>
-        <li><a href="#">1rm</a></li>
+         <li><a href="one">One RM</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>

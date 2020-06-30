@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>HellChang : 로그인</title>
 <link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
-<link rel="stylesheet" type="text/css" href="resources/jqLib/myStyle.css">
+<link rel="stylesheet" type="text/css" href="resources/jqLib/login.css">
 <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
 <script src="resources/jqLib/memberCheck.js"></script>
 <script src="resources/jqLib/axTest01.js"></script>
@@ -48,40 +48,8 @@ function inCheck() {
 } //inCheck 
 
 </script>
-<style>
- 				/* 정중앙 정렬 시키는 방법  물어보기 */
-	body{
-		background-color: #3d3b3c;
-		text-align: center;
-	}
-	#l_sub{
-		background-color: white;
-		border-color: white;
-		width: 208px;
-		height: 36px;
-	}
-	input{
-		width: 208px;
-		height: 36px;
-	}
-	table{
-		width: 100%;
-		text-align: center;
-		margin: 0 auto;
-		vertical-align: middle;
-	}
-	#cen{
-		margin-top: 300px;
-		vertical-align: middle;
-		
-		
-	
-	
-	}
 
 
-</style>
-				<!-- logo size width: 180px; height: 80px -->
 </head>
 <body>
 <div class="container-fluid rotate-in-center" id="cen">

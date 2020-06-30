@@ -4,7 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>HellChang 회원가입</title><link rel="icon" href="../image/KakaoTalk_20200625_154310387.jpg">
+<title>HellChang 회원가입</title>
+<link rel="icon" href="../image/KakaoTalk_20200625_154310387.jpg">
+<link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
+<link rel="stylesheet" type="text/css" href="resources/jqLib/join.css">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
 function sample4_execDaumPostcode() {
@@ -16,203 +19,18 @@ function sample4_execDaumPostcode() {
 	}).open();
 }
 </script>
-<style>
-body {font-family: Arial, Helvetica, sans-serif;
- text-align: center;
-}
-* {box-sizing: border-box}
 
-/* Full-width input fields */
-.input[type=text], .input[type=password] {
-  width: 30%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
-  border-radius: 8px
-}
-
-.input[type=text]:focus, .input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
-  border-radius: 8px
-}
-.gen{
-  width: 30%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
-  background-color: #ddd;
-  outline: none;
-  cursor: pointer;
-  border-radius: 8px
-}
-#address{
-  width: 30%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
-  background-color: #ddd;
-  outline: none;
-  cursor: pointer;
-  border-radius: 8px
-}
-
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
-  
-}
-
-/* Set a style for all buttons */
-button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
-}
-
-button:hover {
-  opacity:1;
-}
-
-/* Extra styles for the cancel button */
-.cancelbtn {
-  padding: 14px 20px;
-  background-color: #f44336;
-  text-align: center;
-  border-radius: 8px
-}
-
-/* Float cancel and signup buttons and add an equal width */
-.cancelbtn, .signupbtn {
-  float: center;
-  width: 15%;
-  text-align: center;
-  border-radius: 8px
-}
-
-/* Add padding to container elements */
-.container {
-  padding: 16px;
-  text-align: center;
-}
-
-/* Clear floats */
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
-  text-align: center;
-}
-
-/* Change styles for cancel button and signup button on extra small screens */
-@media screen and (max-width: 300px) {
-  .cancelbtn, .signupbtn {
-     width: 100%;
-     text-align: center;
-  }
-}
-body{
-	background-color: #3d3b3c;
-}
-img{
-	width: 10%;
-}
-h1{
-	color: white;
- text-align: center;
-}
-p{
-	color: white;
-	 text-align: center;
-}
-.int{
-	color:white;
-}
-#footer{
-	clear: both;
-    margin: 0 auto;
-    padding: 30px 0 15px 0;
-    text-align: center;
-    margin: 0 auto;
-    max-width: 768px;
-    min-width: 460px;
-}
-address {
-	color: white;
-}
-.logo{
-	color: white;
-}
-.u_cra{
-	color: white;
-}
-.yy{
-  width: 10%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
-  border-radius: 8px;
-}
-#zipcode{
-  width: 6%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
-  border-radius: 8px;
-  margin-right: 24%;
-  cursor: pointer;
-}
-
-#address1{
-  width: 30%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
-  background-color: #ddd;
-  outline: none;
-  border-radius: 8px;
-}
-.mm{
-  width: 10%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
-  background-color: #ddd;
-  outline: none;
-  cursor: pointer;
-  border-radius: 8px;
-}
-</style>
 </head>
 <body>
-<div id="header" class="joun_membership" role="banner">
+<div id="header" class="joun_membership bounce-in-left" role="banner">
 <h1>
 	<a href="home" class="h_logo">
 		<img src="resources/image/logo.jpg">
 	</a>
 </h1>
 </div>
-<form action="/action_page.php" style="border:1px solid #ccc">
-  <div class="container">
+<form action="/action_page.php" style="border:1px solid #ccc" >
+  <div class="container bounce-in-left">
     <h1>Sign Up</h1>
    <p>Please fill in this form to create an account.</p>
 
