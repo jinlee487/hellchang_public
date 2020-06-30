@@ -24,8 +24,10 @@
     }
     
      footer {
-      background-color: #000000;
-      padding: 25px;
+     clear : both;
+     position : inherit;
+     background-color: #000000;
+     padding: 25px;
     }
     
     /* On small screens, set height to 'auto' for sidenav and grid */
