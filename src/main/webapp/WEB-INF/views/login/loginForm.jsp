@@ -83,7 +83,7 @@ function inCheck() {
 				<!-- logo size width: 180px; height: 80px -->
 </head>
 <body>
-<div class="container-fluid" id="cen">
+<div class="container-fluid rotate-in-center" id="cen">
 <a href="home" ><img src="resources/image/logo.jpg" style="width: 10%;"></a>
 
 <form action="#" method=post id="f_size" >

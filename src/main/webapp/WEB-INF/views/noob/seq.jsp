@@ -24,8 +24,7 @@
     }
     
      footer {
-     clear : both;
-     position : inherit;
+	 margin-top : 330px;
      background-color: #000000;
      padding: 25px;
     }
