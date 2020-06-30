@@ -88,7 +88,6 @@
     margin: 0 auto;
     padding: 30px 0 15px 0;
     text-align: center;
-	bottom: 0px;
 	height: 50px;
     max-width: 100%;
     min-width: 460px;
