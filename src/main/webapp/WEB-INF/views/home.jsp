@@ -251,7 +251,7 @@
   <h2>1RM</h2><br> 
   <div class="row">
     <div class="col-sm-4" style="display: inline-block; margin: 0 0 0 17%; ">
-    <h3>INPUT1</h3>
+    <h3>INPUT</h3>
         <form>
        		<table>
        			<tr>
