@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>HellChang 회원가입</title><link rel="icon" href="../image/KakaoTalk_20200625_154310387.jpg">
+<title>HellChang 회원가입</title>
+<link rel="icon" href="../image/KakaoTalk_20200625_154310387.jpg">
+<link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
 function sample4_execDaumPostcode() {
@@ -204,15 +206,15 @@ address {
 </style>
 </head>
 <body>
-<div id="header" class="joun_membership" role="banner">
+<div id="header" class="joun_membership bounce-in-left" role="banner">
 <h1>
 	<a href="home" class="h_logo">
 		<img src="resources/image/logo.jpg">
 	</a>
 </h1>
 </div>
-<form action="/action_page.php" style="border:1px solid #ccc">
-  <div class="container">
+<form action="/action_page.php" style="border:1px solid #ccc" >
+  <div class="container bounce-in-left">
     <h1>Sign Up</h1>
    <p>Please fill in this form to create an account.</p>
 
