@@ -79,7 +79,7 @@
 	}
   </style>
 </head>
-<body>
+<body >
 
 <nav  class="navbar navbar-inverse" id="top_na">
   <div class="container-fluid">
@@ -110,9 +110,9 @@
   </div>
 </nav>
   
-<div class="container text-center pcontainer">    
+<div class="container text-center pcontainer" >    
   <div class="row">
-    <div class="col-sm-3 well">
+    <div class="col-sm-3 well" style="margin-top: 100px">
       <div class="well">
         <p><a href="#">My Profile</a></p>
         <img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
@@ -137,10 +137,10 @@
       <p><a href="#">Link</a></p>
       <p><a href="#">Link</a></p>
     </div>
-    <div class="col-sm-7">
+    <div class="col-sm-7 " style="margin-top: 100px">
     
       <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12" >
           <div class="panel panel-default text-left">
             <div class="panel-body">
               <p contenteditable="true">Status: Feeling Blue</p>
@@ -205,7 +205,7 @@
         </div>
       </div>     
     </div>
-    <div class="col-sm-2 well">
+    <div class="col-sm-2 well" style="margin-top: 100px">
       <div class="thumbnail">
         <p>Upcoming Events:</p>
         <img src="paris.jpg" alt="Paris" width="400" height="300">
