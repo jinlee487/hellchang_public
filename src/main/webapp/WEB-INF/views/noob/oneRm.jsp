@@ -15,7 +15,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script>
   
-  $(function(){
+  /* $(function(){
 		stickyFooter();
 
 		$(window).scroll(stickyFooter).resize(stickyFooter);
@@ -37,7 +37,7 @@
 			$("#footer").css("bottom","0");
 		}
 	}
-  
+   */
   
   
 	  function rm(){
@@ -85,6 +85,7 @@
   	position: fixed;
   	width : 100%;
 	clear: both;
+	margin-top: 500px;
     margin: 0 auto;
     padding: 30px 0 15px 0;
     text-align: center;
