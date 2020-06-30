@@ -937,7 +937,7 @@ address {
 
     <div class="clearfix">
       <button type="reset" class="cancelbtn">Cancel</button>
-      <button type="submit" class="signupbtn">Sign Up</button>
+      <button type="submit" class="signupbtn" onclick="history.back()">Sign Up</button>
     </div>
   </div>
 </form>
