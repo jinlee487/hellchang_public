@@ -37,19 +37,6 @@
 			j--;
 		}
 	}	 
-	/* 	
-	//var sum = 0;
-		//if(rep == 1){
-			for(var i=1; i<=10; i++){
-				sum = kg + (kg*0.025*i);
-				//sum = sum.toFixed(2);
-
-				$('.num'+i).html(i+ " R M ");
-				$('.result'+i).html(sum);
-			}	*/		
-		 // }else if(rep )
-	
-  	
   
   </script>
   <style>
@@ -73,7 +60,7 @@
     margin: 0 auto;
     padding: 30px 0 15px 0;
     text-align: center;
-    margin: 0 auto;
+	margin-top: 458px;
 	height: 50px;
     max-width: 100%;
     min-width: 460px;
@@ -142,42 +129,6 @@
   </div>
 </nav>
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-    </ol>
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-      <div class="item active">
-        <img src="resources/image/main2.jpg" alt="main2" style="width: 800px; height: 554px;">
-        <div class="carousel-caption">
-          <!-- <h3>More Sell $</h3>
-          <p>Lorem ipsum...</p> -->
-       </div>      
-    </div>
-
-      <div class="item">
-        <img src="resources/image/main3.png" alt="main3" style="width: 2000px; height: 554px;">
-        <div class="carousel-caption">
-          <!-- <h3>More Sell $</h3>
-          <p>Lorem ipsum...</p> -->
-        </div>      
-      </div>
-    </div>
-
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-</div>
   
 
 <div class="container text-center">    
