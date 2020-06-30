@@ -41,7 +41,7 @@
     .navbar {
       margin-bottom: 0;
       border-radius: 0;
-      background-color: #000000;
+      background-color: #3d3b3c;
     }
     
     /* Add a gray background color and some padding to the footer */
@@ -72,7 +72,7 @@
 </head>
 <body >
 
-<nav  class="navbar navbar-inverse" >
+<nav  class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -84,7 +84,6 @@
       <img src = "resources/image/logo.jpg" width="80" height="25">
       </a>
     </div>
-    
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li ><a href="#">Home</a></li>
@@ -95,7 +94,6 @@
         
       </ul>
       <ul class="nav navbar-nav navbar-right">
-      <li><a href="prof">UserTest</a></li>
       	<li><a href="joinf">회원가입</a></li>
         <li><a href="loginf"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul>
@@ -108,18 +106,27 @@
     <div class="col-sm-3 well">
       <div class="well">
         <p><a href="#">My Profile</a></p>
-        <img src="resources/uploadImage/emptyImage.png" class="img-circle" height="100" width="100" alt="Avatar">
+        <img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
       </div>
-
-		<ul class="nav nav-pills nav-stacked">
-		  <li><a href="#">Start Workout</a></li>
-		  <li><a href="#">Manage Workout</a></li>
-		  <li><a href="#">InBody</a></li>
-		  <li><a href="#">Diet</a></li>
-		  <li><a href="#">Social</a></li>  
-		  <li><a href="#">Setting</a></li>  
-		  
-		</ul>
+      <div class="well">
+        <p><a href="#">Interests</a></p>
+        <p>
+          <span class="label label-default">News</span>
+          <span class="label label-primary">W3Schools</span>
+          <span class="label label-success">Labels</span>
+          <span class="label label-info">Football</span>
+          <span class="label label-warning">Gaming</span>
+          <span class="label label-danger">Friends</span>
+        </p>
+      </div>
+      <div class="alert alert-success fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+        <p><strong>Ey!</strong></p>
+        People are looking at your profile. Find out who.
+      </div>
+      <p><a href="#">Link</a></p>
+      <p><a href="#">Link</a></p>
+      <p><a href="#">Link</a></p>
     </div>
     <div class="col-sm-7 ">
     
@@ -140,7 +147,7 @@
         <div class="col-sm-3">
           <div class="well">
            <p>John</p>
-           <img src="resources/uploadImage/emptyImage.png" class="img-circle" height="55" width="55" alt="Avatar">
+           <img src="bird.jpg" class="img-circle" height="55" width="55" alt="Avatar">
           </div>
         </div>
         <div class="col-sm-9">
@@ -153,7 +160,7 @@
         <div class="col-sm-3">
           <div class="well">
            <p>Bo</p>
-           <img src="resources/uploadImage/emptyImage.png" class="img-circle" height="55" width="55" alt="Avatar">
+           <img src="bandmember.jpg" class="img-circle" height="55" width="55" alt="Avatar">
           </div>
         </div>
         <div class="col-sm-9">
@@ -166,7 +173,7 @@
         <div class="col-sm-3">
           <div class="well">
            <p>Jane</p>
-           <img src="resources/uploadImage/emptyImage.png" class="img-circle" height="55" width="55" alt="Avatar">
+           <img src="bandmember.jpg" class="img-circle" height="55" width="55" alt="Avatar">
           </div>
         </div>
         <div class="col-sm-9">
@@ -179,7 +186,7 @@
         <div class="col-sm-3">
           <div class="well">
            <p>Anja</p>
-           <img src="resources/uploadImage/emptyImage.png" class="img-circle" height="55" width="55" alt="Avatar">
+           <img src="bird.jpg" class="img-circle" height="55" width="55" alt="Avatar">
           </div>
         </div>
         <div class="col-sm-9">

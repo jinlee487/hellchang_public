@@ -58,11 +58,11 @@
   	margin-right: 80px;
   }
   
-  #top_na{
-  	position: fixed;
+/*   #top_na{
+  	position: real;
   	z-index: 100;
   	width: 100%;
-  }
+  } */
 		  
   address {
 	color: white;
@@ -115,10 +115,10 @@
 </head>
 <body>
 <div>
-    <img src = "resources/image/arnold.jpg" width="100%">
+<img src = "resources/image/arnold.jpg" width="100%">
     
     
-<nav  class="navbar navbar-inverse" id="top_na">
+<nav  class="navbar navbar-inverse" >
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
