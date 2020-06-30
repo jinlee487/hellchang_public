@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-   <script src="jquery-3.2.1.min.js"></script>
+   <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
    
     <script type="text/javascript">
     google.charts.load('current', {'packages':['gauge','table','line','corechart','bar']});
