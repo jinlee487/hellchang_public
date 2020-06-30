@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>HellChang : 로그인</title>
+<link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
 <link rel="stylesheet" type="text/css" href="resources/jqLib/myStyle.css">
 <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
 <script src="resources/jqLib/memberCheck.js"></script>
