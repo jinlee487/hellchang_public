@@ -145,43 +145,7 @@
   </div>
 </nav>
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-    </ol>
 
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-      <div class="item active">
-        <img src="resources/image/main2.jpg" alt="main2" style="width: 800px; height: 554px;">
-        <div class="carousel-caption">
-          <!-- <h3>More Sell $</h3>
-          <p>Lorem ipsum...</p> -->
-       </div>      
-    </div>
-
-      <div class="item">
-        <img src="resources/image/main3.png" alt="main3" style="width: 2000px; height: 554px;">
-        <div class="carousel-caption">
-          <!-- <h3>More Sell $</h3>
-          <p>Lorem ipsum...</p> -->
-        </div>      
-      </div>
-    </div>
-
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-</div>
-  
 
 
 
@@ -251,43 +215,6 @@
   </div>
 </div><br>
 
-<div class="container text-center">    
-  <h2>1RM</h2><br> 
-  <div class="row">
-    <div class="col-sm-4" style="display: inline-block; margin: 0 0 0 17%; ">
-    <h3>INPUT</h3>
-        <form>
-       		<table>
-       			<tr>
-       				<th style="text-align: center;">KG</th><th style="text-align: center;">REP</th>
-       			</tr>
-       			<tr>
-       				<td><input type="text"  placeholder="무게를 입력하세요." id="kg"></td>
-       				<td>
-       					<input type="text"  placeholder="개수를 입력하세요." id="rep">
-       				</td>
-       			</tr>
-       		</table>
-       		<br>
-       		<button type="button" onclick="rm()">결과확인</button>
-       </form>
-    </div>
-    <div class="col-sm-4" style="display: inline-block; margin: 0; ">
-       <h3>RESULT</h3>
-       <c:forEach begin="1" end="10" varStatus="status">
-	   			<table style="text-align: center;">
-	   				<tr>
-	   				</tr>
-	   				<tr>
-	   					<td style="border: solid 1px; text-align:center; width: 178px; height: 26px;" class="num${status.count}"></td>
-	   					<td style="border: solid 1px; text-align:center; width: 178px; height: 26px;" class="result${status.count}"></td>
-	   				</tr>
-	   			</table>
-	   </c:forEach>
-    </div>
-    
-  </div>
-</div><br>
 
 <div id="footer" role="contentinfo">
 		<address>
