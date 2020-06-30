@@ -42,6 +42,8 @@
     max-width: 100%;
     min-width: 460px;
     background-color: #3d3b3c;
+    bottom:0px;
+    
 	}
   
     /* Remove the navbar's default margin-bottom and rounded borders */ 
