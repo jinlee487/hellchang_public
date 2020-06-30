@@ -14,6 +14,32 @@
   <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script>
+  
+  $(function(){
+		stickyFooter();
+
+		$(window).scroll(stickyFooter).resize(stickyFooter);
+	});
+
+
+	function stickyFooter(){
+		document_height = $(document).height(); // 문서 전체 높이
+		document_scrollTop = $(document).scrollTop(); // 문서 전체 높이 중 스크롤 위치
+		window_height = $(window).height(); // 창 높이
+		footer_height = $("#footer").height();
+
+		gap = document_height - footer_height - window_height; 
+		bottom = document_scrollTop - gap ; 
+
+		if(document_scrollTop > gap){
+			$("#footer").css("bottom", bottom+"px");
+		}else{
+			$("#footer").css("bottom","0");
+		}
+	}
+  
+  
+  
 	  function rm(){
 		  for(var i=1; i<=10; i++)	{
 			 
@@ -56,17 +82,24 @@
 	margin-bottom:0px;
 	}
   #footer{
+  	position: fixed;
+  	width : 100%;
 	clear: both;
     margin: 0 auto;
     padding: 30px 0 15px 0;
     text-align: center;
-	margin-top: 458px;
+	bottom: 0px;
 	height: 50px;
     max-width: 100%;
     min-width: 460px;
     background-color: #3d3b3c;
+    z-index: 30;
 	}
-  
+  	
+  	element.style{
+  		bottom : 0px;
+  	}
+  	
     /* Remove the navbar's default margin-bottom and rounded borders */ 
     .navbar {
       margin-bottom: 0;
@@ -74,11 +107,6 @@
       background-color: #3d3b3c;
     }
     
-    /* Add a gray background color and some padding to the footer */
-    footer {
-      background-color: #3d3b3c;
-      padding: 25px;
-    }
     
   .carousel-inner img {
       width: 100%; /* Set width to 100% */
@@ -169,7 +197,7 @@
   </div>
 </div><br>
 
-<div id="footer" role="contentinfo">
+<div id="footer" role="contentinfo" >
 		<address>
 			<em><a href="home" target="_blank" class="logo"><span class="blind">HellChang</span></a></em>
 			<em class="copy">Copyright</em>
