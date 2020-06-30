@@ -20,5 +20,15 @@ public class MemberController {
 		mv.setViewName("member/joinForm");
 		return mv; 
 	} // atestf
+	@RequestMapping(value = "/dataf")
+	public ModelAndView dataf(ModelAndView mv) {
+		mv.setViewName("data/comboCharttest");
+		return mv; 
+	} // 
+	@RequestMapping(value = "/prof")
+	public ModelAndView prof(ModelAndView mv) {
+		mv.setViewName("user/profile");
+		return mv; 
+	} // 
 
 }

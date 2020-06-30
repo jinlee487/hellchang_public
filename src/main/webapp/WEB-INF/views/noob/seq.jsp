@@ -7,38 +7,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="resources/jqLib/seq.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <style>
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-      background-color: #3d3b3c	;
-    }
-    
-    .row.content {height: 450px}
-    
-    .sidenav {
-      padding-top: 20px;
-      background-color: #f1f1f1;
-      height: 100%;
-    }
-    
-    footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-    }
-    
-    /* On small screens, set height to 'auto' for sidenav and grid */
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-        padding: 15px;
-      }
-      .row.content {height:auto;} 
-    }
-  </style>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50" style="background-color: #f1f1f1">
 
@@ -59,7 +30,11 @@
         <li><a href="noob">Noob</a></li>
         <li><a href="#">Routine</a></li>
         <li><a href="#">Inbody</a></li>
-        <li><a href="#">1rm</a></li>
+<<<<<<< HEAD
+         <li><a href="one">One RM</a></li>
+=======
+        <li><a href="one">1rm</a></li>
+>>>>>>> branch 'master' of https://github.com/jinlee487/hellchang.git
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
@@ -76,7 +51,7 @@
       <p><a href="diet">다이어트</a></p>
       <p><a href="maintain">유지어트</a></p>
     </div>
-    <div class="col-sm-8 text-center">
+    <div class="col-sm-8 text-center" >
       <h2 align="center">운동을 해야 하는 진짜 이유는?</h2>
       <iframe width="500" height="390"
       src="https://www.youtube.com/embed/_WuS6IuIDGo" 
@@ -90,6 +65,7 @@
         <p>여기에는 뭐 그냥</p>
       </div>
       <div class="well">
+        <p>저희 소개 적어도 될거같아요</p>
         <p>저희 소개 적어도 될거같아요</p>
       </div>
     </div>

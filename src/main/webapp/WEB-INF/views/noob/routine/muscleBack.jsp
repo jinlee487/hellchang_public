@@ -1,31 +1,17 @@
-<!-- 리스트 클릭하면 popup으로 동영상 -->
 
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>2분할 밀기운동</title>
+  <title>3분할 등운동</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="resources/jqLib/noob.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src = "resources/jqLib/jquery-3.2.1.min.js"></script>
   <script src = "resources/jqLib/popUp.js"></script>
-  <style>
-    /* Remove the navbar's default margin-bottom and rounded borders */ 
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-      background-color: #3d3b3c	;
-    }
-    
-    /* Add a gray background color and some padding to the footer */
-    footer {
-      background-color: #f2f2f2;
-      padding: 25px;
-    }
-  </style>
   
 </head>
 <body style="background-color: #f1f1f1">
@@ -42,7 +28,7 @@
         <li><a href="noob">Noob</a></li>
         <li><a href="#">Routine</a></li>
         <li><a href="#">Inbody</a></li>
-        <li><a href="#">1rm</a></li>
+        <li><a href="one">1rm</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
@@ -52,70 +38,80 @@
 </nav> 
 
 <div class="jumbotron">
-  <div class="container text-center">
-    <h1>2분할</h1>      
-    <p>2분할루틴은 상체와 하체 
-이 두가지 안에서 루틴이 돌아가기 떄문에 
-훈련빈도가 높아집니다.<br>
-
-훈련빈도가 높아진다는 것은 
-곧 볼륨이 높아진다는 뜻과 같다. </p>
+  <div class="container text-center" id = "div1">
+    <h1>3분할</h1>      
+    <p>3분할 운동법은 한 부위를 조금 더 강도 있게 운동할 수 있는 반면 휴식 기간이 길다.<br>
+    그러므로 고강도 운동이 어려운 초급자나 중급자에게는 맞지 않을 수도 있다.
+	</p>
   </div>
 </div>
   
 <div class="container-fluid bg-3 text-center">    
-  <h3>2분할 Push</h3><br>
   <div class="row">
+  <div>스트레칭  - 데드리프트 - 바벨로우 - 풀업 -
+  		랫풀다운 - 바벨컬 - 해머컬 - 케이블컬</div>
+  <hr>
+  
+    <!-- 등운동 -->
+    
     <div class="col-sm-3">
-      <a onclick="stretch1()">1.스트레칭<br>
+      <a onclick="bStretch()">1.스트레칭<br>
       <img src = "resources/image/stretch.gif"
       width="100%" height="250"></a>
     </div>
+    
     <div class="col-sm-3"> 
-      <a onclick="squat()">2.스쿼트
-	  <img src = "resources/image/squat.jpg"
+      <a onclick="deadlift()">2.데드리프트
+	  <img src = "resources/image/deadlift.jpg"
       width="100%" height="250"></a>
     </div>
+    
     <div class="col-sm-3"> 
-      <a onclick="bench()">3.벤치프레스
-	  <img src = "resources/image/bench.png"
+      <a onclick="barbellrow()">3.바벨로우
+	  <img src = "resources/image/barbellRow.jpg"
       width="100%" height="250"></a>
     </div>
+    
     <div class="col-sm-3">
-     <a onclick="ibench()">4.인클라인 벤치프레스
-	  <img src = "resources/image/ibench.jpg"
+     <a onclick="pullUp()">4.풀업
+	  <img src = "resources/image/pullUp.jpg"
       width="100%" height="250"></a>
     </div>
+    
   </div>
 </div><br>
 
 <div class="container-fluid bg-3 text-center">    
   <div class="row">
+  	<div class="col-sm-3"> 
+      <a onclick="latPull()">5.랫풀다운
+	  <img src = "resources/image/latPull.jpg"
+      width="100%" height="250"></a>
+    </div>
+    
+    <!-- 이두운동  -->
     <div class="col-sm-3">
-      <a onclick="dips()">5.딥스
-	  <img src = "resources/image/dips.jpg"
+      <a onclick="barbellCurl()">6.바벨컬
+	  <img src = "resources/image/barbellCurl.jpg"
       width="100%" height="250"></a>
     </div>
-    <div class="col-sm-3"> 
-     <a onclick="ohp()">6.밀리터리프레스
-	  <img src = "resources/image/ohp.jpg"
-      width="100%" height="250"></a>
-    </div>
-    <div class="col-sm-3"> 
-      <a onclick="legEx()">7.레그익스텐션
-	  <img src = "resources/image/legEx.png"
-      width="100%" height="250"></a>
-    </div>
+    
     <div class="col-sm-3">
-     <a onclick="stretch2()">8.스트레칭
-	  <img src = "resources/image/stretch.gif"
+      <a onclick="hammerCurl()">7.해머컬
+	  <img src = "resources/image/hammerCurl.jpg"
+      width="100%" height="250"></a>
+    </div>
+    
+    <div class="col-sm-3">
+      <a onclick="cableCurl()">8.케이블컬
+	  <img src = "resources/image/cableCurl.jpg"
       width="100%" height="250"></a>
     </div>
   </div>
 </div><br><br>
 
 <footer class="container-fluid text-center">
-  <p><a href = "#">이전화면</a></p>
+  <p><a onclick="javascript:history.go(-1)">이전화면</a></p>
 </footer>
 
 </body>

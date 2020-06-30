@@ -1,0 +1,28 @@
+body {
+	background-color: #3d3b3c;
+	text-align: center;
+}
+
+#l_sub {
+	background-color: white;
+	border-color: white;
+	width: 208px;
+	height: 36px;
+}
+
+input {
+	width: 208px;
+	height: 36px;
+}
+
+table {
+	width: 100%;
+	text-align: center;
+	margin: 0 auto;
+	vertical-align: middle;
+}
+
+#cen {
+	margin-top: 300px;
+	vertical-align: middle;
+}
