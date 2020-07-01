@@ -14,7 +14,33 @@
   <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="resources/jqLib/google_chart_functions.js"></script>
   
+  <script>
+
+  var r = [];
+  var r2 = [];
+ 		  //console.log("this is the type of date => " + Date.parse(new Date(2020, 0,  1, 19, 30)));
+  	  for (var i=0;i<parseInt(20);i++){
+  		r.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 59.2, 21, 85-i]);
+  		r2.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 29.9, 6.6, 25.4+i]);
+
+  		console.log("this is r =>" + [i])
+  	  }
+  google.charts.setOnLoadCallback(function(){
+	  inbodybarchart(r,'wChartID','wChartID2');
+	  inbodybarchart(r2,'mmChartID','mmChartID2');
+
+  }); 
+  $(window).resize(function(){
+	  google.charts.setOnLoadCallback(function(){
+		  inbodybarchart(r,'wChartID','wChartID2');
+		  inbodybarchart(r2,'mmChartID','mmChartID2');		  
+	  }); 
+	});
+
+  
+  </script>
   
   <style>
   #p_pos{
@@ -70,6 +96,40 @@
 	  /* margin-left: 200px; */
 	  text-align: center;
 	}
+.ul-weekday {list-style-type: none;}
+
+.weekday {
+  padding: 70px 25px;
+  width: 100%;
+  background: #1abc9c;
+  text-align: center;
+}
+
+.weekday ul {
+  margin: 0;
+  padding: 0;
+}
+
+.weekday ul li {
+  color: white;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.weekday .prev {
+  float: left;
+  padding-top: 10px;
+}
+
+.weekday .next {
+  float: right;
+  padding-top: 10px;
+}
+.analysis-title{
+text-align: left;
+}
+	
   </style>
 </head>
 <body >
@@ -124,72 +184,41 @@
 		</ul>
     </div>
     <div class="col-sm-7 ">
-    
       <div class="row">
-        <div class="col-sm-12" >
-          <div class="panel panel-default text-center">
-          <div class="panel-heading">THIS WEEK</div>
-            <div class="panel-body">
-				<hr>
-         </div>
-
-          </div>
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="col-sm-3">
-          <div class="well">
-           <p>John</p>
-           <img src="resources/uploadImage/emptyImage.png" class="img-circle" height="55" width="55" alt="Avatar">
-          </div>
-        </div>
-        <div class="col-sm-9">
-          <div class="well">
-            <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-          </div>
+        <div class="col-sm-12">
+			<div class="weekday">      
+			  <ul style="list-style-type: none;">
+			    <li class="prev">&#10094;</li>
+			    <li class="next">&#10095;</li>
+			    <li>
+			      06.26.2020(Fri) 09:50<br>
+			    </li>
+			  </ul>
+			</div>  
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-3">
-          <div class="well">
-           <p>Bo</p>
-           <img src="resources/uploadImage/emptyImage.png" class="img-circle" height="55" width="55" alt="Avatar">
-          </div>
-        </div>
-        <div class="col-sm-9">
-          <div class="well">
-            <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-          </div>
-        </div>
+        <div class="col-sm-12">
+           <div class="well well-sm analysis-title">MUSCLE-FAT ANALYSIS</div>   
+        </div>        
       </div>
       <div class="row">
-        <div class="col-sm-3">
-          <div class="well">
-           <p>Jane</p>
-           <img src="resources/uploadImage/emptyImage.png" class="img-circle" height="55" width="55" alt="Avatar">
-          </div>
+        <div class="col-sm-12">
+            <table class="columns"  style="width: 100%;">
+		      <tr>
+		        <td style="table-layout: fixed;">Weight<br><strong style="font-size: large;" id="wChartID2"></strong>kg</td>
+		        <td><div id="wChartID"></div></td>
+		      </tr>
+		      <tr>
+		        <td style="table-layout: fixed;">Muscle Mass<br><strong style="font-size: large;" id="mmChartID2"></strong>kg</td>
+		        <td><div id="mmChartID"></div></td>
+		      </tr>
+		    </table><br><br>
         </div>
-        <div class="col-sm-9">
-          <div class="well">
-            <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-3">
-          <div class="well">
-           <p>Anja</p>
-           <img src="resources/uploadImage/emptyImage.png" class="img-circle" height="55" width="55" alt="Avatar">
-          </div>
-        </div>
-        <div class="col-sm-9">
-          <div class="well">
-            <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-          </div>
-        </div>
-      </div>     
-    </div>
+       </div>
+       
+     </div>
+     
     <div class="col-sm-2 well" style="margin-top: 100px">
       <div class="thumbnail">
         <p>Upcoming Events:</p>
