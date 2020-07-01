@@ -63,7 +63,7 @@
     
     /* Add a gray background color and some padding to the footer */
     footer {
-      background-color: #3d3b3c;
+      background-color: white;
       padding: 25px;
     }
     
