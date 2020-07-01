@@ -204,14 +204,14 @@ text-align: left;
       </div>
       <div class="row">
         <div class="col-sm-12">
-            <table class="columns"  style="width: 100%;">
+            <table class="columns"  style="table-layout:fixed;word-break:break-all;width:100%;">
 		      <tr>
-		        <td style="table-layout: fixed;">Weight<br><strong style="font-size: large;" id="wChartID2"></strong>kg</td>
-		        <td><div id="wChartID"></div></td>
+		        <td style="width:40%;">Weight<br><strong style="font-size: large;" id="wChartID2"></strong>kg</td>
+		        <td style="width:150%;"><div id="wChartID"></div></td>
 		      </tr>
 		      <tr>
-		        <td style="table-layout: fixed;">Muscle Mass<br><strong style="font-size: large;" id="mmChartID2"></strong>kg</td>
-		        <td><div id="mmChartID"></div></td>
+		        <td style="width:40%;">Muscle Mass<br><strong style="font-size: large;" id="mmChartID2"></strong>kg</td>
+		        <td style="width:150%;"><div id="mmChartID"></div></td>
 		      </tr>
 		    </table><br><br>
         </div>
