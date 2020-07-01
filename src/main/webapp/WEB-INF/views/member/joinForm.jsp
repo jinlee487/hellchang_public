@@ -727,7 +727,7 @@
    
     <label for="gender" class="int"><b>Gender</b></label><br>
     <select id="gen" class="gen" required>
-		<option value="A">성별</option>
+		<option value="">성별</option>
 		<option value="B">남성</option>
 		<option value="C">여성</option>
 	</select><br>
