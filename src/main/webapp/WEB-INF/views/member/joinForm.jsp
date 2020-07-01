@@ -18,7 +18,7 @@
 	</a>
 </h1>
 </div>
-<form action="joinf" method="post" style="border:1px solid #ccc" name="regform">
+<form action="prof" method="post" style="border:1px solid #ccc" name="regform">
   <div class="container bounce-in-left">
     <h1>Sign Up</h1>
    <p>Please fill in this form to create an account.</p>
@@ -759,24 +759,24 @@
 	</div>
 <script>
 function check_form() {
-	var idval = document.regform.email.value;
+	var idval = document.joinForm.email.value;
 	if (idval.charAt(0) < 'A' || idval.charAt(0) > 'z' ) {
  		alert("아이디의 첫글자는 영문자입니다.");
   		document.regform.email.focus();
   		return;
 	}
-	if (document.regform.psw.value =="") {
+	if (document.joinForm.psw.value =="") {
  		alert("비밀번호를 입력하세요.");
   		document.regform.psw.focus();
   		return;
 	}
-	if (document.regform.psw.value != document.regform.psw-repeat.value) {
+	if (document.joinForm.psw.value != document.regform.psw-repeat.value) {
  		alert("비밀번호가 일치하지 않습니다.");
   		document.regform.psw.focus();
   		return;
 	}
 	
-	document.regform.submit();
+	document.joinForm.submit();
 }
 	
 
