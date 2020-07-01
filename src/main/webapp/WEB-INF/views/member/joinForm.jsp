@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>HellChang 회원가입</title>
-<link rel="icon" href="../image/KakaoTalk_20200625_154310387.jpg">
+<link rel="icon" href="resources/image/logo.jpg">
 <link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
 <link rel="stylesheet" type="text/css" href="resources/jqLib/join.css">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
