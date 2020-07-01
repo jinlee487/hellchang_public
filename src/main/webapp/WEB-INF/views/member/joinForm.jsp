@@ -5,21 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>HellChang 회원가입</title>
-<link rel="icon" href="../image/KakaoTalk_20200625_154310387.jpg">
+<link rel="icon" href="resources/image/logo.jpg">
 <link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
 <link rel="stylesheet" type="text/css" href="resources/jqLib/join.css">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script>
-function sample4_execDaumPostcode() {
-   new daum.Postcode({
-	    oncomplete: function(data) {
-	    	 document.getElementById('zipcode').value = data.zonecode;
-	         document.getElementById("address").value = data.address;
-	    }
-	}).open();
-}
-</script>
-
 </head>
 <body>
 <div id="header" class="joun_membership bounce-in-left" role="banner">
@@ -29,7 +18,7 @@ function sample4_execDaumPostcode() {
 	</a>
 </h1>
 </div>
-<form action="/action_page.php" style="border:1px solid #ccc" >
+<form action="prof" method="post" style="border:1px solid #ccc" name="regform">
   <div class="container bounce-in-left">
     <h1>Sign Up</h1>
    <p>Please fill in this form to create an account.</p>
@@ -38,7 +27,7 @@ function sample4_execDaumPostcode() {
     <input type="text" placeholder="Enter Email" name="email" class="input" required><br>
 
     <label for="psw" class="int"><b>Password</b></label><br>
-    <input type="password" placeholder="Enter Password" name="psw" class="input" required ><br>
+    <input type="password" placeholder="Enter Password"  name="psw" class="input" required ><br>
 
     <label for="psw-repeat" class="int"><b>Repeat Password</b></label><br>
     <input type="password" placeholder="Repeat Password" name="psw-repeat" class="input" required><br>
@@ -738,7 +727,7 @@ function sample4_execDaumPostcode() {
    
     <label for="gender" class="int"><b>Gender</b></label><br>
     <select id="gen" class="gen" required>
-		<option value="A">성별</option>
+		<option value="">성별</option>
 		<option value="B">남성</option>
 		<option value="C">여성</option>
 	</select><br>
@@ -768,5 +757,40 @@ function sample4_execDaumPostcode() {
 			<span class="all_r">All Rights Reserved.</span>
 		</address>
 	</div>
+<script>
+function check_form() {
+	var idval = document.joinForm.email.value;
+	if (idval.charAt(0) < 'A' || idval.charAt(0) > 'z' ) {
+ 		alert("아이디의 첫글자는 영문자입니다.");
+  		document.regform.email.focus();
+  		return;
+	}
+	if (document.joinForm.psw.value =="") {
+ 		alert("비밀번호를 입력하세요.");
+  		document.regform.psw.focus();
+  		return;
+	}
+	if (document.joinForm.psw.value != document.regform.psw-repeat.value) {
+ 		alert("비밀번호가 일치하지 않습니다.");
+  		document.regform.psw.focus();
+  		return;
+	}
+	
+	document.joinForm.submit();
+}
+	
+
+</script>
+
+<script>
+function sample4_execDaumPostcode() {
+   new daum.Postcode({
+	    oncomplete: function(data) {
+	    	 document.getElementById('zipcode').value = data.zonecode;
+	         document.getElementById("address").value = data.address;
+	    }
+	}).open();
+}
+</script>
 </body>
 </html>
