@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="resources/jqLib/seq.css">
+    <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_pos.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
@@ -69,9 +70,18 @@
   </div>
 </div>
 
-<footer class="container-fluid text-center">
-  <p>Footer Text</p>
-</footer>
+
+<div id="footer" role="contentinfo">
+<!-- <hr style="width: 100%;">
+<hr style="width: 100%; border-color: black;"> -->
+		<address>
+			<em><a href="home" target="_blank" class="logo footfont"><span class="blind">HellChang</span></a></em>
+			<em class="copy footfont">Copyright</em>
+			<em class="u_cri footfont">©</em>
+			<a href="home" target="_blank" class="u_cra footfont">HellChang Corp.</a>
+			<span class="all_r footfont">All Rights Reserved.</span>
+		</address>
+</div>
 
 </body>
 </html>
