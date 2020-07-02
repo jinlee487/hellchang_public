@@ -49,7 +49,7 @@ $(document).ready(function(){
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="home"> 
+      <a class="navbar-brand" href="home" style="background-color: '#ffffff'"> 
       <img src = "resources/image/logo.jpg" width="80" height="25">
       </a>
     </div>

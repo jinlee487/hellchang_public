@@ -36,7 +36,7 @@
     }
   }
   .bg-1 {
-    background: #2d2d30;
+    background: #ffffff;
     color: #bdbdbd;
   }
   .bg-1 h3 {color: #fff;}
@@ -61,13 +61,13 @@
   .btn {
     padding: 10px 20px;
     background-color: #333;
-    color: #f1f1f1;
+    color: #000000;
     border-radius: 0;
     transition: .2s;
   }
   .btn:hover, .btn:focus {
     border: 1px solid #333;
-    background-color: #fff;
+    background-color: #ffffff;
     color: #000000;
   }
   .modal-header, h4, .close {
@@ -79,18 +79,6 @@
   .modal-header, .modal-body {
     padding: 40px 50px;
   }
-  
-  .navbar li a, .navbar .navbar-brand { 
-    color: #d5d5d5 !important;
-  }
-  .navbar-nav li a:hover {
-    color: #fff !important;
-  }
-  .navbar-nav li.active a {
-    color: #fff !important;
-    background-color: #000000 !important;
-  }
-  
   
   .form-control {
     border-radius: 0;
