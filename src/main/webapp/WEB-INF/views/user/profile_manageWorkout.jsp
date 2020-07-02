@@ -180,7 +180,7 @@ text-align: left;
       <div class="row">
         <div class="col-sm-12">
          <div id=where>
-		  <iframe width=100% height=150 name="test"></iframe>
+		  <iframe width=100% height=150 name="test" ></iframe>
 		 </div>
 		 <div id=save>
 		  <iframe width=100% height=100></iframe>
