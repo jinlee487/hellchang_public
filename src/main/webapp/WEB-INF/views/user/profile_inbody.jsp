@@ -137,12 +137,10 @@
 
 .weekday .prev {
   float: left;
-  padding-top: 10px;
 }
 
 .weekday .next {
   float: right;
-  padding-top: 10px;
 }
 .analysis-title{
 text-align: left;
@@ -251,7 +249,7 @@ text-align: left;
 			    <li class="prev">&#10094;</li>
 			    <li class="next">&#10095;</li>
 			    <li>
-			      06.26.2020(Fri) 09:50<br>
+			      06.26.2020(Fri) 09:50
 			    </li>
 			  </ul>
 			</div>  
@@ -260,7 +258,7 @@ text-align: left;
 		      <tr>
 		        <td style="width:40%;">Weight<br><strong style="font-size: large;" id="wChartID2"></strong>kg</td>
 		        <td style="width:150%;"><div id="wChartID"></div></td>
-		      </tr>
+		      </tr> 
 		      <tr>
 		        <td style="width:40%;">Muscle Mass<br><strong style="font-size: large;" id="mmChartID2"></strong>kg</td>
 		        <td style="width:150%;"><div id="mmChartID"></div></td>
