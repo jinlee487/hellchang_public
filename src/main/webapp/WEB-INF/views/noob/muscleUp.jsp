@@ -95,8 +95,8 @@ $(document).ready(function(){
       <img src="resources/image/list.jpg" class="img-circle person" alt="2분할" width="50" height="50">
       </a>
       <div id="demo" class="collapse">
-        <p><a href = "muscleUpPush">밀기</a></p>
-        <p><a href = "muscleUpPull">당기기</a></p>
+        <p><a href = "muscleUpPushP">밀기</a></p>
+        <p><a href = "muscleUpPullP">당기기</a></p>
       </div>
     </div>
     <div class="col-sm-4">
