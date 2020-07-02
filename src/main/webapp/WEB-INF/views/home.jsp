@@ -9,7 +9,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
-  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_pos.css">
+  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
@@ -18,7 +18,7 @@
   <style>
 
 	#p_pos{
-  	margin-right: 80px;
+  		margin-right: 80px;
 }
   
 
