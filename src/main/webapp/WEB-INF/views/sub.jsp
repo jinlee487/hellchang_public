@@ -6,6 +6,7 @@
 <head>
   <title>hellchang_project</title>
   <link rel="icon" href="resources/image/logo.jpg">
+  <link rel="stylesheet" type="text/css" href="resource/jqLib/topBar.css">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
