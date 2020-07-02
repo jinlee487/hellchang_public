@@ -21,21 +21,3 @@ address {
     margin-bottom:0px;
     color: black;
 }
-
-address {
-	color: white;
-	margin-bottom:20px;
-}
-
-#footer{
-	color: black;
-	clear: both;
-    padding: 30px 0 15px 0;
-    text-align: center;
-	height: 50px;
-    max-width: 100%;
-    min-width: 460px;
-    background-color: white;    
-    width:100%;
-    margin-bottom:0px;
-}

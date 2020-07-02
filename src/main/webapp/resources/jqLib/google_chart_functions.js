@@ -13,9 +13,6 @@ function calcBMR(r,ID){
     document.getElementById(ID).innerHTML = bmr.toFixed(2);
 }
 
-
-google.charts.load('current', {'packages':['gauge','table','line','corechart','bar']}); 
-
 function inbodybarchart(r,ID,ID2) {
     	var r = r[r.length-1];
     	document.getElementById(ID2).innerHTML = r[3];
@@ -104,3 +101,107 @@ function inbodybarchart(r,ID,ID2) {
 		        classicChart.draw(data, options);
 	        
 	        };
+
+function inbodycombochart(r,ID) {
+	console.log("this is last r date => " + r[r.length-1][0])
+	console.log("this is r[0][0] = > " + r[0][0])
+    var data = new google.visualization.DataTable();
+    data.addColumn('string','Date');
+    data.addColumn('number','Low');
+    data.addColumn('number','Avg value for height');
+    data.addColumn('number','Value');
+    data.addColumn({type: 'string', role: 'annotation'});
+
+    data.addRows([
+		[null, r[0][1], r[0][2],null,null]
+	]); 
+    for (var i=0;i<r.length;i++){
+    	data.addRows([
+    		[datetimetoString(r[i][0]), r[i][1], r[i][2],r[i][3],(r[i][3]).toString()]
+    		]); 
+    }
+	data.addRows([
+		[null, r[r.length-1][1], r[r.length-1][2],null,null]
+	]); 
+
+	  var columnRange = data.getColumnRange(3);
+      var options = {
+	    	
+	    	legend: {position: 'none'},
+	        chartArea: {
+	          //width: '80%',
+	          backgroundColor: {
+	              stroke: '#fff',
+	              strokeWidth: 1
+	          }
+	        },
+
+	        isStacked: true,
+	        width: '100%',
+	        series: {
+    	          // low
+    	          0: {	    	        	
+    	        	  tooltip : false,
+    	            areaOpacity: 0.3,
+    	            color: 'white',
+    	            visibleInLegend: false
+    	          },
+
+    	          // high
+    	          1: {
+    	        	  tooltip : false,
+    	            areaOpacity: 0.3,
+    	            color: '#A5D6A7',
+    	            visibleInLegend: true
+    	          },
+
+    	          // weight
+    	          2: {
+    	            color: '#01579B',
+    	            type: 'line',
+    	            pointSize: 10
+    	          }
+	        },
+        seriesType: 'area',
+      //tooltip: {isHtml: true},
+        //title: '',
+        hAxis: {
+          //  format: 'yy.MM.dd\nhh:mm',
+          //  gridlines: {color: '#333',count: 15},
+	        //textPosition: 'none'
+            baselineColor: '#000000'
+          },
+        vAxis: {
+        	baselineColor: '#000000',
+        	//baseline: 0,
+        	viewWindow: {
+	          min: columnRange.min-1,
+	          max: columnRange.max+1
+        	},
+          // gridlines: {color: '#333', count: 15},
+          textPosition: 'none'
+          }
+      };
+      var chart = new google.visualization.ComboChart(document.getElementById(ID));
+      chart.draw(data, options);
+	}	
+
+
+function datetimetoString(date){
+	var d = date,
+	        month = '' + (d.getMonth() + 1),
+	        day = '' + d.getDate(),
+	        year = (''+d.getFullYear()).slice(-2);
+		hour = ''+ d.getHours();
+		min = ''+d.getMinutes();
+	    if (month.length < 2) 
+	        month = '0' + month;
+	    if (day.length < 2) 
+	        day = '0' + day;
+	if (hour.length<2)
+		hour = '0' + hour;
+	if (min.length<2)
+		min = '0' + min;
+	console.log(year+'.'+day+'.'+min+'\n'+hour+':'+min);
+	    return (year+'.'+day+'.'+min+'\n'+hour+':'+min);
+	}

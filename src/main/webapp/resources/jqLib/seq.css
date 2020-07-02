@@ -9,8 +9,9 @@
 }
 
 .sidenav {
-	padding-top: 20px;
-	height: 100%;
+      padding-top: 20px;
+      background-color: #ffffff;
+      height: 100%;
 }
 
 /* On small screens, set height to 'auto' for sidenav and grid */
