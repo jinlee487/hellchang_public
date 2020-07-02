@@ -7,14 +7,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="resources/jqLib/noob.css">
+  <link rel="stylesheet" type="text/css" href="resources/jqLib/noobCss.css">
+  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src = "resources/jqLib/jquery-3.2.1.min.js"></script>
   <script src = "resources/jqLib/popUp.js"></script>
    
 </head>
-<body style="background-color: #f1f1f1">
+<body style="background-color: #ffffff">
 
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -38,7 +39,7 @@
 </nav> 
 
 <div class="jumbotron">
-  <div class="container text-center" id = "div1">
+  <div class="container text-center" id = "div1" >
     <h1>무분할</h1>      
     <p>3분할 운동법은 한 부위를 조금 더 강도 있게 운동할 수 있는 반면 휴식 기간이 길다.<br>
     그러므로 고강도 운동이 어려운 초급자나 중급자에게는 맞지 않을 수도 있다.

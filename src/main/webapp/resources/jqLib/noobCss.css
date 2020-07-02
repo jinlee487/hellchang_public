@@ -68,25 +68,18 @@
   .btn:hover, .btn:focus {
     border: 1px solid #333;
     background-color: #fff;
-    color: #000;
+    color: #000000;
   }
   .modal-header, h4, .close {
     background-color: #333;
-    color: #fff !important;
+    color: #ffffff !important;
     text-align: center;
     font-size: 30px;
   }
   .modal-header, .modal-body {
     padding: 40px 50px;
   }
-  .nav-tabs li a {
-    color: #777;
-  }
-  .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-      background-color: #000000	;
-  }
+  
   .navbar li a, .navbar .navbar-brand { 
     color: #d5d5d5 !important;
   }
@@ -97,9 +90,7 @@
     color: #fff !important;
     background-color: #000000 !important;
   }
-  .navbar-default .navbar-toggle {
-    border-color: transparent;
-  }
+  
   
   .form-control {
     border-radius: 0;
@@ -111,4 +102,7 @@
     padding-top: 20px;
     background-color: #ffffff;
     height: 100%;
+  }
+  .jumbotron{
+  	background-color: #ffffff;
   }

@@ -1,11 +1,10 @@
-<<<<<<< HEAD
 /* 내용 없을때 */
 .footfont{
 	color: black;
 }
 
 address {
-	color: white;
+	color: black;
 	margin-bottom:20px;
 }
 
@@ -22,10 +21,6 @@ address {
     width:100%;
     bottom: 0px;
     margin-bottom:0px;
-=======
-
-.footfont{
-	color: black;
 }
 
 address {

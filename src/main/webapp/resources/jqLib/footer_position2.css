@@ -1,11 +1,10 @@
-<<<<<<< HEAD
 /* 내용 많을때 */
 .footfont{
 	color: black;
 }
 
 address {
-	color: white;
+	color: black;
 	margin-bottom:20px;
 }
 
@@ -20,10 +19,7 @@ address {
     background-color: white;    
     width:100%;
     margin-bottom:0px;
-=======
-
-.footfont{
-	color: black;
+    color: black;
 }
 
 address {
@@ -42,5 +38,4 @@ address {
     background-color: white;    
     width:100%;
     margin-bottom:0px;
->>>>>>> branch 'master' of https://github.com/jinlee487/hellchang.git
 }
