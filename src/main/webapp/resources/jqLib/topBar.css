@@ -11,7 +11,7 @@
     background-color: #000000 !important;
   }
   
-a {color:gray; text-decoration:none;}
+a {color:gray; text-decoration:none; }
 a:link    {color:gray;}   /* 아직 방문하지 않은경우 */
 a:visited {color:gray;}   /* 한번 이상 방문한 링크 처리 */
 a:active  {color:yellow;}  /* 마우스로 클릭하는 순간 */
