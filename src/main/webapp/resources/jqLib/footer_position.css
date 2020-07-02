@@ -1,0 +1,50 @@
+<<<<<<< HEAD
+/* 내용 없을때 */
+.footfont{
+	color: black;
+}
+
+address {
+	color: white;
+	margin-bottom:20px;
+}
+
+#footer{
+	position: absolute;
+	color: black;
+	clear: both;
+    padding: 30px 0 15px 0;
+    text-align: center;
+	height: 50px;
+    max-width: 100%;
+    min-width: 460px;
+    background-color: white;    
+    width:100%;
+    bottom: 0px;
+    margin-bottom:0px;
+=======
+
+.footfont{
+	color: black;
+}
+
+address {
+	color: white;
+	margin-bottom:20px;
+}
+
+#footer{
+	position: absolute;
+	color: black;
+	clear: both;
+    padding: 30px 0 15px 0;
+    text-align: center;
+	height: 50px;
+    max-width: 100%;
+    min-width: 460px;
+    background-color: white;    
+    width:100%;
+    bottom: 0px;
+    margin-bottom:0px;
+>>>>>>> branch 'master' of https://github.com/jinlee487/hellchang.git
+}

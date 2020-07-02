@@ -9,6 +9,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
+  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
@@ -17,7 +18,7 @@
   <style>
 
 	#p_pos{
-  	margin-right: 80px;
+  		margin-right: 80px;
 }
   
 
@@ -37,22 +38,7 @@
 	  z-index: 100;
 	}
 		  
-  address {
-	color: white;
-	margin-bottom:0px;
-	}
-  #footer{
-	clear: both;
-    margin: 0 auto;
-    padding: 30px 0 15px 0;
-    text-align: center;
-    margin: 0 auto;
-	height: 50px;
-    max-width: 100%;
-    min-width: 460px;
-    background-color: #3d3b3c;
-    
-	}
+
   
     /* Remove the navbar's default margin-bottom and rounded borders */ 
      .navbar {
@@ -62,10 +48,6 @@
     } 
     
     /* Add a gray background color and some padding to the footer */
-    footer {
-      background-color: #3d3b3c;
-      padding: 25px;
-    }
     
   .carousel-inner img {
       width: 1376px; /* Set width to 100% */
@@ -92,7 +74,7 @@
 <div >
 	<img src = "resources/image/arnold.jpg"  width="100%" height="887.14px" style="position: relative;">
 	<div style="position:absolute; top: 0px; left: 0px; top: 790px; width: 100%;">
-		<img class="fe-pulse" src = "resources/image/dd.png" width="100px" style="display: block; margin: 0px auto;">
+		<img class="fe-pulse " src = "resources/image/dd.png" width="100px" style="display: block; margin: 0px auto;">
 	</div>
 </div>
 <div style="text-align: center;">
@@ -194,16 +176,18 @@
 </div><br>
 
 
-<div id="footer" role="contentinfo">
-		<address>
-			<em><a href="home" target="_blank" class="logo"><span class="blind">HellChang</span></a></em>
-			<em class="copy">Copyright</em>
-			<em class="u_cri">©</em>
-			<a href="home" target="_blank" class="u_cra">HellChang Corp.</a>
-			<span class="all_r">All Rights Reserved.</span>
-		</address>
-	</div>
 
+<div id="footer" role="contentinfo">
+<!-- <hr style="width: 100%;">
+<hr style="width: 100%; border-color: black;"> -->
+		<address>
+			<em><a href="home" target="_blank" class="logo footfont"><span class="blind">HellChang</span></a></em>
+			<em class="copy footfont">Copyright</em>
+			<em class="u_cri footfont">©</em>
+			<a href="home" target="_blank" class="u_cra footfont">HellChang Corp.</a>
+			<span class="all_r footfont">All Rights Reserved.</span>
+		</address>
+</div>
 <script>
 
 window.onscroll = function() {
