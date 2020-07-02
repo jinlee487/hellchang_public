@@ -13,10 +13,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  
-  
+   
   <style>
+  
   #p_pos{
   	margin-right: 80px;
   }
@@ -70,6 +69,40 @@
 	  /* margin-left: 200px; */
 	  text-align: center;
 	}
+.ul-weekday {list-style-type: none;}
+
+.weekday {
+  padding: 70px 25px;
+  width: 100%;
+  background: #1abc9c;
+  text-align: center;
+}
+
+.weekday ul {
+  margin: 0;
+  padding: 0;
+}
+
+.weekday ul li {
+  color: white;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.weekday .prev {
+  float: left;
+  padding-top: 10px;
+}
+
+.weekday .next {
+  float: right;
+  padding-top: 10px;
+}
+.analysis-title{
+text-align: left;
+}
+	
   </style>
 </head>
 <body >
@@ -124,72 +157,39 @@
 		</ul>
     </div>
     <div class="col-sm-7 ">
-    
       <div class="row">
-        <div class="col-sm-12" >
-          <div class="panel panel-default text-center">
-          <div class="panel-heading">THIS WEEK</div>
-            <div class="panel-body">
-				<hr>
-         </div>
-
-          </div>
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="col-sm-3">
-          <div class="well">
-           <p>John</p>
-           <img src="resources/uploadImage/emptyImage.png" class="img-circle" height="55" width="55" alt="Avatar">
-          </div>
-        </div>
-        <div class="col-sm-9">
-          <div class="well">
-            <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-          </div>
+        <div class="col-sm-12">
+			<div class="weekday">      
+			  <ul style="list-style-type: none;">
+			    <li class="prev">&#10094;</li>
+			    <li class="next">&#10095;</li>
+			    <li>
+			      06.26.2020(Fri) 09:50<br>
+			    </li>
+			  </ul>
+			</div>  
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-3">
-          <div class="well">
-           <p>Bo</p>
-           <img src="resources/uploadImage/emptyImage.png" class="img-circle" height="55" width="55" alt="Avatar">
-          </div>
-        </div>
-        <div class="col-sm-9">
-          <div class="well">
-            <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-          </div>
-        </div>
+        <div class="col-sm-12">
+           <div class="well well-sm analysis-title">
+            <a href = "chest" target="test">[가슴]</a>
+           </div>   
+        </div>        
       </div>
       <div class="row">
-        <div class="col-sm-3">
-          <div class="well">
-           <p>Jane</p>
-           <img src="resources/uploadImage/emptyImage.png" class="img-circle" height="55" width="55" alt="Avatar">
-          </div>
+        <div class="col-sm-12">
+         <div id=where>
+		  <iframe width=100% height=150 name="test"></iframe>
+		 </div>
+		 <div id=save>
+		  <iframe width=100% height=100></iframe>
+		 </div>
         </div>
-        <div class="col-sm-9">
-          <div class="well">
-            <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-3">
-          <div class="well">
-           <p>Anja</p>
-           <img src="resources/uploadImage/emptyImage.png" class="img-circle" height="55" width="55" alt="Avatar">
-          </div>
-        </div>
-        <div class="col-sm-9">
-          <div class="well">
-            <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-          </div>
-        </div>
-      </div>     
-    </div>
+       </div>
+       
+     </div>
+     
     <div class="col-sm-2 well" style="margin-top: 100px">
       <div class="thumbnail">
         <p>Upcoming Events:</p>

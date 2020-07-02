@@ -35,5 +35,17 @@ public class MemberController {
 		mv.setViewName("user/profile_inbody");
 		return mv; 
 	} // 
+	
+	@RequestMapping(value = "/myProfile")
+	public ModelAndView myProfile(ModelAndView mv) {
+		mv.setViewName("user/profile_myProfile");
+		return mv; 
+	} // 
+	
+	@RequestMapping(value = "/manageWorkout")
+	public ModelAndView manageWorkout(ModelAndView mv) {
+		mv.setViewName("user/profile_manageWorkout");
+		return mv; 
+	} // 
 
 }
