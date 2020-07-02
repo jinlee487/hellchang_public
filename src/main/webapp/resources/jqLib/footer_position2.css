@@ -4,7 +4,7 @@
 }
 
 address {
-	color: white;
+	color: black;
 	margin-bottom:20px;
 }
 
@@ -19,4 +19,5 @@ address {
     background-color: white;    
     width:100%;
     margin-bottom:0px;
+    color: black;
 }
