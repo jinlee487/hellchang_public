@@ -126,8 +126,7 @@ function inbodycombochart(r,ID) {
 
 	  var columnRange = data.getColumnRange(3);
       var options = {
-    		//width: '100%',
-	    	//tooltip: {isHtml: true},
+	    	
 	    	legend: {position: 'none'},
 	        chartArea: {
 	          //width: '80%',
@@ -138,6 +137,7 @@ function inbodycombochart(r,ID) {
 	        },
 
 	        isStacked: true,
+	        width: '100%',
 	        series: {
     	          // low
     	          0: {	    	        	
@@ -163,6 +163,7 @@ function inbodycombochart(r,ID) {
     	          }
 	        },
         seriesType: 'area',
+      //tooltip: {isHtml: true},
         //title: '',
         hAxis: {
           //  format: 'yy.MM.dd\nhh:mm',

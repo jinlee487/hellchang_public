@@ -274,7 +274,7 @@ text-align: left;
 		        <td><strong style="font-size: large;">Weight (kg)</strong></td>
 		      </tr>
 		      <tr>
-		        <td><div id="wComboID"></div></td>
+		        <td><div id="wComboID" style="width: 100%;"></div></td>
 		      </tr> 
 		     </table>
         </div>
