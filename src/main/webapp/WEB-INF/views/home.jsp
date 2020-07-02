@@ -44,7 +44,7 @@
      .navbar {
       margin-bottom: 0;
       border-radius: 0;
-      background-color: #3d3b3c;
+      background-color: #000000;
     } 
     
     /* Add a gray background color and some padding to the footer */
