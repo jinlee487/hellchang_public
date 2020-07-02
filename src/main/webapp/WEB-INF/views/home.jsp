@@ -74,7 +74,7 @@
 <div >
 	<img src = "resources/image/arnold.jpg"  width="100%" height="887.14px" style="position: relative;">
 	<div style="position:absolute; top: 0px; left: 0px; top: 790px; width: 100%;">
-		<img class="fe-pulse" src = "resources/image/dd.png" width="100px" style="display: block; margin: 0px auto;">
+		<img class="fe-pulse " src = "resources/image/dd.png" width="100px" style="display: block; margin: 0px auto;">
 	</div>
 </div>
 <div style="text-align: center;">
