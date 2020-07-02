@@ -6,18 +6,17 @@
   <title>초보자를 위한 페이지</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="resources/jqLib/seq.css">
+  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="resources/jqLib/seq.css">
-    <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position.css">
+  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
-<<<<<<< HEAD
 
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50" style="background-color: #f1f1f1">
-=======
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50" style="background-color: #ffffff">
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50" style="background-color: white">
->>>>>>> branch 'master' of https://github.com/jinlee487/hellchang.git
 
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -35,9 +34,9 @@
       <ul class="nav navbar-nav">
         <li><a href="noob">Noob</a></li>
         <li><a href="#">Routine</a></li>
+        <li><a href="#">Blog</a></li>
         <li><a href="#">Inbody</a></li>
-         <li><a href="one">One RM</a></li>
-         <li><a href="one">1rm</a></li>
+        <li><a href="one">1RM</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
