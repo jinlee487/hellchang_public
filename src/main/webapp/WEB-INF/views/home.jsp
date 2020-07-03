@@ -19,11 +19,6 @@
 
   <style>
 
-	#p_pos{
-  		margin-right: 80px;
-}
-  
-
 	#bar_top{
 		overflow: hidden;
 	}

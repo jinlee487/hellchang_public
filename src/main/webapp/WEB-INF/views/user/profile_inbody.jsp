@@ -16,80 +16,60 @@
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script src="resources/jqLib/google_chart_functions.js"></script>
   <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
+  <link rel="stylesheet" type="text/css" href="resources/jqLib/topBar.css">
+  
   <script>
+$(function(){
+	var r = [];
+	  var r2 = [];
+	  var r3 = [];
+	  var r4 = [];
+	  var r5 = [];
+	  var r6 = [];
+	  var rPage;
+	  google.charts.load('current', {'packages':['gauge','table','line','corechart','bar']}); 
 
-  var r = [];
-  var r2 = [];
-  var r3 = [];
-  var r4 = [];
-  var r5 = [];
-  var r6 = [];
-
-
- 		  //console.log("this is the type of date => " + Date.parse(new Date(2020, 0,  1, 19, 30)));
-  	  for (var i=0;i<parseInt(20);i++){
-  		r.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 59.2, 21, 85-i]);
-  		r2.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 29.9, 6.6, 25.4+i]);
-  		r3.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 8.3, 7.8, 10-0.1*i]);
-  		r4.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 18.3, 4.7, 30.1-0.5*i]);
-  		r5.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 18, 10, 30-0.5*i]);
-  		r6.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 5, 5, 10-0.1*i]);
-  		
-  	  }
-  google.charts.setOnLoadCallback(function(){
-	  inbodybarchart(r,'wChartID','wChartID2');
-	  inbodybarchart(r2,'mmChartID','mmChartID2');
-	  inbodybarchart(r3,'fmChartID','fmChartID2');
-	  inbodybarchart(r4,'bChartID','bChartID2');
-	  inbodybarchart(r5,'pChartID','pChartID2');
-	  inbodybarchart(r6,'vChartID','vChartID2');
-	  calcBMR(r,'bmiID');
-
-
-  }); 
-  $(window).resize(function(){
+	 		  //console.log("this is the type of date => " + Date.parse(new Date(2020, 0,  1, 19, 30)));
+	  	  for (var i=0;i<parseInt(20);i++){
+	  		r.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 59.2, 21, 85-i]);
+	  		r2.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 29.9, 6.6, 25.4+i]);
+	  		r3.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 8.3, 7.8, 10-0.1*i]);
+	  		r4.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 18.3, 4.7, 30.1-0.5*i]);
+	  		r5.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 18, 10, 30-0.5*i]);
+	  		r6.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 5, 5, 10-0.1*i]);	
+	  	  }
+	  	  
 	  google.charts.setOnLoadCallback(function(){
 		  inbodybarchart(r,'wChartID','wChartID2');
-		  inbodybarchart(r2,'mmChartID','mmChartID2');	
+		  inbodybarchart(r2,'mmChartID','mmChartID2');
 		  inbodybarchart(r3,'fmChartID','fmChartID2');
 		  inbodybarchart(r4,'bChartID','bChartID2');
 		  inbodybarchart(r5,'pChartID','pChartID2');
 		  inbodybarchart(r6,'vChartID','vChartID2');
+		  rPage = r.slice(Math.max(r.length - 7, 1));
+		  inbodycombochart(rPage,'wComboID');
+		  calcBMR(r,'bmiID');
+
 
 	  }); 
+	  $(window).resize(function(){
+		  google.charts.setOnLoadCallback(function(){
+			  inbodybarchart(r,'wChartID','wChartID2');
+			  inbodybarchart(r2,'mmChartID','mmChartID2');	
+			  inbodybarchart(r3,'fmChartID','fmChartID2');
+			  inbodybarchart(r4,'bChartID','bChartID2');
+			  inbodybarchart(r5,'pChartID','pChartID2');
+			  inbodybarchart(r6,'vChartID','vChartID2');
+			  inbodycombochart(rPage,'wComboID');
+
+
+		  }); 
 	});
+});
+  
  </script>
   
   <style>
-  #p_pos{
-  	margin-right: 80px;
-  }
-  		  
-  address {
-	color: white;
-	margin-bottom:0px;
-	}
-   
-    /* Remove the navbar's default margin-bottom and rounded borders */ 
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-      background-color: #000000;
-    }
-      
-  .carousel-inner img {
-      width: 100%; /* Set width to 100% */
-      margin: auto;
-      min-height:200px;
-  }
-
-  /* Hide the carousel text when the screen is less than 600 pixels wide */
-  @media (max-width: 600px) {
-    .carousel-caption {
-      display: none; 
-      margin-left: 20	0px;
-    }
-  }
   @media (min-width: 768px){
 	.col-sm-4 {
 	  /* margin-left: 200px; */
@@ -219,12 +199,12 @@ text-align: left;
     </div>
     <div class="col-sm-7 inbodycontent">
      <div class="tab">
-        <button class="tablink" onclick="openPage(event,'reults_tab')" id="defaultOpen">Results</button>
+        <button class="tablink" onclick="openPage(event,'results_tab')" id="defaultOpen">Results</button>
 		<button class="tablink" onclick="openPage(event,'history_tab')">History</button>
 		<button class="tablink" onclick="openPage(event, 'ranking_tab')">Ranking</button>
     </div>   
       <div class="row">
-        <div class="col-sm-12 tabcontent" id="reults_tab">
+        <div class="col-sm-12 tabcontent" id="results_tab">
             <div class="weekday">      
 			  <ul style="list-style-type: none;">
 			    <li class="prev">&#10094;</li>
@@ -266,7 +246,6 @@ text-align: left;
 		        <td style="width:40%;">Visceral <br> Fat Level<br><strong style="font-size: large;" id="vChartID2"></strong>Level</td>
 		        <td style="width:150%;"><div id="vChartID"></div></td>
 		      </tr>
-		      <tr>
 		    </table><br><br>
 		    <div class="well well-sm analysis-title">Research Parameters</div>   
 		     <table class="columns"  style="table-layout:fixed;word-break:break-all;width:100%;">
@@ -274,7 +253,6 @@ text-align: left;
 		        <td style="width:40%;">Basal Metaboilic Rate</td>
 		        <td style="width:150%;text-align: right"><strong style="font-size: large;" id="bmiID"></strong>kcal</td>
 		      </tr>
-		      <tr>
 		    </table><br><br>  
         </div>
         
@@ -284,10 +262,21 @@ text-align: left;
 			    <li class="prev">&#10094;</li>
 			    <li class="next">&#10095;</li>
 			    <li>
-			      This is a Test Tab 2<br>
+			      06.26.2020(Fri) 09:50
+			    </li>
+			    <li>
+			    <hr>
 			    </li>
 			  </ul>
 			</div>  
+            <table class="columns" style="table-layout:fixed;word-break:break-all;width:100%;">
+		      <tr>
+		        <td><strong style="font-size: large;">Weight (kg)</strong></td>
+		      </tr>
+		      <tr>
+		        <td><div id="wComboID" style="width: 100%;"></div></td>
+		      </tr> 
+		     </table>
         </div>
         
         <div class="col-sm-12 tabcontent" id="ranking_tab">
