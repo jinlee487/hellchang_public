@@ -5,11 +5,11 @@
 <html lang="en">
 <head>
   <title>2분할 당기기운동</title>
-  <meta charset="utf-8">
+ <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="resources/jqLib/noobCss.css">
   <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src = "resources/jqLib/jquery-3.2.1.min.js"></script>
@@ -29,24 +29,18 @@
       <ul class="nav navbar-nav">
         <li><a href="noob">Noob</a></li>
         <li><a href="#">Routine</a></li>
+        <li><a href="#">Blog</a></li>
         <li><a href="#">Inbody</a></li>
-        <li><a href="one">1rm</a></li>
+        <li><a href="one">1RM</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul>
     </div>
   </div>
-</nav> 
+</nav>
 
 <div class="jumbotron">
-<div class="col-sm-2 sidenav">
-      <p><h4>Push</h4></p>
-      <h5>스트레칭 -> 데드리프트 -></h5>
-      <h5>바벨로우 -> 풀업 -></h5>
-      <h5>바벨컬 -> 사이드레터럴레이즈 -></h5>
-      <h5>레그컬 -> 스트레칭 </h5>
-    </div>
   <div class="container text-center" id = "div1">
     <h1>2분할</h1>      
     <p>2분할루틴은 상체와 하체 

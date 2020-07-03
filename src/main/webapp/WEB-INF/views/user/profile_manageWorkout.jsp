@@ -103,7 +103,17 @@
 text-align: left;
 }
 	
-  </style>
+</style>
+<script>
+var testWin = null;
+var id = $('#id').val();
+function openRoutine(){
+	testWin = window.open("chest","test",
+	"left = 10, top = 10, width =400, height =300")
+}
+
+
+</script>
 </head>
 <body >
 
@@ -172,22 +182,43 @@ text-align: left;
       </div>
       <div class="row">
         <div class="col-sm-12">
-           <div class="well well-sm analysis-title">
-            <a href = "chest" target="test">[가슴]</a>
+           <div class="well well-sm analysis-title" align="center"> 
+            <button onclick="window.open('chest', '서버정보',
+			'width=720,height=480')">가슴</button>
+			
+			<button onclick="window.open('back', '서버정보',
+			'width=720,height=480')">등</button>
+			
+			<button onclick="window.open('leg', '서버정보',
+			'width=720,height=480')">하체</button>
+			
+			<button onclick="window.open('sholder', '서버정보',
+			'width=720,height=480')">어깨</button>
+			
+			<button onclick="window.open('arm', '서버정보',
+			'width=720,height=480')">팔</button>
+			
+			<button onclick="window.open('abs', '서버정보',
+			'width=720,height=480')">복근</button>
+			
+			<button onclick="window.open('core', '서버정보',
+			'width=720,height=480')">코어</button>
+			
+			<button onclick="window.open('aerobic', '서버정보',
+			'width=720,height=480')">유산소</button>
+			
+			
            </div>   
         </div>        
       </div>
       <div class="row">
-        <div class="col-sm-12">
-         <div id=where>
-		  <iframe width=100% height=150 name="test" ></iframe>
-		 </div>
-		 <div id=save>
-		  <iframe width=100% height=100></iframe>
-		 </div>
-        </div>
-       </div>
+
+
+
+
+
        
+      </div>
      </div>
      
     <div class="col-sm-2 well" style="margin-top: 100px">

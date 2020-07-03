@@ -14,9 +14,6 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src = "resources/jqLib/jquery-3.2.1.min.js"></script>
   <script src = "resources/jqLib/popUp.js"></script>
-  <style>
-
-  </style>
 </head>
 <body style="background-color: #ffffff">
 
@@ -31,8 +28,9 @@
       <ul class="nav navbar-nav">
         <li><a href="noob">Noob</a></li>
         <li><a href="#">Routine</a></li>
+        <li><a href="#">Blog</a></li>
         <li><a href="#">Inbody</a></li>
-        <li><a href="one">1rm</a></li>
+        <li><a href="one">1RM</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
