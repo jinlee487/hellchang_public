@@ -27,7 +27,6 @@ $(function(){
 	  var r5 = [];
 	  var r6 = [];
 	  var rPage;
-	  google.charts.load('current', {'packages':['gauge','table','line','corechart','bar']}); 
 
 	 		  //console.log("this is the type of date => " + Date.parse(new Date(2020, 0,  1, 19, 30)));
 	  	  for (var i=0;i<parseInt(20);i++){
@@ -39,19 +38,7 @@ $(function(){
 	  		r6.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 5, 5, 10-0.1*i]);	
 	  	  }
 	  	  
-	  google.charts.setOnLoadCallback(function(){
-		  inbodybarchart(r,'wChartID','wChartID2');
-		  inbodybarchart(r2,'mmChartID','mmChartID2');
-		  inbodybarchart(r3,'fmChartID','fmChartID2');
-		  inbodybarchart(r4,'bChartID','bChartID2');
-		  inbodybarchart(r5,'pChartID','pChartID2');
-		  inbodybarchart(r6,'vChartID','vChartID2');
-		  rPage = r.slice(Math.max(r.length - 7, 1));
-		  inbodycombochart(rPage,'wComboID');
-		  calcBMR(r,'bmiID');
 
-
-	  }); 
 	  $(window).resize(function(){
 		  google.charts.setOnLoadCallback(function(){
 			  inbodybarchart(r,'wChartID','wChartID2');
@@ -168,6 +155,8 @@ text-align: left;
         <li><a href="#">Routine</a></li>
         <li><a href="#">Inbody</a></li>
         <li><a href="dataf">Data</a></li>
+        <li><a href="mlist">MemberList</a></li>
+        
         
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -261,12 +250,8 @@ text-align: left;
 			  <ul style="list-style-type: none;">
 			    <li class="prev">&#10094;</li>
 			    <li class="next">&#10095;</li>
-			    <li>
-			      06.26.2020(Fri) 09:50
-			    </li>
-			    <li>
-			    <hr>
-			    </li>
+			    <li>06.26.2020(Fri) 09:50</li>
+			    <li><hr></li>
 			  </ul>
 			</div>  
             <table class="columns" style="table-layout:fixed;word-break:break-all;width:100%;">
@@ -276,7 +261,39 @@ text-align: left;
 		      <tr>
 		        <td><div id="wComboID" style="width: 100%;"></div></td>
 		      </tr> 
+		      <tr>
+		        <td><strong style="font-size: large;"><br><br>Muscle Mass (kg)</strong></td>
+		      </tr>
+		      <tr>
+		        <td><div id="mmComboID" style="width: 100%;"></div></td>
+		      </tr> 
+		      <tr>
+		        <td><strong style="font-size: large;"><br><br>Fat Mass (kg)</strong></td>
+		      </tr>
+		      <tr>
+		        <td><div id="fmComboID" style="width: 100%;"></div></td>
+		      </tr> 
+		      <tr>
+		        <td><strong style="font-size: large;"><br><br>BMI (kg/m2)</strong></td>
+		      </tr>
+		      <tr>
+		        <td><div id="bComboID" style="width: 100%;"></div></td>
+		      </tr> 
+		      <tr>
+		        <td><strong style="font-size: large;"><br><br>Percent Body Fat (%)</strong></td>
+		      </tr>
+		      <tr>
+		        <td><div id="pComboID" style="width: 100%;"></div></td>
+		      </tr> 
+		      <tr>
+		        <td><strong style="font-size: large;"><br><br>Visceral Fat Level (level)</strong></td>
+		      </tr>
+		      <tr>
+		        <td><div id="vComboID" style="width: 100%;"></div></td>
+		      </tr> 
 		     </table>
+		     <br><br><br><br><br><br><br><br>
+		     
         </div>
         
         <div class="col-sm-12 tabcontent" id="ranking_tab">
@@ -328,6 +345,45 @@ text-align: left;
 
 </body>
 <script>
+
+var r = [];
+var r2 = [];
+var r3 = [];
+var r4 = [];
+var r5 = [];
+var r6 = [];
+var rPage;
+var rPage2;
+var rPage3;
+var rPage4;
+var rPage5;
+var rPage6;
+
+		  //console.log("this is the type of date => " + Date.parse(new Date(2020, 0,  1, 19, 30)));
+	  for (var i=0;i<parseInt(20);i++){
+		r.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 59.2, 21, 85-i]);
+		r2.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 29.9, 6.6, 25.4+i]);
+		r3.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 8.3, 7.8, 10-0.1*i]);
+		r4.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 18.3, 4.7, 30.1-0.5*i]);
+		r5.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 18, 10, 30-0.5*i]);
+		r6.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 5, 5, 10-0.1*i]);	
+	  }
+	  
+
+$(window).resize(function(){
+	  google.charts.setOnLoadCallback(function(){
+		  inbodybarchart(r,'wChartID','wChartID2');
+		  inbodybarchart(r2,'mmChartID','mmChartID2');	
+		  inbodybarchart(r3,'fmChartID','fmChartID2');
+		  inbodybarchart(r4,'bChartID','bChartID2');
+		  inbodybarchart(r5,'pChartID','pChartID2');
+		  inbodybarchart(r6,'vChartID','vChartID2');
+		  inbodycombochart(rPage,'wComboID');
+
+
+	  }); 
+});
+
 document.getElementById("defaultOpen").click();
 function openPage(evt,tabName) {
 	  var i, tabcontent, tablinks;
@@ -346,6 +402,36 @@ function openPage(evt,tabName) {
 	  // Show the current tab, and add an "active" class to the button that opened the tab
 	  document.getElementById(tabName).style.display = "block";
 	  evt.currentTarget.className += " active";
+	  google.charts.load('current', {'packages':['gauge','table','line','corechart','bar']}); 
+
+	  if(tabName=='history_tab'){
+		  google.charts.setOnLoadCallback(function(){
+			  rPage = r.slice(Math.max(r.length - 7, 1));
+			  inbodycombochart(rPage,'wComboID');  
+			  rPage2 = r2.slice(Math.max(r2.length - 7, 1));
+			  inbodycombochart(rPage2,'mmComboID');  
+			  rPage3 = r3.slice(Math.max(r3.length - 7, 1));
+			  inbodycombochart(rPage3,'fmComboID');  
+			  rPage4 = r4.slice(Math.max(r4.length - 7, 1));
+			  inbodycombochart(rPage4,'bComboID');  
+			  rPage5 = r5.slice(Math.max(r5.length - 7, 1));
+			  inbodycombochart(rPage5,'pComboID');  
+			  rPage6 = r6.slice(Math.max(r6.length - 7, 1));
+			  inbodycombochart(rPage6,'vComboID');  
+
+		  });
+	  }
+	  else if(tabName=='results_tab'){
+		  google.charts.setOnLoadCallback(function(){
+			  inbodybarchart(r,'wChartID','wChartID2');
+			  inbodybarchart(r2,'mmChartID','mmChartID2');
+			  inbodybarchart(r3,'fmChartID','fmChartID2');
+			  inbodybarchart(r4,'bChartID','bChartID2');
+			  inbodybarchart(r5,'pChartID','pChartID2');
+			  inbodybarchart(r6,'vChartID','vChartID2');
+			  calcBMR(r,'bmiID');
+		  }); 
+	  }
 	}
 </script>
 </html>
