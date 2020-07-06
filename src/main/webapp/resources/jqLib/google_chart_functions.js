@@ -7,22 +7,20 @@ Women: BMR = 447.593 + (9.247 x weight in kg) + (3.098 x height in cm) - (4.330 
   
  */
 function calcBMR(r,ID){
-	var r = r[r.length-1];
 	console.log("thi s i s r[3] => "+ r[3])
 	var bmr = 88.362 + (13.397 * r[3]) + (4.799 *178) - (5.677 *28);
     document.getElementById(ID).innerHTML = bmr.toFixed(2);
 }
 
 function inbodybarchart(r,ID,ID2) {
-    	var r = r[r.length-1];
+	console.log(r);
     	document.getElementById(ID2).innerHTML = r[3];
     	var count;
     	if(r[3]<r[1]){
     		count = Math.ceil(r[3]/(Math.floor(r[1]/3)));
     	}
-    	else if (r[1]<r[3]&&r[3]<(r[2]+r[1])){
+    	else if (r[1]<=r[3]&&r[3]<=(r[2]+r[1])){
     		count = Math.ceil(Math.floor(r[3]-r[1])/(Math.floor(r[2]/3))) + 3 ;
-    		console.log(r[3] + 'the count is => ' + count);
     	}
     	else if ((r[2]+r[1])<r[3]){
     		count = Math.ceil((r[3]-(r[2]+r[1]))/10)+6;
@@ -186,6 +184,7 @@ function inbodycombochart(r,ID) {
       chart.draw(data, options);
 	}	
 
+  
 
 function datetimetoString(date){
 	var d = date,
