@@ -114,10 +114,30 @@ text-align: left;
 
 <script>
 $(function(){
-	var chest = ['BenchPress'];
-	var back = ['Deadlift'];
-	var leg = ['Squat'];
-	$('.target').change(function(){
+	var chest = ['BenchPress','Incline BenchPress','Decline BenchPress','DumbellPress','Incline DumbellPress'
+	,'Decline DumbellPress','Dumbell Fly','Dumbell PullOver','ChestPress','Incline ChestPress','Machine Dips','ChestFly'
+	,'Cable PullOver','Cable CrossOver','PushUp','Incline PushUp','Decline PushUp','Dips','Weighted Dips'];
+	var back = ['Deadlift','TBar Row','Rack Pull','Rumanian Deadlift','Sumo Deadlift','Bentover Row','Shrug','Barbell Row'
+	,'OneArm DumbellRow','Dumbell Deadlift','Dumbell Bentover Row','lat PullDown','Wide PullDown','Machine Seated Row'
+	,'Cable Seated Row','Front Lat PullDown','Machine PullUp','Arm PullDown','PullUp','Weighted PullUp'];
+	var leg = ['Squat','Barbell Lunge','Front Squat','Stiff Deadlift','Dumbell Lunge','Goblet Squat','Hack Press','Seatea LegCurl'
+	,'Leg Press','Out Thigh','Inner Thigh','Machine Squat','Leg Curl','Leg Extension','Jump Squat','Kettlebell Front Squat'
+	,'Kettlebell Squat'];
+	var sholder = ['OverHeadPress','Military Press','Behind NeckPress','Barbell Front Raise','Behind Shrug','Sholder Press'
+	,'Bentover Raise','Front Raise','Side Raise','Arnold Press','Face Pull','Reverse Fly','Cable Lateral Raise','Cable Front Raise'
+	,'Cable Bentover Raise','Band Sholder Press','Band Bentover Raise','Band Side Raise'];
+	var biceps = ['EZ-Bar Curl','Incline Barbell Curl','Reverse Curl','Preacher Curl','Bicep Curl','Lying Dumbell Curl'
+	,'Incline Dumbell Curl','Hammer Curl','Dumbell Bicep Curl','Machine Bicep Curl','Cable Hammer Curl','Cable Overhead Curl'
+	,'Cable Curl'];
+	var triceps = ['Overhead Extension','Tricep Extension','Kick Back','Overhead Dumbell Extension','OneArm Extension'
+	,'Machine Tricep Extension','Rope PushDown','Cable PushDown','Cable Tricep PushDown','Cable Tricep Extension'];
+	var abs = ['Machin Crunch','SideBand','Dumbell SideBand','AB Rollout','Cable Crunch','Twist SitUp'
+	,'SitUp','Plank Crunch','Single Leg Raise','Heel Touch','Bycycle Crunch','Toe Touch'
+	,'Toe To Bar','Knee To Bar','Hanging Leg Raise','Leg Raise'];
+	var aerobic = ['Cycle','Stepmill Machine','Spinning','Rowing Machine','Treadmill Machine','Cycling'
+	,'Incline Treadmill','Jogging','JumpRope','ArmWalking','Trekking'];
+	var core = ['Bird Dog','Dead Dog','Hip Hinge','Spider Man','Bear Walk','Hollow','Plank','Plank Rotation','Core Stretch'];
+	$('#target').change(function(){
 		console.log("this is value"+$(this).val());
 		var sel = $(this).val();
 		if(sel == 'chest'){
@@ -135,6 +155,42 @@ $(function(){
 		else if(sel == 'leg'){
 			$('.op').remove();
 			$.each(leg,function(i,item){
+				$('#targeting').append('<option class = "op">'+item+'</option>');
+			});
+		}
+		else if(sel == 'sholder'){
+			$('.op').remove();
+			$.each(sholder,function(i,item){
+				$('#targeting').append('<option class = "op">'+item+'</option>');
+			});
+		}
+		else if(sel == 'biceps'){
+			$('.op').remove();
+			$.each(biceps,function(i,item){
+				$('#targeting').append('<option class = "op">'+item+'</option>');
+			});
+		}
+		else if(sel == 'triceps'){
+			$('.op').remove();
+			$.each(triceps,function(i,item){
+				$('#targeting').append('<option class = "op">'+item+'</option>');
+			});
+		}
+		else if(sel == 'abs'){
+			$('.op').remove();
+			$.each(abs,function(i,item){
+				$('#targeting').append('<option class = "op">'+item+'</option>');
+			});
+		}
+		else if(sel == 'aerobic'){
+			$('.op').remove();
+			$.each(aerobic,function(i,item){
+				$('#targeting').append('<option class = "op">'+item+'</option>');
+			});
+		}
+		else if(sel == 'core'){
+			$('.op').remove();
+			$.each(core,function(i,item){
 				$('#targeting').append('<option class = "op">'+item+'</option>');
 			});
 		}
@@ -218,20 +274,39 @@ $(function(){
         </div>        
       </div>
       <div class="row">
-      <button>save</button>
-      
-	  <button>Add List</button> 
+       
 <hr>
+ <select id = "target">
+     <option>-------------
+     <option value = "chest" >Chest
+     <option value = "back"  >Back
+     <option value = "leg" >Leg
+     <option value = "sholder">Sholder
+     <option value = "biceps">biceps
+     <option value = "triceps">triceps
+     <option value = "abs" >abs
+     <option value = "aerobic">aerobic
+     <option value = "core">core
+     
+     
+     </select>
+       
+     <select id="targeting" name="targeting">
+     <option value="">--------------------</option>
+     </select>
 <table id = "mytest">
   <thead align="left">
     <button onclick="add_row()" style="width: 75px">+</button>
 	<button onclick="delete_row()" style="width: 75px">-</button>
-	<th width="100">Target</th>
-    <th width="100">List</th>
-    <th width="100">KG</th>
-    <th width="100">REP</th>
+	<th width="50">Target</th>
+    <th width="100" align="center">List</th>
+    <th width="50">KG</th>
+    <th width="50">REP</th>
   </thead>
+  <form>
   <tbody id="my-tbody"></tbody>
+  
+  </form>
 </table>
 
 <script>
@@ -244,23 +319,16 @@ function add_row() {
     var cell2 = row.insertCell(2);
     var cell3 = row.insertCell(3);
 	cell0.innerHTML =
-'<select class = "target">'+
-'<option>-------------'+
-'<option value = "chest" style="width: 100">가슴'+
-'<option value = "back" style="width: 100">등'+
-'<option value = "leg" style="width: 100">하체'+
-'</select>'
+$('#target').val();
 
 	cell1.innerHTML =
-'<select class="targeting" name="targeting">'+
-'<option value="">--------------------</option>'+
-'</select>'
+$('#targeting').val();
 
     cell2.innerHTML = 
-'<input type = "text" class = "kg">';
+'<input type = "text" class = "kg" width = "50">';
 
     cell3.innerHTML = 
-'<input type = "text" class = "rep">';
+'<input type = "text" class = "rep" width = "50">';
   }
 
   function delete_row() {
@@ -273,18 +341,9 @@ function add_row() {
 
 </script>    
 	 
-	 <!-- 
-	 <select id = "target">
-     <option>-------------
-     <option value = "chest" style="width: 100">가슴
-     <option value = "back" style="width: 100">등
-     <option value = "leg" style="width: 100">하체
-     </select>
-       
-     <select id="targeting" name="targeting">
-     <option value="">--------------------</option>
-     </select>
-     -->
+	
+	
+    
       </div>
      </div>
      
