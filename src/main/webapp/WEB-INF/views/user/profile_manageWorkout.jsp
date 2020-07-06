@@ -8,12 +8,18 @@
   <link rel="icon" href="resources/image/logo.jpg">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
+  <link rel="stylesheet" type="text/css" href="resources/jqLib/button.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
    
+ <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">  
   <style>
   
   #p_pos{
@@ -102,20 +108,45 @@
 .analysis-title{
 text-align: left;
 }
-	
+
+ 
 </style>
+
 <script>
-var testWin = null;
-var id = $('#id').val();
-function openRoutine(){
-	testWin = window.open("chest","test",
-	"left = 10, top = 10, width =400, height =300")
-}
+$(function(){
+	var chest = ['BenchPress'];
+	var back = ['Deadlift'];
+	var leg = ['Squat'];
+	$('.target').change(function(){
+		console.log("this is value"+$(this).val());
+		var sel = $(this).val();
+		if(sel == 'chest'){
+			$('.op').remove();
+			$.each(chest,function(i,item){
+				$('#targeting').append('<option class = "op">'+item+'</option>');
+			});
+		}
+		else if(sel == 'back'){
+			$('.op').remove();
+			$.each(back,function(i,item){
+				$('#targeting').append('<option class = "op">'+item+'</option>');
+			});
+		}
+		else if(sel == 'leg'){
+			$('.op').remove();
+			$.each(leg,function(i,item){
+				$('#targeting').append('<option class = "op">'+item+'</option>');
+			});
+		}
+	})
+
+});
+
 
 
 </script>
 </head>
-<body >
+<body>
 
 <nav  class="navbar navbar-inverse" >
   <div class="container-fluid">
@@ -171,11 +202,10 @@ function openRoutine(){
         <div class="col-sm-12">
 			<div class="weekday">      
 			  <ul style="list-style-type: none;">
+			    
+			    <li class="test"></li>
 			    <li class="prev">&#10094;</li>
-			    <li class="next">&#10095;</li>
-			    <li>
-			      06.26.2020(Fri) 09:50<br>
-			    </li>
+			    <li class="next">&#10095;</li>		
 			  </ul>
 			</div>  
         </div>
@@ -183,41 +213,78 @@ function openRoutine(){
       <div class="row">
         <div class="col-sm-12">
            <div class="well well-sm analysis-title" align="center"> 
-            <button onclick="window.open('chest', '서버정보',
-			'width=720,height=480')">가슴</button>
-			
-			<button onclick="window.open('back', '서버정보',
-			'width=720,height=480')">등</button>
-			
-			<button onclick="window.open('leg', '서버정보',
-			'width=720,height=480')">하체</button>
-			
-			<button onclick="window.open('sholder', '서버정보',
-			'width=720,height=480')">어깨</button>
-			
-			<button onclick="window.open('arm', '서버정보',
-			'width=720,height=480')">팔</button>
-			
-			<button onclick="window.open('abs', '서버정보',
-			'width=720,height=480')">복근</button>
-			
-			<button onclick="window.open('core', '서버정보',
-			'width=720,height=480')">코어</button>
-			
-			<button onclick="window.open('aerobic', '서버정보',
-			'width=720,height=480')">유산소</button>
-			
 			
            </div>   
         </div>        
       </div>
       <div class="row">
+      <button>save</button>
+      
+	  <button>Add List</button> 
+<hr>
+<table id = "mytest">
+  <thead align="left">
+    <button onclick="add_row()" style="width: 75px">+</button>
+	<button onclick="delete_row()" style="width: 75px">-</button>
+	<th width="100">Target</th>
+    <th width="100">List</th>
+    <th width="100">KG</th>
+    <th width="100">REP</th>
+  </thead>
+  <tbody id="my-tbody"></tbody>
+</table>
+
+<script>
+function add_row() {
+    var my_tbody = document.getElementById('my-tbody');
+    // var row = my_tbody.insertRow(0); // 상단에 추가
+    var row = my_tbody.insertRow( my_tbody.rows.length ); // 하단에 추가
+    var cell0 = row.insertCell(0);
+    var cell1 = row.insertCell(1);
+    var cell2 = row.insertCell(2);
+    var cell3 = row.insertCell(3);
+	cell0.innerHTML =
+'<select class = "target">'+
+'<option>-------------'+
+'<option value = "chest" style="width: 100">가슴'+
+'<option value = "back" style="width: 100">등'+
+'<option value = "leg" style="width: 100">하체'+
+'</select>'
+
+	cell1.innerHTML =
+'<select class="targeting" name="targeting">'+
+'<option value="">--------------------</option>'+
+'</select>'
+
+    cell2.innerHTML = 
+'<input type = "text" class = "kg">';
+
+    cell3.innerHTML = 
+'<input type = "text" class = "rep">';
+  }
+
+  function delete_row() {
+    var my_tbody = document.getElementById('my-tbody');
+    if (my_tbody.rows.length < 1) return;
+    // my_tbody.deleteRow(0); // 상단부터 삭제
+    my_tbody.deleteRow( my_tbody.rows.length-1 ); // 하단부터 삭제
+  }
 
 
-
-
-
+</script>    
+	 
+	 <!-- 
+	 <select id = "target">
+     <option>-------------
+     <option value = "chest" style="width: 100">가슴
+     <option value = "back" style="width: 100">등
+     <option value = "leg" style="width: 100">하체
+     </select>
        
+     <select id="targeting" name="targeting">
+     <option value="">--------------------</option>
+     </select>
+     -->
       </div>
      </div>
      
