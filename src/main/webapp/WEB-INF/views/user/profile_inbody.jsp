@@ -62,34 +62,7 @@ $(function(){
 	  /* margin-left: 200px; */
 	  text-align: center;
 	}
-.ul-weekday {list-style-type: none;}
 
-.weekday {
-  padding: 10px 10px;
-  width: 100%;
-  background: #ffffff;
-  text-align: center;
-}
-
-.weekday ul {
-  margin: 0;
-  padding: 0;
-}
-
-.weekday ul li {
-  color: #000000;
-  font-size: 20px;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-}
-
-.weekday .prev {
-  float: left;
-}
-
-.weekday .next {
-  float: right;
-}
 .analysis-title{
 text-align: left;
 }
@@ -194,15 +167,11 @@ text-align: left;
     </div>   
       <div class="row">
         <div class="col-sm-12 tabcontent" id="results_tab">
-            <div class="weekday">      
-			  <ul style="list-style-type: none;">
-			    <li class="prev">&#10094;</li>
-			    <li class="next">&#10095;</li>
-			    <li>
-			      06.26.2020(Fri) 09:50
-			    </li>
-			  </ul>
-			</div>  
+		  <ul  class="pager">
+            <li class="previous"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+		    <li><span>06.26.2020(Fri) 09:50</span><a href="#"><span class="glyphicon glyphicon-chevron-down"></span></a></li>
+            <li class="next"><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li> 		    
+		  </ul>
             <div class="well well-sm analysis-title">MUSCLE-FAT ANALYSIS</div>   
             <table class="columns" style="table-layout:fixed;word-break:break-all;width:100%;">
 		      <tr>
