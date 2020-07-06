@@ -7,10 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<<<<<<< HEAD
-aaaa
-=======
-12312313444444
->>>>>>> branch 'kyunghoon' of https://github.com/jinlee487/hellchang.git
+Final update! 
 </body>
 </html>
