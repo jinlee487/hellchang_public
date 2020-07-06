@@ -92,9 +92,9 @@
 		  <ul class="nav navbar-nav">
 			<li><a href="noob">Noob</a></li>
 			<li><a href="#">Routine</a></li>
-			<li><a href="#">Blog</a></li>
+			<li><a href="dataf">Blog</a></li>
 			<li><a href="#">Inbody</a></li>
-			<li><a href="dataf">1RM</a></li>
+			<li><a href="one">1RM</a></li>
 			
 		  </ul>
 		  <ul class="nav navbar-nav navbar-right" >
