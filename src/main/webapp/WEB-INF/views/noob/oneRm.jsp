@@ -65,6 +65,7 @@
 		}
 	}	 
   
+
   </script>
   <style>
 
@@ -112,8 +113,34 @@
 	  /* margin-left: 200px; */
 	  text-align: center;
 	}
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+  opacity: 0.9;
+}
 
-	
+button:hover {
+  opacity:1;
+}
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f44336;
+  text-align: center;
+  border-radius: 8px
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: center;
+  width: 60%;
+  text-align: center;
+  border-radius: 8px
+}	
   </style>
 </head>
 <body>
@@ -153,12 +180,11 @@
     <div class="col-sm-4" style="display: inline-block; margin: 0 0 0 17%; ">
     <h3>INPUT</h3>
        		<label for="KG" class="int">KG</label><br>
-       		<input type="text"  placeholder="무게를 입력하세요." id="kg" ><br>
+       		<input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="kg" ><br>
        		<label for="REP" class="int">REP</label><br>
-       		<input type="text"  placeholder="개수를 입력하세요." id="rep">
+       		<input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="개수를 입력하세요." id="rep">
        		<br>
-       		<button type="reset">Cancel</button>&nbsp;
-       		<button type="button" onclick="rm()">결과확인</button>
+       		<button type="button" class="signupbtn" onclick="rm()">결과확인</button>
     </div>
     <div class="col-sm-4" style="display: inline-block; margin: 0; ">
        <h3>RESULT</h3>
@@ -182,25 +208,36 @@
 </div><br>
 <!-- <div id="barchart_material" style="width: 900px; height: 500px;"></div> -->
  
- <div style="margin-left: 600px;">
- <div id="columnchart_material" style="width: 50%; height: 400px;"></div>
+ <div style="margin-left: 650px;">
+ <label for="KG" class="int">결과입력</label><br>
+ <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="kg" >
+ <button type="button" class="signupbtn" onclick="drawChart()">결과확인</button>
+ <div id="columnchart_material" style="width: 60%; height: 400px;"></div>
  
  </div>
-
+<hr>
 <div class="container text-center">    
   <h2>3대 Total</h2><br> 
   <div class="row">
     <div class="col-sm-4" style="display: inline-block; margin: 0 0 0 17%; ">
     <h3>INPUT</h3>
-       		<label for="Bench" class="int">Bench</label><br>
-       		<input type="text"  placeholder="무게를 입력하세요." id="kg" ><br>
-       		<label for="Dead" class="int">Dead</label><br>
-       		<input type="text"  placeholder="무게를 입력하세요." id="rep"><br>
+       		<label for="week" class="int">Week</label><br>
+       		 <select id="week" class="gen" required style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px">
+				<option value="">몇주차인지 입력하세요</option>
+				<option value="1Week">1주차</option>
+				<option value="2Week">2주차</option>
+				<option value="3Week">3주차</option>
+				<option value="4Week">4주차</option>
+				<option value="5Week">5주차</option>
+			</select><br>
+       		<label for="Bench" class="int">Dead</label><br>
+       		<input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Dead" ><br>
+       		<label for="Dead" class="int">Bench</label><br>
+       		<input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Bench"><br>
        		<label for="Sq" class="int">Sq</label><br>
-       		<input type="text"  placeholder="무게를 입력하세요." id="rep">
+       		<input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Sq">
        		<br>
-       		<button type="reset">Cancel</button>&nbsp;
-       		<button type="button" onclick="rm()">결과확인</button>
+       		<button type="button" class="signupbtn" onclick="drawVisualization()">결과확인</button>
     </div>
     <div class="col-sm-4" style="display: inline-block; margin: 0; ">
       	<label for="gra" class="int">3대 중량 그래프</label>
@@ -209,35 +246,6 @@
     
   </div>
 </div><br>
-
-<!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['bar']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Day', 'Dead', 'Sq', 'Bench'],
-          ['1Week', 200,100, 80],
-          ['2Week', 210, 150, 90],
-          ['3Week', 220, 180, 110],
-          ['4Week', 300, 230, 150]
-        ]);
-
-        var options = {
-          chart: {
-            title: '1RM Bar Chart',
-            subtitle: 'Dead, Sqm Bench 3Weeks Data',
-          },
-          bars: 'horizontal' // Required for Material Bar Charts.
-        };
-
-        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
-
-        chart.draw(data, google.charts.Bar.convertOptions(options));
-      }
-    </script>
- -->
  
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
@@ -246,9 +254,15 @@
 
       function drawVisualization() {
         // Some raw data (not necessarily accurate)
+       var week = String($('#week').val());
+       var bench = parseInt($('#Bench').val());
+	   var dead = parseInt($('#Dead').val());
+	   var sq = parseInt($('#Sq').val());
+	   total = bench+dead+sq;
+	   
         var data = google.visualization.arrayToDataTable([
           ['Week', 'Dead', 'Squ', 'Bench','Total'],
-          ['1Week',  160,      120,         160,    	440],
+          [week,  dead,      sq,         bench,    	total],
           ['2Week',  160,      130,         210,	    500],
           ['3Week',  150,      110,         200,		460],
           ['4Week',  170,      130,         210,		510],
