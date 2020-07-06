@@ -185,10 +185,7 @@ function openRoutine(){
            <div class="well well-sm analysis-title" align="center"> 
             <button onclick="window.open('chest', '서버정보',
 			'width=720,height=480')">가슴</button>
-			
-			<button onclick="window.open('chest', '서버정보',
-			'width=720,height=480')">가슴</button>
-			
+					
 			<button onclick="window.open('back', '서버정보',
 			'width=720,height=480')">등</button>
 			
