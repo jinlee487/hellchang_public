@@ -315,10 +315,10 @@ button:hover {
 	   total3 = bench3+dead3+sq3;
 	   
         var data = google.visualization.arrayToDataTable([
-          ['Week', 'Dead', 'Squ', 'Bench','Total'],
-          ['2주전',  dead,      sq,         bench,    	total],
-          ['1주전',  dead2,      sq2,         bench2,	    total2],
-          ['현재',  dead3,      sq3,         bench3,		total3]
+          ['Week', 'Dead', 'Bench', 'sq','Total'],
+          ['2주전',  dead,      bench,         sq,    	total],
+          ['1주전',  dead2,      bench2,         sq2,	    total2],
+          ['현재',  dead3,      bench3,         sq3,		total3]
         ]);
 
         var options = {
