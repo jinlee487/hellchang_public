@@ -11,7 +11,7 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 </head>
-<body>
+<body style="background-color: black;">
 <div id="header" class="joun_membership bounce-in-left" role="banner">
 <h1>
 	<a href="home" class="h_logo">
