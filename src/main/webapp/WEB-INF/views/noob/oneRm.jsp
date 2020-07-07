@@ -143,7 +143,7 @@ button:hover {
 }	
 .signupbtn1{
  float: center;
-  width: 30%;
+  width: 50%;
   text-align: center;
   border-radius: 8px
 }
@@ -247,11 +247,11 @@ button:hover {
 		 <div class="container text-center">    
   <h2>2주전</h2><br> 
        		<label for="Bench" class="int">Dead</label><br>
-       		<input  style="width: 30%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Dead" ><br>
+       		<input  style="width: 50%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Dead" ><br>
        		<label for="Dead" class="int">Bench</label><br>
-       		<input  style="width: 30%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Bench"><br>
+       		<input  style="width: 50%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Bench"><br>
        		<label for="Sq" class="int">Sq</label><br>
-       		<input  style="width: 30%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Sq">
+       		<input  style="width: 50%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Sq">
        		<br>
        		<button type="button" class="signupbtn1" onclick="drawVisualization()">결과확인</button>
     </div>
@@ -261,11 +261,11 @@ button:hover {
             <div class="container text-center">    
  			 <h2>1주전</h2><br> 
        		<label for="Bench" class="int">Dead</label><br>
-       		<input  style="width: 30%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Dead2" ><br>
+       		<input  style="width: 50%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Dead2" ><br>
        		<label for="Dead" class="int">Bench</label><br>
-       		<input  style="width: 30%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Bench2"><br>
+       		<input  style="width: 50%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Bench2"><br>
        		<label for="Sq" class="int">Sq</label><br>
-       		<input  style="width: 30%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Sq2">
+       		<input  style="width: 50%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Sq2">
        		<br>
        		<button type="button" class="signupbtn1" onclick="drawVisualization()">결과확인</button>
     </div>
@@ -275,11 +275,11 @@ button:hover {
              <div class="container text-center">    
  		 <h2>현재</h2><br> 
        		<label for="Bench" class="int">Dead</label><br>
-       		<input  style="width: 30%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Dead3" ><br>
+       		<input  style="width: 50%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Dead3" ><br>
        		<label for="Dead" class="int">Bench</label><br>
-       		<input  style="width: 30%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Bench3"><br>
+       		<input  style="width: 50%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Bench3"><br>
        		<label for="Sq" class="int">Sq</label><br>
-       		<input  style="width: 30%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Sq3">
+       		<input  style="width: 50%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Sq3">
        		<br>
        		<button type="button" class="signupbtn1" onclick="drawVisualization()">결과확인</button>
     </div>
