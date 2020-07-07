@@ -120,7 +120,8 @@
 		  <li><a href="#">Diet</a></li>
 		  <li><a href="#">Social</a></li>  
 		  <li><a href="#">Setting</a></li>  
-		  <li><a href="TTTTTTT">Test</a></li>  
+		  <li><a href="TTTTTTT">Test</a></li>
+		  <li><a href="updatef">Setting</a></li>
 		</ul>
     </div>
     <div class="col-sm-7 ">

@@ -92,9 +92,9 @@
 		  <ul class="nav navbar-nav">
 			<li><a href="noob">Noob</a></li>
 			<li><a href="#">Routine</a></li>
-			<li><a href="#">Blog</a></li>
+			<li><a href="dataf">Blog</a></li>
 			<li><a href="#">Inbody</a></li>
-			<li><a href="dataf">1RM</a></li>
+			<li><a href="one">1RM</a></li>
 			
 		  </ul>
 		  <ul class="nav navbar-nav navbar-right" >
@@ -112,11 +112,26 @@
 
 <div class="container text-center">    
   <div class="bimo" style="width: 1100px;">
-	  <h3>What We Do</h3><br>
-	  <div  style="width:250px; height: 400px; background-color: blue; display: inline-block; margin: 10px;"></div>
-	  <div  style="width:250px; height: 400px; background-color: red ; display: inline-block; margin: 10px;"></div>
-	  <div  style="width:250px; height: 400px; background-color: yellow; display: inline-block;margin: 10px;"></div>
-	  <div  style="width:250px; height: 400px; background-color: black; display: inline-block; margin: 10px;"></div>
+	<h3>What We Do</h3><br>
+	<div  style="width:250px; height: 400px; background-color: blue; display: inline-block; margin: 10px;"></div>
+	<div  style="width:250px; height: 400px; background-color: red ; display: inline-block; margin: 10px;"></div>
+	<div  style="width:250px; height: 400px; background-color: yellow; display: inline-block;margin: 10px;"></div>
+	<div  style="width:250px; height: 400px; background-color: black; display: inline-block; margin: 10px;"></div>
+  </div>
+  <div>
+  	<div>
+  		<p>text</p>
+  	</div>
+  	<div>
+  		<p>text</p>
+  	</div>
+  	<div>
+  		<p>text</p>
+  	</div>
+  	<div>
+  		<p>text</p>
+  	</div>
+  		
   </div>
   
   <hr>
