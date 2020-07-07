@@ -114,15 +114,25 @@ text-align: left;
 
 <script>
 $(function(){
-	$('#target').change(function(){
-		var sel = $('#target').val();
-		
-		
-	})
-
+	$('#targetT').click(function(){
+		console.log("test : " + $('#targetT').val());
+		$.ajax({
+			type:'Get',
+			url:'exercise',
+			data:{
+				target:$('#targetT').val()
+				},
+			success:function(data){
+						
+				$('#resultArea').html(data);
+				},
+			error:function(){
+				var eMessage ="<b> 오류 발생  다시 하세요 ~~ </b>";
+				$('#resultArea').html(eMessage);
+				}	
+		}); // ajax 
+	}); // alogin_click
 });
-
-
 
 </script>
 </head>
@@ -200,7 +210,7 @@ $(function(){
       <div class="row">
        
 <hr>
- <select id = "target">
+ <select id = "targetT">
      <option>-------------
      <option value = "chest" >Chest
      <option value = "back"  >Back
@@ -214,10 +224,11 @@ $(function(){
      
      
      </select>
-       
+     <div id = "resultArea">  
      <select id="targeting" name="targeting">
      <option value="">--------------------</option>
      </select>
+     </div>
 <table id = "mytest">
   <thead align="left">
     <button onclick="add_row()" style="width: 75px">+</button>
