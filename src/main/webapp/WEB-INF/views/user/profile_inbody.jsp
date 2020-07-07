@@ -124,6 +124,7 @@ text-align: left;
 		  
 		</ul>
     </div>
+   
     <div class="col-sm-7 inbodycontent">
      <div class="tab">
         <button class="tablink" onclick="openPage(event,'results_tab')" id="defaultOpen">Results</button>

@@ -141,12 +141,29 @@ button:hover {
   text-align: center;
   border-radius: 8px
 }	
+.signupbtn1{
+ float: center;
+  width: 50%;
+  text-align: center;
+  border-radius: 8px
+}
+.tablink{
+  float: center;
+  width: 10%;
+  text-align: center;
+  border-radius: 8px;
+ 
+  
+}
+.tab{
+	 text-align: center;
+}
   </style>
 </head>
 <body>
 
 <nav  class="navbar navbar-inverse" id="top_na">
-  <div class="container-fluid">
+  <div class="container-fluid" style="background-color: black;">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
@@ -215,38 +232,67 @@ button:hover {
  <div id="columnchart_material" style="width: 60%; height: 400px;"></div>
  
  </div>
-<hr>
-<div class="container text-center">    
-  <h2>3대 Total</h2><br> 
-  <div class="row">
-    <div class="col-sm-4" style="display: inline-block; margin: 0 0 0 17%; ">
-    <h3>INPUT</h3>
-       		<label for="week" class="int">Week</label><br>
-       		 <select id="week" class="gen" required style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px">
-				<option value="">몇주차인지 입력하세요</option>
-				<option value="1Week">1주차</option>
-				<option value="2Week">2주차</option>
-				<option value="3Week">3주차</option>
-				<option value="4Week">4주차</option>
-				<option value="5Week">5주차</option>
-			</select><br>
-       		<label for="Bench" class="int">Dead</label><br>
-       		<input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Dead" ><br>
-       		<label for="Dead" class="int">Bench</label><br>
-       		<input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Bench"><br>
-       		<label for="Sq" class="int">Sq</label><br>
-       		<input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Sq">
-       		<br>
-       		<button type="button" class="signupbtn" onclick="drawVisualization()">결과확인</button>
-    </div>
-    <div class="col-sm-4" style="display: inline-block; margin: 0; ">
-      	<label for="gra" class="int">3대 중량 그래프</label>
-	   <div id="chart_div" style="width: 100%; height: 400px;"></div>
-    </div>
-    
-  </div>
-</div><br>
+
  
+    
+
+  <div class="col-sm-7 inbodycontent" style="width: 100%">
+     <div class="tab">
+        <button class="tablink" onclick="openPage(event,'results_tab')" id="defaultOpen">2주전</button>
+		<button class="tablink" onclick="openPage(event,'history_tab')">1주전</button>
+		<button class="tablink" onclick="openPage(event, 'ranking_tab')">현재</button>
+    </div>   
+      <div class="row">
+        <div class="col-sm-12 tabcontent" id="results_tab">
+		 <div class="container text-center">    
+  <h2>2주전</h2><br> 
+       		<label for="Bench" class="int">Dead</label><br>
+       		<input  style="width: 50%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Dead" ><br>
+       		<label for="Dead" class="int">Bench</label><br>
+       		<input  style="width: 50%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Bench"><br>
+       		<label for="Sq" class="int">Sq</label><br>
+       		<input  style="width: 50%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Sq">
+       		<br>
+       		<button type="button" class="signupbtn1" onclick="drawVisualization()">결과확인</button>
+    </div>
+        </div>
+        
+        <div class="col-sm-12 tabcontent" id="history_tab">
+            <div class="container text-center">    
+ 			 <h2>1주전</h2><br> 
+       		<label for="Bench" class="int">Dead</label><br>
+       		<input  style="width: 50%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Dead2" ><br>
+       		<label for="Dead" class="int">Bench</label><br>
+       		<input  style="width: 50%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Bench2"><br>
+       		<label for="Sq" class="int">Sq</label><br>
+       		<input  style="width: 50%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Sq2">
+       		<br>
+       		<button type="button" class="signupbtn1" onclick="drawVisualization()">결과확인</button>
+    </div>
+        </div>
+        
+        <div class="col-sm-12 tabcontent" id="ranking_tab">
+             <div class="container text-center">    
+ 		 <h2>현재</h2><br> 
+       		<label for="Bench" class="int">Dead</label><br>
+       		<input  style="width: 50%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Dead3" ><br>
+       		<label for="Dead" class="int">Bench</label><br>
+       		<input  style="width: 50%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Bench3"><br>
+       		<label for="Sq" class="int">Sq</label><br>
+       		<input  style="width: 50%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Sq3">
+       		<br>
+       		<button type="button" class="signupbtn1" onclick="drawVisualization()">결과확인</button>
+    </div>
+        </div>
+       </div>
+     </div>
+     
+     <div class="col-sm-4" style="display: inline-block; margin: 0; width: 100%">
+      	<label for="gra" class="int">3대 중량 그래프</label>
+	   <div id="chart_div" style="width: 50%; height: 400px; margin-left: 500px"></div>
+    </div>
+     
+    
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
@@ -259,14 +305,20 @@ button:hover {
 	   var dead = parseInt($('#Dead').val());
 	   var sq = parseInt($('#Sq').val());
 	   total = bench+dead+sq;
+	   var bench2 = parseInt($('#Bench2').val());
+	   var dead2 = parseInt($('#Dead2').val());
+	   var sq2= parseInt($('#Sq2').val());
+	   total2 = bench2+dead2+sq2;
+	   var bench3 = parseInt($('#Bench3').val());
+	   var dead3 = parseInt($('#Dead3').val());
+	   var sq3 = parseInt($('#Sq3').val());
+	   total3 = bench3+dead3+sq3;
 	   
         var data = google.visualization.arrayToDataTable([
-          ['Week', 'Dead', 'Squ', 'Bench','Total'],
-          [week,  dead,      sq,         bench,    	total],
-          ['2Week',  160,      130,         210,	    500],
-          ['3Week',  150,      110,         200,		460],
-          ['4Week',  170,      130,         210,		510],
-          ['5Week',  180,      140,         220,		540]
+          ['Week', 'Dead', 'Bench', 'sq','Total'],
+          ['2주전',  dead,      bench,         sq,    	total],
+          ['1주전',  dead2,      bench2,         sq2,	    total2],
+          ['현재',  dead3,      bench3,         sq3,		total3]
         ]);
 
         var options = {
@@ -302,7 +354,57 @@ button:hover {
         var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
 
         chart.draw(data, google.charts.Bar.convertOptions(options));
-      }
+      };
+      
+      document.getElementById("defaultOpen").click();
+      function openPage(evt,tabName) {
+      	  var i, tabcontent, tablinks;
+      	  // Get all elements with class="tabcontent" and hide them
+      	  tabcontent = document.getElementsByClassName("tabcontent");
+      	  for (i = 0; i < tabcontent.length; i++) {
+      	    tabcontent[i].style.display = "none";
+      	  }
+
+      	  // Get all elements with class="tablinks" and remove the class "active"
+      	  tablinks = document.getElementsByClassName("tablink");
+      	  for (i = 0; i < tablinks.length; i++) {
+      	    tablinks[i].className = tablinks[i].className.replace(" active", "");
+      	  }
+
+      	  // Show the current tab, and add an "active" class to the button that opened the tab
+      	  document.getElementById(tabName).style.display = "block";
+      	  evt.currentTarget.className += " active";
+      	  google.charts.load('current', {'packages':['gauge','table','line','corechart','bar']}); 
+
+      	  if(tabName=='history_tab'){
+      		  google.charts.setOnLoadCallback(function(){
+      			  rPage = r.slice(Math.max(r.length - 7, 1));
+      			  inbodycombochart(rPage,'wComboID');  
+      			  rPage2 = r2.slice(Math.max(r2.length - 7, 1));
+      			  inbodycombochart(rPage2,'mmComboID');  
+      			  rPage3 = r3.slice(Math.max(r3.length - 7, 1));
+      			  inbodycombochart(rPage3,'fmComboID');  
+      			  rPage4 = r4.slice(Math.max(r4.length - 7, 1));
+      			  inbodycombochart(rPage4,'bComboID');  
+      			  rPage5 = r5.slice(Math.max(r5.length - 7, 1));
+      			  inbodycombochart(rPage5,'pComboID');  
+      			  rPage6 = r6.slice(Math.max(r6.length - 7, 1));
+      			  inbodycombochart(rPage6,'vComboID');  
+
+      		  });
+      	  }
+      	  else if(tabName=='results_tab'){
+      		  google.charts.setOnLoadCallback(function(){
+      			  inbodybarchart(r[resultPage],'wChartID','wChartID2');
+      			  inbodybarchart(r2[resultPage],'mmChartID','mmChartID2');
+      			  inbodybarchart(r3[resultPage],'fmChartID','fmChartID2');
+      			  inbodybarchart(r4[resultPage],'bChartID','bChartID2');
+      			  inbodybarchart(r5[resultPage],'pChartID','pChartID2');
+      			  inbodybarchart(r6[resultPage],'vChartID','vChartID2');
+      			  calcBMR(r[resultPage],'bmiID');
+      		  }); 
+      	  }
+      	}
     </script>
     
 </body>
