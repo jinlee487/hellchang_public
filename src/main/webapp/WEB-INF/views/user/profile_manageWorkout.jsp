@@ -120,7 +120,7 @@ $(function(){
 	var back = ['Deadlift','TBar Row','Rack Pull','Rumanian Deadlift','Sumo Deadlift','Bentover Row','Shrug','Barbell Row'
 	,'OneArm DumbellRow','Dumbell Deadlift','Dumbell Bentover Row','lat PullDown','Wide PullDown','Machine Seated Row'
 	,'Cable Seated Row','Front Lat PullDown','Machine PullUp','Arm PullDown','PullUp','Weighted PullUp'];
-	var leg = ['Squat','Barbell Lunge','Front Squat','Stiff Deadlift','Dumbell Lunge','Goblet Squat','Hack Press','Seatea LegCurl'
+	var leg = ['Squat','Barbell Lunge','Front Squat','Stiff Deadlift','Dumbell Lunge','Goblet Squat','Hack Press','Seated LegCurl'
 	,'Leg Press','Out Thigh','Inner Thigh','Machine Squat','Leg Curl','Leg Extension','Jump Squat','Kettlebell Front Squat'
 	,'Kettlebell Squat'];
 	var sholder = ['OverHeadPress','Military Press','Behind NeckPress','Barbell Front Raise','Behind Shrug','Sholder Press'
