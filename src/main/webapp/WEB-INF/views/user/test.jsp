@@ -17,9 +17,9 @@
   <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
    
- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">  
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">  
   <style>
   
   #p_pos{
@@ -114,91 +114,25 @@ text-align: left;
 
 <script>
 $(function(){
-	var chest = ['BenchPress','Incline BenchPress','Decline BenchPress','DumbellPress','Incline DumbellPress'
-	,'Decline DumbellPress','Dumbell Fly','Dumbell PullOver','ChestPress','Incline ChestPress','Machine Dips','ChestFly'
-	,'Cable PullOver','Cable CrossOver','PushUp','Incline PushUp','Decline PushUp','Dips','Weighted Dips'];
-	var back = ['Deadlift','TBar Row','Rack Pull','Rumanian Deadlift','Sumo Deadlift','Bentover Row','Shrug','Barbell Row'
-	,'OneArm DumbellRow','Dumbell Deadlift','Dumbell Bentover Row','lat PullDown','Wide PullDown','Machine Seated Row'
-	,'Cable Seated Row','Front Lat PullDown','Machine PullUp','Arm PullDown','PullUp','Weighted PullUp'];
-	var leg = ['Squat','Barbell Lunge','Front Squat','Stiff Deadlift','Dumbell Lunge','Goblet Squat','Hack Press','Seated LegCurl'
-	,'Leg Press','Out Thigh','Inner Thigh','Machine Squat','Leg Curl','Leg Extension','Jump Squat','Kettlebell Front Squat'
-	,'Kettlebell Squat'];
-	var sholder = ['OverHeadPress','Military Press','Behind NeckPress','Barbell Front Raise','Behind Shrug','Sholder Press'
-	,'Bentover Raise','Front Raise','Side Raise','Arnold Press','Face Pull','Reverse Fly','Cable Lateral Raise','Cable Front Raise'
-	,'Cable Bentover Raise','Band Sholder Press','Band Bentover Raise','Band Side Raise'];
-	var biceps = ['EZ-Bar Curl','Incline Barbell Curl','Reverse Curl','Preacher Curl','Bicep Curl','Lying Dumbell Curl'
-	,'Incline Dumbell Curl','Hammer Curl','Dumbell Bicep Curl','Machine Bicep Curl','Cable Hammer Curl','Cable Overhead Curl'
-	,'Cable Curl'];
-	var triceps = ['Overhead Extension','Tricep Extension','Kick Back','Overhead Dumbell Extension','OneArm Extension'
-	,'Machine Tricep Extension','Rope PushDown','Cable PushDown','Cable Tricep PushDown','Cable Tricep Extension'];
-	var abs = ['Machin Crunch','SideBand','Dumbell SideBand','AB Rollout','Cable Crunch','Twist SitUp'
-	,'SitUp','Plank Crunch','Single Leg Raise','Heel Touch','Bycycle Crunch','Toe Touch'
-	,'Toe To Bar','Knee To Bar','Hanging Leg Raise','Leg Raise'];
-	var aerobic = ['Cycle','Stepmill Machine','Spinning','Rowing Machine','Treadmill Machine','Cycling'
-	,'Incline Treadmill','Jogging','JumpRope','ArmWalking','Trekking'];
-	var core = ['Bird Dog','Dead Dog','Hip Hinge','Spider Man','Bear Walk','Hollow','Plank','Plank Rotation','Core Stretch'];
-	$('#target').change(function(){
-		console.log("this is value"+$(this).val());
-		var sel = $(this).val();
-		if(sel == 'chest'){
-			$('.op').remove();
-			$.each(chest,function(i,item){
-				$('#targeting').append('<option class = "op">'+item+'</option>');
-			});
-		}
-		else if(sel == 'back'){
-			$('.op').remove();
-			$.each(back,function(i,item){
-				$('#targeting').append('<option class = "op">'+item+'</option>');
-			});
-		}
-		else if(sel == 'leg'){
-			$('.op').remove();
-			$.each(leg,function(i,item){
-				$('#targeting').append('<option class = "op">'+item+'</option>');
-			});
-		}
-		else if(sel == 'sholder'){
-			$('.op').remove();
-			$.each(sholder,function(i,item){
-				$('#targeting').append('<option class = "op">'+item+'</option>');
-			});
-		}
-		else if(sel == 'biceps'){
-			$('.op').remove();
-			$.each(biceps,function(i,item){
-				$('#targeting').append('<option class = "op">'+item+'</option>');
-			});
-		}
-		else if(sel == 'triceps'){
-			$('.op').remove();
-			$.each(triceps,function(i,item){
-				$('#targeting').append('<option class = "op">'+item+'</option>');
-			});
-		}
-		else if(sel == 'abs'){
-			$('.op').remove();
-			$.each(abs,function(i,item){
-				$('#targeting').append('<option class = "op">'+item+'</option>');
-			});
-		}
-		else if(sel == 'aerobic'){
-			$('.op').remove();
-			$.each(aerobic,function(i,item){
-				$('#targeting').append('<option class = "op">'+item+'</option>');
-			});
-		}
-		else if(sel == 'core'){
-			$('.op').remove();
-			$.each(core,function(i,item){
-				$('#targeting').append('<option class = "op">'+item+'</option>');
-			});
-		}
-	})
-
+	$('#targetT').click(function(){
+		console.log("test : " + $('#targetT').val());
+		$.ajax({
+			type:'Get',
+			url:'exercise',
+			data:{
+				target:$('#targetT').val()
+				},
+			success:function(data){
+						
+				$('#resultArea').html(data);
+				},
+			error:function(){
+				var eMessage ="<b> 오류 발생  다시 하세요 ~~ </b>";
+				$('#resultArea').html(eMessage);
+				}	
+		}); // ajax 
+	}); // alogin_click
 });
-
-
 
 </script>
 </head>
@@ -276,7 +210,7 @@ $(function(){
       <div class="row">
        
 <hr>
- <select id = "target">
+ <select id = "targetT">
      <option>-------------
      <option value = "chest" >Chest
      <option value = "back"  >Back
@@ -290,10 +224,11 @@ $(function(){
      
      
      </select>
-       
+     <div id = "resultArea">  
      <select id="targeting" name="targeting">
      <option value="">--------------------</option>
      </select>
+     </div>
 <table id = "mytest">
   <thead align="left">
     <button onclick="add_row()" style="width: 75px">+</button>
