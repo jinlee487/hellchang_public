@@ -163,7 +163,7 @@ button:hover {
 <body>
 
 <nav  class="navbar navbar-inverse" id="top_na">
-  <div class="container-fluid">
+  <div class="container-fluid" style="background-color: black;">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
