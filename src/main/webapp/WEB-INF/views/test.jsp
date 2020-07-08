@@ -7,6 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<<<<<<< HEAD
 Final update! 
+=======
+ commit & push test !!
+>>>>>>> refs/remotes/origin/jihwan
 </body>
 </html>

@@ -127,6 +127,7 @@ $(function(){
 		jsonData = data.target;
 		
 		$('#targetingT').empty();
+		$('#targetingT').append("<option>--------------------</option>");
 		for(var i = 0; i<Object.keys(jsonData).length; i++){
 			var option = $('<option value = "'+ jsonData[i].name+'" >'+jsonData[i].name+'</option>');
 			$('#targetingT').append(option);
@@ -236,8 +237,8 @@ $(function(){
      </select>
 <table id = "mytest">
   <thead align="left">
-    <button onclick="add_row()" style="width: 75px" class =  "myButton">+</button>
-	<button onclick="delete_row()" style="width: 75px" class =  "myButton">-</button>
+    <button onclick="add_row()" style="width: 75px">+</button>
+	<button onclick="delete_row()" style="width: 75px">-</button>
 	<tr align="center">
 	<td width="50">Target</td>
     <td width ="200">List</td>
