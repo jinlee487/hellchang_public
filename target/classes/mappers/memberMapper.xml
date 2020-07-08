@@ -65,20 +65,32 @@
   	select * from member order by id -->
   <select id="selectList" resultType="vo.MemberVO">
 	select id,password,name,lev,
+<<<<<<< HEAD
 	point,weight,birthd,rid,uploadfile from hellchang_schema_test.member order by id
+=======
+	point,weight,birthd,rid,uploadfile from hellchang_schema.member order by id
+>>>>>>> refs/remotes/origin/kyunghoon
   </select>
   
   <!-- memberDetail() -->
   <select id="selectOne" resultType="vo.MemberVO">
+<<<<<<< HEAD
   	select * from hellchang_schema_test.member where id=#{id}
+=======
+  	select * from hellchang_schema.member where id=#{id}
+>>>>>>> refs/remotes/origin/kyunghoon
   </select>
 
   <!-- memberJoin() -->
   <insert id="insert">
 <<<<<<< HEAD
+<<<<<<< HEAD
   INSERT INTO `hellchang_schema_test`.`member` values (#{id},#{password},#{name},#{gender},#{phone},#{address},#{birthday},#{level},#{image_path})
 =======
 	insert into hellchang_schema_test.member values(#{id},#{password},#{name}
+=======
+	insert into hellchang_schema.member values(#{id},#{password},#{name}
+>>>>>>> refs/remotes/origin/kyunghoon
 	,#{lev},#{birthd},#{point},#{weight},#{rid},#{uploadfile})
 >>>>>>> refs/remotes/origin/jihwan
   </insert>	

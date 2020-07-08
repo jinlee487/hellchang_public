@@ -93,15 +93,14 @@
 			<li><a href="noob">Noob</a></li>
 			<li><a href="#">Routine</a></li>
 			<li><a href="dataf">Blog</a></li>
-			<li><a href="#">Inbody</a></li>
-			<li><a href="one">1RM</a></li>
+			<li><a href="one">OneRM</a></li>
 			
 		  </ul>
 		  <ul class="nav navbar-nav navbar-right" >
 		  <c:if test="${logID != null }">
 		  	<li><a style="color: white;">${logName}님</a></li>
 		  </c:if>
-		  <li><a href="prof">UserTest</a></li>
+		  <li><a href="prof">MyProfile</a></li>
 		  	
 			<li>
 				<c:if test="${logID==null }">

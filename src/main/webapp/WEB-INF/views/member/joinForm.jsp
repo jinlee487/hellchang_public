@@ -11,6 +11,7 @@
 <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="resources/jqLib/CRUD_control.js"></script>
+<script src="resources/jqLib/joinCheck.js"></script>
 
 </head>
 <body style="background-color: black;">
@@ -33,8 +34,9 @@
     <input type="password" id="password" placeholder="Enter Password"  name="psw" class="input" required ><br>
 
     <label for="psw-repeat" class="int"><b>Repeat Password</b></label><br>
-    <input type="password" placeholder="Repeat Password" name="psw-repeat" class="input" required><br>
-    
+    <input type="password" placeholder="Repeat Password" id="rpsw" name="psw-repeat" class="input" required><br>
+    <span  id="pMessage" class="eMessage"></span>
+     <span  id="pMessage" class="eMessage"></span>
     <label for="name" class="int"><b>Name</b></label><br>
     <input type="text" id="name" placeholder="Name" name="psw-repeat" class="input" required><br>
     
@@ -794,6 +796,42 @@ function sample4_execDaumPostcode() {
 	    }
 	}).open();
 }
+</script>
+<script>
+//** 1. 입력 오류 확인 ( inCheck )
+//1.1) 개별적 오류 확인을 위한 switch 변수 정의
+var iCheck=false;
+var pCheck=false;
+var rpCheck=false;
+
+$(function(){
+	$('#id').focus();
+	$('#id').focusout(function(){
+		iCheck=idCheck();
+	}); // id_focusout
+	
+	$('#psw').focusout(function(){
+		pCheck=pwCheck();
+	}); // password_focusout
+	
+	$('#rpsw').focusout(function(){
+		rpCheck=rpwCheck();
+	}); // name_focusout
+	
+
+}); // ready	
+
+
+function inCheck() {
+	if (iCheck==true && pCheck==true && rpCheck==true
+		 )	
+		return true;  
+	else {
+		alert('입력 오류 확인을 하지 않은 항목이 있습니다. 확인 후 전송 하세요~~ '); 	
+		return false;
+	} // else
+} // inCheck()
+
 </script>
 </body>
 </html>

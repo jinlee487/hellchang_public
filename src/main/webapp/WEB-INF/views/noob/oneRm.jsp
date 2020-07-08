@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-   <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position.css">
+   <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -170,18 +170,19 @@ button:hover {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="home">
       <img src = "resources/image/logo.jpg" width="80" height="25">
       </a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li ><a href="#">Home</a></li>
-        <li><a href="noob">noob</a></li>
-        <li><a href="#">Routine</a></li>
-        <li><a href="one">One RM</a></li>
+      	    <li><a href="noob">Noob</a></li>
+			<li><a href="#">Routine</a></li>
+			<li><a href="dataf">Blog</a></li>
+			<li><a href="one">OneRM</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+      	<li><a href="prof">MyProfile</a></li>
       	<li><a href="joinf">회원가입</a></li>
         <li><a href="loginf"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul>
@@ -223,20 +224,22 @@ button:hover {
     
   </div>
 </div><br>
-<!-- <div id="barchart_material" style="width: 900px; height: 500px;"></div> -->
  
- <div style="margin-left: 650px;">
+<div style="margin-left: 650px;">
  <label for="KG" class="int">결과입력</label><br>
  <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="kg" >
  <button type="button" class="signupbtn" onclick="drawChart()">결과확인</button>
  <div id="columnchart_material" style="width: 60%; height: 400px;"></div>
  
- </div>
+ </div> 
 
  
     
 
   <div class="col-sm-7 inbodycontent" style="width: 100%">
+ 				<div class="tab">	
+ 					 <h2>3대 중량 입력</h2>
+ 					 </div>
      <div class="tab">
         <button class="tablink" onclick="openPage(event,'results_tab')" id="defaultOpen">2주전</button>
 		<button class="tablink" onclick="openPage(event,'history_tab')">1주전</button>
@@ -291,7 +294,17 @@ button:hover {
       	<label for="gra" class="int">3대 중량 그래프</label>
 	   <div id="chart_div" style="width: 50%; height: 400px; margin-left: 500px"></div>
     </div>
-     
+ <div id="footer" role="contentinfo">
+<!-- <hr style="width: 100%;">
+<hr style="width: 100%; border-color: black;"> -->
+		<address>
+			<em><a href="home" target="_blank" class="logo footfont"><span class="blind">HellChang</span></a></em>
+			<em class="copy footfont">Copyright</em>
+			<em class="u_cri footfont">©</em>
+			<a href="home" target="_blank" class="u_cra footfont">HellChang Corp.</a>
+			<span class="all_r footfont">All Rights Reserved.</span>
+		</address>
+</div>    
     
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
@@ -406,6 +419,6 @@ button:hover {
       	  }
       	}
     </script>
-    
+
 </body>
 </html>
