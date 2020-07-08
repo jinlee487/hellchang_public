@@ -238,10 +238,11 @@ $(function(){
   <thead align="left">
     <button onclick="add_row()" style="width: 75px" class =  "myButton">+</button>
 	<button onclick="delete_row()" style="width: 75px" class =  "myButton">-</button>
-	<th width="50">Target</th>
-    <th width="200">List</th>
-    <th width="50">KG</th>
-    <th width="50">REP</th>
+	<tr align="center">
+	<td width="50">Target</td>
+    <td width ="200">List</td>
+    <td width="50">KG</td>
+    <td width="50">REP</td></tr>
   </thead>
   <form>
   <tbody id="my-tbody"></tbody>
