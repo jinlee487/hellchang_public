@@ -11,50 +11,45 @@ public class MemberVO {
 	private String id;
 	private String password;
 	private String name;
-	private String lev;
-	private String birthd;
-	private int point;
-	private double weight;
-	private String rid;
+	private String gender;
+	private String phone;
+	private String address;
+	private String birthday;
+	private String level;
 	
-	private String uploadfile; // table의 컬럼과 동일 
-	private MultipartFile uploadfilef;  // form의 inputTag의 값 전달받기위함
+	private String image_path; // table의 컬럼과 동일 
+	private MultipartFile image_file;  // form의 inputTag의 값 전달받기위함
 	/* => MultipartFile Type은 form으로부터 UpLoad를 위해  필요한 타입이며
     		실제 DB 에는 경로와 화일명을 String Type 으로 보관함  
     		그러므로 저장 할 때 이에 대한 처리가 필요함
 	   => 별도의 String Type uploadfile 필드를 추가 하여 사용함 */
 	
-	public String getUploadfile() { return uploadfile; }
-	public MultipartFile getUploadfilef() {
-		return uploadfilef;
-	}
-	public void setUploadfilef(MultipartFile uploadfilef) {
-		this.uploadfilef = uploadfilef;
-	}
-	public void setUploadfile(String uploadfile) { this.uploadfile = uploadfile; }
-	
-	public String getId() { return id; }
-	public void setId(String id) { this.id = id; }
-	public String getPassword() { return password; }
-	public void setPassword(String password) { this.password = password; }
-	public String getName() { return name; }
-	public void setName(String name) { this.name = name; }
-	public String getLev() { return lev; }
-	public void setLev(String lev) { this.lev = lev; }
-	public String getBirthd() { return birthd; }
-	public void setBirthd(String birthd) { this.birthd = birthd; }
-	public int getPoint() { return point; }
-	public void setPoint(int point) { this.point = point; }
-	public double getWeight() { return weight; }
-	public void setWeight(double weight) { this.weight = weight; }
-	public String getRid() { return rid; }
-	public void setRid(String rid) { this.rid = rid; }
+	public String getId() {return id;}
+	public void setId(String id) {this.id = id;}
+	public String getPassword() {return password;}
+	public void setPassword(String password) {this.password = password;}
+	public String getName() {return name;}
+	public void setName(String name) {this.name = name;}
+	public String getGender() {return gender;}
+	public void setGender(String gender) {this.gender = gender;}
+	public String getPhone() {return phone;}
+	public void setPhone(String phone) {this.phone = phone;}
+	public String getAddress() {return address;}
+	public void setAddress(String address) {this.address = address;}
+	public String getBirthday() {return birthday;}
+	public void setBirthday(String birthday) {this.birthday = birthday;}
+	public String getLevel() {return level;}
+	public void setLevel(String level) {this.level = level;}
+	public String getImage_path() { return image_path; }
+	public void setImage_path(String image_path) { this.image_path = image_path; }
+	public MultipartFile getImage_file() {return image_file;}
+	public void setImage_file(MultipartFile image_file) {this.image_file = image_file;}
 	
 	@Override
 	public String toString() {
-		return "MemberVO [id=" + id + ", password=" + password + ", name=" + name + ", lev=" + lev + ", birthd="
-				+ birthd + ", point=" + point + ", weight=" + weight + ", rid=" + rid + ", uploadfile=" + uploadfile
-				+ ", uploadfilef=" + uploadfilef + "]";
+		return "MemberVO [id=" + id + ", password=" + password + ", name=" + name + ", gender=" + gender + ", phone="
+				+ phone + ", address=" + address + ", birthday=" + birthday + ", level=" + level + ", image_path="
+				+ image_path + "]";
 	}
 	
 } // MemberVO
