@@ -76,9 +76,6 @@
   <!-- memberJoin() -->
   <insert id="insert">
   INSERT INTO `hellchang_schema_test`.`member` values (#{id},#{password},#{name},#{gender},#{phone},#{address},#{birthday},#{level},#{image_path})
-  
-	insert into green_spring.member values(#{id},#{password},#{name}
-	,#{lev},#{birthd},#{point},#{weight},#{rid},#{uploadfile})
   </insert>	
   
   <!-- memberUpdate() -->

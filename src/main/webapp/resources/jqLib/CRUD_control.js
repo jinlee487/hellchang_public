@@ -24,6 +24,9 @@ $(function(){
 		formData.append('birthday',birthday);
 		formData.append('gender',gender);
 		formData.append('address',address);
+		formData.append('level',"");
+		formData.append('image_path',"");
+		
 		console.log("going into ajax ...")
 		$.ajax({
 			type:"Post",

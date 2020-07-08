@@ -21,8 +21,8 @@ import vo.MemberVO;
 public class MemberController {
 	@Autowired
 	MService service;
-	BCryptPasswordEncoder passwordEncoder;
-
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder ;
 	
 	@RequestMapping(value = "/loginf")
 	public ModelAndView loginf(ModelAndView mv) {
@@ -118,9 +118,10 @@ public class MemberController {
 	}// bcrypt
 	
 	@RequestMapping(value = "/join")
-	public ModelAndView join(ModelAndView mv, MemberVO vo) throws IOException {
+	public ModelAndView join(ModelAndView mv, MemberVO vo) {
 		
 		System.out.println("Location is in join controller => \n"+vo);
+		System.out.println("this is not printing...");
 		mv.setViewName("member/doFinish");
 		String file2="resources/uploadImage/emptyImage.png";
 		vo.setLevel("user");

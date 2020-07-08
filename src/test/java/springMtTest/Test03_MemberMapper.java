@@ -15,7 +15,6 @@ import vo.MemberVO;
 public class Test03_MemberMapper {
 	@Autowired
 	private SqlSession sqlsession;
-	BCryptPasswordEncoder passwordEncoder;
 
 	
 	private static final String NS="green.mappers.memberMapper.";
@@ -38,9 +37,8 @@ public class Test03_MemberMapper {
 	} // totalRowCountTest()
 	@Test
 	public void joinTest() {
-		
+		BCryptPasswordEncoder passwordEncoder = null;
 		MemberVO vo = new MemberVO() ;
-		
 		vo.setId("test4@gmail.com");
 		vo.setPassword("123!");
 		vo.setPassword(passwordEncoder.encode(vo.getPassword()));  
