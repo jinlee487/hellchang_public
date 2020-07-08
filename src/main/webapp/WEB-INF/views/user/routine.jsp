@@ -235,7 +235,7 @@ $(function(){
      <select id="targetingT" name="targetingT">
      <option>--------------------</option>
      </select>
-<table id = "mytest">
+<table id = "mytest" >
   <thead align="left">
     <button onclick="add_row()" style="width: 75px">+</button>
 	<button onclick="delete_row()" style="width: 75px">-</button>
@@ -273,7 +273,7 @@ $('#targetingT').val()
 '<input type = "text" class = "rep" width = "50">';
   }
 
-  function delete_row() {
+function delete_row() {
     var my_tbody = document.getElementById('my-tbody');
     if (my_tbody.rows.length < 1) return;
     // my_tbody.deleteRow(0); // 상단부터 삭제

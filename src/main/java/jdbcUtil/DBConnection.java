@@ -7,7 +7,7 @@ public class DBConnection {
 	public static Connection getConnection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			String url="jdbc:mysql://hellchang.csddfvc4uyqc.ap-northeast-2.rds.amazonaws.com:3306/green_spring?serverTimezone=UTC&autoReconnect=true&useSSL=false"; 
+			String url="jdbc:mysql://hellchang.csddfvc4uyqc.ap-northeast-2.rds.amazonaws.com:3306/hellchang_schema_test?serverTimezone=UTC&autoReconnect=true&useSSL=false"; 
 
 			return DriverManager.getConnection(url,"admin","hellchang");
 		} catch (Exception e) {

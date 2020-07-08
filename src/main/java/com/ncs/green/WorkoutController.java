@@ -22,7 +22,7 @@ public class WorkoutController {
 	
 	@RequestMapping(value = "/routine")
 	public ModelAndView TTTTTTT(ModelAndView mv) {
-		mv.setViewName("user/routine");
+		mv.setViewName("test/test");
 		return mv; 
 	} // test
 

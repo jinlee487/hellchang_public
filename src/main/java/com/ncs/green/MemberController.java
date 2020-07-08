@@ -19,6 +19,8 @@ public class MemberController {
 	@Autowired
 	MService service;
 	
+	
+	
 	@RequestMapping(value = "/loginf")
 	public ModelAndView loginf(ModelAndView mv) {
 		mv.setViewName("login/loginForm");
@@ -62,28 +64,6 @@ public class MemberController {
 		mv.setViewName("user/profile_manageWorkout");
 		return mv; 
 	} // 
-	@RequestMapping(value = "/login")
-	public ModelAndView login(HttpServletRequest request, ModelAndView mv, MemberVO vo) {
-
-		String password = vo.getPassword();
-		mv.setViewName("login/loginForm");
-
-		vo = service.selectOne(vo);
-		if (vo != null) { // id 존재
-			if (vo.getPassword().equals(password)) {
-				// 로그인 성공 -> login 정보 보관 (id, name을 session에) -> loginSuccess
-				request.getSession().setAttribute("logID", vo.getId());
-				request.getSession().setAttribute("logName", vo.getName());
-				mv.setViewName("login/loginOn");
-			} else {
-				// Password 오류 -> 재로그인
-				mv.addObject("message", " Password 오류 !! ~~ 다시 하세요 ~~");
-			}
-		} else { // ID 오류 -> 재로그인
-			mv.addObject("message", " ID 오류 !! 다시 하세요 ~~");
-		}
-		return mv;
-	} // login
 	
 	@RequestMapping(value = "/mlist")
 	public ModelAndView mlist(ModelAndView mv) {
@@ -96,6 +76,43 @@ public class MemberController {
 		mv.setViewName("member/memberList");
 		return mv;
 	} // mlist
+	
+	
+//--------------------------------------------------------------------------
+// login 관련
+	
+	@RequestMapping(value = "/login")
+	public ModelAndView login(HttpServletRequest request, ModelAndView mv, MemberVO vo) {
 
+		String password = vo.getPassword();
+		System.out.println(vo);
+		mv.setViewName("login/loginForm");
+
+		vo = service.selectOne(vo);
+		System.out.println(vo);
+		
+		if (vo != null) { // id 존재
+			if (vo.getPassword().equals(password)) {
+				// 로그인 성공 -> login 정보 보관 (id, name을 session에) -> loginSuccess
+				request.getSession().setAttribute("logID", vo.getId());
+				request.getSession().setAttribute("logName", vo.getName());
+				mv.setViewName("home");
+			} else {
+				// Password 오류 -> 재로그인
+				mv.addObject("message", "비밀번호가 틀렸습니다.");
+			}
+		} else { // ID 오류 -> 재로그인
+			mv.addObject("message", "없는 ID입니다.");
+		}
+		return mv;
+	} // login
+
+	@RequestMapping(value = "/logout")
+	public ModelAndView logout(HttpServletRequest request, ModelAndView mv) {
+		request.getSession().invalidate();
+		mv.setViewName("redirect:home"); 
+		mv.setViewName("home");
+		return mv;
+	} // login
 
 }

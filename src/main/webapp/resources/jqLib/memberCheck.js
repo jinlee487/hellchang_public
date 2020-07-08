@@ -14,33 +14,24 @@
 
 function idCheck() {
 	var id = $('#id').val() ;
-	if (id.length<4) {
-		  $('#iMessage').html('ID 는 4 글자 이상 입력하세요 ~~');		
-		  $('#id').focus();
-		  return false;
-	 	}else if (id.replace(/[a-z.0-9]/gi,'').length>0) {
-	 		 $('#iMessage').html('ID 는 영문자 와 숫자 로만 입력하세요 ~~');
-	 		$('#id').focus();
-	 		 return false;
-	 	}else {
-	 		$('#iMessage').html('');
-	 		return true;
-	 	}
+	var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+	return regExp.test(id); // 형식에 맞는 경우 true 리턴	
+
 }; // idCheck() 
 
 function pwCheck() {
 	var password=$('#password').val();	
 	var pLength=password.length ; 
 	if (password.length<4) {
-		$('#pMessage').html('Password 는 4 글자 이상 입력하세요 ~~');	
+		$('#pMessage').html('비밀번호가 틀렸습니다.');	
 		$('#password').focus();
 		return false;
 	}else if (password.replace(/[!-*]/gi,'').length >= pLength ) {
-		$('#pMessage').html('Password는 특수문자를 반드시 1개 이상 입력하세요 ~~');	
+		$('#pMessage').html('비밀번호가 틀렸습니다.');	
 		$('#password').focus();
 		return false;
 	}else if (password.replace(/[0-9.!-*]/gi,'').length>0) {
-		$('#pMessage').html('Password는 숫자와 특수문자 로만 입력하세요 ~~');	
+		$('#pMessage').html('비밀번호가 틀렸습니다.');	
 		$('#password').focus();
 		return false;
 	}else {
