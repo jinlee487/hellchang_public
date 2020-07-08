@@ -38,7 +38,7 @@
 	<!-- 1) JDBC MYSQL Connection  -->
 	<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<beans:property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-		<beans:property name="url" value="jdbc:mysql://hellchang.csddfvc4uyqc.ap-northeast-2.rds.amazonaws.com:3306/green_spring?serverTimezone=UTC&amp;autoReconnect=true&amp;useSSL=false"/>
+		<beans:property name="url" value="jdbc:mysql://hellchang.csddfvc4uyqc.ap-northeast-2.rds.amazonaws.com:3306/hellchang_schema_test?serverTimezone=UTC&amp;autoReconnect=true&amp;useSSL=false"/>
 		<beans:property name="username" value="admin"/>
 		<beans:property name="password" value="hellchang"/>
 	</beans:bean>
