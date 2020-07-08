@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-   <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position.css">
+   <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -170,18 +170,19 @@ button:hover {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="home">
       <img src = "resources/image/logo.jpg" width="80" height="25">
       </a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li ><a href="#">Home</a></li>
-        <li><a href="noob">noob</a></li>
-        <li><a href="#">Routine</a></li>
-        <li><a href="one">One RM</a></li>
+      	    <li><a href="noob">Noob</a></li>
+			<li><a href="#">Routine</a></li>
+			<li><a href="dataf">Blog</a></li>
+			<li><a href="one">OneRM</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+      	<li><a href="prof">MyProfile</a></li>
       	<li><a href="joinf">회원가입</a></li>
         <li><a href="loginf"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul>
@@ -291,7 +292,17 @@ button:hover {
       	<label for="gra" class="int">3대 중량 그래프</label>
 	   <div id="chart_div" style="width: 50%; height: 400px; margin-left: 500px"></div>
     </div>
-     
+ <div id="footer" role="contentinfo">
+<!-- <hr style="width: 100%;">
+<hr style="width: 100%; border-color: black;"> -->
+		<address>
+			<em><a href="home" target="_blank" class="logo footfont"><span class="blind">HellChang</span></a></em>
+			<em class="copy footfont">Copyright</em>
+			<em class="u_cri footfont">©</em>
+			<a href="home" target="_blank" class="u_cra footfont">HellChang Corp.</a>
+			<span class="all_r footfont">All Rights Reserved.</span>
+		</address>
+</div>    
     
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
@@ -406,6 +417,6 @@ button:hover {
       	  }
       	}
     </script>
-    
+
 </body>
 </html>

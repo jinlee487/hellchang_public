@@ -93,12 +93,11 @@
 			<li><a href="noob">Noob</a></li>
 			<li><a href="#">Routine</a></li>
 			<li><a href="dataf">Blog</a></li>
-			<li><a href="#">Inbody</a></li>
-			<li><a href="one">1RM</a></li>
+			<li><a href="one">OneRM</a></li>
 			
 		  </ul>
 		  <ul class="nav navbar-nav navbar-right" >
-		  <li><a href="prof">UserTest</a></li>
+		  <li><a href="prof">MyProfile</a></li>
 			<li><a href="joinf">회원가입</a></li>
 			<li><a href="loginf"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 		  </ul>
