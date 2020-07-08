@@ -45,7 +45,7 @@ function inCheck() {
 		  return true;
 	}else return false;
 	
-} //inCheck 
+} //inCheck  
 
 </script>
 
@@ -55,16 +55,16 @@ function inCheck() {
 <div class="container-fluid rotate-in-center" id="cen">
 <a href="home" ><img src="resources/image/logo.jpg" style="width: 10%;"></a>
 
-<form action="#" method=post id="f_size" >
+<form action="login" method=post id="f_size" >
 <h2>
 
 	<table>
 	<tr><td></td>
-	    <td><input  type="text" name="id" id="id" placeholder="아이디"><br> 
+	    <td><input  type="text" name="id" id="id" value="apple@naver.com" placeholder=example@xxxxx.com><br> 
 	    	<span id="iMessage" class="eMessage"></span></td>
 	</tr>
 	<tr><td></td>
-	    <td><input  type="password" name="password" id="password" placeholder="비밀번호"><br>
+	    <td><input  type="password" name="password" id="password" value="123!" placeholder="비밀번호"><br>
 	    <span id="pMessage" class="eMessage"></span></td>
 	</tr>
 	<tr><td></td>
@@ -73,7 +73,7 @@ function inCheck() {
 	</tr>
 	</table></h2></form>
 	<c:if test="${message != null}">
-	 => ${message}
+		<a style="color: white; size: 5px;">${message}</a>
 	</c:if>
 </div>
 </body>

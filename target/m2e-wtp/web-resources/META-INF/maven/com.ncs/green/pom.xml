@@ -190,6 +190,7 @@
 			<artifactId>mail</artifactId>
 			<version>1.4.7</version>
 		</dependency>
+<<<<<<< HEAD
 		
 		<!--스프링시큐리티 web 라이브러리 (설치된 스프링 버전과 일치해야 함.)-->
 		<dependency>
@@ -226,7 +227,20 @@
 			<scope>test</scope>
 		</dependency>
 		       
+=======
+	
+		<!-- 최신버전  lombok --> 
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.2</version>
+			<scope>provided</scope>
+		</dependency>
+	
+>>>>>>> refs/remotes/origin/jihwan
 	</dependencies>
+	
+	
 	
 	
 

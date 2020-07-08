@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-FINAL 7/8 17:30 test_branch merging jinwoo!
+FINAL 7/8 17:30 test_branch merging jihwan!
 </body>
 </html>

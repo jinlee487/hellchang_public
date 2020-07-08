@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
   <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
-  <link rel="stylesheet" type="text/css" href="resource/jqLib/topBar.css">
+  <link rel="stylesheet" type="text/css" href="resources/jqLib/topBar.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -98,9 +98,26 @@
 			
 		  </ul>
 		  <ul class="nav navbar-nav navbar-right" >
+		  <c:if test="${logID != null }">
+		  	<li><a style="color: white;">${logName}님</a></li>
+		  </c:if>
 		  <li><a href="prof">UserTest</a></li>
-			<li><a href="joinf">회원가입</a></li>
-			<li><a href="loginf"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+		  	
+			<li>
+				<c:if test="${logID==null }">
+					<a href="joinf">회원가입</a>
+				</c:if>	
+			</li>
+			<li>
+				<c:if test="${logID==null }">
+					<a href="loginf"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+				</c:if>
+				<c:if test="${logID!=null }">
+					<a href="logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
+				</c:if>
+				
+					
+			</li>
 		  </ul>
 		</div>
 	  </div>
