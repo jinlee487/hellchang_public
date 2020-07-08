@@ -65,17 +65,17 @@
   	select * from member order by id -->
   <select id="selectList" resultType="vo.MemberVO">
 	select id,password,name,lev,
-	point,weight,birthd,rid,uploadfile from green_spring.member order by id
+	point,weight,birthd,rid,uploadfile from hellchang_schema.member order by id
   </select>
   
   <!-- memberDetail() -->
   <select id="selectOne" resultType="vo.MemberVO">
-  	select * from green_spring.member where id=#{id}
+  	select * from hellchang_schema.member where id=#{id}
   </select>
 
   <!-- memberJoin() -->
   <insert id="insert">
-	insert into green_spring.member values(#{id},#{password},#{name}
+	insert into hellchang_schema.member values(#{id},#{password},#{name}
 	,#{lev},#{birthd},#{point},#{weight},#{rid},#{uploadfile})
   </insert>	
   
