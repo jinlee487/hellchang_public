@@ -91,7 +91,7 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 		  <ul class="nav navbar-nav">
 			<li><a href="noob">Noob</a></li>
-			<li><a href="#">Routine</a></li>
+			<li><a href="routine">Routine</a></li>
 			<li><a href="dataf">Blog</a></li>
 			<li><a href="one">OneRM</a></li>
 			

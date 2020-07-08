@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-FINAL 7/8 17:30 test_branch merging KYONGHOON MERGE COMPLETE!
+FINAL 7/8 18:40 test_branch merging SUNGHO MERGE COMPLETE!
 </body>
 </html>
