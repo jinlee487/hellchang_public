@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
-  <link rel="stylesheet" type="text/css" href="resources/jqLib/button.css">
+  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -19,7 +19,8 @@
    
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">  
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> 
+  <link rel="stylesheet" type="text/css" href="resources/jqLib/button.css"> 
   <style>
   
   #p_pos{
@@ -113,38 +114,31 @@ text-align: left;
 </style>
 
 <script>
-
 $(function(){
 	$('#targetT').change(function(){
-		console.log("test : " + $('#targetT').val());
-		$.ajax({
-			type:'Get',
-			url:'exercise',
-			data:{
-				target:$('#targetT').val()
-				},
-			success:function(data){
-				console.log("성공" + data.target);
-				var test = "";
-				test += '<select>';
-				test += '<option>-----------</option>';
-				test += '<c:forEach var="list" items="${data.target}">'
-				test += '<option>';
-				test += '${"list.name"}';
-				test += '</option>';
-				test += '</c:forEach>';
-				test += '</option>';
-				console.log("test : "+test);
-				$('#targeting').html(test);
-				},
-			error:function(){
-				var eMessage ="<b> 오류 발생  다시 하세요 ~~ </b>";
-				$('#resultArea').html(eMessage);
-				}	
-		}); // ajax
+	console.log("test : " + $('#targetT').val());
+	$.ajax({
+	type:'Get',
+	url:'exercise',
+	data:{
+		target:$('#targetT').val()
+		},
+	success:function(data){
+		jsonData = data.target;
+		
+		$('#targetingT').empty();
+		for(var i = 0; i<Object.keys(jsonData).length; i++){
+			var option = $('<option value = "'+ jsonData[i].name+'" >'+jsonData[i].name+'</option>');
+			$('#targetingT').append(option);
+		}
+		},
+	error:function(){
+		var eMessage ="<b> 오류 발생  다시 하세요 ~~ </b>";
+		$('#resultArea').html(eMessage);
+		}	
+	}); // ajax
 	}); // alogin_click
 });
-
 </script>
 </head>
 <body>
@@ -235,18 +229,17 @@ $(function(){
      
      
      </select>
-     <div id = "resultArea">
+   
      
-     <select id="targeting" name="targeting">
+     <select id="targetingT" name="targetingT">
      <option>--------------------</option>
      </select>
-     </div>
 <table id = "mytest">
   <thead align="left">
-    <button onclick="add_row()" style="width: 75px">+</button>
-	<button onclick="delete_row()" style="width: 75px">-</button>
+    <button onclick="add_row()" style="width: 75px" class =  "myButton">+</button>
+	<button onclick="delete_row()" style="width: 75px" class =  "myButton">-</button>
 	<th width="50">Target</th>
-    <th width="100" align="center">List</th>
+    <th width="200">List</th>
     <th width="50">KG</th>
     <th width="50">REP</th>
   </thead>
@@ -266,10 +259,10 @@ function add_row() {
     var cell2 = row.insertCell(2);
     var cell3 = row.insertCell(3);
 	cell0.innerHTML =
-$('#target').val();
+$('#targetT').val();
 
 	cell1.innerHTML =
-$('#targeting').val();
+$('#targetingT').val()
 
     cell2.innerHTML = 
 '<input type = "text" class = "kg" width = "50">';
