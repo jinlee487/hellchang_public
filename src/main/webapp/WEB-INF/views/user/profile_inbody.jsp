@@ -19,41 +19,6 @@
   <link rel="stylesheet" type="text/css" href="resources/jqLib/topBar.css">
   
   <script>
-$(function(){
-	var r = [];
-	  var r2 = [];
-	  var r3 = [];
-	  var r4 = [];
-	  var r5 = [];
-	  var r6 = [];
-	  var rPage;
-
-	 		  //console.log("this is the type of date => " + Date.parse(new Date(2020, 0,  1, 19, 30)));
-	  	  for (var i=0;i<parseInt(20);i++){
-	  		r.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 59.2, 21, 85-i]);
-	  		r2.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 29.9, 6.6, 25.4+i]);
-	  		r3.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 8.3, 7.8, 10-0.1*i]);
-	  		r4.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 18.3, 4.7, 30.1-0.5*i]);
-	  		r5.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 18, 10, 30-0.5*i]);
-	  		r6.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 5, 5, 10-0.1*i]);	
-	  	  }
-	  	  
-
-	  $(window).resize(function(){
-		  google.charts.setOnLoadCallback(function(){
-			  inbodybarchart(r,'wChartID','wChartID2');
-			  inbodybarchart(r2,'mmChartID','mmChartID2');	
-			  inbodybarchart(r3,'fmChartID','fmChartID2');
-			  inbodybarchart(r4,'bChartID','bChartID2');
-			  inbodybarchart(r5,'pChartID','pChartID2');
-			  inbodybarchart(r6,'vChartID','vChartID2');
-			  inbodycombochart(rPage,'wComboID');
-
-
-		  }); 
-	});
-});
-  
  </script>
   
   <style>
@@ -62,34 +27,7 @@ $(function(){
 	  /* margin-left: 200px; */
 	  text-align: center;
 	}
-.ul-weekday {list-style-type: none;}
 
-.weekday {
-  padding: 10px 10px;
-  width: 100%;
-  background: #ffffff;
-  text-align: center;
-}
-
-.weekday ul {
-  margin: 0;
-  padding: 0;
-}
-
-.weekday ul li {
-  color: #000000;
-  font-size: 20px;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-}
-
-.weekday .prev {
-  float: left;
-}
-
-.weekday .next {
-  float: right;
-}
 .analysis-title{
 text-align: left;
 }
@@ -186,6 +124,7 @@ text-align: left;
 		  
 		</ul>
     </div>
+   
     <div class="col-sm-7 inbodycontent">
      <div class="tab">
         <button class="tablink" onclick="openPage(event,'results_tab')" id="defaultOpen">Results</button>
@@ -194,15 +133,11 @@ text-align: left;
     </div>   
       <div class="row">
         <div class="col-sm-12 tabcontent" id="results_tab">
-            <div class="weekday">      
-			  <ul style="list-style-type: none;">
-			    <li class="prev">&#10094;</li>
-			    <li class="next">&#10095;</li>
-			    <li>
-			      06.26.2020(Fri) 09:50
-			    </li>
-			  </ul>
-			</div>  
+		  <ul  class="pager">
+            <li class="previous" id= "resultback"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+		    <li><span>06.26.2020(Fri) 09:50</span><a href="#"><span class="glyphicon glyphicon-chevron-down"></span></a></li>
+            <li class="next" id= "resultforward"><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li> 		    
+		  </ul>
             <div class="well well-sm analysis-title">MUSCLE-FAT ANALYSIS</div>   
             <table class="columns" style="table-layout:fixed;word-break:break-all;width:100%;">
 		      <tr>
@@ -359,26 +294,31 @@ var rPage4;
 var rPage5;
 var rPage6;
 
-		  //console.log("this is the type of date => " + Date.parse(new Date(2020, 0,  1, 19, 30)));
-	  for (var i=0;i<parseInt(20);i++){
-		r.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 59.2, 21, 85-i]);
-		r2.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 29.9, 6.6, 25.4+i]);
-		r3.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 8.3, 7.8, 10-0.1*i]);
-		r4.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 18.3, 4.7, 30.1-0.5*i]);
-		r5.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 18, 10, 30-0.5*i]);
-		r6.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 5, 5, 10-0.1*i]);	
-	  }
+  //console.log("this is the type of date => " + Date.parse(new Date(2020, 0,  1, 19, 30)));
+for (var i=0;i<parseInt(20);i++){
+r.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 59.2, 21, 85-i]);
+r2.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 29.9, 6.6, 25.4+i]);
+r3.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 8.3, 7.8, 10-0.1*i]);
+r4.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 18.3, 4.7, 30.1-0.5*i]);
+r5.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 18, 10, 30-0.5*i]);
+r6.push([(new Date(Date.parse(new Date(2020, 0,  1, 19, 30)) + i * 7 * 24 * 60 * 60 * 1000)), 5, 5, 10-0.1*i]);	
+ };
+ var resultPage = totalPage = r.length-1;
+ console.log("this is total page => " + totalPage);
+ console.log("this is result => " + resultPage);
+ 
+ 
 	  
 
 $(window).resize(function(){
 	  google.charts.setOnLoadCallback(function(){
-		  inbodybarchart(r,'wChartID','wChartID2');
-		  inbodybarchart(r2,'mmChartID','mmChartID2');	
-		  inbodybarchart(r3,'fmChartID','fmChartID2');
-		  inbodybarchart(r4,'bChartID','bChartID2');
-		  inbodybarchart(r5,'pChartID','pChartID2');
-		  inbodybarchart(r6,'vChartID','vChartID2');
-		  inbodycombochart(rPage,'wComboID');
+		  inbodybarchart(r[resultPage],'wChartID','wChartID2');
+		  inbodybarchart(r2[resultPage],'mmChartID','mmChartID2');
+		  inbodybarchart(r3[resultPage],'fmChartID','fmChartID2');
+		  inbodybarchart(r4[resultPage],'bChartID','bChartID2');
+		  inbodybarchart(r5[resultPage],'pChartID','pChartID2');
+		  inbodybarchart(r6[resultPage],'vChartID','vChartID2');
+		  calcBMR(r[resultPage],'bmiID');
 
 
 	  }); 
@@ -423,15 +363,46 @@ function openPage(evt,tabName) {
 	  }
 	  else if(tabName=='results_tab'){
 		  google.charts.setOnLoadCallback(function(){
-			  inbodybarchart(r,'wChartID','wChartID2');
-			  inbodybarchart(r2,'mmChartID','mmChartID2');
-			  inbodybarchart(r3,'fmChartID','fmChartID2');
-			  inbodybarchart(r4,'bChartID','bChartID2');
-			  inbodybarchart(r5,'pChartID','pChartID2');
-			  inbodybarchart(r6,'vChartID','vChartID2');
-			  calcBMR(r,'bmiID');
+			  inbodybarchart(r[resultPage],'wChartID','wChartID2');
+			  inbodybarchart(r2[resultPage],'mmChartID','mmChartID2');
+			  inbodybarchart(r3[resultPage],'fmChartID','fmChartID2');
+			  inbodybarchart(r4[resultPage],'bChartID','bChartID2');
+			  inbodybarchart(r5[resultPage],'pChartID','pChartID2');
+			  inbodybarchart(r6[resultPage],'vChartID','vChartID2');
+			  calcBMR(r[resultPage],'bmiID');
 		  }); 
 	  }
 	}
+$('#resultback').click(function(){
+	  if(resultPage>0){
+			console.log("bbb this is the current count => " + (--resultPage));
+			  inbodybarchart(r[resultPage],'wChartID','wChartID2');
+			  inbodybarchart(r2[resultPage],'mmChartID','mmChartID2');
+			  inbodybarchart(r3[resultPage],'fmChartID','fmChartID2');
+			  inbodybarchart(r4[resultPage],'bChartID','bChartID2');
+			  inbodybarchart(r5[resultPage],'pChartID','pChartID2');
+			  inbodybarchart(r6[resultPage],'vChartID','vChartID2');
+			  calcBMR(r[resultPage],'bmiID');
+	  }
+	  else if (resultPage==0){
+			alert("this is the last page!");
+	 	}
+	 });
+	 
+$('#resultforward').click(function(){
+	  if(resultPage<totalPage){
+		  console.log("fff this is the current count => " + (++resultPage));
+		  inbodybarchart(r[resultPage],'wChartID','wChartID2');
+		  inbodybarchart(r2[resultPage],'mmChartID','mmChartID2');
+		  inbodybarchart(r3[resultPage],'fmChartID','fmChartID2');
+		  inbodybarchart(r4[resultPage],'bChartID','bChartID2');
+		  inbodybarchart(r5[resultPage],'pChartID','pChartID2');
+		  inbodybarchart(r6[resultPage],'vChartID','vChartID2');
+		  calcBMR(r[resultPage],'bmiID');
+		}
+		else if(resultPage==totalPage){
+			alert("this is the first page!");
+		}
+	  });
 </script>
 </html>
