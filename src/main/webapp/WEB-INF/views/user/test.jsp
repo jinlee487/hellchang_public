@@ -113,8 +113,9 @@ text-align: left;
 </style>
 
 <script>
+
 $(function(){
-	$('#targetT').click(function(){
+	$('#targetT').change(function(){
 		console.log("test : " + $('#targetT').val());
 		$.ajax({
 			type:'Get',
@@ -123,14 +124,24 @@ $(function(){
 				target:$('#targetT').val()
 				},
 			success:function(data){
-						
-				$('#resultArea').html(data);
+				console.log("성공" + data.target);
+				var test = "";
+				test += '<select>';
+				test += '<option>-----------</option>';
+				test += '<c:forEach var="list" items="${data.target}">'
+				test += '<option>';
+				test += '${"list.name"}';
+				test += '</option>';
+				test += '</c:forEach>';
+				test += '</option>';
+				console.log("test : "+test);
+				$('#targeting').html(test);
 				},
 			error:function(){
 				var eMessage ="<b> 오류 발생  다시 하세요 ~~ </b>";
 				$('#resultArea').html(eMessage);
 				}	
-		}); // ajax 
+		}); // ajax
 	}); // alogin_click
 });
 
@@ -224,9 +235,10 @@ $(function(){
      
      
      </select>
-     <div id = "resultArea">  
+     <div id = "resultArea">
+     
      <select id="targeting" name="targeting">
-     <option value="">--------------------</option>
+     <option>--------------------</option>
      </select>
      </div>
 <table id = "mytest">
@@ -272,13 +284,8 @@ $('#targeting').val();
     // my_tbody.deleteRow(0); // 상단부터 삭제
     my_tbody.deleteRow( my_tbody.rows.length-1 ); // 하단부터 삭제
   }
-
-
 </script>    
-	 
-	
-	
-    
+	  
       </div>
      </div>
      
