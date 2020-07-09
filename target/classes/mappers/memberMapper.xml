@@ -64,8 +64,7 @@
   <!-- memberList()   DECODE(lev,'A','관리자','B','나무','C', '잎새', '새싹') 
   	select * from member order by id -->
   <select id="selectList" resultType="vo.MemberVO">
-	select id,password,name,lev,
-	point,weight,birthd,rid,uploadfile from hellchang_schema_test.member order by id
+	select id,password,name,lev,point,weight,birthd,rid,uploadfile from hellchang_schema_test.member order by id
   </select>
   
   <!-- memberDetail() -->
@@ -75,8 +74,9 @@
 
   <!-- memberJoin() -->
   <insert id="insert">
-	insert into hellchang_schema_test.member values(#{id},#{password},#{name}
-	,#{lev},#{birthd},#{point},#{weight},#{rid},#{uploadfile})
+  INSERT INTO `hellchang_schema_test`.`member` values 
+  (#{id},#{password},#{name},#{gender},#{phone},#{address},#{birthday},#{level},#{image_path})
+
   </insert>	
   
   <!-- memberUpdate() -->

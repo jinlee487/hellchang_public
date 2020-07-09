@@ -2,7 +2,6 @@
 <beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xmlns:beans="http://www.springframework.org/schema/beans"
 xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
-<!-- 이메일 관련 -->
 <beans:bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 <beans:property name="host" value="smtp.gmail.com" />
 <beans:property name="port" value="587" />

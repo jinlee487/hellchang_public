@@ -82,22 +82,21 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="home">
       <img src = "resources/image/logo.jpg" width="80" height="25">
       </a>
     </div>
     
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li ><a href="#">Home</a></li>
-        <li><a href="noob">noob</a></li>
-        <li><a href="#">Routine</a></li>
-        <li><a href="#">Inbody</a></li>
-        <li><a href="dataf">Data</a></li>
+      	    <li><a href="noob">Noob</a></li>
+			<li><a href="#">Routine</a></li>
+			<li><a href="dataf">Blog</a></li>
+			<li><a href="one">OneRM</a></li>
         
       </ul>
       <ul class="nav navbar-nav navbar-right">
-      <li><a href="prof">UserTest</a></li>
+      <li><a href="prof">MyProfile</a></li>
       	<li><a href="joinf">회원가입</a></li>
         <li><a href="loginf"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul>
