@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jdbcUtil.ExerciseDAO;
+import vo.BoardVO;
 import vo.ExerciseVO;
 import vo.MemberVO;
 
@@ -24,5 +25,9 @@ public class EServiceImpl implements EService {
 		return dao.selectOne(vo);
 	} // selectOne
 
+	@Override
+	public int saveMyRoutine(ExerciseVO vo) {  
+		return dao.saveMyRoutine(vo);  // 처리된 row 갯수 return	 
+	} // insert
 	
 } // class

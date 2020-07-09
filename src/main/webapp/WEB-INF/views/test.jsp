@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-7/9 Merge tb merge with kyunghoon
+7/9 Merge tb merge with sungho
 </body>
 </html>
