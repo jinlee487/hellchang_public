@@ -97,27 +97,30 @@ public class MemberController {
 	
 	@RequestMapping(value = "/join")
 	public ModelAndView join(ModelAndView mv, MemberVO vo) {
-		
+
 		System.out.println("Location is in join controller => \n"+vo);
-		System.out.println("this is not printing...");
-		mv.setViewName("member/doFinish");
+		vo.setPhone();
+		vo.setAddress();
+		vo.setBirthday();
 		String file2="resources/uploadImage/emptyImage.png";
 		vo.setLevel("user");
 		vo.setImage_path(file2);
 		vo.setPassword(passwordEncoder.encode(vo.getPassword()));                        
-		System.out.println("after the set!"
-				+ " => \n"+vo);
+		System.out.println("after the set!"+ " => \n"+vo);
 
 		int cnt = service.insert(vo);
-//		int cnt2 = service.insert(vo);
 		
 		if (cnt > 0) {
 			// Join 성공
 			mv.addObject("joinID", vo.getId());
 			mv.addObject("fCode", "JS");
+			mv.setViewName("login/loginForm");
+
 		} else {
 			// Join 실패
 			mv.addObject("fCode", "JF");
+			mv.setViewName("member/joinForm");
+
 		}
 		return mv;
 	}// join
