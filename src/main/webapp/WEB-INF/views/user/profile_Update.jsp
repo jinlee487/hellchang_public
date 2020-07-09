@@ -157,54 +157,35 @@ button:hover {
       <div class="row">
         <div class="col-sm-12" >
           <div class="panel panel-default text-center">
-          <div class="panel-heading"><label>UserUpdate</label></div>
+          <div class="panel-heading"><label>My Info</label></div>
             <div class="panel-body">
 				 <form action="prof" method="post" >
   <div>
+  
+   <label for="name" class="int"><b>Email</b></label><br>
+      <p class="text-center">${myInfo.id }</p><br>
    
-    <label for="psw" class="int"><b>Password</b></label><br> 
-    <input style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Enter Password"  name="psw" class="input" required ><br>
-
-    <label for="psw-repeat" class="int"><b>Repeat Password</b></label><br>
-    <input  style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Repeat Password" name="psw-repeat" class="input" required><br>
-    
-    <label for="name" class="int"><b>User Name</b></label><br>
-	
-	<div class="namecell">
-		<p id="p_txt_name" class="contxt_tit">${myInfo.name}</p>
-		<p class="contxt_desc"> User Name 입니다.</p>
-	<div id="d_name" style="display: none;">
-		<p id="p_txt_name_change" class="contxt_tit2">
-			<label for="name">변경할 이름</label>
-		</p>	
-		<p class="contxt_webctrl">
-			<input type="text" id="name" name="name" placeholder="이름을 입력해주세요">
-		</p>
-		<p id="e_autoNo" class="contxt_alter"></p>
-		<p class="btn_area_btm">
-			<a href="#" onclick="cancelChange('name');return false;" class="btn_model">
-				<b id="b_txt_name_cnc1" class="btn2">수정취소</b>
-			</a>
-			<a href="#" onclick="checkAutoNoforChangeName();return false;" class="btn_model">
-				<b id="b_txt_name_reg" class="btn3">수정완료</b>
-			</a>
-		</p>
-	</div>
-		<p id="name" class="btn_area_btm" style="display: block;">
-			<a href="#" onclick="display('name');return false;" class="btn_model">
-			<b class="btn2">수정</b>
-			</a>
-		</p>	
-	
-	
-	
-	</div>
-
+    <label for="name" class="int"><b>Name</b></label><br>
+      <p class="text-center">${myInfo.name }</p>
+      <a href="#name" data-toggle="collapse">
+      <b>이름 수정하기</b>
+      </a>
+      <div id="name" class="collapse">
+        <input  style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" placeholder="Name" name="psw-repeat" class="input" required><br>
+       <a href="#name" data-toggle="collapse">
+       <b>취소</b></a>
+       <a href="#"><b>수정</b></a>
+      </div><br><br>
     
     
     
     <label for="phonenumber" class="int"><b>Phone Number</b></label><br>
-    <select style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px; cursor: pointer;" id="nationNo" name="nationNo" class="gen" aria-label="전화번호 입력">
+    <p class="text-center">${myInfo.phone}</p>
+      <a href="#phonenumber" data-toggle="collapse">
+      <b>폰 번호 수정하기</b>
+      </a>
+      <div id="phonenumber" class="collapse">
+      <select style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px; cursor: pointer;" id="nationNo" name="nationNo" class="gen" aria-label="전화번호 입력">
                                         <option value="233">
                                             가나 +233
                                         </option>
@@ -849,20 +830,43 @@ button:hover {
                                         </option>
                         </select><br><br>
     <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" placeholder="Ex 010-1234-5678" name="psw-repeat" class="input" required><br>
+       <a href="#phonenumber" data-toggle="collapse">
+       <b>취소</b></a>
+       <a href="#"><b>수정</b></a>
+      </div><br><br>
+    
+	
+	
 	<label for="location" class="int"><b>location</b></label><br>
-	<input style="width: 20%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px; margin-right: 40%; cursor: pointer;" type="text" name="zipcode" id="zipcode" size="7" onClick="sample4_execDaumPostcode()" readonly placeholder="우편번호" required>
+	 <p class="text-center">${myInfo.address }</p>
+      <a href="#location" data-toggle="collapse">
+      <b>주소 수정하기</b>
+      </a>
+      <div id="location" class="collapse">
+       <input style="width: 20%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px; margin-right: 40%; cursor: pointer;" type="text" name="zipcode" id="zipcode" size="7" onClick="sample4_execDaumPostcode()" readonly placeholder="우편번호" required>
 	<br><br>
     <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="address" id="address" readonly placeholder="주소입력해주세요" required><br><br>
-    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="address1" id="address1" placeholder="상세주소를 입력해주세요" required>
+    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="address1" id="address1" placeholder="상세주소를 입력해주세요" required><br>
+       <a href="#location" data-toggle="collapse">
+       <b>취소</b></a>
+       <a href="#"><b>수정</b></a>
+      </div><br>
+	
     <br>
-    <label class="int">
-      <input type="checkbox" checked="checked" name="remember" class="input" style="margin-bottom:15px"> Remember me
-    </label>
-
-    <div class="clearfix">
-      <button type="reset" class="cancelbtn">Cancel</button>
-      <button type="submit" class="signupbtn">Sign Up</button>
-    </div>
+    <hr>
+      <a href="#password" data-toggle="collapse">
+      <b>비밀번호 수정하기</b>
+      </a>
+      <div id="password" class="collapse">
+       <label for="psw" class="int"><b>Password</b></label><br> 
+    <input style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Enter Password"  name="psw" class="input" required ><br>
+    <label for="psw-repeat" class="int"><b>Repeat Password</b></label><br>
+    <input  style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Repeat Password" name="psw-repeat" class="input" required><br>
+       <a href="#password" data-toggle="collapse">
+       <b>취소</b></a>
+       <a href="#"><b>수정</b></a>
+      </div><br>
+	
   </div>
 </form>
          </div>

@@ -119,7 +119,7 @@
 		  <li><a href="#">Diet</a></li>
 		  <li><a href="#">Social</a></li>    
 		  <li><a href="routine">Test</a></li>
-		  <li><a href="updatef">Setting</a></li>
+		  <li><a href="myProfile">Setting</a></li>
 		</ul>
     </div>
     <div class="col-sm-7 ">
