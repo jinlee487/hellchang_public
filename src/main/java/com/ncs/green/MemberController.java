@@ -190,10 +190,6 @@ public class MemberController {
 		
 	}// mdetail
 	
-	
-	
-	
-	
 	@RequestMapping(value = "/mupdate")
 	public ModelAndView update(HttpServletRequest request, ModelAndView mv, MemberVO vo)
 				throws IOException {

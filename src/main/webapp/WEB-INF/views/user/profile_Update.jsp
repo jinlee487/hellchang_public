@@ -148,7 +148,7 @@ button:hover {
 		  <li><a href="inbodyf">InBody</a></li>
 		  <li><a href="#">Diet</a></li>
 		  <li><a href="#">Social</a></li>  
-		  <li><a href="updatef">Profile Update</a></li>  
+		  <li><a href="myProfile">Profile Update</a></li>  
 		  
 		</ul>
     </div>
