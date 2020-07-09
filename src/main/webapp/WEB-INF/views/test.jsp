@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-7/8 18:45 MERGE FINAL!!!
+7/9 Merge tb merge with jinwoo
 </body>
 </html>
