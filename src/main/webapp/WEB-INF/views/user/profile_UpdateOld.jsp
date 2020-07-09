@@ -168,40 +168,8 @@ button:hover {
     <label for="psw-repeat" class="int"><b>Repeat Password</b></label><br>
     <input  style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Repeat Password" name="psw-repeat" class="input" required><br>
     
-    <label for="name" class="int"><b>User Name</b></label><br>
-	
-	<div class="namecell">
-		<p id="p_txt_name" class="contxt_tit">${myInfo.name}</p>
-		<p class="contxt_desc"> User Name 입니다.</p>
-	<div id="d_name" style="display: none;">
-		<p id="p_txt_name_change" class="contxt_tit2">
-			<label for="name">변경할 이름</label>
-		</p>	
-		<p class="contxt_webctrl">
-			<input type="text" id="name" name="name" placeholder="이름을 입력해주세요">
-		</p>
-		<p id="e_autoNo" class="contxt_alter"></p>
-		<p class="btn_area_btm">
-			<a href="#" onclick="cancelChange('name');return false;" class="btn_model">
-				<b id="b_txt_name_cnc1" class="btn2">수정취소</b>
-			</a>
-			<a href="#" onclick="checkAutoNoforChangeName();return false;" class="btn_model">
-				<b id="b_txt_name_reg" class="btn3">수정완료</b>
-			</a>
-		</p>
-	</div>
-		<p id="name" class="btn_area_btm" style="display: block;">
-			<a href="#" onclick="display('name');return false;" class="btn_model">
-			<b class="btn2">수정</b>
-			</a>
-		</p>	
-	
-	
-	
-	</div>
-
-    
-    
+    <label for="name" class="int"><b>Name</b></label><br>
+    <input  style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" placeholder="Name" name="psw-repeat" class="input" required><br>
     
     <label for="phonenumber" class="int"><b>Phone Number</b></label><br>
     <select style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px; cursor: pointer;" id="nationNo" name="nationNo" class="gen" aria-label="전화번호 입력">

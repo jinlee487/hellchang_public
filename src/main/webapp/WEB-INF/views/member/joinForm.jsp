@@ -38,7 +38,7 @@
     <span  id="pMessage" class="eMessage"></span>
      <span  id="pMessage" class="eMessage"></span>
     <label for="name" class="int"><b>Name</b></label><br>
-    <input type="text" id="name" placeholder="Name" name="psw-repeat" class="input" required><br>
+    <input type="text" name="name" id="name" placeholder="Name" name="psw-repeat" class="input" required><br>
     
     <label for="phonenumber" class="int"><b>Phone Number</b></label><br>
     <select id="nationNo" name="nationNo" class="gen" aria-label="전화번호 입력">
@@ -685,11 +685,11 @@
                                             홍콩 +852
                                         </option>
                         </select><br>
-    <input type="text" id="phoneNumber" placeholder="Ex 010-1234-5678" name="psw-repeat" class="input" required><br>
+    <input type="text" name="phoneNumber" id="phoneNumber" placeholder="Ex 010-1234-5678" name="psw-repeat" class="input" required><br>
     
     <label for="birthd" class="int"><b>Birth Day</b></label><br>
-    <input type="text" id="yy" placeholder="년(4자)" aria-label="년(4자)" class="yy" maxlength="4" required>
-    <select id="mm" class="mm" aria-label="월" required>
+    <input type="text" name="yy" id="yy" placeholder="년(4자)" aria-label="년(4자)" class="yy" maxlength="4" required>
+    <select name="mm" id="mm" class="mm" aria-label="월" required>
 										<option value="">월</option>
 										  	 			<option value="01">
                                                             1월
@@ -728,10 +728,10 @@
                                                             12월
                                                         </option>
 									</select>
-	<input type="text" id="dd" placeholder="일" aria-label="일" class="yy" maxlength="2" required><br>
+	<input type="text" name="dd" id="dd" placeholder="일" aria-label="일" class="yy" maxlength="2" required><br>
    
     <label for="gender" class="int"><b>Gender</b></label><br>
-    <select id="gen" class="gen" required>
+    <select name="gen" id="gen" class="gen" required>
 		<option value="">성별</option>
 		<option value="M">남성</option>
 		<option value="F">여성</option>
