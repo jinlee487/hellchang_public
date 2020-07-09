@@ -23,6 +23,12 @@ public class MemberController {
 	MService service;
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
+	
+	@RequestMapping(value = "/blog")
+	public ModelAndView blog(ModelAndView mv) {
+		mv.setViewName("login/loginForm");
+		return mv; 
+	} // atestf
 
 	@RequestMapping(value = "/loginf")
 	public ModelAndView loginf(ModelAndView mv) {
@@ -131,14 +137,15 @@ public class MemberController {
 	public ModelAndView login(HttpServletRequest request, ModelAndView mv, MemberVO vo) {
 
 		String password = vo.getPassword();
-		System.out.println(vo);
+		
 		mv.setViewName("login/loginForm");
 
 		vo = service.selectOne(vo);
 		System.out.println(vo);
-		
 		if (vo != null) { // id 존재
-			if (vo.getPassword().equals(password)) {
+			System.out.println("vo null 통과" + vo.getPassword());
+			if (passwordEncoder.matches(password, vo.getPassword())){
+				System.out.println("match 통과");
 				// 로그인 성공 -> login 정보 보관 (id, name을 session에) -> loginSuccess
 				request.getSession().setAttribute("logID", vo.getId());
 				request.getSession().setAttribute("logName", vo.getName());
