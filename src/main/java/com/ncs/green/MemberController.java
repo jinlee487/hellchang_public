@@ -2,13 +2,16 @@ package com.ncs.green;
 
 
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import service.MService;
@@ -18,9 +21,9 @@ import vo.MemberVO;
 public class MemberController {
 	@Autowired
 	MService service;
-	
-	
-	
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
+
 	@RequestMapping(value = "/loginf")
 	public ModelAndView loginf(ModelAndView mv) {
 		mv.setViewName("login/loginForm");
@@ -77,9 +80,49 @@ public class MemberController {
 		return mv;
 	} // mlist
 	
+	@RequestMapping(value = "/bcrypt")
+	public ModelAndView bcrypt(ModelAndView mv, MemberVO vo) {
+		String password = "123!";
+		String password1 = passwordEncoder.encode(password) ;
+		String password2 = passwordEncoder.encode(password) ;
+		// �썝蹂멸낵 鍮꾧탳 媛�뒫
+		System.out.println("password1 =>"+password1);
+		System.out.println("password1 maches =>"+passwordEncoder.matches(password, password1)); // T
+		System.out.println("password2 =>"+password2);
+		System.out.println("password2 maches =>"+passwordEncoder.matches(password, password2)); // T 
+		System.out.println("password1 equals password2 =>"+password1.equals(password2));  // F
+		mv.setViewName("home");
+		return mv;
+	}// bcrypt
 	
-//--------------------------------------------------------------------------
-// login 관련
+	@RequestMapping(value = "/join")
+	public ModelAndView join(ModelAndView mv, MemberVO vo) {
+		
+		System.out.println("Location is in join controller => \n"+vo);
+		System.out.println("this is not printing...");
+		mv.setViewName("member/doFinish");
+		String file2="resources/uploadImage/emptyImage.png";
+		vo.setLevel("user");
+		vo.setImage_path(file2);
+		vo.setPassword(passwordEncoder.encode(vo.getPassword()));                        
+		System.out.println("after the set!"
+				+ " => \n"+vo);
+
+		int cnt = service.insert(vo);
+//		int cnt2 = service.insert(vo);
+		
+		if (cnt > 0) {
+			// Join 성공
+			mv.addObject("joinID", vo.getId());
+			mv.addObject("fCode", "JS");
+		} else {
+			// Join 실패
+			mv.addObject("fCode", "JF");
+		}
+		return mv;
+	}// join
+	
+
 	
 	@RequestMapping(value = "/login")
 	public ModelAndView login(HttpServletRequest request, ModelAndView mv, MemberVO vo) {
@@ -114,5 +157,31 @@ public class MemberController {
 		mv.setViewName("home");
 		return mv;
 	} // login
+	
+	@RequestMapping(value = "/update")
+	public ModelAndView update(HttpServletRequest request, ModelAndView mv, MemberVO vo)
+				throws IOException {
+		System.out.println("vo null Test=>"+vo);
+		
+		
+		// password 입력값  확인 및 암호와 처리
+		if (vo.getPassword().length() > 3 && vo.getPassword()!=null) {
+				// new password 를 encode
+			vo.setPassword( passwordEncoder.encode(vo.getPassword()));
+		}else {	// session에 보관해 놓은 password 사용
+			vo.setPassword((String)request.getSession().getAttribute("encodedPassword"));
+		}
+		
+		if (service.update(vo) > 0) {
+			// 회원수정 성공 -> memberList 출력
+			// session 의 Attribute logName 도 변경
+			request.getSession().setAttribute("loginName", vo.getName());
+			mv.setViewName("updatef");
+		} else {
+			// 회원수정 실패 -> 내정보 보기 화면으로
+			mv.setViewName("myProfile");
+		} // if
+		return mv;
+	}// mupdate
 
 }

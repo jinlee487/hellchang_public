@@ -13,6 +13,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src = "resources/jqLib/jquery-3.2.1.min.js"></script>
   <script src = "resources/jqLib/popUp.js"></script>
+  <link rel="stylesheet" type="text/css" href="resources/jqLib/topBar.css">
    
 </head>
 <body style="background-color: #ffffff">

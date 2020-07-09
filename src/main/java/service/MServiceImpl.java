@@ -25,15 +25,15 @@ public class MServiceImpl implements MService {
 		return dao.selectOne(vo);
 	} // selectOne
 	
-//	@Override
-//	public int insert(MemberVO vo) {  
-//		return dao.insert(vo);  // 처리된 row 갯수 return	 
-//	} // insert
+	@Override
+	public int insert(MemberVO vo) {  
+		return dao.insert(vo);  // 처리된 row 갯수 return	 
+	} // insert
 //	
-//	@Override
-//	public int update(MemberVO vo) { // row(vo) 전달 받아 수정
-//		return dao.update(vo);  // 처리된 row 갯수 return
-//	} // update
+	@Override
+	public int update(MemberVO vo) { // row(vo) 전달 받아 수정
+		return dao.update(vo);  // 처리된 row 갯수 return
+	} // update
 //
 //	@Override
 //	public int delete(MemberVO vo) {

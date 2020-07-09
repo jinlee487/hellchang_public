@@ -20,9 +20,9 @@ public class WorkoutController {
 	ExerciseVO vo ;
 	
 	
-	@RequestMapping(value = "/TTTTTTT")
+	@RequestMapping(value = "/routine")
 	public ModelAndView TTTTTTT(ModelAndView mv) {
-		mv.setViewName("user/test");
+		mv.setViewName("test/test");
 		return mv; 
 	} // test
 
