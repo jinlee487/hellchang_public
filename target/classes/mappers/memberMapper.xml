@@ -87,7 +87,11 @@
 
   <!-- memberDelete() -->
   <delete id="delete">
+<<<<<<< HEAD
 	delete from `hellchang_schema_test`.`member` where id=#{id}
+=======
+	delete from member where id=#{id}
+>>>>>>> refs/remotes/origin/kyunghoon
   </delete>
 
 </mapper>
