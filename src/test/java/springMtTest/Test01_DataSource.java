@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import jdbcUtil.DBConnection;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/spring/**/*.xml"})
+@ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"})
 public class Test01_DataSource {
 	// DataSource : 위의 설정파일을 이용하여 스프링이 생성, 자동 주입 Test
 	@Autowired

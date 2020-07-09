@@ -7,13 +7,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="resources/jqLib/seq.css">
-  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
+  
   <link rel="stylesheet" type="text/css" href="resources/jqLib/topBar.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="resources/jqLib/seq.css">
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position.css">
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50" style="background-color: #ffffff">

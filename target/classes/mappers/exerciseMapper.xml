@@ -6,11 +6,11 @@
 <mapper namespace="green.mappers.exerciseMapper">
  
    <select id="selectList" resultType="vo.ExerciseVO" >
-	select name from Test.Test where target = #{target}
+	select * from `hellchang_schema_test`.`exercise` where target = #{target}
   </select>	  
 	
 	<!-- memberDetail() -->
   <select id="selectOne" resultType="vo.ExerciseVO">
-  	select * from Test.Test where target=#{target}
+  	select * from `hellchang_schema_test`.`exercise` where target=#{target}
   </select>		  
  </mapper>

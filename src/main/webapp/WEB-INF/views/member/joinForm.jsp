@@ -8,7 +8,9 @@
 <link rel="icon" href="resources/image/logo.jpg">
 <link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
 <link rel="stylesheet" type="text/css" href="resources/jqLib/join.css">
+<script src="resources/jqLib/jquery-3.2.1.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="resources/jqLib/CRUD_control.js"></script>
 <script src="resources/jqLib/joinCheck.js"></script>
 
 </head>
@@ -20,23 +22,23 @@
 	</a>
 </h1>
 </div>
-<form action="prof" method="post" style="border:1px solid #ccc" name="regform">
+<form action="javascript:;" method="post" style="border:1px solid #ccc" name="regform">
   <div class="container bounce-in-left">
     <h1>Sign Up</h1>
    <p>Please fill in this form to create an account.</p>
 
     <label for="email" class="int"><b>Email</b></label><br>
-    <input type="text" placeholder="Enter Email" id="id" name="email" class="input" required><br>
+    <input type="text" id="id" placeholder="Enter Email" name="email" class="input" required><br>
 
     <label for="psw" class="int"><b>Password</b></label><br>
-    <input type="password" placeholder="Enter Password" id="psw" name="psw" class="input" required ><br>
+    <input type="password" id="password" placeholder="Enter Password"  name="psw" class="input" required ><br>
 
     <label for="psw-repeat" class="int"><b>Repeat Password</b></label><br>
     <input type="password" placeholder="Repeat Password" id="rpsw" name="psw-repeat" class="input" required><br>
     <span  id="pMessage" class="eMessage"></span>
-    
+     <span  id="pMessage" class="eMessage"></span>
     <label for="name" class="int"><b>Name</b></label><br>
-    <input type="text" placeholder="Name" name="psw-repeat" class="input" required><br>
+    <input type="text" id="name" placeholder="Name" name="psw-repeat" class="input" required><br>
     
     <label for="phonenumber" class="int"><b>Phone Number</b></label><br>
     <select id="nationNo" name="nationNo" class="gen" aria-label="전화번호 입력">
@@ -683,7 +685,7 @@
                                             홍콩 +852
                                         </option>
                         </select><br>
-    <input type="text" placeholder="Ex 010-1234-5678" name="psw-repeat" class="input" required><br>
+    <input type="text" id="phoneNumber" placeholder="Ex 010-1234-5678" name="psw-repeat" class="input" required><br>
     
     <label for="birthd" class="int"><b>Birth Day</b></label><br>
     <input type="text" id="yy" placeholder="년(4자)" aria-label="년(4자)" class="yy" maxlength="4" required>
@@ -731,8 +733,8 @@
     <label for="gender" class="int"><b>Gender</b></label><br>
     <select id="gen" class="gen" required>
 		<option value="">성별</option>
-		<option value="B">남성</option>
-		<option value="C">여성</option>
+		<option value="M">남성</option>
+		<option value="F">여성</option>
 	</select><br>
 	
 	<label for="location" class="int"><b>location</b></label><br>
@@ -747,7 +749,7 @@
 
     <div class="clearfix">
       <button type="reset" class="cancelbtn">Cancel</button>
-      <button type="submit" class="signupbtn">Sign Up</button>
+      <button type="submit" id="ajax_join" class="signupbtn">Sign Up</button>
     </div>
   </div>
 </form>
@@ -795,7 +797,6 @@ function sample4_execDaumPostcode() {
 	}).open();
 }
 </script>
-<script>
 <script>
 //** 1. 입력 오류 확인 ( inCheck )
 //1.1) 개별적 오류 확인을 위한 switch 변수 정의
