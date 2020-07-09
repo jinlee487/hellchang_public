@@ -172,7 +172,7 @@ public class MemberController {
 	} // login
 	
 
-	@RequestMapping(value = "/myProfile")
+	@RequestMapping(value = "/mdetail")
 	public ModelAndView mdetail(HttpServletRequest request, ModelAndView mv, MemberVO vo) {
 
 		// 1) login 여부 확인
