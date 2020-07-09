@@ -59,7 +59,6 @@ function inCheck() {
 <h2>
 <c:if test="${fCode=='JS'}">
 	<h3>${joinID} 님 회원 가입 되었습니다~~</h3>
-	<a href="loginf">로그인 하기</a>
 </c:if>
 	<table>
 	<tr><td></td>

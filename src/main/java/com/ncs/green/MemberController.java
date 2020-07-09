@@ -23,6 +23,12 @@ public class MemberController {
 	MService service;
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
+	
+	@RequestMapping(value = "/blog")
+	public ModelAndView blog(ModelAndView mv) {
+		mv.setViewName("login/loginForm");
+		return mv; 
+	} // atestf
 
 	@RequestMapping(value = "/loginf")
 	public ModelAndView loginf(ModelAndView mv) {
@@ -138,7 +144,10 @@ public class MemberController {
 		System.out.println(vo);
 		
 		if (vo != null) { // id 존재
-			if (passwordEncoder.matches(password, vo.getPassword())){				
+			System.out.println("vo null 통과" + vo.getPassword());
+			if (passwordEncoder.matches(password, vo.getPassword())){
+				System.out.println("match 통과");
+				// 로그인 성공 -> login 정보 보관 (id, name을 session에) -> loginSuccess
 				request.getSession().setAttribute("logID", vo.getId());
 				request.getSession().setAttribute("logName", vo.getName());
 				mv.setViewName("home");
@@ -185,5 +194,19 @@ public class MemberController {
 		} // if
 		return mv;
 	}// mupdate
+	
+	@RequestMapping(value = "/delete")
+	public ModelAndView delete(HttpServletRequest request, ModelAndView mv, MemberVO vo) {
+		
+		String id = (String) request.getSession().getAttribute("logID");
+		vo.setId(id);
+		service.delete(vo);
+		request.getSession().invalidate();
+		
+		mv.setViewName("home");
+		//service.delete();
+		
+		return mv;
+	} // login
 
 }

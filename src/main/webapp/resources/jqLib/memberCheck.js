@@ -23,15 +23,14 @@ function pwCheck() {
 	var password=$('#password').val();	
 	var pLength=password.length ; 
 	if (password.length<4) {
-		$('#pMessage').html('비밀번호가 틀렸습니다.');	
+		$('#pMessage').html('Password 는 4 글자 이상 입력하세요 ~~');	
 		$('#password').focus();
 		return false;
 	}else if (password.replace(/[!-*]/gi,'').length >= pLength ) {
-		$('#pMessage').html('비밀번호가 틀렸습니다.');	
+		$('#pMessage').html('Password는 특수문자를 반드시 1개 이상 입력하세요 ~~');	
 		$('#password').focus();
 		return false;
-	}else if (password.replace(/[0-9.!-*]/gi,'').length>0) {
-		$('#pMessage').html('비밀번호가 틀렸습니다.');	
+	}else if (password.replace(/[0-9.!-*.a-z]/gi,'').length>0) {
 		$('#password').focus();
 		return false;
 	}else {

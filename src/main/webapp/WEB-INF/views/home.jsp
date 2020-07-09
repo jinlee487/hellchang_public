@@ -67,141 +67,139 @@
   </style>
 </head>
 <body>
-
-<div >
-	<img src = "resources/image/arnold.jpg"  width="100%" height="887.14px" style="position: relative;">
-	<div style="position:absolute; top: 0px; left: 0px; top: 790px; width: 100%;">
-		<img class="fe-pulse " src = "resources/image/dd.png" width="100px" style="display: block; margin: 0px auto;">
+<div style="width: 100%;">
+	<div >
+		<img src = "resources/image/arnold.jpg"  width="100%" height="887.14px" style="position: relative;">
+		<div style="position:absolute; top: 0px; left: 0px; top: 790px; width: 100%;">
+			<img class="fe-pulse " src = "resources/image/dd.png" width="100px" style="display: block; margin: 0px auto;">
+		</div>
 	</div>
-</div>
-<div style="text-align: center;">
-	<nav class="navbar navbar-inverse"  id="topmenu">
-	  <div class="container-fluid" >
-		<div class="navbar-header">
-		  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>                        
-		  </button>
-		  <a class="navbar-brand" href="#">
-		  <img src = "resources/image/logo.jpg" width="80" height="25">
-		  </a>
-		</div>
-		
-		<div class="collapse navbar-collapse" id="myNavbar">
-		  <ul class="nav navbar-nav">
-			<li><a href="noob">Noob</a></li>
-			<li><a href="routine">Routine</a></li>
-			<li><a href="dataf">Blog</a></li>
-			<li><a href="one">OneRM</a></li>
+	<div style="text-align: center;">
+		<nav class="navbar navbar-inverse"  id="topmenu">
+		  <div class="container-fluid" >
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>                        
+			  </button>
+			  <a class="navbar-brand" href="#">
+			  <img src = "resources/image/logo.jpg" width="80" height="25">
+			  </a>
+			</div>
 			
-		  </ul>
-		  <ul class="nav navbar-nav navbar-right" >
-		  <c:if test="${logID != null }">
-		  	<li><a style="color: white;">${logName}님</a></li>
-		  </c:if>
-		  <li><a href="prof">MyProfile</a></li>
-		  	
-			<li>
-				<c:if test="${logID==null }">
-					<a href="joinf">회원가입</a>
-				</c:if>	
-			</li>
-			<li>
-				<c:if test="${logID==null }">
-					<a href="loginf"><span class="glyphicon glyphicon-log-in"></span> Login</a>
-				</c:if>
-				<c:if test="${logID!=null }">
-					<a href="logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
-				</c:if>
+			<div class="collapse navbar-collapse" id="myNavbar">
+			  <ul class="nav navbar-nav">
+				<li><a href="noob">Noob</a></li>
+				<li><a href="routine">Routine</a></li>
+				<li><a href="blog">Blog</a></li>
+				<li><a href="one">OneRM</a></li>
 				
-					
-			</li>
-		  </ul>
-		</div>
+			  </ul>
+			  <ul class="nav navbar-nav navbar-right" >
+			  <c:if test="${logID != null }">
+			  	<li><a style="color: white;">${logName}님</a></li>
+			  	<li><a href="prof">MyProfile</a></li>
+			  </c:if>
+				<li>
+					<c:if test="${logID==null }">
+						<a href="joinf">회원가입</a>
+					</c:if>	
+				</li>
+				<li>
+					<c:if test="${logID==null }">
+						<a href="loginf"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+					</c:if>
+					<c:if test="${logID!=null }">
+						<a href="logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
+					</c:if>
+				</li>
+			  </ul>
+			</div>
+		  </div>
+		</nav>
+	</div>
+	
+	
+	
+	
+	<div class="container text-center">    
+	  <div class="bimo" style="width: 1100px;">
+		<h3>What We Do</h3><br>
+		<div  style="width:250px; height: 400px; background-color: blue; display: inline-block; margin: 10px;"></div>
+		<div  style="width:250px; height: 400px; background-color: red ; display: inline-block; margin: 10px;"></div>
+		<div  style="width:250px; height: 400px; background-color: yellow; display: inline-block;margin: 10px;"></div>
+		<div  style="width:250px; height: 400px; background-color: black; display: inline-block; margin: 10px;"></div>
 	  </div>
-	</nav>
-</div>
-
-
-
-
-<div class="container text-center">    
-  <div class="bimo" style="width: 1100px;">
-	<h3>What We Do</h3><br>
-	<div  style="width:250px; height: 400px; background-color: blue; display: inline-block; margin: 10px;"></div>
-	<div  style="width:250px; height: 400px; background-color: red ; display: inline-block; margin: 10px;"></div>
-	<div  style="width:250px; height: 400px; background-color: yellow; display: inline-block;margin: 10px;"></div>
-	<div  style="width:250px; height: 400px; background-color: black; display: inline-block; margin: 10px;"></div>
-  </div>
-  <div>
-  	<div>
-  		<p>text</p>
-  	</div>
-  	<div>
-  		<p>text</p>
-  	</div>
-  	<div>
-  		<p>text</p>
-  	</div>
-  	<div>
-  		<p>text</p>
-  	</div>
-  		
-  </div>
-  
-  <hr>
-
-  <div class="bimo" style="width: 1100px;">
-  	  <h3>What We Do</h3><br>
-	  <div style="width: 1100px;">
-	  	<div style="display:inline-block; background-color: red; width: 300px; height: 200px;">
+	  <div>
+	  	<div>
+	  		<p>text</p>
+	  	</div>
+	  	<div>
+	  		<p>text</p>
+	  	</div>
+	  	<div>
+	  		<p>text</p>
+	  	</div>
+	  	<div>
+	  		<p>text</p>
+	  	</div>
+	  		
+	  </div>
+	  
+	  <hr>
+	
+	  <div class="bimo" style="width: 1100px;">
+	  	  <h3>What We Do</h3><br>
+		  <div style="width: 1100px;">
+		  	<div style="display:inline-block; background-color: red; width: 300px; height: 200px;">
+		    	<p>some text</p>
+		    </div>
+		    <div style="width:700px; height:200px; display:inline-block; background-color: yellow;">
+		    	<p>right some text</p>
+		    </div>  
+		  </div>
+	  </div>
+	  
+	  <hr>
+	  
+	  <div class="bimo" style="width: 1100px;">
+		  <h3>What We Do</h3><br>
+		  <div style="width:700px; height:200px; display:inline-block; background-color: yellow;">
+		  	<p>right some text</p>
+		  </div>
+		  <div style="display:inline-block; background-color: red; width: 300px; height: 200px;">
+		    	<p>some text</p>
+		  </div>
+	  </div>
+	  
+	   <hr>
+	  
+	  <div class="bimo" style="width: 1100px;">
+	  <h3>What We Do</h3><br>
+	   	<div style="display:inline-block; background-color: red; width: 300px; height: 200px;">
 	    	<p>some text</p>
 	    </div>
 	    <div style="width:700px; height:200px; display:inline-block; background-color: yellow;">
 	    	<p>right some text</p>
 	    </div>  
 	  </div>
-  </div>
-  
-  <hr>
-  
-  <div class="bimo" style="width: 1100px;">
+	  
+	  <hr>
+	  
+	  <div class="bimo" style="width: 1100px;">
 	  <h3>What We Do</h3><br>
-	  <div style="width:700px; height:200px; display:inline-block; background-color: yellow;">
-	  	<p>right some text</p>
-	  </div>
-	  <div style="display:inline-block; background-color: red; width: 300px; height: 200px;">
+	   	<div style="width:700px; height:200px; display:inline-block; background-color: yellow;">
+	    	<p>right some text</p>
+	    </div>  
+	   	
+	   	<div style="display:inline-block; background-color: red; width: 300px; height: 200px;">
 	    	<p>some text</p>
+	    </div>
+	    
 	  </div>
-  </div>
-  
-   <hr>
-  
-  <div class="bimo" style="width: 1100px;">
-  <h3>What We Do</h3><br>
-   	<div style="display:inline-block; background-color: red; width: 300px; height: 200px;">
-    	<p>some text</p>
-    </div>
-    <div style="width:700px; height:200px; display:inline-block; background-color: yellow;">
-    	<p>right some text</p>
-    </div>  
-  </div>
-  
-  <hr>
-  
-  <div class="bimo" style="width: 1100px;">
-  <h3>What We Do</h3><br>
-   	<div style="width:700px; height:200px; display:inline-block; background-color: yellow;">
-    	<p>right some text</p>
-    </div>  
-   	
-   	<div style="display:inline-block; background-color: red; width: 300px; height: 200px;">
-    	<p>some text</p>
-    </div>
-    
-  </div>
-</div><br>
+	</div><br>
+</div>
 
 
 
