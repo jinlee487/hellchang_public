@@ -138,8 +138,7 @@ public class MemberController {
 		System.out.println(vo);
 		
 		if (vo != null) { // id 존재
-			if (vo.getPassword().equals(password)) {
-				// 로그인 성공 -> login 정보 보관 (id, name을 session에) -> loginSuccess
+			if (passwordEncoder.matches(password, vo.getPassword())){				
 				request.getSession().setAttribute("logID", vo.getId());
 				request.getSession().setAttribute("logName", vo.getName());
 				mv.setViewName("home");
