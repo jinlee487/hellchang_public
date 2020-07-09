@@ -28,17 +28,17 @@
    <p>Please fill in this form to create an account.</p>
 
     <label for="email" class="int"><b>Email</b></label><br>
-    <input type="text" id="id" placeholder="Enter Email" name="email" class="input" required><br>
+    <input type="text" id="id" placeholder="Enter Email" name="email" class="input" ><br>
 
     <label for="psw" class="int"><b>Password</b></label><br>
-    <input type="password" id="password" placeholder="Enter Password"  name="psw" class="input" required ><br>
+    <input type="password" id="password" placeholder="Enter Password"  name="psw" class="input"  ><br>
 
     <label for="psw-repeat" class="int"><b>Repeat Password</b></label><br>
-    <input type="password" placeholder="Repeat Password" id="rpsw" name="psw-repeat" class="input" required><br>
+    <input type="password" placeholder="Repeat Password" id="rpsw" name="psw-repeat" class="input" ><br>
     <span  id="pMessage" class="eMessage"></span>
      <span  id="pMessage" class="eMessage"></span>
     <label for="name" class="int"><b>Name</b></label><br>
-    <input type="text" id="name" placeholder="Name" name="psw-repeat" class="input" required><br>
+    <input type="text" id="name" placeholder="Name" name="psw-repeat" class="input" ><br>
     
     <label for="phonenumber" class="int"><b>Phone Number</b></label><br>
     <select id="nationNo" name="nationNo" class="gen" aria-label="전화번호 입력">
@@ -685,11 +685,11 @@
                                             홍콩 +852
                                         </option>
                         </select><br>
-    <input type="text" id="phoneNumber" placeholder="Ex 010-1234-5678" name="psw-repeat" class="input" required><br>
+    <input type="text" id="phoneNumber" placeholder="Ex 010-1234-5678" name="psw-repeat" class="input" ><br>
     
     <label for="birthd" class="int"><b>Birth Day</b></label><br>
-    <input type="text" id="yy" placeholder="년(4자)" aria-label="년(4자)" class="yy" maxlength="4" required>
-    <select id="mm" class="mm" aria-label="월" required>
+    <input type="text" id="yy" placeholder="년(4자)" aria-label="년(4자)" class="yy" maxlength="4" >
+    <select id="mm" class="mm" aria-label="월" >
 										<option value="">월</option>
 										  	 			<option value="01">
                                                             1월
@@ -728,20 +728,20 @@
                                                             12월
                                                         </option>
 									</select>
-	<input type="text" id="dd" placeholder="일" aria-label="일" class="yy" maxlength="2" required><br>
+	<input type="text" id="dd" placeholder="일" aria-label="일" class="yy" maxlength="2" ><br>
    
     <label for="gender" class="int"><b>Gender</b></label><br>
-    <select id="gen" class="gen" required>
+    <select id="gen" class="gen">
 		<option value="">성별</option>
 		<option value="M">남성</option>
 		<option value="F">여성</option>
 	</select><br>
 	
 	<label for="location" class="int"><b>location</b></label><br>
-	<input type="text" name="zipcode" id="zipcode" size="7" onClick="sample4_execDaumPostcode()" readonly placeholder="우편번호 검색" required>
+	<input type="text" name="zipcode" id="zipcode" size="7" onClick="sample4_execDaumPostcode()" readonly placeholder="우편번호 검색" >
 	<br>
-    <input type="text" name="address" id="address" readonly placeholder="주소입력해주세요" required><br>
-    <input type="text" name="address1" id="address1" placeholder="상세주소를 입력해주세요" required>
+    <input type="text" name="address" id="address" readonly placeholder="주소입력해주세요" ><br>
+    <input type="text" name="address1" id="address1" placeholder="상세주소를 입력해주세요" >
     <br>
     <label class="int">
       <input type="checkbox" checked="checked" name="remember" class="input" style="margin-bottom:15px"> Remember me

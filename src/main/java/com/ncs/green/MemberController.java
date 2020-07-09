@@ -183,5 +183,19 @@ public class MemberController {
 		} // if
 		return mv;
 	}// mupdate
+	
+	@RequestMapping(value = "/delete")
+	public ModelAndView delete(HttpServletRequest request, ModelAndView mv, MemberVO vo) {
+		
+		String id = (String) request.getSession().getAttribute("logID");
+		vo.setId(id);
+		service.delete(vo);
+		request.getSession().invalidate();
+		
+		mv.setViewName("home");
+		//service.delete();
+		
+		return mv;
+	} // login
 
 }
