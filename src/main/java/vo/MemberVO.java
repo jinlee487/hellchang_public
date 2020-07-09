@@ -8,8 +8,16 @@ public class MemberVO {
 	private String name;
 	private String gender;
 	private String phone;
+	private String nationNo;
+	private String phoneNo; 
 	private String address;
+	private String zipcode;
+	private String address1; 
+	private String address2; 
 	private String birthday;
+	private String yy;
+	private String mm;
+	private String dd;
 	private String level;	
 	private String image_path; 
 	private MultipartFile image_file; 
@@ -22,14 +30,35 @@ public class MemberVO {
 	public void setName(String name) {this.name = name;}
 	public String getGender() {return gender;}
 	public void setGender(String gender) {this.gender = gender;}
+	
 	public String getPhone() {return phone;}
-	public void setPhone(String phone) {this.phone = phone;}
-	public String getAddress() {return address;}
-	public void setAddress(String address) {this.address = address;}
+	public void setPhone() {this.phone = (getNationNo() +"-"+getPhoneNo());}
+	public String getNationNo() {return nationNo;}
+	public void setNationNo(String nationNo) {this.nationNo = nationNo;}
+	public String getPhoneNo() {return phoneNo;}
+	public void setPhoneNo(String phoneNo) {this.phoneNo = phoneNo;}
+	
+	public String getAddress() {return address;}	
+	public void setAddress() {this.address = (getAddress1()+" "+getAddress2()+" "+getZipcode());}
+	public String getZipcode() {return zipcode;}
+	public void setZipcode(String zipcode) {this.zipcode = zipcode;}
+	public String getAddress1() {return address1;}
+	public void setAddress1(String address1) {this.address1 = address1;}
+	public String getAddress2() {return address2;}
+	public void setAddress2(String address2) {this.address2 = address2;}
+	
 	public String getBirthday() {return birthday;}
-	public void setBirthday(String birthday) {this.birthday = birthday;}
+	public void setBirthday() {this.birthday = getYy()+"/"+getMm()+"/"+getDd();}
+	public String getYy() {	return yy;}
+	public void setYy(String yy) {this.yy = yy;}
+	public String getMm() {return mm;}
+	public void setMm(String mm) {this.mm = mm;}
+	public String getDd() {return dd;}
+	public void setDd(String dd) {this.dd = dd;}
+	
 	public String getLevel() {return level;}
 	public void setLevel(String level) {this.level = level;}
+
 	public String getImage_path() { return image_path; }
 	public void setImage_path(String image_path) { this.image_path = image_path; }
 	public MultipartFile getImage_file() {return image_file;}
@@ -38,9 +67,12 @@ public class MemberVO {
 	@Override
 	public String toString() {
 		return "MemberVO [id=" + id + ", password=" + password + ", name=" + name + ", gender=" + gender + ", phone="
-				+ phone + ", address=" + address + ", birthday=" + birthday + ", level=" + level + ", image_path="
-				+ image_path + "]";
+				+ phone + ", nationNo=" + nationNo + ", phoneNo=" + phoneNo + ", address=" + address + ", zipcode="
+				+ zipcode + ", address1=" + address1 + ", address2=" + address2 + ", birthday=" + birthday + ", yy="
+				+ yy + ", mm=" + mm + ", dd=" + dd + ", level=" + level + ", image_path=" + image_path + "]";
 	}
+	
+
 	
 } // MemberVO
 
@@ -68,21 +100,7 @@ public class MemberVO {
 //	private String phone;
 //	private String address;
 //	private String birthday;
-//<<<<<<< HEAD
-//	private String level;
-//=======
-//	private String image_path;
-//	private MultipartFile image_file;
-//>>>>>>> refs/remotes/origin/jihwan
-//	
-//<<<<<<< HEAD
-//	private String image_path; // table의 컬럼과 동일 
-//	private MultipartFile image_file;  // form의 inputTag의 값 전달받기위함
-//	/* => MultipartFile Type은 form으로부터 UpLoad를 위해  필요한 타입이며
-//    		실제 DB 에는 경로와 화일명을 String Type 으로 보관함  
-//    		그러므로 저장 할 때 이에 대한 처리가 필요함
-//	   => 별도의 String Type uploadfile 필드를 추가 하여 사용함 */
-//=======
+
 ////	private String id;
 ////	private String password;
 ////	private String name;
@@ -152,9 +170,7 @@ public class MemberVO {
 ////				+ phone + ", address=" + address + ", birthday=" + birthday + ", image_path=" + image_path
 ////				+ ", image_file=" + image_file + "]";
 ////	}
-//>>>>>>> refs/remotes/origin/jihwan
-//	
-//<<<<<<< HEAD
+
 //	public String getId() {return id;}
 //	public void setId(String id) {this.id = id;}
 //	public String getPassword() {return password;}
@@ -182,8 +198,5 @@ public class MemberVO {
 //				+ phone + ", address=" + address + ", birthday=" + birthday + ", level=" + level + ", image_path="
 //				+ image_path + "]";
 //	}
-//=======
-//	
-//>>>>>>> refs/remotes/origin/jihwan
 //	
 //} // MemberVO
