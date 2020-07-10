@@ -14,7 +14,7 @@ public class InbodyDAO {
 	private SqlSession sqlsession;
 	private static final String NS="green.mappers.inbodyMapper.";
 
-	public List<InbodyVO> selectList() {
+	public List<InbodyVO> selectList(InbodyVO vo) {
 		return sqlsession.selectList(NS+"selectList") ;
 	} // selectList()
 	
@@ -28,5 +28,8 @@ public class InbodyDAO {
 	
 	public int update(InbodyVO vo) { 
 		return sqlsession.update(NS+"update", vo);
+	}
+	public int delete(InbodyVO vo) { 
+		return sqlsession.update(NS+"delete", vo);
 	}
 }

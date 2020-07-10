@@ -3,15 +3,13 @@ package service;
 
 import java.util.List;
 
-import vo.MemberVO;
-import vo.SaveVO;
+import vo.InbodyVO;
 
 public interface IService {
-	int saveMyRoutine(SaveVO vo); // saveMyRoutine
-	List<MemberVO> selectList(); // selectList()
-	MemberVO selectOne(MemberVO vo); // selectOne
-	int insert(MemberVO vo); // insert
-	int update(MemberVO vo); // update
-	int delete(MemberVO vo); // delete
+	List<InbodyVO> selectList(InbodyVO vo); // selectList()
+	InbodyVO selectOne(InbodyVO vo); // selectOne
+	int insert(InbodyVO vo); // insert
+	int update(InbodyVO vo); // update
+	int delete(InbodyVO vo); // delete
 } // interface
 

@@ -16,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import service.IService;
 import vo.InbodyVO;
-import vo.MemberVO;
 
 @Controller
 public class InbodyController {
@@ -42,18 +41,14 @@ public class InbodyController {
 		}
 		
 		vo = service.selectOne(vo);
-		if (list != null) {
-			mv.addObject("Banana", list); // scope 이 request 와 동일
-		} else {
-			mv.addObject("message", "~~ 검색된 자료가 1건도 없습니다. ~~");
-		}
+
 		mv.setViewName("user/profile_inbody");
 		return mv; 
 	} // 
 	
 	@RequestMapping(value = "/inbodyList")
 	public ModelAndView inbody(ModelAndView mv, InbodyVO vo) {
-		vo = service.selectList();
+		List<InbodyVO> list = service.selectList(vo);
 		if (list != null) {
 			mv.addObject("Banana", list); // scope 이 request 와 동일
 		} else {

@@ -10,37 +10,32 @@ import vo.InbodyVO;
 
 
 @Service
-public class IServiceImpl implements SService {
+public class IServiceImpl implements IService {
 	@Autowired
-	SaveDAO dao;
-
-	@Override
-	public int saveMyRoutine(SaveVO vo) {  
-		return dao.saveMyRoutine(vo);  // 처리된 row 갯수 return	 
-	} // insert
+	InbodyDAO dao;
 	
 	@Override
-	public List<MemberVO> selectList() {
-		return dao.selectList() ;
+	public List<InbodyVO> selectList(InbodyVO vo) {
+		return dao.selectList(vo) ;
 	} // selectList()
 	
 	@Override
-	public MemberVO selectOne(MemberVO vo) {
+	public InbodyVO selectOne(InbodyVO vo) {
 		return dao.selectOne(vo);
 	} // selectOne
 	
 	@Override
-	public int insert(MemberVO vo) {  
+	public int insert(InbodyVO vo) {  
 		return dao.insert(vo);  // 처리된 row 갯수 return	 
 	} // insert
 	
 	@Override
-	public int update(MemberVO vo) { // row(vo) 전달 받아 수정
+	public int update(InbodyVO vo) { // row(vo) 전달 받아 수정
 		return dao.update(vo);  // 처리된 row 갯수 return
 	} // update
 
 	@Override
-	public int delete(MemberVO vo) {
+	public int delete(InbodyVO vo) {
 		return dao.delete(vo);  // 처리된 row 갯수 return
 	} // delete
 	
