@@ -35,6 +35,7 @@ public class InbodyController {
 		vo.setId(id);
 		vo = service.selectOne(vo);
 		mv.addObject("InbodyVO", vo);
+		System.out.println("this is vo => " + vo);
 		mv.setViewName("jsonView");
 		return mv; 
 	} // 

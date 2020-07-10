@@ -290,9 +290,8 @@ $(window).resize(function(){
 		  inbodybarchart(r5[resultPage],'pChartID','pChartID2');
 		  inbodybarchart(r6[resultPage],'vChartID','vChartID2');
 		  calcBMR(r[resultPage],'bmiID');
-
-
 	  }); 
+}); 
 document.getElementById("defaultOpen").click();
 function openPage(evt,tabName) {
 	  var i, tabcontent, tablinks;
@@ -331,23 +330,25 @@ function openPage(evt,tabName) {
 		  });
 	  }
 	  else if(tabName=='results_tab'){
+		  var data;
+		  console.log("going into ajax ...")
+			$.ajax({
+				type:"Post",
+				url:"inbodyDetailAjax",
+	 			success:function(jsondata){
+	 				data=jsondata.InbodyVO;
+				}
+			}); //ajax
+			console.log("out of the ajaxs")
 		  google.charts.setOnLoadCallback(function(){
-			  console.log("going into ajax ...")
-				$.ajax({
-					type:"Post",
-					url:"inbodyDetailAjax",
-		 			success:function(data){
-		 				inbodybarchart(data.InbodyVO.getWeight(),data.InbodyVO.getWeight_under(),data.InbodyVO.getWeight_over()-data.InbodyVO.getWeight_under(),'wChartID','wChartID2');
-		 				inbodybarchart(data.InbodyVO.getMuscle_mass(),data.InbodyVO.getMuscle_mass_under(),data.InbodyVO.getMuscle_mass_over()-data.InbodyVO.getMuscle_mass_under(),'mmChartID','mmChartID2');
-		 				inbodybarchart(data.InbodyVO.getFat_mass(),data.InbodyVO.getFat_mass_under(),data.InbodyVO.getFat_mass_over()-data.InbodyVO.getFat_mass_under(),'fmChartID','fmChartID2');
-		 				inbodybarchart(data.InbodyVO.getBmi(),data.InbodyVO.getBmi_under(),data.InbodyVO.getBbmi_over()-data.InbodyVO.getBmi_under(),'bChartID','bChartID2');
-		 				inbodybarchart(data.InbodyVO.getPbf(),data.InbodyVO.getPbf_under(),data.InbodyVO.getPbf_over()-data.InbodyVO.getPbf_under(),'pChartID','pChartID2');
-		 				inbodybarchart(data.InbodyVO.getVfl(),data.InbodyVO.getVfl_under(),data.InbodyVO.getVfl_over()-data.InbodyVO.getVfl_under(),'vChartID','vChartID2');
-		 				calcBMR(data.InbodyVO.getBmr(),'bmiID');
-					}
-				}); //ajax
-		  
-			 
+				console.log("this is inbody VO weight=> " + data.weight);
+				inbodybarchart(data.weight,data.weight_under,data.weight_over-data.weight_under,'wChartID','wChartID2');
+ 				inbodybarchart(data.muscle_mass,data.muscle_mass_under,data.muscle_mass_over-data.muscle_mass_under,'mmChartID','mmChartID2');
+ 				inbodybarchart(data.fat_mass,data.fat_mass_under,data.fat_mass_over-data.fat_mass_under,'fmChartID','fmChartID2');
+ 				inbodybarchart(data.bmi,data.bmi_under,data.bmi_over-data.bmi_under,'bChartID','bChartID2');
+ 				inbodybarchart(data.pbf,data.pbf_under,data.pbf_over-data.pbf_under,'pChartID','pChartID2');
+ 				inbodybarchart(data.vfl,data.vfl_under,data.vfl_over-data.vfl_under,'vChartID','vChartID2');
+ 				calcBMR(data.bmr,'bmiID');	 
 		  }); 
 	  }
 	}

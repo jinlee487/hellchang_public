@@ -68,8 +68,8 @@
   </select>
   
   <!-- memberDetail() -->
-  <select id="selectOne" resultType="vo.MemberVO">
-  	select * from hellchang_schema_test.member where id=#{id}
+  <select id="selectOne" resultType="vo.InbodyVO">
+  	select * from hellchang_schema_test.inbody where id=#{id} and seq=12
   </select>
 
   <insert id="insert">

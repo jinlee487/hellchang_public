@@ -86,7 +86,7 @@ public class Test04_InbodyMapper {
 			if (i<10) d = "2020" +"/0"+ i + "/" + "01/" +"17:30";
 			else d = "2020" +"/"+ i + "/" + "01 " +"17:30";
 						
-			vo.setId("banana@naver.com");
+			vo.setId("admin@gmail.com");
 			vo.setDate(d);
 			vo.setSeq(i);
 			vo.setWeight(85-i);

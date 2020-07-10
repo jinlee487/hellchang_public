@@ -20,7 +20,7 @@ function inbodybarchart(value,low,high,ID,ID2) {
     		count = Math.ceil(Math.floor(value-low)/(Math.floor(high/3))) + 3 ;
     	}
     	else if ((high+low)<value){
-    		count = Math.ceil((r[3]-(high+low))/10)+6;
+    		count = Math.ceil((value-(high+low))/10)+6;
     	}
 	    var a=0,b=0,c=0,d=0,e=0,f=0,g=0,h=0,i=0;
 	    console.log("this is count => " + count)
