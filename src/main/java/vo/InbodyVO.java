@@ -1,5 +1,8 @@
 package vo;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class InbodyVO {
 	private String id;
 	private String date;
@@ -68,7 +71,8 @@ public class InbodyVO {
 	public void setVfl_over(double vfl_over) {this.vfl_over = vfl_over;}
 	public double getBmr() {return bmr;}
 	public void setBmr(double bmr) {this.bmr = bmr;}
-	
+	public void calcBmr() {BigDecimal bd = new BigDecimal(88.362 + (13.397 * weight) + (4.799 *178) - (5.677 *28)).setScale(2, RoundingMode.HALF_UP);
+		setBmr(bd.doubleValue());}
 	@Override
 	public String toString() {
 		return "InbodyVO [id=" + id + ", date=" + date + ", seq=" + seq + ", weight=" + weight + ", weight_under="

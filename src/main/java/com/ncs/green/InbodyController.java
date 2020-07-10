@@ -27,22 +27,15 @@ public class InbodyController {
 		mv.setViewName("data/data_test");
 		return mv; 
 	} // 
-	@RequestMapping(value = "/inbodyDetail")
+	@RequestMapping(value = "/inbodyDetailAjax")
 	public ModelAndView inbody(HttpServletRequest request, ModelAndView mv, InbodyVO vo) {
-		String id;
-		HttpSession session = request.getSession(false);
-		if (session != null && session.getAttribute("logID") != null) {
-			id = (String) session.getAttribute("logID");
-		} else {
-			// login 하도록 유도 후에 메서드 return 으로 종료
-			mv.addObject("message", "~~ 로그인 후에 하세요 ~~");
-			mv.setViewName("login/loginForm");
-			return mv;
-		}
 		
+		HttpSession session = request.getSession(false);
+		String id = (String) session.getAttribute("logID");
+		vo.setId(id);
 		vo = service.selectOne(vo);
-
-		mv.setViewName("user/profile_inbody");
+		mv.addObject("InbodyVO", vo);
+		mv.setViewName("jsonView");
 		return mv; 
 	} // 
 	

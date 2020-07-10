@@ -12,11 +12,10 @@ function calcBMR(r,ID){
     document.getElementById(ID).innerHTML = bmr.toFixed(2);
 }
 
-function inbodybarchart(r,ID,ID2) {
-	console.log(r);
-    	document.getElementById(ID2).innerHTML = r[3];
+function inbodybarchart(value,low,high,ID,ID2) {
+    	document.getElementById(ID2).innerHTML = value;
     	var count;
-    	if(r[3]<r[1]){
+    	if(value<r[1]){
     		count = Math.ceil(r[3]/(Math.floor(r[1]/3)));
     	}
     	else if (r[1]<=r[3]&&r[3]<=(r[2]+r[1])){
