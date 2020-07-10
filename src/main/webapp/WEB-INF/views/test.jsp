@@ -7,12 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-last try!!
-
-7/9 tb merge with sungho
-
-7/10 merge test conflict! 
-
-7/10 merge test conflict! 
+new update 7/10 by jinwoo to test branch!
 </body>
 </html>
