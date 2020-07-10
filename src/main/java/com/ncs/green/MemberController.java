@@ -106,7 +106,6 @@ public class MemberController {
 	@RequestMapping(value = "/join")
 	public ModelAndView join(ModelAndView mv, MemberVO vo) {
 
-		System.out.println("Location is in join controller => \n"+vo);
 		vo.setPhone();
 		vo.setAddress();
 		vo.setBirthday();
@@ -114,7 +113,6 @@ public class MemberController {
 		vo.setLevel("user");
 		vo.setImage_path(file2);
 		vo.setPassword(passwordEncoder.encode(vo.getPassword()));                        
-		System.out.println("after the set!"+ " => \n"+vo);
 
 		int cnt = service.insert(vo);
 		
