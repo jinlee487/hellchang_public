@@ -6,23 +6,21 @@ Men: BMR = 88.362 + (13.397 x weight in kg) + (4.799 x height in cm) - (5.677 x 
 Women: BMR = 447.593 + (9.247 x weight in kg) + (3.098 x height in cm) - (4.330 x age in years)
   
  */
-function calcBMR(r,ID){
-	console.log("thi s i s r[3] => "+ r[3])
-	var bmr = 88.362 + (13.397 * r[3]) + (4.799 *178) - (5.677 *28);
-    document.getElementById(ID).innerHTML = bmr.toFixed(2);
+function calcBMR(value,ID){
+    document.getElementById(ID).innerHTML = value;
 }
 
 function inbodybarchart(value,low,high,ID,ID2) {
     	document.getElementById(ID2).innerHTML = value;
     	var count;
-    	if(value<r[1]){
-    		count = Math.ceil(r[3]/(Math.floor(r[1]/3)));
+    	if(value<low){
+    		count = Math.ceil(high/(Math.floor(low/3)));
     	}
-    	else if (r[1]<=r[3]&&r[3]<=(r[2]+r[1])){
-    		count = Math.ceil(Math.floor(r[3]-r[1])/(Math.floor(r[2]/3))) + 3 ;
+    	else if (low<=value&&value<=(high+low)){
+    		count = Math.ceil(Math.floor(value-low)/(Math.floor(high/3))) + 3 ;
     	}
-    	else if ((r[2]+r[1])<r[3]){
-    		count = Math.ceil((r[3]-(r[2]+r[1]))/10)+6;
+    	else if ((high+low)<value){
+    		count = Math.ceil((r[3]-(high+low))/10)+6;
     	}
 	    var a=0,b=0,c=0,d=0,e=0,f=0,g=0,h=0,i=0;
 	    console.log("this is count => " + count)

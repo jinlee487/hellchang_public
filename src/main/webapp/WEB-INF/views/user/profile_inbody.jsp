@@ -337,13 +337,13 @@ function openPage(evt,tabName) {
 					type:"Post",
 					url:"inbodyDetailAjax",
 		 			success:function(data){
-		 				inbodybarchart(data.InbodyVO.weight,data.InbodyVO.weight_under,data.InbodyVO.weight_over-data.InbodyVO.weght_under,'wChartID','wChartID2');
-		 				inbodybarchart(data.InbodyVO,'mmChartID','mmChartID2');
-		 				inbodybarchart(data.InbodyVO,'fmChartID','fmChartID2');
-		 				inbodybarchart(data.InbodyVO,'bChartID','bChartID2');
-		 				inbodybarchart(r5[resultPage],'pChartID','pChartID2');
-		 				inbodybarchart(r6[resultPage],'vChartID','vChartID2');
-		 				calcBMR(r[resultPage],'bmiID');
+		 				inbodybarchart(data.InbodyVO.getWeight(),data.InbodyVO.getWeight_under(),data.InbodyVO.getWeight_over()-data.InbodyVO.getWeight_under(),'wChartID','wChartID2');
+		 				inbodybarchart(data.InbodyVO.getMuscle_mass(),data.InbodyVO.getMuscle_mass_under(),data.InbodyVO.getMuscle_mass_over()-data.InbodyVO.getMuscle_mass_under(),'mmChartID','mmChartID2');
+		 				inbodybarchart(data.InbodyVO.getFat_mass(),data.InbodyVO.getFat_mass_under(),data.InbodyVO.getFat_mass_over()-data.InbodyVO.getFat_mass_under(),'fmChartID','fmChartID2');
+		 				inbodybarchart(data.InbodyVO.getBmi(),data.InbodyVO.getBmi_under(),data.InbodyVO.getBbmi_over()-data.InbodyVO.getBmi_under(),'bChartID','bChartID2');
+		 				inbodybarchart(data.InbodyVO.getPbf(),data.InbodyVO.getPbf_under(),data.InbodyVO.getPbf_over()-data.InbodyVO.getPbf_under(),'pChartID','pChartID2');
+		 				inbodybarchart(data.InbodyVO.getVfl(),data.InbodyVO.getVfl_under(),data.InbodyVO.getVfl_over()-data.InbodyVO.getVfl_under(),'vChartID','vChartID2');
+		 				calcBMR(data.InbodyVO.getBmr(),'bmiID');
 					}
 				}); //ajax
 		  
