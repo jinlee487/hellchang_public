@@ -172,7 +172,7 @@ button:hover {
       <div class="row">
         <div class="col-sm-12" >
           <div class="panel panel-default text-center">
-          <div class="panel-heading"><label>My Info</label></div>
+          <div class="panel-heading"><label>MyInfo</label></div>
             <div class="panel-body">
 				 <form action="mdetail" method="post" >
   <div>
@@ -185,11 +185,12 @@ button:hover {
       <a href="#name" data-toggle="collapse">
       <b>이름 수정하기</b>
       </a>
-      <div id="name" class="collapse">
-        <input  style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" placeholder="Name" name="psw-repeat" class="input" required><br>
+      <div id="name" class="collapse" >
+        <input style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" placeholder="Name" name="name" id="name" class="input" value="${myInfo.name }"><br>
        <a href="#name" data-toggle="collapse">
-       <input type="reset" value="취소"></a>
+      <input type="reset" value="취소"></a>
        <input type="submit" value="전송">&nbsp;&nbsp;
+      
       </div><br><br>
     
     
@@ -844,7 +845,7 @@ button:hover {
                                             홍콩 +852
                                         </option>
                         </select><br><br>
-    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" placeholder="Ex 010-1234-5678" name="psw-repeat" class="input" required><br>
+    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="phone"  id="phoneNo" placeholder="Ex 010-1234-5678" class="input" value="${myInfo.phone }"><br>
        <a href="#phonenumber" data-toggle="collapse">
        <input type="reset" value="취소"></a>
        <input type="submit" value="전송">&nbsp;&nbsp;
@@ -858,10 +859,10 @@ button:hover {
       <b>주소 수정하기</b>
       </a>
       <div id="location" class="collapse">
-       <input style="width: 20%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px; margin-right: 40%; cursor: pointer;" type="text" name="zipcode" id="zipcode" size="7" onClick="sample4_execDaumPostcode()" readonly placeholder="우편번호" required>
+       <input style="width: 20%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px; margin-right: 40%; cursor: pointer;" type="text" name="zipcode" id="zipcode" size="7" onClick="sample4_execDaumPostcode()" readonly placeholder="우편번호" value="${myInfo.zipcode }">
 	<br><br>
-    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="address" id="address" readonly placeholder="주소입력해주세요" required><br><br>
-    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="address1" id="address1" placeholder="상세주소를 입력해주세요" required><br>
+    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="address" id="address" readonly placeholder="주소입력해주세요" value="${myInfo.address}"><br><br>
+    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="address" id="address" placeholder="상세주소를 입력해주세요" value="${myInfo.address }"><br>
        <a href="#location" data-toggle="collapse">
        <input type="reset" value="취소"></a>
        <input type="submit" value="전송">&nbsp;&nbsp;
@@ -876,9 +877,9 @@ button:hover {
       </a>
       <div id="password" class="collapse">
        <label for="psw" class="int"><b>Password</b></label><br> 
-    <input style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Enter Password"  name="psw" class="input" required ><br>
+    <input style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Enter Password"  name="password" class="input" value="" ><br>
     <label for="psw-repeat" class="int"><b>Repeat Password</b></label><br>
-    <input  style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Repeat Password" name="psw-repeat" class="input" required><br>
+    <input  style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Repeat Password" name="password" class="input" value=""><br>
        <a href="#password" data-toggle="collapse">
        <input type="reset" value="취소"></a>
        <input type="submit" value="전송">&nbsp;&nbsp;
@@ -943,3 +944,4 @@ function sample4_execDaumPostcode() {
 </script>
 </body>
 </html>
+

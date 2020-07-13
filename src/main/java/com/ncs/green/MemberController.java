@@ -237,7 +237,7 @@ public class MemberController {
 			mv.setViewName("redirect:mdetail");
 		} else {
 			// 회원수정 실패 -> 내정보 보기 화면으로
-			mv.setViewName("redirect:mdetail?code=E");
+			mv.setViewName("home");
 		} // if
 		return mv;
 	}// mupdate
