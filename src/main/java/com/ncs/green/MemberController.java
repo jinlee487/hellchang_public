@@ -234,10 +234,10 @@ public class MemberController {
 			// 회원수정 성공 -> memberList 출력
 			// session 의 Attribute logName 도 변경
 			request.getSession().setAttribute("loginName", vo.getName());
-			mv.setViewName("redirect:home");
+			mv.setViewName("redirect:mdetail");
 		} else {
 			// 회원수정 실패 -> 내정보 보기 화면으로
-			mv.setViewName("redirect:home");
+			mv.setViewName("redirect:mdetail?code=E");
 		} // if
 		return mv;
 	}// mupdate
