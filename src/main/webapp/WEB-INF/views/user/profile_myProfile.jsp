@@ -1,74 +1,191 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Update Profile</title>
-<link rel="icon" href="resources/image/logo.jpg">
-<link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
-<link rel="stylesheet" type="text/css" href="resources/jqLib/join.css">
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script>
-function check_form() {
-	var idval = document.joinForm.email.value;
-	if (idval.charAt(0) < 'A' || idval.charAt(0) > 'z' ) {
- 		alert("아이디의 첫글자는 영문자입니다.");
-  		document.regform.email.focus();
-  		return;
+  <title>hellchang_project</title>
+  <link rel="icon" href="resources/image/logo.jpg">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
+  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+  
+  
+  <style>
+  #p_pos{
+  	margin-right: 80px;
+  }
+  		  
+  address {
+	color: white;
+	margin-bottom:0px;
 	}
-	if (document.joinForm.psw.value =="") {
- 		alert("비밀번호를 입력하세요.");
-  		document.regform.psw.focus();
-  		return;
-	}
-	if (document.joinForm.psw.value != document.regform.psw-repeat.value) {
- 		alert("비밀번호가 일치하지 않습니다.");
-  		document.regform.psw.focus();
-  		return;
-	}
-	
-	document.joinForm.submit();
-}
-</script>
-<script>
-function sample4_execDaumPostcode() {
-   new daum.Postcode({
-	    oncomplete: function(data) {
-	    	 document.getElementById('zipcode').value = data.zonecode;
-	         document.getElementById("address").value = data.address;
-	    }
-	}).open();
-}
-</script>
-</head>
-<body>
-<div id="header" class="joun_membership bounce-in-left" role="banner">
-<h1>
-	<a href="home" class="h_logo">
-		<img src="resources/image/logo.jpg">
-	</a>
-</h1>
-</div>
-<form action="updateProfile" method="post" style="border:1px solid #ccc" name="regform">
-  <div class="container bounce-in-left">
-    <h1>Sign Up</h1>
-   <p>Please fill in this form to update an account.</p>
-
-    <label for="email" class="int"><b>Email</b></label><br>
-    <input type="text" placeholder="Enter Email" name="email" class="input" value="${profile.email }" disabled="disabled" required><br>
-
-    <label for="psw" class="int"><b>Password</b></label><br>
-    <input type="password" placeholder="Enter Password"  name="psw" class="input" required ><br>
-
-    <label for="psw-repeat" class="int"><b>Repeat Password</b></label><br>
-    <input type="password" placeholder="Repeat Password" name="psw-repeat" class="input" required><br>
+  #footer{
+	clear: both;
+    margin: 0 auto;
+    padding: 30px 0 15px 0;
+    text-align: center;
+    margin: 0 auto;
+	height: 50px;
+    max-width: 100%;
+    min-width: 460px;
+    background-color: #3d3b3c;
+    bottom:0px;
     
+	}
+  
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+      background-color: #000000;
+    }
+    
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #3d3b3c;
+      padding: 25px;
+    }
+    
+  .carousel-inner img {
+      width: 100%; /* Set width to 100% */
+      margin: auto;
+      min-height:200px;
+  }
+
+  /* Hide the carousel text when the screen is less than 600 pixels wide */
+  @media (max-width: 600px) {
+    .carousel-caption {
+      display: none; 
+      margin-left: 20	0px;
+    }
+  }
+  @media (min-width: 768px){
+	.col-sm-4 {
+	  /* margin-left: 200px; */
+	  text-align: center;
+	}
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity:1;
+}
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f44336;
+  text-align: center;
+  border-radius: 8px
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: center;
+  width: 30%;
+  text-align: center;
+  border-radius: 8px
+}
+  </style>
+</head>
+<body >
+
+<nav  class="navbar navbar-inverse" >
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="home">
+      <img src = "resources/image/logo.jpg" width="80" height="25">
+      </a>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="noob">Noob</a></li>
+			<li><a href="#">Routine</a></li>
+			<li><a href="dataf">Blog</a></li>
+			<li><a href="one">OneRM</a></li>
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+      <li><a href="prof">MyProfile</a></li>
+      	<li><a href="joinf">회원가입</a></li>
+        <li><a href="loginf"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  
+<div class="container text-center" style="margin-top:100px" >    
+  <div class="row">
+    <div class="col-sm-3 well">
+      <div class="well">
+        <p><a href="myProfile">My Profile</a></p>
+        <img src="resources/uploadImage/emptyImage.png" class="img-circle" height="100" width="100" alt="Avatar">
+      </div>
+
+		<ul class="nav nav-pills nav-stacked">
+		  <li><a href="#">Start Workout</a></li>
+		  <li><a href="manageWorkout">Manage Workout</a></li>
+		  <li><a href="inbodyf">InBody</a></li>
+		  <li><a href="#">Diet</a></li>
+		  <li><a href="#">Social</a></li>  
+		  <li><a href="mdetail?code=U">Profile Update</a></li>  
+		  
+		</ul>
+    </div>
+    <div class="col-sm-7 ">
+    
+      <div class="row">
+        <div class="col-sm-12" >
+          <div class="panel panel-default text-center">
+          <div class="panel-heading"><label>My Info</label></div>
+            <div class="panel-body">
+				 <form action="mdetail" method="post" >
+  <div>
+  
+   <label for="name" class="int"><b>Email</b></label><br>
+      <p class="text-center">${myInfo.id }</p><br>
+   
     <label for="name" class="int"><b>Name</b></label><br>
-    <input type="text" placeholder="Name" name="psw-repeat" class="input" value="${profile.name }" required><br>
+      <p class="text-center">${myInfo.name }</p>
+      <a href="#name" data-toggle="collapse">
+      <b>이름 수정하기</b>
+      </a>
+      <div id="name" class="collapse">
+        <input  style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" placeholder="Name" name="psw-repeat" class="input" required><br>
+       <a href="#name" data-toggle="collapse">
+       <input type="reset" value="취소"></a>
+       <input type="submit" value="전송">&nbsp;&nbsp;
+      </div><br><br>
+    
+    
     
     <label for="phonenumber" class="int"><b>Phone Number</b></label><br>
-    <select id="nationNo" name="nationNo" class="gen" aria-label="전화번호 입력">
+    <p class="text-center">${myInfo.phone}</p>
+      <a href="#phonenumber" data-toggle="collapse">
+      <b>폰 번호 수정하기</b>
+      </a>
+      <div id="phonenumber" class="collapse">
+      <select style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px; cursor: pointer;" id="nationNo" name="nationNo" class="gen" aria-label="전화번호 입력">
                                         <option value="233">
                                             가나 +233
                                         </option>
@@ -711,76 +828,60 @@ function sample4_execDaumPostcode() {
                                         <option value="852">
                                             홍콩 +852
                                         </option>
-                        </select><br>
-    <input type="text" placeholder="Ex 010-1234-5678" name="psw-repeat" class="input" value="${profile.phoneNumber }" required><br>
+                        </select><br><br>
+    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" placeholder="Ex 010-1234-5678" name="psw-repeat" class="input" required><br>
+       <a href="#phonenumber" data-toggle="collapse">
+       <input type="reset" value="취소"></a>
+       <input type="submit" value="전송">&nbsp;&nbsp;
+      </div><br><br>
     
-    <label for="birthd" class="int"><b>Birth Day</b></label><br>
-    <input type="text" id="yy" placeholder="년(4자)" aria-label="년(4자)" class="yy" maxlength="4" required>
-    <select id="mm" class="mm" aria-label="월" required>
-										<option value="">월</option>
-										  	 			<option value="01">
-                                                            1월
-                                                        </option>
-										  	 			<option value="02">
-                                                            2월
-                                                        </option>
-										  	 			<option value="03">
-                                                            3월
-                                                        </option>
-										  	 			<option value="04">
-                                                            4월
-                                                        </option>
-										  	 			<option value="05">
-                                                            5월
-                                                        </option>
-										  	 			<option value="06">
-                                                            6월
-                                                        </option>
-										  	 			<option value="07">
-                                                            7월
-                                                        </option>
-										  	 			<option value="08">
-                                                            8월
-                                                        </option>
-										  	 			<option value="09">
-                                                            9월
-                                                        </option>
-										  	 			<option value="10">
-                                                            10월
-                                                        </option>
-										  	 			<option value="11">
-                                                            11월
-                                                        </option>
-										  	 			<option value="12">
-                                                            12월
-                                                        </option>
-									</select>
-	<input type="text" id="dd" placeholder="일" aria-label="일" class="yy" maxlength="2" required><br>
-   
-    <label for="gender" class="int"><b>Gender</b></label><br>
-    <select id="gen" class="gen" required>
-		<option value="">성별</option>
-		<option value="B">남성</option>
-		<option value="C">여성</option>
-	</select><br>
+	
 	
 	<label for="location" class="int"><b>location</b></label><br>
-	<input type="text" name="zipcode" id="zipcode" size="7" value="${profile.zipcode }" onClick="sample4_execDaumPostcode()" readonly placeholder="우편번호 검색" required>
-	<br>
-    <input type="text" name="address" id="address" value="${profile.address }" readonly placeholder="주소입력해주세요" required><br>
-    <input type="text" name="address1" id="address1" value="${profile.address1 }" placeholder="상세주소를 입력해주세요" required>
+	 <p class="text-center">${myInfo.address }</p>
+      <a href="#location" data-toggle="collapse">
+      <b>주소 수정하기</b>
+      </a>
+      <div id="location" class="collapse">
+       <input style="width: 20%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px; margin-right: 40%; cursor: pointer;" type="text" name="zipcode" id="zipcode" size="7" onClick="sample4_execDaumPostcode()" readonly placeholder="우편번호" required>
+	<br><br>
+    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="address" id="address" readonly placeholder="주소입력해주세요" required><br><br>
+    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="address1" id="address1" placeholder="상세주소를 입력해주세요" required><br>
+       <a href="#location" data-toggle="collapse">
+       <input type="reset" value="취소"></a>
+       <input type="submit" value="전송">&nbsp;&nbsp;
+	   
+	 
+      </div><br>
+	
     <br>
-    <label class="int">
-      <input type="checkbox" checked="checked" name="remember" class="input" style="margin-bottom:15px"> Remember me
-    </label>
-
-    <div class="clearfix">
-      <button type="reset" class="cancelbtn">Cancel</button>
-      <button type="submit" class="signupbtn">Sign Up</button>
-    </div>
+    <hr>
+      <a href="#password" data-toggle="collapse">
+      <b>비밀번호 수정하기</b>
+      </a>
+      <div id="password" class="collapse">
+       <label for="psw" class="int"><b>Password</b></label><br> 
+    <input style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Enter Password"  name="psw" class="input" required ><br>
+    <label for="psw-repeat" class="int"><b>Repeat Password</b></label><br>
+    <input  style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Repeat Password" name="psw-repeat" class="input" required><br>
+       <a href="#password" data-toggle="collapse">
+       <input type="reset" value="취소"></a>
+       <input type="submit" value="전송">&nbsp;&nbsp;
+      </div><br>
+	
   </div>
 </form>
-	<div id="footer" role="contentinfo">
+         </div>
+
+          </div>
+        </div>
+      </div>
+      
+   
+  </div>
+ </div> 
+</div>
+<div id="footer" role="contentinfo">
 		<address>
 			<em><a href="home" target="_blank" class="logo"><span class="blind">HellChang</span></a></em>
 			<em class="copy">Copyright</em>
@@ -789,5 +890,41 @@ function sample4_execDaumPostcode() {
 			<span class="all_r">All Rights Reserved.</span>
 		</address>
 	</div>
+
+<script>
+function check_form() {
+	var idval = document.joinForm.email.value;
+	if (idval.charAt(0) < 'A' || idval.charAt(0) > 'z' ) {
+ 		alert("아이디의 첫글자는 영문자입니다.");
+  		document.regform.email.focus();
+  		return;
+	}
+	if (document.joinForm.psw.value =="") {
+ 		alert("비밀번호를 입력하세요.");
+  		document.regform.psw.focus();
+  		return;
+	}
+	if (document.joinForm.psw.value != document.regform.psw-repeat.value) {
+ 		alert("비밀번호가 일치하지 않습니다.");
+  		document.regform.psw.focus();
+  		return;
+	}
+	
+	document.joinForm.submit();
+}
+	
+
+</script>
+
+<script>
+function sample4_execDaumPostcode() {
+   new daum.Postcode({
+	    oncomplete: function(data) {
+	    	 document.getElementById('zipcode').value = data.zonecode;
+	         document.getElementById("address").value = data.address;
+	    }
+	}).open();
+}
+</script>
 </body>
 </html>

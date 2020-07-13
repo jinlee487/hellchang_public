@@ -133,7 +133,7 @@
 		  <li><a href="#">Diet</a></li>
 		  <li><a href="#">Social</a></li>    
 		  <li><a href="routine">Test</a></li>
-		  <li><a href="myProfile">Setting</a></li>
+		  <li><a href="mdetail">Setting</a></li>
 		  <li><a href="delete">Drop Out</a></li>
 		</ul>
     </div>

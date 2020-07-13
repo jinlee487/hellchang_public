@@ -70,6 +70,7 @@
   <!-- memberDetail() -->
   <select id="selectOne" resultType="vo.MemberVO">
   	select * from hellchang_schema_test.member where id=#{id}
+  	
   </select>
 
   <!-- memberJoin() -->

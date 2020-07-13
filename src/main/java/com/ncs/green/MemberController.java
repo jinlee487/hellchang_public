@@ -171,7 +171,7 @@ public class MemberController {
 	
 
 	@RequestMapping(value = "/mdetail")
-	public ModelAndView mdetail(HttpServletRequest request, ModelAndView mv, MemberVO vo) {
+	public ModelAndView mdetail(HttpServletRequest request, ModelAndView mv, MemberVO vo){
 
 		// 1) login 여부 확인
 		String id = "";
@@ -190,13 +190,15 @@ public class MemberController {
 
 		// 4) 결과 ( Detail or Update 인지 )
 		// => request.getParameter("code") 가 U 인지 확인
-		mv.setViewName("user/profile_Update");
+		mv.setViewName("user/profile_myProfile");
 		if ("U".equals(request.getParameter("code"))) {
 			// 내정보 수정화면으로
-			mv.setViewName("member/updateForm");
+			mv.setViewName("user/profile_Update");
 		} else if ("E".equals(request.getParameter("code"))) { // 내정보 수정에서 오류 상황
 			mv.addObject("message", "~~ 내정보 수정 오류  !!! 다시 하세요 ~~");
 		}
+		
+		
 		return mv;
 		
 	}// mdetail
@@ -205,6 +207,20 @@ public class MemberController {
 	public ModelAndView update(HttpServletRequest request, ModelAndView mv, MemberVO vo)
 				throws IOException {
 		System.out.println("vo null Test=>"+vo);
+		String id = "";
+		HttpSession session = request.getSession(false);
+		if (session != null && session.getAttribute("logID") != null) {
+			id = (String) session.getAttribute("logID");
+		} else {
+			// login 하도록 유도 후에 메서드 return 으로 종료
+			mv.addObject("message", "~~ 로그인 후에 하세요 ~~");
+			mv.setViewName("login/loginForm");
+			return mv;
+		}
+		vo.setId(id);
+		vo = service.selectOne(vo);
+		mv.addObject("myInfo", vo);
+
 		
 		// password 입력값  확인 및 암호와 처리
 		if (vo.getPassword().length() > 3 && vo.getPassword()!=null) {
@@ -218,7 +234,7 @@ public class MemberController {
 			// 회원수정 성공 -> memberList 출력
 			// session 의 Attribute logName 도 변경
 			request.getSession().setAttribute("loginName", vo.getName());
-			mv.setViewName("redirect:mlist");
+			mv.setViewName("redirect:home");
 		} else {
 			// 회원수정 실패 -> 내정보 보기 화면으로
 			mv.setViewName("redirect:mdetail?code=E");

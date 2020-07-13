@@ -157,9 +157,9 @@ button:hover {
       <div class="row">
         <div class="col-sm-12" >
           <div class="panel panel-default text-center">
-          <div class="panel-heading"><label>My Info</label></div>
+          <div class="panel-heading"><label>Update</label></div>
             <div class="panel-body">
-				 <form action="prof" method="post" >
+				 <form action="mdetail" method="post" >
   <div>
   
    <label for="name" class="int"><b>Email</b></label><br>
@@ -173,8 +173,8 @@ button:hover {
       <div id="name" class="collapse">
         <input  style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" placeholder="Name" name="psw-repeat" class="input" required><br>
        <a href="#name" data-toggle="collapse">
-       <b>취소</b></a>
-       <a href="#"><b>수정</b></a>
+       <input type="reset" value="취소"></a>
+       <input type="submit" value="전송">&nbsp;&nbsp;
       </div><br><br>
     
     
@@ -831,8 +831,8 @@ button:hover {
                         </select><br><br>
     <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" placeholder="Ex 010-1234-5678" name="psw-repeat" class="input" required><br>
        <a href="#phonenumber" data-toggle="collapse">
-       <b>취소</b></a>
-       <a href="#"><b>수정</b></a>
+       <input type="reset" value="취소"></a>
+       <input type="submit" value="전송">&nbsp;&nbsp;
       </div><br><br>
     
 	
@@ -848,8 +848,10 @@ button:hover {
     <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="address" id="address" readonly placeholder="주소입력해주세요" required><br><br>
     <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="address1" id="address1" placeholder="상세주소를 입력해주세요" required><br>
        <a href="#location" data-toggle="collapse">
-       <b>취소</b></a>
-       <a href="#"><b>수정</b></a>
+       <input type="reset" value="취소"></a>
+       <input type="submit" value="전송">&nbsp;&nbsp;
+	   
+	 
       </div><br>
 	
     <br>
@@ -863,8 +865,8 @@ button:hover {
     <label for="psw-repeat" class="int"><b>Repeat Password</b></label><br>
     <input  style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Repeat Password" name="psw-repeat" class="input" required><br>
        <a href="#password" data-toggle="collapse">
-       <b>취소</b></a>
-       <a href="#"><b>수정</b></a>
+       <input type="reset" value="취소"></a>
+       <input type="submit" value="전송">&nbsp;&nbsp;
       </div><br>
 	
   </div>
