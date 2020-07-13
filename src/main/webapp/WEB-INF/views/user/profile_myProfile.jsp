@@ -188,8 +188,8 @@ button:hover {
       <div id="name" class="collapse" >
         <input style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" placeholder="Name" name="name" id="name" class="input" value="${myInfo.name }"><br>
        <a href="#name" data-toggle="collapse">
-      <input type="reset" value="취소"></a>
-       <input type="submit" value="전송">&nbsp;&nbsp;
+      <input type="reset" value="취소"></a>&nbsp;&nbsp;
+       <input type="submit" value="전송">
       
       </div><br><br>
     
@@ -847,8 +847,8 @@ button:hover {
                         </select><br><br>
     <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="phone"  id="phoneNo" placeholder="Ex 010-1234-5678" class="input" value="${myInfo.phone }"><br>
        <a href="#phonenumber" data-toggle="collapse">
-       <input type="reset" value="취소"></a>
-       <input type="submit" value="전송">&nbsp;&nbsp;
+       <input type="reset" value="취소"></a>&nbsp;&nbsp;
+       <input type="submit" value="전송">
       </div><br><br>
     
 	
@@ -864,8 +864,8 @@ button:hover {
     <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="address" id="address" readonly placeholder="주소입력해주세요" value="${myInfo.address}"><br><br>
     <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="address" id="address" placeholder="상세주소를 입력해주세요" value="${myInfo.address }"><br>
        <a href="#location" data-toggle="collapse">
-       <input type="reset" value="취소"></a>
-       <input type="submit" value="전송">&nbsp;&nbsp;
+       <input type="reset" value="취소"></a>&nbsp;&nbsp;
+       <input type="submit" value="전송">
 	   
 	 
       </div><br>
@@ -881,8 +881,8 @@ button:hover {
     <label for="psw-repeat" class="int"><b>Repeat Password</b></label><br>
     <input  style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Repeat Password" name="password" class="input" value=""><br>
        <a href="#password" data-toggle="collapse">
-       <input type="reset" value="취소"></a>
-       <input type="submit" value="전송">&nbsp;&nbsp;
+       <input type="reset" value="취소"></a>&nbsp;&nbsp;
+       <input type="submit" value="전송">
       </div><br>
 	
   </div>
