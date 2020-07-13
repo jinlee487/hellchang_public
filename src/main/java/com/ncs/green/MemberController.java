@@ -25,6 +25,12 @@ public class MemberController {
 	MService service;
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
+	
+	@RequestMapping(value = "/blog")
+	public ModelAndView blog(ModelAndView mv) {
+		mv.setViewName("login/loginForm");
+		return mv; 
+	} // atestf
 
 	@RequestMapping(value = "/loginf")
 	public ModelAndView loginf(ModelAndView mv) {
@@ -58,6 +64,11 @@ public class MemberController {
 		return mv; 
 	} // 
 	
+	@RequestMapping(value = "/myProfile")
+	public ModelAndView myProfile(ModelAndView mv) {
+		mv.setViewName("user/profile_myProfile");
+		return mv; 
+	} // 
 	
 	@RequestMapping(value = "/manageWorkout")
 	public ModelAndView manageWorkout(ModelAndView mv) {
@@ -95,7 +106,6 @@ public class MemberController {
 	@RequestMapping(value = "/join")
 	public ModelAndView join(ModelAndView mv, MemberVO vo) {
 
-		System.out.println("Location is in join controller => \n"+vo);
 		vo.setPhone();
 		vo.setAddress();
 		vo.setBirthday();
@@ -103,7 +113,6 @@ public class MemberController {
 		vo.setLevel("user");
 		vo.setImage_path(file2);
 		vo.setPassword(passwordEncoder.encode(vo.getPassword()));                        
-		System.out.println("after the set!"+ " => \n"+vo);
 
 		int cnt = service.insert(vo);
 		
@@ -135,7 +144,9 @@ public class MemberController {
 		System.out.println(vo);
 		
 		if (vo != null) { // id 존재
-			if (vo.getPassword().equals(password)) {
+			System.out.println("vo null 통과" + vo.getPassword());
+			if (passwordEncoder.matches(password, vo.getPassword())){
+				System.out.println("match 통과");
 				// 로그인 성공 -> login 정보 보관 (id, name을 session에) -> loginSuccess
 				request.getSession().setAttribute("logID", vo.getId());
 				request.getSession().setAttribute("logName", vo.getName());
@@ -159,7 +170,7 @@ public class MemberController {
 	} // login
 	
 
-	@RequestMapping(value = "/myProfile")
+	@RequestMapping(value = "/mdetail")
 	public ModelAndView mdetail(HttpServletRequest request, ModelAndView mv, MemberVO vo) {
 
 		// 1) login 여부 확인
@@ -215,6 +226,18 @@ public class MemberController {
 		return mv;
 	}// mupdate
 	
-	
+	@RequestMapping(value = "/delete")
+	public ModelAndView delete(HttpServletRequest request, ModelAndView mv, MemberVO vo) {
+		
+		String id = (String) request.getSession().getAttribute("logID");
+		vo.setId(id);
+		service.delete(vo);
+		request.getSession().invalidate();
+		
+		mv.setViewName("home");
+		//service.delete();
+		
+		return mv;
+	} // login
 
 }

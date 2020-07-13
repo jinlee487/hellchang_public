@@ -16,7 +16,8 @@ import vo.MemberVO;
 public class Test03_MemberMapper {
 	@Autowired
 	private SqlSession sqlsession;
-
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
 	
 	private static final String NS="green.mappers.memberMapper.";
 
@@ -38,28 +39,33 @@ public class Test03_MemberMapper {
 	} // totalRowCountTest()
 	@Test
 	public void joinTest() {
-		BCryptPasswordEncoder passwordEncoder = null;
-		MemberVO vo = new MemberVO() ;
-		vo.setId("test4@gmail.com");
-		vo.setPassword("123!");
-		vo.setPassword(passwordEncoder.encode(vo.getPassword()));  
-		vo.setName("test3");
-		vo.setGender("M");
-		vo.setNationNo("82");
-		vo.setPhoneNo("000-0000-0000");
-		vo.setAddress1("미금역");
-		vo.setAddress2("그린컴퓨터");
-		vo.setZipcode("35131");
-		vo.setYy("20");
-		vo.setMm("01");
-		vo.setDd("01");
-		vo.setPhone();
-		vo.setAddress();
-		vo.setBirthday();
-		vo.setLevel("user");
-		vo.setImage_path("resources/uploadImage/emptyImage.png");
-		System.out.println("this is vo => " + vo);
-		int cnt = sqlsession.insert(NS+"insert",vo) ;
+		int cnt=0;
+		for (int i=0;i<99;i++) {
+			String temp = "test" + Integer.toString(i);
+			
+			MemberVO vo = new MemberVO() ;
+			vo.setId(temp+"@gmail.com");
+			vo.setPassword("123!");
+			vo.setPassword(passwordEncoder.encode(vo.getPassword()));  
+			vo.setName(temp);
+			vo.setGender("M");
+			vo.setNationNo("82");
+			vo.setPhoneNo("000-0000-0000");
+			vo.setAddress1("미금역");
+			vo.setAddress2("그린컴퓨터");
+			vo.setZipcode("35131");
+			vo.setYy("2000");
+			vo.setMm("01");
+			vo.setDd("01");
+			vo.setPhone();
+			vo.setAddress();
+			vo.setBirthday();
+			vo.setLevel("user");
+			vo.setImage_path("resources/uploadImage/emptyImage.png");
+			System.out.println("for i => " +i + "\nthis is vo => " + vo);
+			cnt += sqlsession.insert(NS+"insert",vo);
+		}
+		System.out.println("cnt => " + cnt);
 		// 입력 오류시 => red Line (insert 처리가 완료 되지못함으로)
 		if (cnt>0) 
 			 System.out.println("***** join 성공 *****");

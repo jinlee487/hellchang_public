@@ -30,8 +30,8 @@ public class MemberDAO {
 	public int update(MemberVO vo) { 
 		return sqlsession.update(NS+"update", vo);
 	}
-//	public int delete(MemberVO vo) {
-//		return sqlsession.delete(NS+"delete", vo) ;
-//	}
+	public int delete(MemberVO vo) {
+		return sqlsession.delete(NS+"delete", vo) ;
+	}
 
 } // class
