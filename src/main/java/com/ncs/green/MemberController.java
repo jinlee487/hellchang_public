@@ -26,12 +26,6 @@ public class MemberController {
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
 	
-	@RequestMapping(value = "/blog")
-	public ModelAndView blog(ModelAndView mv) {
-		mv.setViewName("login/loginForm");
-		return mv; 
-	} // atestf
-
 	@RequestMapping(value = "/loginf")
 	public ModelAndView loginf(ModelAndView mv) {
 		mv.setViewName("login/loginForm");
