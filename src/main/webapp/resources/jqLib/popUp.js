@@ -304,3 +304,15 @@ function bDips(){
 			"frameborder='0' allow='accelerometer; autoplay; " +
 			"encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>");
 }
+
+
+function bDips(){
+	$('#div1').html("<iframe width='720' height='480' " +
+			"src='https://www.youtube.com/embed/Clzeylv2sAY' " +
+			"frameborder='0' allow='accelerometer; autoplay; " +
+			"encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>");
+}
+
+
+
+
