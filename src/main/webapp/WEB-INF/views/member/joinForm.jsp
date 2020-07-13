@@ -43,6 +43,7 @@
     <span  id="pMessage" class="eMessage"></span>
     
     <label for="name" class="int"><b>Name</b></label><br>
+    
     <input type="text" id="name" placeholder="Name" name="name" class="input" required><br>
     
     <label for="phonenumber" class="int"><b>Phone Number</b></label><br>
@@ -690,6 +691,7 @@
                                             홍콩 +852
                                         </option>
                         </select><br>
+   
     <input type="text" id="phoneNo" placeholder="Ex 010-1234-5678" name="phoneNo" class="input" required><br>
     
     <label for="birthd" class="int"><b>Birth Day</b></label><br>
@@ -733,6 +735,7 @@
                                                             12월
                                                         </option>
 									</select>
+	
 	<input type="text" id="dd" name="dd" placeholder="일" aria-label="일" class="yy" maxlength="2" required><br>
    
     <label for="gender" class="int"><b>Gender</b></label><br>
