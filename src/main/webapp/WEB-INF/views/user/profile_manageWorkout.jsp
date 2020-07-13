@@ -128,16 +128,29 @@ text-align: left;
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="noob">Noob</a></li>
-		<li><a href="routine">Routine</a></li>
-		<li><a href="dataf">Blog</a></li>
-		<li><a href="one">OneRM</a></li>
-        
+			<li><a href="routine">Routine</a></li>
+			<li><a href="blog">Blog</a></li>
+			<li><a href="one">OneRM</a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-      <li><a href="prof">MyProfile</a></li>
-      	<li><a href="joinf">회원가입</a></li>
-        <li><a href="loginf"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
+        <ul class="nav navbar-nav navbar-right" >
+			  <c:if test="${logID != null }">
+			  	<li><a style="color: white;">${logName}님</a></li>
+			  	<li><a href="prof">MyProfile</a></li>
+			  </c:if>
+				<li>
+					<c:if test="${logID==null }">
+						<a href="joinf">회원가입</a>
+					</c:if>	
+				</li>
+				<li>
+					<c:if test="${logID==null }">
+						<a href="loginf"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+					</c:if>
+					<c:if test="${logID!=null }">
+						<a href="logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
+					</c:if>
+				</li>
+			  </ul>
     </div>
   </div>
 </nav>
