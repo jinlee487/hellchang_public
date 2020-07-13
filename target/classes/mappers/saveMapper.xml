@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="green.mappers.saveMapper">
+ 
+   <insert id="saveMyRoutine">
+	insert into `hellchang_schema_test`.`myRoutine` values 
+	 (#{id}, #{name}, #{target}, #{kg}, #{rep}, #{date})
+  </insert>  
+  
+  <select id="selectOne" resultType="vo.SaveVO">
+  	select * from `hellchang_schema_test`.`myRoutine` where id=#{id} and date = #{date}
+  </select>
+ </mapper>
