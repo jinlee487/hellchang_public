@@ -9,6 +9,7 @@ import vo.InbodyVO;
 public interface IService {
 	List<InbodyVO> selectList(InbodyVO vo); // selectList()
 	InbodyPageVO selectPageList(InbodyPageVO vo); // selectList()
+	InbodyPageVO selectGraphList(InbodyPageVO vo); // selectList()
 
 	InbodyVO selectOne(InbodyVO vo); // selectOne
 	int insert(InbodyVO vo); // insert

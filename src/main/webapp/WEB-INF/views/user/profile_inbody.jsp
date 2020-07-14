@@ -27,6 +27,7 @@
 	.col-sm-4 {
 	  /* margin-left: 200px; */
 	  text-align: center;
+		}
 	}
 
 .analysis-title{
@@ -63,14 +64,15 @@ text-align: left;
 
 /* Style the tab content */
 .tabcontent {
-  display: none;
+	display: block;
+    height: 0;
+    overflow-y: hidden;
 }
 .inbodycontent{
   padding: 6px 12px;
   border: 1px solid #ccc;
   border-top: none;
 }
-
 
 
 *,*:after,*:before {
@@ -253,7 +255,7 @@ text-align: left;
     	  <ul  class="pager">
             <li class="previous" id= "resultback"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
 		    <li><span id="dd" class="wrapper-dropdown-2"><span id="results_date"></span>
-				  <ul class="dropdown" id="dddd" style="z-index:1;overflow-y:auto;height:285px;width:300px;">
+				  <ul class="dropdown" id="dddd" style="z-index:1;overflow-y:auto;height:285px;width:100%;">
 
 				  </ul></span></li>
             <li class="next" id= "resultforward"><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li> 		    
@@ -302,54 +304,73 @@ text-align: left;
         </div>
         
         <div class="col-sm-12 tabcontent" id="history_tab">
-		     <form>
-		    <div class="form-group">
-		      <label for="sel1">Select list (select one):</label>
-		      <select class="form-control" id="sel1">
-		        <option>1</option>
-		        <option>2</option>
-		        <option>3</option>
-		        <option>4</option>
-		      </select>
-		       </div>
-  			</form>
+		             
+		<div class="panel-group">
+		  <div class="panel panel-default">
+		    <div class="panel-heading">
+		      <h4 class="panel-title">
+		      	<span><strong>Select Date</strong></span><br><br>
+		        <a data-toggle="collapse" href="#collapse1" id="selected_date"></a>
+		      </h4>
+		    </div>
+		    <div id="collapse1" class="panel-collapse collapse">
+		      <div class="panel-body">
+		      	<form>
+			    <div class="form-group">
+			      <label for="sel1">Select Start Date</label>
+			      <select class="form-control" id="sel1">
+			      </select>
+			      <label for="sel2">Select End Date</label>
+			      <select class="form-control" id="sel2">
+			      </select>
+			      <hr>
+			      </div>
+			    </form>
+			        <button id="reset_date" class="btn btn-default">Reset</button>
+			        <button id="reset_date_ajax" class="btn btn-default">Submit</button>
+
+		      </div>
+		    </div>
+		  </div>
+		</div>
+			        
 		      <br>
             <table class="columns" style="table-layout:fixed;word-break:break-all;width:100%;">
 		      <tr>
-		        <td><strong style="font-size: large;">Weight (kg)</strong></td>
+		        <td><strong style="font-size: large;">Weight (kg)</strong></td>		        
 		      </tr>
 		      <tr>
-		        <td><div id="wComboID" style="width: 100%;"></div></td>
+		        <td style="width:150%;"><div id="wComboID"></div></td>
 		      </tr> 
 		      <tr>
 		        <td><strong style="font-size: large;"><br><br>Muscle Mass (kg)</strong></td>
 		      </tr>
 		      <tr>
-		        <td><div id="mmComboID" style="width: 100%;"></div></td>
+		        <td style="width:150%;"><div id="mmComboID"></div></td>
 		      </tr> 
 		      <tr>
 		        <td><strong style="font-size: large;"><br><br>Fat Mass (kg)</strong></td>
 		      </tr>
 		      <tr>
-		        <td><div id="fmComboID" style="width: 100%;"></div></td>
+		        <td style="width:150%;"><div id="fmComboID"></div></td>
 		      </tr> 
 		      <tr>
 		        <td><strong style="font-size: large;"><br><br>BMI (kg/m2)</strong></td>
 		      </tr>
 		      <tr>
-		        <td><div id="bComboID" style="width: 100%;"></div></td>
+		        <td style="width:150%;"><div id="bComboID"></div></td>
 		      </tr> 
 		      <tr>
 		        <td><strong style="font-size: large;"><br><br>Percent Body Fat (%)</strong></td>
 		      </tr>
 		      <tr>
-		        <td><div id="pComboID" style="width: 100%;"></div></td>
+		        <td style="width:150%;"><div id="pComboID"></div></td>
 		      </tr> 
 		      <tr>
 		        <td><strong style="font-size: large;"><br><br>Visceral Fat Level (level)</strong></td>
 		      </tr>
 		      <tr>
-		        <td><div id="vComboID" style="width: 100%;"></div></td>
+		        <td style="width:150%;"><div id="vComboID"></div></td>
 		      </tr> 
 		     </table>
 		     <br><br><br><br><br><br><br><br>
@@ -412,18 +433,14 @@ text-align: left;
 $(document).ready(function(){
 	var data;
 	var data1;
-	loadPage();
+	callback(loadPage,function(){
+		document.getElementById("defaultOpen").click();	
+	})
 	
-	document.getElementById("defaultOpen").click();
-/* 	$(document).on('click', '.datePick' , function() {
-		console.log("inner html => " + this.html());
-		document.getElementById("results_date").innerHTML=this.html();
-		loadResults();
-	}); */
-	$(window).resize(function(){
-		loadPage();
-		document.getElementsByClassName("tablink active")[0].click();
-	}); 
+	$(window).resize(function(){callback(reloadPage,
+		function() { 
+		document.getElementsByClassName("tablink active")[0].click();})}
+	); 
 
 	function DropDown(el) {
 		  this.dd = el;
@@ -450,7 +467,6 @@ $(document).ready(function(){
 	
 	$('#resultback').click(function(){
 		var data;
-		var data1;
 
 			$.ajax({
 				type:"Post",
@@ -461,7 +477,6 @@ $(document).ready(function(){
 				},
 				success:function(jsondata){
 					data=jsondata.InbodyVO;
-					data1=jsondata.dateList;
 				    console.log("first try inside success after ajax => \n" + data.date_date)
 
 	        	    document.getElementById("results_date").innerHTML = data.date_date;
@@ -480,7 +495,6 @@ $(document).ready(function(){
 		 
 	$('#resultforward').click(function(){
 		var data;
-		var data1;
 
 			$.ajax({
 				type:"Post",
@@ -491,7 +505,6 @@ $(document).ready(function(){
 				},
 				success:function(jsondata){
 					data=jsondata.InbodyVO;
-					data1=jsondata.dateList;
 				    console.log("first try inside success after ajax => \n" + data.date_date)
 
 	        	    document.getElementById("results_date").innerHTML = data.date_date;
@@ -505,8 +518,85 @@ $(document).ready(function(){
 	        		calcBMR(data.bmr,'bmiID');	 
 				}
 			})
-
 		 });
+	
+	
+	$('#sel1').change(function(){
+		
+		console.log($("#sel1 :selected").attr("id"));
+		console.log(parseInt($("#sel1 :selected").attr("id").substr(1)));
+		$("#sel2").children().each(function(n, i) {
+			var id = this.id;
+		
+			console.log("this is the index => " + n);
+			console.log("this is the id => " + id);
+			if (parseInt($("#sel1 :selected").attr("id").substr(1))<parseInt(id.substr(1))){
+				$('#'+id).prop('disabled', false).css("background-color", "white");
+			}
+			else {
+				$('#'+id).prop('disabled', true).css("background-color", "grey");
+			}
+		})
+	})
+	$('#sel2').change(function(){
+		console.log($("#sel2 :selected").attr("id"));
+		console.log(parseInt($("#sel2 :selected").attr("id").substr(1)));
+		$("#sel1").children().each(function(n, i) {
+			var id = this.id;
+		
+			console.log("this is the index => " + n);
+			console.log("this is the id => " + id);
+			if (parseInt(id.substr(1))<parseInt($("#sel2 :selected").attr("id").substr(1))){
+				$('#'+id).prop('disabled', false).css("background-color", "white");
+			}
+			else {
+				$('#'+id).prop('disabled', true).css("background-color", "grey");
+			}
+		})
+	});
+	$('#reset_date').click(function(){
+	    $('#sel1 option').prop('selected', function() {
+	        return this.defaultSelected;
+	        })
+       	$('#sel2 option').prop('selected', function() {
+	        return this.defaultSelected;
+	        })	
+	
+		$("#sel1").children().each(function(n, i) {
+			var id = this.id;
+		
+			console.log("this is the index => " + n);
+			console.log("this is the id => " + id);
+			if (parseInt(id.substr(1))<parseInt($("#sel2 :selected").attr("id").substr(1))){
+				$('#'+id).prop('disabled', false).css("background-color", "white");
+			}
+			else {
+				$('#'+id).prop('disabled', true).css("background-color", "grey");
+			}
+		})
+		$("#sel2").children().each(function(n, i) {
+			var id = this.id;
+		
+			console.log("this is the index => " + n);
+			console.log("this is the id => " + id);
+			if (parseInt($("#sel1 :selected").attr("id").substr(1))<parseInt(id.substr(1))){
+				$('#'+id).prop('disabled', false).css("background-color", "white");
+			}
+			else {
+				$('#'+id).prop('disabled', true).css("background-color", "grey");
+			}
+		});
+	});
+	
+	$('#reset_date_ajax').click(function(){
+		
+		reloadGraphs();		
+	
+		})
+	
+		
+		
+
 });
 
 
@@ -518,65 +608,153 @@ function datePick(elmnt, callback){
 	   } 
 
 function loadPage(){
-	google.charts.load('current', {'packages':['gauge','table','line','corechart','bar']}); 
-	document.getElementById('results_tab').style.display = "block";
-	document.getElementById('history_tab').style.display = "block";
 
-	google.charts.setOnLoadCallback(InitialloadResults);
- 	google.charts.setOnLoadCallback(InitialloadGraphs);
- 
-	document.getElementById('results_tab').style.display = "none";
-	document.getElementById('history_tab').style.display = "none";
+		google.charts.load('current', {'packages':['gauge','table','line','corechart','bar']}); 
+		google.charts.setOnLoadCallback(InitialloadGraphs);
+		google.charts.setOnLoadCallback(InitialloadResults)
+
+
 }
-	
+function reloadPage() {
+		reloadResults();
+
+	 	reloadGraphs();
+}
+
 function InitialloadGraphs() {
 	var data;
-	var data1;
 
 		$.ajax({
 			type:"Post",
 			url:"inbodyListAjax",
 			success:function(jsondata){
 				data=jsondata.InbodyVO_List;
-                var result = "";
+				
+                var start = "";
+                var end = "";
+                $('#selected_date').html(data[0].date_date.slice(0, -3) + " ~ " + data[data.length-1].date_date.slice(0, -3));
+				console.log("this is length of data => " + data.length)
+				var r1 = [], r2 = [], r3 = [], r4 = [], r5 = [], r6 = [];
+				
+                var idx=0;
                 $.each(data, function (id, vo) {
                     console.log("this is  id=>" +id+ "/ date => " + vo.date_date);
+                    if (idx==0){                 
+                    	start += '<option id="s' + idx + '" selected="selected">'+ vo.date_date.slice(0, -3) + '</option>';
+						end +=  '<option id="e' + idx + '">'+ vo.date_date.slice(0, -3) + '</option>'; 
+						}
+                    
+					
+                    else if (idx==(data.length-1)){                 
+	                    	start += '<option id="s' + idx + '">'+ vo.date_date.slice(0, -3) + '</option>';
+							end +=  '<option id="e' + idx + '" selected="selected">'+ vo.date_date.slice(0, -3) + '</option>'; 
+							}
+                    else {
+                    	start += '<option id="s' + idx + '">'+ vo.date_date.slice(0, -3) + '</option>';
+    					end +=  '<option id="e' + idx + '">'+ vo.date_date.slice(0, -3) + '</option>';
+                    }
+					idx++;
+
+				  	r1.push([vo.date_date,vo.weight_under,vo.weight_over-vo.weight_under,vo.weight]);
+				  	r2.push([vo.date_date,vo.muscle_mass_under,vo.muscle_mass_over-vo.muscle_mass_under,vo.muscle_mass]);
+				  	r3.push([vo.date_date,vo.fat_mass_under,vo.fat_mass_over-vo.fat_mass_under,vo.fat_mass]);
+				  	r4.push([vo.date_date,vo.bmi_under,vo.bmi_over-vo.bmi_under,vo.bmi]);
+				  	r5.push([vo.date_date,vo.pbf_under,vo.pbf_over-vo.pbf_under,vo.pbf]);
+				  	r6.push([vo.date_date,vo.vfl_under,vo.vfl_over-vo.vfl_under,vo.vfl]);
+
                 });
+                
+                inbodycombochart(r1,'wComboID');
+                inbodycombochart(r2,'mmComboID');
+                inbodycombochart(r3,'fmComboID');
+                inbodycombochart(r4,'bComboID');
+                inbodycombochart(r5,'pComboID');
+                inbodycombochart(r6,'vComboID');
 
-			}
-		})
-
- 	}
+        		$('#sel1').append(start);
+        		$('#sel2').append(end);
+/* 				$('#s0').prop('selected', true);
+				$('#e' +(idx-1)).prop('selected', true);
+				console.log("this is #s0 selected => " + $("#sel1").val());
+				console.log("this is #e11 selected => " + $("#sel2").val());
+				
+			    $('#sel1 option').prop('selected', function() {
+			    	if (this.defaultSelected==true)
+			        console.log("#sel1 this.defaultSelected => "  + this.id);
+			        })
+		       	$('#sel2 option').prop('selected', function() {
+		       		if (this.defaultSelected==true)
+			        console.log("#sel2 default this.defaultSelected => "  + this.id);
+			        })	
+			         */
+		}
+	});
+}
 function reloadGraphs(){
+
 	var data;
-	var data1;
 
-		$.ajax({
-			type:"Post",
-			url:"inbodyListAjax",
-			success:function(jsondata){
-				data=jsondata.InbodyVO_List;
-                var result = "";
-                $.each(data, function (id, vo) {
-                    console.log("this is  id=>" +id+ "/ date => " + vo.date_date);
-                });
+	$.ajax({
+		type:"Post",
+		url:"inbodyListAjax",
+		data:{
+			start_date:$("#sel1").val(),
+			end_date:$("#sel2").val() 
+		},
+		success:function(jsondata){
+			data=jsondata.InbodyVO_List;
+			console.log("this is data I wonder if this is working ??")
+            var start = "";
+            var end = "";
+            $('#selected_date').html(data[0].date_date.slice(0, -3) + " ~ " + data[data.length-1].date_date.slice(0, -3));
+			console.log("this is length of data => " + data.length)
+			var r1 = [], r2 = [], r3 = [], r4 = [], r5 = [], r6 = [];
+			
+            var idx=0;
+            $.each(data, function (id, vo) {
+                console.log("this is  id=>" +id+ "/ date => " + vo.date_date);
+			  	r1.push([vo.date_date,vo.weight_under,vo.weight_over-vo.weight_under,vo.weight]);
+			  	r2.push([vo.date_date,vo.muscle_mass_under,vo.muscle_mass_over-vo.muscle_mass_under,vo.muscle_mass]);
+			  	r3.push([vo.date_date,vo.fat_mass_under,vo.fat_mass_over-vo.fat_mass_under,vo.fat_mass]);
+			  	r4.push([vo.date_date,vo.bmi_under,vo.bmi_over-vo.bmi_under,vo.bmi]);
+			  	r5.push([vo.date_date,vo.pbf_under,vo.pbf_over-vo.pbf_under,vo.pbf]);
+			  	r6.push([vo.date_date,vo.vfl_under,vo.vfl_over-vo.vfl_under,vo.vfl]);
+            });
+            
+            inbodycombochart(r1,'wComboID');
+            inbodycombochart(r2,'mmComboID');
+            inbodycombochart(r3,'fmComboID');
+            inbodycombochart(r4,'bComboID');
+            inbodycombochart(r5,'pComboID');
+            inbodycombochart(r6,'vComboID');
 
-			}
-		})
+/* 			$('#s0').prop('selected', true);
+			$('#e' +(idx-1)).prop('selected', true);
+			console.log("this is #s0 selected => " + $("#sel1").val());
+			console.log("this is #e11 selected => " + $("#sel2").val());
+			
+		    $('#sel1 option').prop('selected', function() {
+		    	if (this.defaultSelected==true)
+		        console.log("#sel1 this.defaultSelected => "  + this.id);
+		        })
+	       	$('#sel2 option').prop('selected', function() {
+	       		if (this.defaultSelected==true)
+		        console.log("#sel2 default this.defaultSelected => "  + this.id);
+		        })	 */
 
+		}
+	});
 }
 	
 	
 function InitialloadResults() {
 	var data;
-	var data1;
 
 		$.ajax({
 			type:"Post",
 			url:"inbodyDetailAjax",
 			success:function(jsondata){
 				data=jsondata.InbodyVO;
-				data1=jsondata.dateList;
 			    console.log("first try inside success after ajax => \n" + data.date_date)
                 var result = "";
                 $.each(jsondata.dateList, function (id, pvo) {
@@ -597,7 +775,7 @@ function InitialloadResults() {
 
  	}
 function reloadResults(){
-	
+	var data; 
 	if(document.getElementById("results_date").innerHTML.length!=0){
 	    console.log("before ajax => " + document.getElementById("results_date").innerHTML)
 
@@ -607,7 +785,6 @@ function reloadResults(){
  			data:{date_date:document.getElementById("results_date").innerHTML},
  			success:function(jsondata){
 				data=jsondata.InbodyVO;
-				data1=jsondata.dateList;
 			    console.log(" second try inside success after ajax => \n" + data.date_date)
 			    document.getElementById("results_date").innerHTML = data.date_date;
 			    console.log("after ajax => " + document.getElementById("results_date").innerHTML)
@@ -622,13 +799,17 @@ function reloadResults(){
 		})	
 	}	
 }
-
+function callback(a,b){
+	a();
+	b();
+}
 function openPage(evt,tabName) {
 	  var i, tabcontent, tablinks;
 	  // Get all elements with class="tabcontent" and hide them
 	  tabcontent = document.getElementsByClassName("tabcontent");
 	  for (i = 0; i < tabcontent.length; i++) {
-	    tabcontent[i].style.display = "none";
+	    tabcontent[i].style.height = 0;
+	    tabcontent[i].style.overflowY  = "hidden";
 	  }
 
 	  // Get all elements with class="tablinks" and remove the class "active"
@@ -638,7 +819,9 @@ function openPage(evt,tabName) {
 	  }
 
 	  // Show the current tab, and add an "active" class to the button that opened the tab
-	  document.getElementById(tabName).style.display = "block";
+	  document.getElementById(tabName).style.height = "100%";
+	  document.getElementById(tabName).style.overflowY  = "auto";
+
 	  evt.currentTarget.className += " active";
 	}
 

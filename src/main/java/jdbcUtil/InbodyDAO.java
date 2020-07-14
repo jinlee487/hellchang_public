@@ -24,6 +24,10 @@ public class InbodyDAO {
 		return pvo;
 	}; // selectList()
 
+	public InbodyPageVO selectGraphList(InbodyPageVO pvo){
+		pvo.setList(sqlsession.selectList(NS+"selectGraphList", pvo));
+		return pvo;
+	}; // selectList()
 	
 	public InbodyVO selectOne(InbodyVO vo) {
 		return sqlsession.selectOne(NS+"selectOne", vo);

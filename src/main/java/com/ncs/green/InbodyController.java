@@ -89,14 +89,23 @@ public class InbodyController {
 	} //
 
 	@RequestMapping(value = "/inbodyListAjax")
-	public ModelAndView inbodyListAjax(HttpServletRequest request, ModelAndView mv, InbodyVO vo) {
+	public ModelAndView inbodyListAjax(HttpServletRequest request, ModelAndView mv, InbodyPageVO pvo) {
+		
+		if(pvo.getStart_date()!=null) {
+			pvo.setCheck("true");
+		}
+		
+		System.out.println("this is start date and end date => ");
+		System.out.println(pvo.getStart_date());
+		System.out.println(pvo.getEnd_date());
 		HttpSession session = request.getSession(false);
 		String id = (String) session.getAttribute("logID");
-		System.out.println("how is this null vo => " + vo);
-		vo.setId(id);
-		List<InbodyVO> list = service.selectList(vo);
-		mv.addObject("InbodyVO_List", list); // scope 이 request 와 동일
-		for (InbodyVO a : list) {
+		System.out.println("how is this null vo => " + pvo);
+		pvo.setId(id);
+
+		pvo = service.selectGraphList(pvo);
+		mv.addObject("InbodyVO_List", pvo.getList()); 
+		for (InbodyVO a : pvo.getList()) {
 			System.out.println("this is a => " + a);
 			System.out.println("");
 		}

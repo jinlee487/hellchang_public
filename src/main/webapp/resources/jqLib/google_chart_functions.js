@@ -98,8 +98,11 @@ function inbodybarchart(value,low,high,ID,ID2) {
 	        };
 
 function inbodycombochart(r,ID) {
-	console.log("this is last r date => " + r[r.length-1][0])
-	console.log("this is r[0][0] = > " + r[0][0])
+	console.log("this is last r date => " + r[r.length-1][0]);
+	console.log("this is r[0][0] = > " + r[0][0]);
+	console.log("this is ID => " + ID );
+	console.log("this is r[i][3] = > " + r[0][3]);
+
     var data = new google.visualization.DataTable();
     data.addColumn('string','Date');
     data.addColumn('number','Low');
@@ -112,7 +115,7 @@ function inbodycombochart(r,ID) {
 	]); 
     for (var i=0;i<r.length;i++){
     	data.addRows([
-    		[datetimetoString(r[i][0]), r[i][1], r[i][2],r[i][3],(r[i][3]).toString()]
+    		[r[i][0], r[i][1], r[i][2],r[i][3],(r[i][3]).toString()]
     		]); 
     }
 	data.addRows([
@@ -132,7 +135,8 @@ function inbodycombochart(r,ID) {
 	        },
 
 	        isStacked: true,
-	        width: '100%',
+ 	          width: '100%',
+   	          height: 100,
 	        series: {
     	          // low
     	          0: {	    	        	
@@ -163,7 +167,7 @@ function inbodycombochart(r,ID) {
         hAxis: {
           //  format: 'yy.MM.dd\nhh:mm',
           //  gridlines: {color: '#333',count: 15},
-	        //textPosition: 'none'
+	        textPosition: 'none',
             baselineColor: '#000000'
           },
         vAxis: {
