@@ -24,7 +24,7 @@ public class WorkoutController {
 	
 	@RequestMapping(value = "/routine")
 	public ModelAndView TTTTTTT(ModelAndView mv) {
-		mv.setViewName("test/test");
+		mv.setViewName("myRoutine/myRoutine");
 		return mv; 
 	} // test
 
@@ -38,19 +38,4 @@ public class WorkoutController {
 		System.out.println(list.toString());
 		return mv;
 	}
-	
-	/*
-	@RequestMapping(value = "/exercise")
-	public ModelAndView exercise(ModelAndView mv, ExerciseVO vo) {
-		vo = service.selectOne(vo);
-		if (vo != null) {
-			mv.addObject("Name", vo.getName());
-		} else {
-			mv.addObject("ECode", "Error");
-		}
-		mv.setViewName("jsonView");
-	return mv;
-	
-	}// bdetail
-	*/
 }

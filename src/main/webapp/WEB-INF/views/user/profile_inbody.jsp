@@ -19,6 +19,7 @@
   <link rel="stylesheet" type="text/css" href="resources/jqLib/topBar.css">
   
   <script>
+  
  </script>
   
   <style>
@@ -69,9 +70,98 @@ text-align: left;
   border: 1px solid #ccc;
   border-top: none;
 }
+
+
+
+*,*:after,*:before {
+    box-sizing: border-box;
+}
+.wrapper-dropdown-2 {
+    position: relative;
+    width: 200px;
+    margin: 0 auto;
+    padding: 10px 15px;
+ 
+    /* Styles */
+    background: #fff;
+/*     border-left: 5px solid grey;
+ */ 
+    cursor: pointer;
+    outline: none;
+}
+.wrapper-dropdown-2:after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    margin-top: -3px;
+    border-width: 6px 6px 0 6px;
+    border-style: solid;
+    border-color: grey transparent;
+}
+.wrapper-dropdown-2 .dropdown {
+  /* Size & position */
+    position: absolute;
+    top: 60%;
+    left: -45px;
+    right: 0px;
+ 
+    /* Styles */
+    background: white;
+    transition: all 0.3s ease-out;
+    list-style: none;
+ 
+    /* Hiding */
+    opacity: 0;
+    pointer-events: none;
+}
+.wrapper-dropdown-2 .dropdown li span {
+    border-style:solid;
+    border-width: thick;
+    display: block;
+    text-decoration: none;
+    color: #333;
+    border-left: 5px solid;  
+    padding: 10px;
+    transition: all 0.3s ease-out;
+}
+ 
+.wrapper-dropdown-2 .dropdown li:nth-child(1) span { 
+    border-left-color: #00ACED;
+}
+ 
+.wrapper-dropdown-2 .dropdown li:nth-child(2) span {
+    border-left-color: #4183C4;
+}
+ 
+.wrapper-dropdown-2 .dropdown li:nth-child(3) span {
+    border-left-color: #3B5998;
+}
+.wrapper-dropdown-2 .dropdown li i {
+    margin-right: 5px;
+    color: inherit;
+    vertical-align: middle;
+}
+ 
+/* Hover state */
+ 
+.wrapper-dropdown-2 .dropdown li:hover span {
+    color: grey;
+    background-color: darkgrey;
+}
+.wrapper-dropdown-2.active:after {
+    border-width: 0 6px 6px 6px;
+}
+ 
+.wrapper-dropdown-2.active .dropdown {
+    opacity: 1;
+    pointer-events: auto;
+}
   </style>
 </head>
-<body >
+<body>
 
 <nav  class="navbar navbar-inverse" >
   <div class="container-fluid">
@@ -145,11 +235,30 @@ text-align: left;
     </div>   
       <div class="row">
         <div class="col-sm-12 tabcontent" id="results_tab">
-		  <ul  class="pager">
+        
+<!--          <form>
+		    <div class="form-group">
+		   		 <br>
+		      <label for="sel1">Select Inbody Record</label>
+		      <select class="form-control" id="sel1 sel1Results">
+		        <option>1</option>
+		        <option>2</option>
+		        <option>3</option>
+		        <option>4</option>
+		      </select>
+		    </div>
+		  </form> -->
+        
+        
+    	  <ul  class="pager">
             <li class="previous" id= "resultback"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
-		    <li><span>06.26.2020(Fri) 09:50</span><a href="#"><span class="glyphicon glyphicon-chevron-down"></span></a></li>
+		    <li><span id="dd" class="wrapper-dropdown-2"><span id="results_date"></span>
+				  <ul class="dropdown" id="dddd" style="z-index:1;overflow-y:auto;height:285px;width:300px;">
+
+				  </ul></span></li>
             <li class="next" id= "resultforward"><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li> 		    
-		  </ul>
+		  </ul> 
+		  
             <div class="well well-sm analysis-title">MUSCLE-FAT ANALYSIS</div>   
             <table class="columns" style="table-layout:fixed;word-break:break-all;width:100%;">
 		      <tr>
@@ -193,14 +302,18 @@ text-align: left;
         </div>
         
         <div class="col-sm-12 tabcontent" id="history_tab">
-             <div class="weekday">      
-			  <ul style="list-style-type: none;">
-			    <li class="prev">&#10094;</li>
-			    <li class="next">&#10095;</li>
-			    <li>06.26.2020(Fri) 09:50</li>
-			    <li><hr></li>
-			  </ul>
-			</div>  
+		     <form>
+		    <div class="form-group">
+		      <label for="sel1">Select list (select one):</label>
+		      <select class="form-control" id="sel1">
+		        <option>1</option>
+		        <option>2</option>
+		        <option>3</option>
+		        <option>4</option>
+		      </select>
+		       </div>
+  			</form>
+		      <br>
             <table class="columns" style="table-layout:fixed;word-break:break-all;width:100%;">
 		      <tr>
 		        <td><strong style="font-size: large;">Weight (kg)</strong></td>
@@ -277,7 +390,10 @@ text-align: left;
     </div>
   </div>
 </div>
-
+<br>
+<br>
+<br>
+<br>
 <div id="footer" role="contentinfo">
 <!-- <hr style="width: 100%;">
 <hr style="width: 100%; border-color: black;"> -->
@@ -293,20 +409,220 @@ text-align: left;
 </body>
 <script> 
 	  
+$(document).ready(function(){
+	var data;
+	var data1;
+	loadPage();
+	
+	document.getElementById("defaultOpen").click();
+/* 	$(document).on('click', '.datePick' , function() {
+		console.log("inner html => " + this.html());
+		document.getElementById("results_date").innerHTML=this.html();
+		loadResults();
+	}); */
+	$(window).resize(function(){
+		loadPage();
+		document.getElementsByClassName("tablink active")[0].click();
+	}); 
+
+	function DropDown(el) {
+		  this.dd = el;
+		  this.initEvents();
+		}
+		DropDown.prototype = {
+		  initEvents : function() {
+		    var obj = this;
+		    obj.dd.on('click', function(event){
+		      $(this).toggleClass('active');
+		      event.stopPropagation();
+		    }); 
+		  }
+		}
+		$(function() {
+		  var dd = new DropDown( $('#dd') );
+			$(document).click(function() {
+			  $('.wrapper-dropdown-2').removeClass('active');
+			});
+		});
 
 
-$(window).resize(function(){
-	  google.charts.setOnLoadCallback(function(){
-		  inbodybarchart(r[resultPage],'wChartID','wChartID2');
-		  inbodybarchart(r2[resultPage],'mmChartID','mmChartID2');
-		  inbodybarchart(r3[resultPage],'fmChartID','fmChartID2');
-		  inbodybarchart(r4[resultPage],'bChartID','bChartID2');
-		  inbodybarchart(r5[resultPage],'pChartID','pChartID2');
-		  inbodybarchart(r6[resultPage],'vChartID','vChartID2');
-		  calcBMR(r[resultPage],'bmiID');
-	  }); 
-}); 
-document.getElementById("defaultOpen").click();
+	
+	
+	$('#resultback').click(function(){
+		var data;
+		var data1;
+
+			$.ajax({
+				type:"Post",
+				url:"inbodyDetailAjax",
+				data:{
+					direction:"backward",
+					date_date:document.getElementById("results_date").innerHTML
+				},
+				success:function(jsondata){
+					data=jsondata.InbodyVO;
+					data1=jsondata.dateList;
+				    console.log("first try inside success after ajax => \n" + data.date_date)
+
+	        	    document.getElementById("results_date").innerHTML = data.date_date;
+	        	    console.log("after ajax => " + document.getElementById("results_date").innerHTML)
+	        		inbodybarchart(data.weight,data.weight_under,data.weight_over-data.weight_under,'wChartID','wChartID2');
+	        		inbodybarchart(data.muscle_mass,data.muscle_mass_under,data.muscle_mass_over-data.muscle_mass_under,'mmChartID','mmChartID2');
+	        		inbodybarchart(data.fat_mass,data.fat_mass_under,data.fat_mass_over-data.fat_mass_under,'fmChartID','fmChartID2');
+	        		inbodybarchart(data.bmi,data.bmi_under,data.bmi_over-data.bmi_under,'bChartID','bChartID2');
+	        		inbodybarchart(data.pbf,data.pbf_under,data.pbf_over-data.pbf_under,'pChartID','pChartID2');
+	        		inbodybarchart(data.vfl,data.vfl_under,data.vfl_over-data.vfl_under,'vChartID','vChartID2');
+	        		calcBMR(data.bmr,'bmiID');	 
+				}
+			})
+
+		 });
+		 
+	$('#resultforward').click(function(){
+		var data;
+		var data1;
+
+			$.ajax({
+				type:"Post",
+				url:"inbodyDetailAjax",
+				data:{
+					direction:"forward",
+					date_date:document.getElementById("results_date").innerHTML
+				},
+				success:function(jsondata){
+					data=jsondata.InbodyVO;
+					data1=jsondata.dateList;
+				    console.log("first try inside success after ajax => \n" + data.date_date)
+
+	        	    document.getElementById("results_date").innerHTML = data.date_date;
+	        	    console.log("after ajax => " + document.getElementById("results_date").innerHTML)
+	        		inbodybarchart(data.weight,data.weight_under,data.weight_over-data.weight_under,'wChartID','wChartID2');
+	        		inbodybarchart(data.muscle_mass,data.muscle_mass_under,data.muscle_mass_over-data.muscle_mass_under,'mmChartID','mmChartID2');
+	        		inbodybarchart(data.fat_mass,data.fat_mass_under,data.fat_mass_over-data.fat_mass_under,'fmChartID','fmChartID2');
+	        		inbodybarchart(data.bmi,data.bmi_under,data.bmi_over-data.bmi_under,'bChartID','bChartID2');
+	        		inbodybarchart(data.pbf,data.pbf_under,data.pbf_over-data.pbf_under,'pChartID','pChartID2');
+	        		inbodybarchart(data.vfl,data.vfl_under,data.vfl_over-data.vfl_under,'vChartID','vChartID2');
+	        		calcBMR(data.bmr,'bmiID');	 
+				}
+			})
+
+		 });
+});
+
+
+function datePick(elmnt, callback){ 
+		console.log("elmnt inner html => " + elmnt.innerHTML);
+		document.getElementById("results_date").innerHTML=elmnt.innerHTML;
+		console.log("results_date inner html => " + document.getElementById("results_date").innerHTML);	  
+		callback(); 
+	   } 
+
+function loadPage(){
+	google.charts.load('current', {'packages':['gauge','table','line','corechart','bar']}); 
+	document.getElementById('results_tab').style.display = "block";
+	document.getElementById('history_tab').style.display = "block";
+
+	google.charts.setOnLoadCallback(InitialloadResults);
+ 	google.charts.setOnLoadCallback(InitialloadGraphs);
+ 
+	document.getElementById('results_tab').style.display = "none";
+	document.getElementById('history_tab').style.display = "none";
+}
+	
+function InitialloadGraphs() {
+	var data;
+	var data1;
+
+		$.ajax({
+			type:"Post",
+			url:"inbodyListAjax",
+			success:function(jsondata){
+				data=jsondata.InbodyVO_List;
+                var result = "";
+                $.each(data, function (id, vo) {
+                    console.log("this is  id=>" +id+ "/ date => " + vo.date_date);
+                });
+
+			}
+		})
+
+ 	}
+function reloadGraphs(){
+	var data;
+	var data1;
+
+		$.ajax({
+			type:"Post",
+			url:"inbodyListAjax",
+			success:function(jsondata){
+				data=jsondata.InbodyVO_List;
+                var result = "";
+                $.each(data, function (id, vo) {
+                    console.log("this is  id=>" +id+ "/ date => " + vo.date_date);
+                });
+
+			}
+		})
+
+}
+	
+	
+function InitialloadResults() {
+	var data;
+	var data1;
+
+		$.ajax({
+			type:"Post",
+			url:"inbodyDetailAjax",
+			success:function(jsondata){
+				data=jsondata.InbodyVO;
+				data1=jsondata.dateList;
+			    console.log("first try inside success after ajax => \n" + data.date_date)
+                var result = "";
+                $.each(jsondata.dateList, function (id, pvo) {
+                    result += '<li><span onclick="datePick(this,reloadResults)">'+ pvo.date_date + '</span></li>';
+                });
+        		$('#dddd').append(result);
+        	    document.getElementById("results_date").innerHTML = data.date_date;
+        	    console.log("after ajax => " + document.getElementById("results_date").innerHTML)
+        		inbodybarchart(data.weight,data.weight_under,data.weight_over-data.weight_under,'wChartID','wChartID2');
+        		inbodybarchart(data.muscle_mass,data.muscle_mass_under,data.muscle_mass_over-data.muscle_mass_under,'mmChartID','mmChartID2');
+        		inbodybarchart(data.fat_mass,data.fat_mass_under,data.fat_mass_over-data.fat_mass_under,'fmChartID','fmChartID2');
+        		inbodybarchart(data.bmi,data.bmi_under,data.bmi_over-data.bmi_under,'bChartID','bChartID2');
+        		inbodybarchart(data.pbf,data.pbf_under,data.pbf_over-data.pbf_under,'pChartID','pChartID2');
+        		inbodybarchart(data.vfl,data.vfl_under,data.vfl_over-data.vfl_under,'vChartID','vChartID2');
+        		calcBMR(data.bmr,'bmiID');	 
+			}
+		})
+
+ 	}
+function reloadResults(){
+	
+	if(document.getElementById("results_date").innerHTML.length!=0){
+	    console.log("before ajax => " + document.getElementById("results_date").innerHTML)
+
+		$.ajax({
+			type:"Post",
+			url:"inbodyDetailAjax",
+ 			data:{date_date:document.getElementById("results_date").innerHTML},
+ 			success:function(jsondata){
+				data=jsondata.InbodyVO;
+				data1=jsondata.dateList;
+			    console.log(" second try inside success after ajax => \n" + data.date_date)
+			    document.getElementById("results_date").innerHTML = data.date_date;
+			    console.log("after ajax => " + document.getElementById("results_date").innerHTML)
+				inbodybarchart(data.weight,data.weight_under,data.weight_over-data.weight_under,'wChartID','wChartID2');
+				inbodybarchart(data.muscle_mass,data.muscle_mass_under,data.muscle_mass_over-data.muscle_mass_under,'mmChartID','mmChartID2');
+				inbodybarchart(data.fat_mass,data.fat_mass_under,data.fat_mass_over-data.fat_mass_under,'fmChartID','fmChartID2');
+				inbodybarchart(data.bmi,data.bmi_under,data.bmi_over-data.bmi_under,'bChartID','bChartID2');
+				inbodybarchart(data.pbf,data.pbf_under,data.pbf_over-data.pbf_under,'pChartID','pChartID2');
+				inbodybarchart(data.vfl,data.vfl_under,data.vfl_over-data.vfl_under,'vChartID','vChartID2');
+				calcBMR(data.bmr,'bmiID');	
+			}
+		})	
+	}	
+}
+
 function openPage(evt,tabName) {
 	  var i, tabcontent, tablinks;
 	  // Get all elements with class="tabcontent" and hide them
@@ -324,78 +640,7 @@ function openPage(evt,tabName) {
 	  // Show the current tab, and add an "active" class to the button that opened the tab
 	  document.getElementById(tabName).style.display = "block";
 	  evt.currentTarget.className += " active";
-	  google.charts.load('current', {'packages':['gauge','table','line','corechart','bar']}); 
-
-	  if(tabName=='history_tab'){
-		  google.charts.setOnLoadCallback(function(){
-			  rPage = r.slice(Math.max(r.length - 7, 1));
-			  inbodycombochart(rPage,'wComboID');  
-			  rPage2 = r2.slice(Math.max(r2.length - 7, 1));
-			  inbodycombochart(rPage2,'mmComboID');  
-			  rPage3 = r3.slice(Math.max(r3.length - 7, 1));
-			  inbodycombochart(rPage3,'fmComboID');  
-			  rPage4 = r4.slice(Math.max(r4.length - 7, 1));
-			  inbodycombochart(rPage4,'bComboID');  
-			  rPage5 = r5.slice(Math.max(r5.length - 7, 1));
-			  inbodycombochart(rPage5,'pComboID');  
-			  rPage6 = r6.slice(Math.max(r6.length - 7, 1));
-			  inbodycombochart(rPage6,'vComboID');  
-
-		  });
-	  }
-	  else if(tabName=='results_tab'){
-		  var data;
-		  console.log("going into ajax ...")
-			$.ajax({
-				type:"Post",
-				url:"inbodyDetailAjax",
-	 			success:function(jsondata){
-	 				data=jsondata.InbodyVO;
-				}
-			}); //ajax
-			console.log("out of the ajaxs")
-		  google.charts.setOnLoadCallback(function(){
-				console.log("this is inbody VO weight=> " + data.weight);
-				inbodybarchart(data.weight,data.weight_under,data.weight_over-data.weight_under,'wChartID','wChartID2');
- 				inbodybarchart(data.muscle_mass,data.muscle_mass_under,data.muscle_mass_over-data.muscle_mass_under,'mmChartID','mmChartID2');
- 				inbodybarchart(data.fat_mass,data.fat_mass_under,data.fat_mass_over-data.fat_mass_under,'fmChartID','fmChartID2');
- 				inbodybarchart(data.bmi,data.bmi_under,data.bmi_over-data.bmi_under,'bChartID','bChartID2');
- 				inbodybarchart(data.pbf,data.pbf_under,data.pbf_over-data.pbf_under,'pChartID','pChartID2');
- 				inbodybarchart(data.vfl,data.vfl_under,data.vfl_over-data.vfl_under,'vChartID','vChartID2');
- 				calcBMR(data.bmr,'bmiID');	 
-		  }); 
-	  }
 	}
-$('#resultback').click(function(){
-	  if(resultPage>0){
-			console.log("bbb this is the current count => " + (--resultPage));
-			  inbodybarchart(r[resultPage],'wChartID','wChartID2');
-			  inbodybarchart(r2[resultPage],'mmChartID','mmChartID2');
-			  inbodybarchart(r3[resultPage],'fmChartID','fmChartID2');
-			  inbodybarchart(r4[resultPage],'bChartID','bChartID2');
-			  inbodybarchart(r5[resultPage],'pChartID','pChartID2');
-			  inbodybarchart(r6[resultPage],'vChartID','vChartID2');
-			  calcBMR(r[resultPage],'bmiID');
-	  }
-	  else if (resultPage==0){
-			alert("this is the last page!");
-	 	}
-	 });
-	 
-$('#resultforward').click(function(){
-	  if(resultPage<totalPage){
-		  console.log("fff this is the current count => " + (++resultPage));
-		  inbodybarchart(r[resultPage],'wChartID','wChartID2');
-		  inbodybarchart(r2[resultPage],'mmChartID','mmChartID2');
-		  inbodybarchart(r3[resultPage],'fmChartID','fmChartID2');
-		  inbodybarchart(r4[resultPage],'bChartID','bChartID2');
-		  inbodybarchart(r5[resultPage],'pChartID','pChartID2');
-		  inbodybarchart(r6[resultPage],'vChartID','vChartID2');
-		  calcBMR(r[resultPage],'bmiID');
-		}
-		else if(resultPage==totalPage){
-			alert("this is the first page!");
-		}
-	  });
+
 </script>
 </html>

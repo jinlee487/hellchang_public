@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-new update 7/10 by jinwoo to test branch!
+finsihed merge. final push! 7/13 18:00 
 </body>
 </html>
