@@ -29,7 +29,35 @@
 	-webkit-animation: fade-in-bottom 2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 	        animation: fade-in-bottom 2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 	}	
-    
+
+	.myPhoto{
+	width: 100px;
+	height: 100px;
+    border-radius: 50%;
+	}
+ .table {
+     border-collapse: collapse;
+     border-top: 3px solid #168;
+}  
+.table th {
+     color: #168;
+     background: #f0f6f9;
+     text-align: center;
+}
+.table th, .table td {
+     padding: 10px;
+     border: 1px solid #ddd;
+}
+.table th:first-child, .table td:first-child {
+     border-left: 0;
+}
+.table th:last-child, .table td:last-child {
+     border-right: 0;
+}
+.table tr td:first-child{
+     text-align: center;
+}
+.table caption{caption-side: bottom; display: none;}   
     /* a:link { color: black; text-decoration: none;}
  	a:visited { color: black; text-decoration: none;}
 	a:hover {text-decoration: none;} */
@@ -47,7 +75,31 @@ $(function(){
 		$('#test').css('margin-top', '5px');
 		$('#test').css('margin-bottom', '5px');
 	}
-})
+});
+
+$(function(){
+	console.log('test');
+	$.ajax({
+	type:'Get',
+	url:'allRoutine',
+	data : {
+		title : null
+		},
+	success:function(data){
+		jsonData = data.AllTest;
+		
+		for(var i = 0; i<Object.keys(jsonData).length; i++){
+			$('#myTitle').empty();
+			$('#myTitle').html("[TITLE] " +jsonData[i].title);
+			var option = $('<tr><td>'+ jsonData[i].name+'</td><td>'+jsonData[i].target+'</td><td>'+ jsonData[i].kg+'</td><td>'+jsonData[i].rep+'</td><td>'+jsonData[i].title+'</td><td>'+jsonData[i].date+'</td></tr>');
+			$('#RoutineTable').append(option);
+		}
+		},
+	error:function(){
+		alert("실패")
+		}
+		}); // ajax
+}); 
 </script>
 </head>
 <body>
@@ -83,21 +135,29 @@ $(function(){
 <div style=" width: 614px; padding-top: 50px; margin: 0 auto;">
 	<div style=" width: 614px; align-content: flex-start;">
 		<article style="width: 614px;">
-			<header style="width: 614px; height: 60px; padding: 16px; border: 1px solid;">
+			<header style="width: 614px; height: 120px; padding: 16px; border: 1px solid;">
 				<div style="display:inline-flex;">
-					<img src="resources/image/kang.jpg" alt="강경원" width="32px" height="32px">
+					<img src="resources/image/kang.jpg" alt="강경원" width="32px" height="32px" class="myPhoto" style="float: left;">
+					&nbsp;&nbsp;&nbsp;
+					<table>
+					<tr><td style="font-size: 30px"><a>kang1234</a></td></tr>
+					<tr><td id="myTitle">분할 Title이름</td></tr>
+					</table>
 				</div>
-				<div style="display: inline-block; background-color: purple; width: 522px;" id=test>
-					<div>
-						<a class="gridA">kang1234</a>
-					</div>
-<!-- 					<div> -->
-<!-- 						<a class="gridA">? 분할</a> -->
-<!-- 					</div> -->
+				<div id=test>
+
 				</div>
 			</header>
-			<div style="width: 614px; height: 614px; border: 1px solid;">
-				<p>루틴 출력 칸</p>
+			<div style="width: 614px; height: 800px; border: 1px solid;">
+				 <table class="table">
+		   <thead>
+		   <tr style="font-weight: bolder;">
+		   <th width="150">Name</th><th width="150">Targeting</th>
+		   <th width="50">kg</th><th width="50">rep</th><th width="100">title</th><th width="100">date</th>
+		   </tr>
+		   </thead>
+		   <tbody id = "RoutineTable"></tbody>
+		   </table>
 			</div>
 			<div style="width: 614px; height: 60px;">
 				<section style="width: 614px; ">좋아요  댓글(클릭시 화면 전환) 공유버튼  저장버튼</section>

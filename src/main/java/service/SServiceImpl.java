@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jdbcUtil.SaveDAO;
-import vo.MemberVO;
 import vo.SaveVO;
 
 
@@ -15,6 +14,16 @@ public class SServiceImpl implements SService {
 	@Autowired
 	SaveDAO dao;
 
+	@Override
+	public List<SaveVO> allList(SaveVO vo) {
+		return dao.allList(vo) ;
+	} // selectList()
+	
+	@Override
+	public List<SaveVO> selectList(SaveVO vo) {
+		return dao.selectList(vo) ;
+	} // selectList()
+	
 	@Override
 	public SaveVO selectOne(SaveVO vo) {
 		return dao.selectOne(vo);

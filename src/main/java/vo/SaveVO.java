@@ -1,6 +1,6 @@
 package vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class SaveVO {
 	private String id;
@@ -8,7 +8,11 @@ public class SaveVO {
 	private String target;
 	private int kg;
 	private int rep;
-	private Date date;
+	private String date;
+	
+	private String title;
+	private String shared;
+	
 	public String getId() {
 		return id;
 	}
@@ -39,16 +43,31 @@ public class SaveVO {
 	public void setRep(int rep) {
 		this.rep = rep;
 	}
-	public Date getDate() {
+	
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
+	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getShared() {
+		return shared;
+	}
+	public void setShared(String shared) {
+		this.shared = shared;
+	}
+	
 	@Override
 	public String toString() {
 		return "SaveVO [id=" + id + ", name=" + name + ", target=" + target + ", kg=" + kg + ", rep=" + rep + ", date="
-				+ date + "]";
+				+ date + ", title=" + title + ", shared=" + shared + "]";
 	}
 	
 
