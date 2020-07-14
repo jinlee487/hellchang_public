@@ -30,17 +30,136 @@
 	}	
     
     .imgb{
-    	width: 30%;
+    	width: 10%;
+    	background-color: white;
+    	border-color: white;
+    	flex-basis: 0;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    align-items: stretch;
+    border: 0 solid #000;
     }
     .img{
-    	width: 100%;
+    	width: 50%;
+    	margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    
     }
     .profile{
     	margin-top: 10%;
+    background-color: transparent;
+    border: 1px solid #dbdbdb;
+    border: 1px solid rgba(var(--ca6,219,219,219),1);
+    color: #262626;
+    color: rgba(var(--f75,38,38,38),1);
+    border-radius: 4px;
+    color: #fff;
+    color: rgba(var(--eca,255,255,255),1);
+    position: relative;
+    text-decoration: none;
+        user-select: auto;
+        -webkit-appearance: none;
+        background: 0 0;
+        box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    font-weight: 600;
+    padding: 5px 9px;
+    text-align: center;
+    text-transform: inherit;
+    text-overflow: ellipsis;
+    width: auto;
+    flex-shrink: 0;
+    margin-left: 20px
     }
     .wpO6b{
-    	margin-top: 20%;
+    	align-items: center;
+    background: 0 0;
+    border: 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+    -webkit-box-pack: center;
+    margin-top: 20%;
+}
+    	
     }
+    .h2{
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: rgba(var(--i1d,38,38,38),1);
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 32px;
+    margin: -5px 0 -6px;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    }
+    .ul{
+    margin-bottom: 20px;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    list-style: none;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    list-style: none;
+    }
+	.li{
+	display: inline-flex;
+	margin-left: 0;
+	font-size: 16px;
+    margin-right: 40px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    display: list-item;
+    text-align: -webkit-match-parent;
+	}
+.h1{
+	display: inline;
+    font-weight: 600;
+        margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;	
+}
+    
+  .zz{
+  	margin-bottom: 20px;
+  	-webkit-box-align: center;
+  	align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    flex-shrink: 1;
+    min-width: 0;
+    display: flex;
+  
+  }  
     /* a:link { color: black; text-decoration: none;}
  	a:visited { color: black; text-decoration: none;}
 	a:hover {text-decoration: none;} */
@@ -95,12 +214,12 @@ $(function(){
 <header>
 	<div style="display: inline-flex;">
 		<button class="imgb" title="프로필 사진 바꾸기">
-			<img class="img" alt="프로필 사진 바꾸기" src="../image/a1.png">
+			<img class="img" alt="프로필 사진 바꾸기" src="resources/image/logo.jpg">
 		</button>
 	
 	<section>
-		<div style="display:inline-flex;">
-			<h2>IDID</h2>&nbsp;&nbsp;	
+		<div class="zz">
+			<h2 class="h2">IDID</h2>&nbsp;&nbsp;	
 			<a class="profile" href="/account/edit/" tabindex="0" 
 			 >프로필 편집</a>&nbsp;&nbsp;
     <div class="AFWDX">
@@ -112,48 +231,89 @@ $(function(){
     </button>
     </div>
 		</div>
+		<ul class="ul">
+		<li class="li"  >
+		<span>
+			게시물&nbsp;<span>92</span>&nbsp;&nbsp;&nbsp;
+		</span>
+		</li>
+		<li class="li" >
+		<span>
+			팔로워&nbsp;<span>177</span>&nbsp;&nbsp;&nbsp;
+		</span>
+		</li>
+		<li class="li" >
+		<span>
+			팔로잉&nbsp;<span>322</span>&nbsp;&nbsp;&nbsp;
+		</span>
+		</li>
+		</ul>
+		<div>
+			<h1 class="h1">이름이름</h1><br>
+			<span>간단 소개</span>
+		</div>
 	</section>
 	</div>
 </header>
-
-
-
-
-	<div style=" width: 614px; align-content: flex-start;">
-		<article style="width: 614px;">
-			<header style="width: 614px; height: 60px; padding: 16px; border: 1px solid;">
-				<div style="display:inline-flex;">
-					<img src="resources/image/kang.jpg" alt="강경원" width="32px" height="32px">
+<hr>
+<div>
+	<article>
+		<div>
+			<div style="flex-direction: column; padding-bottom: 0px; padding-top: 0px;">
+				<div style="display: inline-flex; width: 30%" >
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">
+					<img src="resources/image/logo.jpg" style="width: 100%; display: inline-flex;"></a>
 				</div>
-				<div style="display: inline-block; background-color: purple; width: 522px;" id=test>
-					<div>
-						<a class="gridA">kang1234</a>
-					</div>
-<!-- 					<div> -->
-<!-- 						<a class="gridA">? 분할</a> -->
-<!-- 					</div> -->
+				<div style="display: inline-flex; width: 30%" >
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">
+					<img src="resources/image/logo.jpg" style="width: 100%; display: inline-flex;"></a>
 				</div>
-			</header>
-			<div style="width: 614px; height: 614px; border: 1px solid;">
-				<p>루틴 출력 칸</p>
+				<div style="display: inline-flex; width: 30%" >
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">
+					<img src="resources/image/logo.jpg" style="width: 100%; display: inline-flex;"></a>
+				</div>
 			</div>
-			<div style="width: 614px; height: 60px;">
-				<section style="width: 614px; ">좋아요  댓글(클릭시 화면 전환) 공유버튼  저장버튼</section>
-				<section style="width: 614px; ">좋아요 몇개인지 출력</section>
-				<div style="width: 614px; "> 본문 및 최근 댓글 출력</div>
-				<div style="width: 614px; ">routine upload 시간</div>
-				<section style="width: 614px; border: 1px solid;" >
-					<form>
-						<textarea rows="" cols="" placeholder="댓글달기.." style="height: 18px;"></textarea>
-						<button type="submit" disabled>게시</button>
-					</form>
-				</section>
+		</div>
+		<br>
+			<div>
+			<div style="flex-direction: column; padding-bottom: 0px; padding-top: 0px;">
+				<div style="display: inline-flex; width: 30%" >
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">
+					<img src="resources/image/logo.jpg" style="width: 100%; display: inline-flex;"></a>
+				</div>
+				<div style="display: inline-flex; width: 30%" >
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">
+					<img src="resources/image/logo.jpg" style="width: 100%; display: inline-flex;"></a>
+				</div>
+				<div style="display: inline-flex; width: 30%" >
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">
+					<img src="resources/image/logo.jpg" style="width: 100%; display: inline-flex;"></a>
+				</div>
 			</div>
-		</article>
-	</div>
+		</div>
+		<br>
+			<div>
+			<div style="flex-direction: column; padding-bottom: 0px; padding-top: 0px;">
+				<div style="display: inline-flex; width: 30%" >
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">
+					<img src="resources/image/logo.jpg" style="width: 100%; display: inline-flex;"></a>
+				</div>
+				<div style="display: inline-flex; width: 30%" >
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">
+					<img src="resources/image/logo.jpg" style="width: 100%; display: inline-flex;"></a>
+				</div>
+				<div style="display: inline-flex; width: 30%" >
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">
+					<img src="${list.uploadfile}" style="width: 100%; display: inline-flex;"></a>
+				</div>
+			</div>
+		</div>
+		<br>
+	
+	</article>
+
 </div>
-
-
+	
 
 
 <br><br>
