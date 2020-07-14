@@ -7,10 +7,19 @@
  
    <insert id="saveMyRoutine">
 	insert into `hellchang_schema_test`.`myRoutine` values 
-	 (#{id}, #{name}, #{target}, #{kg}, #{rep}, #{date})
+	 (#{id}, #{name}, #{target}, #{kg}, #{rep}, sysdate())
   </insert>  
   
   <select id="selectOne" resultType="vo.SaveVO">
   	select * from `hellchang_schema_test`.`myRoutine` where id=#{id} and date = #{date}
-  </select>
+  </select> 
+  
+  <select id="selectList" resultType="vo.SaveVO">
+	select id,name,target,kg,rep from `hellchang_schema_test`.`myRoutine` where id=#{id} and date = #{date}
+  </select> 
+  
+  <select id="allList" resultType="vo.SaveVO">
+	select id,name,target,kg,rep,title,date from `hellchang_schema_test`.`myRoutine` where title = #{title}
+  </select> 
+    
  </mapper>

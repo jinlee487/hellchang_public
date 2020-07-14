@@ -30,8 +30,6 @@ public class SaveController {
 	
 	@RequestMapping(value = "/myRoutine", method = RequestMethod.GET)
 	public ModelAndView myRoutine(HttpServletRequest request, ModelAndView mv, SaveVO vo) {
-		
-		vo.setDate(date);
 		System.out.println("insert Test" + vo);
 		if (service.saveMyRoutine(vo) > 0) {
 			System.out.println("??");
@@ -42,27 +40,42 @@ public class SaveController {
 		}
 		return mv;
 	}// saveMyRoutine
-	/*
+
 	@RequestMapping(value = "/mySaveRoutine")
 	public ModelAndView mySaveRoutine(HttpServletRequest request, ModelAndView mv, SaveVO vo) {
-
-		// 1) login 여부 확인
-		String id = "";
 		HttpSession session = request.getSession(false);
-		if (session != null && session.getAttribute("logID") != null) {
-			id = (String) session.getAttribute("logID");
-		} else {
-			// login 하도록 유도 후에 메서드 return 으로 종료
-			mv.addObject("message", "~~ 로그인 후에 하세요 ~~");
-			return mv;
-		}
-		vo.setId(id);
-		vo = service.selectOne(vo);
-		System.out.println("TEST44444 : " +  vo);
+		vo.setId((String) session.getAttribute("logID"));
+		System.out.println((String) session.getAttribute("logID"));
+		List<SaveVO> list = service.selectList(vo);
+		System.out.println("Test List : " +  list);
+		System.out.println(vo.getKg());
+		mv.addObject("myInfo", list); 
 		mv.setViewName("jsonView");
-		mv.addObject("myInfo", vo);
-
 		return mv;
 	}// mdetail
+	
+	@RequestMapping(value = "/allRoutine")
+	public ModelAndView allRoutine(HttpServletRequest request, ModelAndView mv, SaveVO vo) {
+		vo.setTitle(request.getParameter("title"));
+		List<SaveVO> list = service.allList(vo);
+		System.out.println("allList : " +  list);
+		mv.addObject("AllTest", list); 
+		mv.setViewName("jsonView");
+		return mv;
+	}// mdetail
+
+	/*
+	@RequestMapping(value = "/mlist")
+	public ModelAndView mlist(ModelAndView mv) {
+		ArrayList<MemberVO> list = service.selectList();
+		if (list != null) {
+			mv.addObject("Banana", list); // scope 이 request 와 동일
+		} else {
+			mv.addObject("message", "~~ 검색된 자료가 1건도 없습니다. ~~");
+		}
+		mv.setViewName("member/memberList");
+		return mv;
+	} // mlist
 	*/
+	
 }

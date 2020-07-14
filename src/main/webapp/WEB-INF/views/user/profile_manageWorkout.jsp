@@ -17,6 +17,39 @@
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">  
+<script>
+var logID = "<%=session.getAttribute("logID") %>"
+console.log("session : "+logID);
+
+$(function(){
+	$('#dateInfo').change(function(){
+	var dateTest = $('#dateInfo').val();
+	console.log("dateTest : " + dateTest);
+	$.ajax({
+	type:'Get',
+	url:'mySaveRoutine',
+	data:{
+		id : logID,
+		date: dateTest
+		},
+	success:function(data){
+		$('#RoutineTable').empty();
+		jsonData = data.myInfo;
+		for(var i = 0; i<Object.keys(jsonData).length; i++){
+			var option = $('<tr><td>'+ jsonData[i].name+'</td><td>'+jsonData[i].target+'</td><td>'+ jsonData[i].kg+'</td><td>'+jsonData[i].rep+'</td></tr>');
+			$('#RoutineTable').append(option);
+		}
+		},
+	error:function(){
+		alert("실패")
+		}
+		}); // ajax
+	}); // alogin_click	
+});
+
+</script>
+
+
 <style>
   
   #p_pos{
@@ -105,6 +138,29 @@
 .analysis-title{
 text-align: left;
 }
+.table {
+     border-collapse: collapse;
+     border-top: 3px solid #168;
+}  
+.table th {
+     color: #168;
+     background: #f0f6f9;
+     text-align: center;
+}
+.table th, .table td {
+     padding: 10px;
+     border: 1px solid #ddd;
+}
+.table th:first-child, .table td:first-child {
+     border-left: 0;
+}
+.table th:last-child, .table td:last-child {
+     border-right: 0;
+}
+.table tr td:first-child{
+     text-align: center;
+}
+.table caption{caption-side: bottom; display: none;}
 
  
 </style>
@@ -187,22 +243,22 @@ text-align: left;
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12" align="center">
            <div class="well well-sm analysis-title" align="center"> 
-		   <form action = "dayRoutine" method = "get" >
 		   <input type ="date" id = "dateInfo">
-		   </form>
-		   
            </div>   
         </div>        
       </div>
       <div class="row">
-        <div class = "showMyinfo">
-		   <table>
-		   <tr>
-		   <td>Name</td><td>Targeting</td>
+        <div class = "showMyinfo" align="center">
+		   <table class="table">
+		   <thead>
+		   <tr style="font-weight: bolder;">
+		   <th width="150">Name</th><th width="150">Targeting</th>
+		   <th width="50">kg</th><th width="50">rep</th>
 		   </tr>
-		   
+		   </thead>
+		   <tbody id = "RoutineTable"></tbody>
 		   </table>
 		</div>
  
