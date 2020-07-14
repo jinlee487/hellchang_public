@@ -16,10 +16,6 @@ public class boardController {
 	
 	@RequestMapping(value = "/blog")
 	public ModelAndView blog(ModelAndView mv) {
-		
-		
-		
-		
 		mv.setViewName("blog/blog");
 		return mv; 
 	} // atestf

@@ -23,12 +23,24 @@
       border-radius: 0;
       background-color: #000000;
     }
-    .gridA{ text-decoration: none; }
+    .gridA{ 
+		color: black; text-decoration: none;
+	}
+    .gridA:link{ 
+		color: black; text-decoration: none;
+	}
+	.gridA:visited{ 
+		color: black; text-decoration: none;
+	}
+	.gridA:hover{ 
+		color: black; text-decoration: none;
+	}
    	
-   	.fade-in-bottom {
-	-webkit-animation: fade-in-bottom 2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-	        animation: fade-in-bottom 2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-	}	
+   	#headerImg{
+   		border-radius: 70%;
+   		overflow: hidden;
+   	}
+
     
     /* a:link { color: black; text-decoration: none;}
  	a:visited { color: black; text-decoration: none;}
@@ -85,15 +97,15 @@ $(function(){
 		<article style="width: 614px;">
 			<header style="width: 614px; height: 60px; padding: 16px; border-bottom: 1px solid">
 				<div style="display:inline-flex;">
-					<img src="resources/image/kang.jpg" alt="강경원" width="32px" height="32px">
+					<img id="headerImg" src="resources/image/kang.jpg" alt="강경원" width="32px" height="32px">
 				</div>
-				<div style="display: inline-block; background-color: purple; width: 522px;" id=test>
+				<div style="margin-left: 10px; display: inline-block; width: 522px;" id=test>
 					<div>
 						<a class="gridA">kang1234</a>
 					</div>
-<!-- 					<div> -->
-<!-- 						<a class="gridA">? 분할</a> -->
-<!-- 					</div> -->
+ 					<div>
+						<a class="gridA">분할</a>
+					</div>
 				</div>
 			</header>
 			<div style="width: 614px; height: 614px; border-bottom: 1px solid;">
