@@ -16,11 +16,12 @@ public class boardController {
 	
 	@RequestMapping(value = "/blog")
 	public ModelAndView blog(ModelAndView mv) {
-		
-		
-		
-		
 		mv.setViewName("blog/blog");
+		return mv; 
+	} // atestf
+	@RequestMapping(value = "/myblog")
+	public ModelAndView myblog(ModelAndView mv) {
+		mv.setViewName("blog/myblog");
 		return mv; 
 	} // atestf
 	
