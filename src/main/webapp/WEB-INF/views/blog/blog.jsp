@@ -23,12 +23,24 @@
       border-radius: 0;
       background-color: #000000;
     }
-    .gridA{ text-decoration: none; }
+    .gridA{ 
+		color: black; text-decoration: none;
+	}
+    .gridA:link{ 
+		color: black; text-decoration: none;
+	}
+	.gridA:visited{ 
+		color: black; text-decoration: none;
+	}
+	.gridA:hover{ 
+		color: black; text-decoration: none;
+	}
    	
-   	.fade-in-bottom {
-	-webkit-animation: fade-in-bottom 2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-	        animation: fade-in-bottom 2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-	}	
+   	#headerImg{
+   		border-radius: 70%;
+   		overflow: hidden;
+   	}
+
     
     /* a:link { color: black; text-decoration: none;}
  	a:visited { color: black; text-decoration: none;}
@@ -80,34 +92,34 @@ $(function(){
 </nav>
 <!-- <div style="height: 100px;"></div> -->
 
-<div style=" width: 614px; padding-top: 50px; margin: 0 auto;">
-	<div style=" width: 614px; align-content: flex-start;">
+<div style="position: relative; width: 614px; margin: 0 auto; margin-top: 50px; border: 1px solid; overflow: visible;">
+	<div style=" width: 614px;">
 		<article style="width: 614px;">
-			<header style="width: 614px; height: 60px; padding: 16px; border: 1px solid;">
+			<header style="width: 614px; height: 60px; padding: 16px; border-bottom: 1px solid">
 				<div style="display:inline-flex;">
-					<img src="resources/image/kang.jpg" alt="강경원" width="32px" height="32px">
+					<img id="headerImg" src="resources/image/kang.jpg" alt="강경원" width="32px" height="32px">
 				</div>
-				<div style="display: inline-block; background-color: purple; width: 522px;" id=test>
+				<div style="margin-left: 10px; display: inline-block; width: 522px;" id=test>
 					<div>
 						<a class="gridA">kang1234</a>
 					</div>
-<!-- 					<div> -->
-<!-- 						<a class="gridA">? 분할</a> -->
-<!-- 					</div> -->
+ 					<div>
+						<a class="gridA">분할</a>
+					</div>
 				</div>
 			</header>
-			<div style="width: 614px; height: 614px; border: 1px solid;">
+			<div style="width: 614px; height: 614px; border-bottom: 1px solid;">
 				<p>루틴 출력 칸</p>
 			</div>
-			<div style="width: 614px; height: 60px;">
+			<div style="width: 614px;">
 				<section style="width: 614px; ">좋아요  댓글(클릭시 화면 전환) 공유버튼  저장버튼</section>
 				<section style="width: 614px; ">좋아요 몇개인지 출력</section>
 				<div style="width: 614px; "> 본문 및 최근 댓글 출력</div>
 				<div style="width: 614px; ">routine upload 시간</div>
-				<section style="width: 614px; border: 1px solid;" >
+				<section style="width: 614px; border-top: 1px solid; padding: 0px 16px;" >
 					<form>
-						<textarea rows="" cols="" placeholder="댓글달기.." style="height: 18px;"></textarea>
-						<button type="submit" disabled>게시</button>
+						<textarea rows="1" cols="" placeholder="댓글달기.." style="width: 80%; background-color: rgba(0,0,0,0.2); border: none; outline: none; resize: none; margin: 10px 0px;"></textarea>
+						<button type="submit"  disabled>게시</button>
 					</form>
 				</section>
 			</div>
@@ -115,10 +127,6 @@ $(function(){
 	</div>
 </div>
 
-
-
-
-<br><br>
 <div id="footer" role="contentinfo">
 <!-- <hr style="width: 100%;">
 <hr style="width: 100%; border-color: black;"> -->

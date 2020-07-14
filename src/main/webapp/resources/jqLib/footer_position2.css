@@ -10,6 +10,7 @@ address {
 
 #footer{
 	position: relative;
+	z-index: -100;
 	color: black;
 	clear: both;
     padding: 30px 0 15px 0;
