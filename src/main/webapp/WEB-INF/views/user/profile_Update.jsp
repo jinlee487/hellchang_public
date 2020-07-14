@@ -117,19 +117,34 @@ button:hover {
       </a>
     </div>
     
-    <div class="collapse navbar-collapse" id="myNavbar">
+   <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="noob">Noob</a></li>
-			<li><a href="#">Routine</a></li>
-			<li><a href="dataf">Blog</a></li>
+			<li><a href="routine">Routine</a></li>
+			<li><a href="blog">Blog</a></li>
 			<li><a href="one">OneRM</a></li>
         
+        
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-      <li><a href="prof">MyProfile</a></li>
-      	<li><a href="joinf">회원가입</a></li>
-        <li><a href="loginf"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
+        <ul class="nav navbar-nav navbar-right" >
+			  <c:if test="${logID != null }">
+			  	<li><a style="color: white;">${logName}님</a></li>
+			  	<li><a href="prof">MyProfile</a></li>
+			  </c:if>
+				<li>
+					<c:if test="${logID==null }">
+						<a href="joinf">회원가입</a>
+					</c:if>	
+				</li>
+				<li>
+					<c:if test="${logID==null }">
+						<a href="loginf"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+					</c:if>
+					<c:if test="${logID!=null }">
+						<a href="logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
+					</c:if>
+				</li>
+			  </ul>
     </div>
   </div>
 </nav>
@@ -148,7 +163,7 @@ button:hover {
 		  <li><a href="inbodyf">InBody</a></li>
 		  <li><a href="#">Diet</a></li>
 		  <li><a href="#">Social</a></li>  
-		  <li><a href="myProfile">Profile Update</a></li>  
+		  <li><a href="mdetail?code=U">Profile Update</a></li>  
 		  
 		</ul>
     </div>
@@ -157,9 +172,9 @@ button:hover {
       <div class="row">
         <div class="col-sm-12" >
           <div class="panel panel-default text-center">
-          <div class="panel-heading"><label>My Info</label></div>
+          <div class="panel-heading"><label>Update</label></div>
             <div class="panel-body">
-				 <form action="prof" method="post" >
+				 <form action="mdetail" method="post" >
   <div>
   
    <label for="name" class="int"><b>Email</b></label><br>
@@ -170,11 +185,12 @@ button:hover {
       <a href="#name" data-toggle="collapse">
       <b>이름 수정하기</b>
       </a>
-      <div id="name" class="collapse">
-        <input  style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" placeholder="Name" name="psw-repeat" class="input" required><br>
+      <div id="name" class="collapse" >
+        <input style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" placeholder="Name" name="name" id="name" class="input" value="${myInfo.name }"><br>
        <a href="#name" data-toggle="collapse">
-       <b>취소</b></a>
-       <a href="#"><b>수정</b></a>
+      <input type="reset" value="취소"></a>
+       <input type="submit" value="전송">&nbsp;&nbsp;
+      
       </div><br><br>
     
     
@@ -829,10 +845,10 @@ button:hover {
                                             홍콩 +852
                                         </option>
                         </select><br><br>
-    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" placeholder="Ex 010-1234-5678" name="psw-repeat" class="input" required><br>
+    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="phoneNo"  id="phoneNo" placeholder="Ex 010-1234-5678" class="input" value="${myInfo.phoneNo }"><br>
        <a href="#phonenumber" data-toggle="collapse">
-       <b>취소</b></a>
-       <a href="#"><b>수정</b></a>
+       <input type="reset" value="취소"></a>
+       <input type="submit" value="전송">&nbsp;&nbsp;
       </div><br><br>
     
 	
@@ -843,13 +859,15 @@ button:hover {
       <b>주소 수정하기</b>
       </a>
       <div id="location" class="collapse">
-       <input style="width: 20%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px; margin-right: 40%; cursor: pointer;" type="text" name="zipcode" id="zipcode" size="7" onClick="sample4_execDaumPostcode()" readonly placeholder="우편번호" required>
+       <input style="width: 20%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px; margin-right: 40%; cursor: pointer;" type="text" name="zipcode" id="zipcode" size="7" onClick="sample4_execDaumPostcode()" readonly placeholder="우편번호" value="${myInfo.zipcode }">
 	<br><br>
-    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="address" id="address" readonly placeholder="주소입력해주세요" required><br><br>
-    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="address1" id="address1" placeholder="상세주소를 입력해주세요" required><br>
+    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="address1" id="address" readonly placeholder="주소입력해주세요" value="${myInfo.address1}"><br><br>
+    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="address2" id="address" placeholder="상세주소를 입력해주세요" value="${myInfo.address2 }"><br>
        <a href="#location" data-toggle="collapse">
-       <b>취소</b></a>
-       <a href="#"><b>수정</b></a>
+       <input type="reset" value="취소"></a>
+       <input type="submit" value="전송">&nbsp;&nbsp;
+	   
+	 
       </div><br>
 	
     <br>
@@ -859,12 +877,12 @@ button:hover {
       </a>
       <div id="password" class="collapse">
        <label for="psw" class="int"><b>Password</b></label><br> 
-    <input style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Enter Password"  name="psw" class="input" required ><br>
+    <input style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Enter Password"  name="password" class="input" value="" ><br>
     <label for="psw-repeat" class="int"><b>Repeat Password</b></label><br>
-    <input  style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Repeat Password" name="psw-repeat" class="input" required><br>
+    <input  style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Repeat Password" name="psw-repeat" class="input" value=""><br>
        <a href="#password" data-toggle="collapse">
-       <b>취소</b></a>
-       <a href="#"><b>수정</b></a>
+       <input type="reset" value="취소"></a>
+       <input type="submit" value="전송">&nbsp;&nbsp;
       </div><br>
 	
   </div>

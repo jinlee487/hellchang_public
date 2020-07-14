@@ -9,4 +9,8 @@
 	insert into `hellchang_schema_test`.`myRoutine` values 
 	 (#{id}, #{name}, #{target}, #{kg}, #{rep}, #{date})
   </insert>  
+  
+  <select id="selectOne" resultType="vo.SaveVO">
+  	select * from `hellchang_schema_test`.`myRoutine` where id=#{id} and date = #{date}
+  </select>
  </mapper>

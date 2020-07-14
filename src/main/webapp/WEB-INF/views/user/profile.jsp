@@ -91,7 +91,7 @@
 			  <ul class="nav navbar-nav">
 				<li><a href="noob">Noob</a></li>
 				<li><a href="routine">Routine</a></li>
-				<li><a href="dataf">Blog</a></li>
+				<li><a href="blog">Blog</a></li>
 				<li><a href="one">OneRM</a></li>
 				
 			  </ul>
@@ -133,7 +133,7 @@
 		  <li><a href="#">Diet</a></li>
 		  <li><a href="#">Social</a></li>    
 		  <li><a href="routine">Test</a></li>
-		  <li><a href="myProfile">Setting</a></li>
+		  <li><a href="mdetail?code=U">Setting</a></li>
 		  <li><a href="delete">Drop Out</a></li>
 		</ul>
     </div>

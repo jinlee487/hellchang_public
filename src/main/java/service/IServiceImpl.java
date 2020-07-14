@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jdbcUtil.InbodyDAO;
+import vo.InbodyPageVO;
 import vo.InbodyVO;
 
 
@@ -18,6 +19,12 @@ public class IServiceImpl implements IService {
 	public List<InbodyVO> selectList(InbodyVO vo) {
 		return dao.selectList(vo) ;
 	} // selectList()
+	
+	@Override
+	public InbodyPageVO selectPageList(InbodyPageVO pvo) {
+		return dao.selectPageList(pvo) ;
+	} // selectList()
+	
 	
 	@Override
 	public InbodyVO selectOne(InbodyVO vo) {

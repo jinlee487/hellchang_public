@@ -70,19 +70,20 @@
   <!-- memberDetail() -->
   <select id="selectOne" resultType="vo.MemberVO">
   	select * from hellchang_schema_test.member where id=#{id}
+  	
   </select>
 
   <!-- memberJoin() -->
   <insert id="insert">
-  INSERT INTO `hellchang_schema_test`.`member` values 
+  INSERT INTO hellchang_schema_test.member values 
   (#{id},#{password},#{name},#{gender},#{phone},#{address},#{birthday},#{level},#{image_path})
 
   </insert>	
   
   <!-- memberUpdate() -->
   <update id="update">
-	update member set password=#{password},name=#{name},lev=#{lev},birthd=#{birthd}
-	,point=#{point},weight=#{weight},rid=#{rid},uploadfile=#{uploadfile} where id=#{id}
+	update hellchang_schema_test.member set password=#{password},name=#{name},level=#{level},birthday=#{birthday}
+	,address=#{address},phone=#{phone},gender=#{gender},image_path=#{image_path} where id=#{id}
   </update>
 
   <!-- memberDelete() -->
