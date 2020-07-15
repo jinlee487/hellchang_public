@@ -149,8 +149,8 @@ text-align: left;
    
     <div class="col-sm-7 inbodycontent">
      <div class="tab">
-        <button class="tablink" onclick="openPage(event,'results_tab')" >Results</button>
-		<button class="tablink" onclick="openPage(event,'history_tab')" id="defaultOpen">History</button>
+        <button class="tablink" onclick="openPage(event,'results_tab')" id="defaultOpen">Results</button>
+		<button class="tablink" onclick="openPage(event,'history_tab')" >History</button>
 		<button class="tablink" onclick="openPage(event, 'ranking_tab')">Ranking</button>
     </div>   
       <div class="row">
@@ -262,7 +262,7 @@ text-align: left;
 		      </div>
 		    </div>
 		  </div>
-		</div>
+
 			        
 		      <br>
             <table class="columns" style="table-layout:fixed;word-break:break-all;width:100%;">
@@ -306,7 +306,7 @@ text-align: left;
 		     <br><br><br><br><br><br><br><br>
 		     
         </div>
-        
+        </div>
         <div class="col-sm-12 tabcontent" id="ranking_tab">
              <div class="weekday">      
 			  <ul style="list-style-type: none;">
@@ -372,7 +372,7 @@ $(document).ready(function(){
 		document.getElementsByClassName("tablink active")[0].click();})}
 	); 
 	
-	$('#resultback').click(function(){
+	$('#resultsback').click(function(){
 		$('#collapse1').collapse("hide");
 		var data;
 
@@ -401,7 +401,7 @@ $(document).ready(function(){
 
 		 });
 		 
-	$('#resultforward').click(function(){
+	$('#resultsforward').click(function(){
 		$('#collapse1').collapse("hide");
 		var data;
 
