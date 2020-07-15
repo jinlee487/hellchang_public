@@ -73,93 +73,10 @@ text-align: left;
   border: 1px solid #ccc;
   border-top: none;
 }
-
-
-*,*:after,*:before {
-    box-sizing: border-box;
-}
-.wrapper-dropdown-2 {
-    position: relative;
-    width: 200px;
-    margin: 0 auto;
-    padding: 10px 15px;
- 
-    /* Styles */
-    background: #fff;
-/*     border-left: 5px solid grey;
- */ 
-    cursor: pointer;
-    outline: none;
-}
-.wrapper-dropdown-2:after {
-    content: "";
-    width: 0;
-    height: 0;
-    position: absolute;
-    right: 16px;
-    top: 50%;
-    margin-top: -3px;
-    border-width: 6px 6px 0 6px;
-    border-style: solid;
-    border-color: grey transparent;
-}
-.wrapper-dropdown-2 .dropdown {
-  /* Size & position */
-    position: absolute;
-    top: 60%;
-    left: -45px;
-    right: 0px;
- 
-    /* Styles */
-    background: white;
-    transition: all 0.3s ease-out;
-    list-style: none;
- 
-    /* Hiding */
-    opacity: 0;
-    pointer-events: none;
-}
-.wrapper-dropdown-2 .dropdown li span {
-    border-style:solid;
-    border-width: thick;
-    display: block;
-    text-decoration: none;
-    color: #333;
-    border-left: 5px solid;  
-    padding: 10px;
-    transition: all 0.3s ease-out;
-}
- 
-.wrapper-dropdown-2 .dropdown li:nth-child(1) span { 
-    border-left-color: #00ACED;
-}
- 
-.wrapper-dropdown-2 .dropdown li:nth-child(2) span {
-    border-left-color: #4183C4;
-}
- 
-.wrapper-dropdown-2 .dropdown li:nth-child(3) span {
-    border-left-color: #3B5998;
-}
-.wrapper-dropdown-2 .dropdown li i {
-    margin-right: 5px;
-    color: inherit;
-    vertical-align: middle;
-}
- 
-/* Hover state */
- 
-.wrapper-dropdown-2 .dropdown li:hover span {
-    color: grey;
-    background-color: darkgrey;
-}
-.wrapper-dropdown-2.active:after {
-    border-width: 0 6px 6px 6px;
-}
- 
-.wrapper-dropdown-2.active .dropdown {
-    opacity: 1;
-    pointer-events: auto;
+#dddd > li:hover {
+    background-color: #eee;
+    color: blue;
+    font-weight: bold;
 }
   </style>
 </head>
@@ -250,17 +167,25 @@ text-align: left;
 		      </select>
 		    </div>
 		  </form> -->
-        
-        
-    	  <ul  class="pager">
-            <li class="previous" id= "resultback"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
-		    <li><span id="dd" class="wrapper-dropdown-2"><span id="results_date"></span>
-				  <ul class="dropdown" id="dddd" style="z-index:1;overflow-y:auto;height:285px;width:100%;">
+        	<div class="panel-group">
+		    <div class="panel panel-default">
+		      <div class="panel-heading">
+		        <h4 class="panel-title">
+		          <ul class="pager">
+		            <li class="previous" id="resultsback"><a href="#results_tab"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+		            <li><a data-toggle="collapse" href="#collapse1" id="results_date"></a></li>
+		            <li class="next" id="resultsforward"><a href="#results_tab"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+		          </ul>
+		        </h4>
+		      </div>
+		      <div id="collapse1" class="panel-collapse collapse">
+		        <ul class="list-group" style="text-align: center;display:inline-block;padding: 5px 14px;
+		                               background-color: #fff;border: 1px solid #ddd;border-radius: 15px;" id="dddd">
+		        </ul>
+		        <div class="panel-footer"></div>
+		      </div>
+		    </div>	  
 
-				  </ul></span></li>
-            <li class="next" id= "resultforward"><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li> 		    
-		  </ul> 
-		  
             <div class="well well-sm analysis-title">MUSCLE-FAT ANALYSIS</div>   
             <table class="columns" style="table-layout:fixed;word-break:break-all;width:100%;">
 		      <tr>
@@ -310,10 +235,10 @@ text-align: left;
 		    <div class="panel-heading">
 		      <h4 class="panel-title">
 		      	<span><strong>Select Date</strong></span><br><br>
-		        <a data-toggle="collapse" href="#collapse1" id="selected_date"></a>
+		        <a data-toggle="collapse" href="#collapse2" id="selected_date"></a>
 		      </h4>
 		    </div>
-		    <div id="collapse1" class="panel-collapse collapse">
+		    <div id="collapse2" class="panel-collapse collapse">
 		      <div class="panel-body">
 		      	<form>
 			    <div class="form-group">
@@ -441,31 +366,9 @@ $(document).ready(function(){
 		function() { 
 		document.getElementsByClassName("tablink active")[0].click();})}
 	); 
-
-	function DropDown(el) {
-		  this.dd = el;
-		  this.initEvents();
-		}
-		DropDown.prototype = {
-		  initEvents : function() {
-		    var obj = this;
-		    obj.dd.on('click', function(event){
-		      $(this).toggleClass('active');
-		      event.stopPropagation();
-		    }); 
-		  }
-		}
-		$(function() {
-		  var dd = new DropDown( $('#dd') );
-			$(document).click(function() {
-			  $('.wrapper-dropdown-2').removeClass('active');
-			});
-		});
-
-
-	
 	
 	$('#resultback').click(function(){
+		$('#collapse1').collapse("hide");
 		var data;
 
 			$.ajax({
@@ -494,6 +397,7 @@ $(document).ready(function(){
 		 });
 		 
 	$('#resultforward').click(function(){
+		$('#collapse1').collapse("hide");
 		var data;
 
 			$.ajax({
@@ -758,7 +662,7 @@ function InitialloadResults() {
 			    console.log("first try inside success after ajax => \n" + data.date_date)
                 var result = "";
                 $.each(jsondata.dateList, function (id, pvo) {
-                    result += '<li><span onclick="datePick(this,reloadResults)">'+ pvo.date_date + '</span></li>';
+                    result += '<li class="list-group-item"><span onclick="datePick(this,reloadResults)">'+ pvo.date_date + '</span></li>';
                 });
         		$('#dddd').append(result);
         	    document.getElementById("results_date").innerHTML = data.date_date;
@@ -775,6 +679,7 @@ function InitialloadResults() {
 
  	}
 function reloadResults(){
+	$('#collapse1').collapse("hide");
 	var data; 
 	if(document.getElementById("results_date").innerHTML.length!=0){
 	    console.log("before ajax => " + document.getElementById("results_date").innerHTML)
