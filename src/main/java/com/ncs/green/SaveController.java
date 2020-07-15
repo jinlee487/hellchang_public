@@ -1,7 +1,5 @@
 package com.ncs.green;
 
-
-
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import service.SService;
-import vo.MemberVO;
 import vo.SaveVO;
 
 
@@ -64,18 +61,33 @@ public class SaveController {
 		return mv;
 	}// mdetail
 
-	/*
-	@RequestMapping(value = "/mlist")
-	public ModelAndView mlist(ModelAndView mv) {
-		ArrayList<MemberVO> list = service.selectList();
+	
+	@RequestMapping(value = "/blogTest")
+	public ModelAndView blogTest(ModelAndView mv) {
+		List<SaveVO> list = service.blogTest();
 		if (list != null) {
 			mv.addObject("Banana", list); // scope 이 request 와 동일
 		} else {
 			mv.addObject("message", "~~ 검색된 자료가 1건도 없습니다. ~~");
 		}
-		mv.setViewName("member/memberList");
+		System.out.println(list);
+		
+		mv.setViewName("jsonView");
 		return mv;
 	} // mlist
-	*/
+	
+//	@RequestMapping(value = "/blogTest1")
+//	public ModelAndView blogTest1(ModelAndView mv) {
+//		List<SaveVO> list = service.blogTest();
+//		if (list != null) {
+//			mv.addObject("Banana", list); // scope 이 request 와 동일
+//		} else {
+//			mv.addObject("message", "~~ 검색된 자료가 1건도 없습니다. ~~");
+//		}
+//		System.out.println(list);
+//		mv.setViewName("blogTest1");
+//		return mv;
+//	} // mlist
+	
 	
 }
