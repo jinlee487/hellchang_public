@@ -82,9 +82,6 @@ $(function(){
 	$.ajax({
 	type:'Get',
 	url:'allRoutine',
-	data : {
-		title : null
-		},
 	success:function(data){
 		jsonData = data.AllTest;
 		
