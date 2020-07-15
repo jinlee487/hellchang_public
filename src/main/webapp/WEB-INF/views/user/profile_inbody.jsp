@@ -77,6 +77,7 @@ text-align: left;
     background-color: #eee;
     color: blue;
     font-weight: bold;
+    cursor: pointer;
 }
   </style>
 </head>
@@ -148,8 +149,8 @@ text-align: left;
    
     <div class="col-sm-7 inbodycontent">
      <div class="tab">
-        <button class="tablink" onclick="openPage(event,'results_tab')" id="defaultOpen">Results</button>
-		<button class="tablink" onclick="openPage(event,'history_tab')">History</button>
+        <button class="tablink" onclick="openPage(event,'results_tab')" >Results</button>
+		<button class="tablink" onclick="openPage(event,'history_tab')" id="defaultOpen">History</button>
 		<button class="tablink" onclick="openPage(event, 'ranking_tab')">Ranking</button>
     </div>   
       <div class="row">
@@ -167,13 +168,14 @@ text-align: left;
 		      </select>
 		    </div>
 		  </form> -->
-        	<div class="panel-group">
+           <div class="panel-group">
 		    <div class="panel panel-default">
 		      <div class="panel-heading">
 		        <h4 class="panel-title">
 		          <ul class="pager">
 		            <li class="previous" id="resultsback"><a href="#results_tab"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
-		            <li><a data-toggle="collapse" href="#collapse1" id="results_date"></a></li>
+		            <li><a data-toggle="collapse" href="#collapse1"><span id="results_date"></span>
+		            												<span id="results_sign" class="glyphicon glyphicon-collapse-down"></span></a></li>
 		            <li class="next" id="resultsforward"><a href="#results_tab"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
 		          </ul>
 		        </h4>
@@ -182,6 +184,7 @@ text-align: left;
 		        <ul class="list-group" style="text-align: center;display:inline-block;padding: 5px 14px;
 		                               background-color: #fff;border: 1px solid #ddd;border-radius: 15px;" id="dddd">
 		        </ul>
+		        </div>
 		        <div class="panel-footer"></div>
 		      </div>
 		    </div>	  
@@ -228,6 +231,7 @@ text-align: left;
 		    </table><br><br>  
         </div>
         
+        
         <div class="col-sm-12 tabcontent" id="history_tab">
 		             
 		<div class="panel-group">
@@ -235,7 +239,8 @@ text-align: left;
 		    <div class="panel-heading">
 		      <h4 class="panel-title">
 		      	<span><strong>Select Date</strong></span><br><br>
-		        <a data-toggle="collapse" href="#collapse2" id="selected_date"></a>
+		        <a data-toggle="collapse" href="#collapse2"><span id="selected_date"></span>
+		        						<span id="hist_sign" class="glyphicon glyphicon-collapse-down"></span></a>
 		      </h4>
 		    </div>
 		    <div id="collapse2" class="panel-collapse collapse">
@@ -265,37 +270,37 @@ text-align: left;
 		        <td><strong style="font-size: large;">Weight (kg)</strong></td>		        
 		      </tr>
 		      <tr>
-		        <td style="width:150%;"><div id="wComboID"></div></td>
+		        <td style="width:150%;"><div id="wComboID"></div><hr></td>
 		      </tr> 
 		      <tr>
 		        <td><strong style="font-size: large;"><br><br>Muscle Mass (kg)</strong></td>
 		      </tr>
 		      <tr>
-		        <td style="width:150%;"><div id="mmComboID"></div></td>
+		        <td style="width:150%;"><div id="mmComboID"></div><hr></td>
 		      </tr> 
 		      <tr>
 		        <td><strong style="font-size: large;"><br><br>Fat Mass (kg)</strong></td>
 		      </tr>
 		      <tr>
-		        <td style="width:150%;"><div id="fmComboID"></div></td>
+		        <td style="width:150%;"><div id="fmComboID"></div><hr></td>
 		      </tr> 
 		      <tr>
 		        <td><strong style="font-size: large;"><br><br>BMI (kg/m2)</strong></td>
 		      </tr>
 		      <tr>
-		        <td style="width:150%;"><div id="bComboID"></div></td>
+		        <td style="width:150%;"><div id="bComboID"></div><hr></td>
 		      </tr> 
 		      <tr>
 		        <td><strong style="font-size: large;"><br><br>Percent Body Fat (%)</strong></td>
 		      </tr>
 		      <tr>
-		        <td style="width:150%;"><div id="pComboID"></div></td>
+		        <td style="width:150%;"><div id="pComboID"></div><hr></td>
 		      </tr> 
 		      <tr>
 		        <td><strong style="font-size: large;"><br><br>Visceral Fat Level (level)</strong></td>
 		      </tr>
 		      <tr>
-		        <td style="width:150%;"><div id="vComboID"></div></td>
+		        <td style="width:150%;"><div id="vComboID"></div><hr></td>
 		      </tr> 
 		     </table>
 		     <br><br><br><br><br><br><br><br>
@@ -497,9 +502,18 @@ $(document).ready(function(){
 		reloadGraphs();		
 	
 		})
-	
-		
-		
+	$("#collapse1").on("hide.bs.collapse", function(){
+		$("#results_sign").removeClass('glyphicon-collapse-up').addClass('glyphicon-collapse-down');
+		});
+	$("#collapse1").on("show.bs.collapse", function(){
+		$("#results_sign").removeClass('glyphicon-collapse-down').addClass('glyphicon-collapse-up');
+		});	
+	$("#collapse2").on("hide.bs.collapse", function(){
+		$("#hist_sign").removeClass('glyphicon-collapse-up').addClass('glyphicon-collapse-down');
+		});
+	$("#collapse2").on("show.bs.collapse", function(){
+		$("#hist_sign").removeClass('glyphicon-collapse-down').addClass('glyphicon-collapse-up');
+		});		
 
 });
 
