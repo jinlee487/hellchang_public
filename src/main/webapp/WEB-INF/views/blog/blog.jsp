@@ -23,12 +23,24 @@
       border-radius: 0;
       background-color: #000000;
     }
-    .gridA{ text-decoration: none; }
+    .gridA{ 
+		color: black; text-decoration: none;
+	}
+    .gridA:link{ 
+		color: black; text-decoration: none;
+	}
+	.gridA:visited{ 
+		color: black; text-decoration: none;
+	}
+	.gridA:hover{ 
+		color: black; text-decoration: none;
+	}
    	
-   	.fade-in-bottom {
-	-webkit-animation: fade-in-bottom 2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-	        animation: fade-in-bottom 2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-	}	
+   	#headerImg{
+   		border-radius: 70%;
+   		overflow: hidden;
+   	}
+
 
 	.myPhoto{
 	width: 100px;
@@ -81,16 +93,28 @@ $(function(){
 	console.log('test');
 	$.ajax({
 	type:'Get',
-	url:'allRoutine',
+	url:'blogTest',
 	success:function(data){
-		jsonData = data.AllTest;
-		
+		var nowID = "";
+		var nowTitle = "";
+		jsonData = data.Banana;
+		console.log(jsonData)
 		for(var i = 0; i<Object.keys(jsonData).length; i++){
-			$('#myTitle').empty();
-			$('#myTitle').html("[TITLE] " +jsonData[i].title);
-			var option = $('<tr><td>'+ jsonData[i].name+'</td><td>'+jsonData[i].target+'</td><td>'+ jsonData[i].kg+'</td><td>'+jsonData[i].rep+'</td><td>'+jsonData[i].title+'</td><td>'+jsonData[i].date+'</td></tr>');
-			$('#RoutineTable').append(option);
-		}
+			console.log(i + " :"+"nowID : " + nowID + ", jsonID : " +jsonData[i].id)
+			if(i == 0 || nowID != jsonData[i].id){
+				$('#thead').append('<tr><th>ID</th><th>Name</th><th>Target</th><th>Title</th><th>date</th></tr>')
+			}
+			if(i == 0 || nowTitle == jsonData[i].title){
+				console.log("IF Title : "+nowTitle)
+				$('#tbody').append("<tr><td>"+jsonData[i].id +"</td><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].title +"</td><td>"+jsonData[i].date+"</td></tr>")
+				
+					
+			}else{
+			}
+			nowID = jsonData[i].id;
+			nowTitle = jsonData[i].title;
+		 } // for 
+		
 		},
 	error:function(){
 		alert("실패")
@@ -116,7 +140,7 @@ $(function(){
       <ul class="nav navbar-nav">
         <li><a href="noob">Noob</a></li>
 		<li><a href="routine">Routine</a></li>
-		<li><a href="blog">Blog</a></li>
+		<li><a href="myblog">Blog</a></li>
 		<li><a href="one">OneRM</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -127,34 +151,22 @@ $(function(){
     </div>
   </div>
 </nav>
+
 <!-- <div style="height: 100px;"></div> -->
 
 <div style=" width: 614px; padding-top: 50px; margin: 0 auto;">
 	<div style=" width: 614px; align-content: flex-start;">
 		<article style="width: 614px;">
 			<header style="width: 614px; height: 120px; padding: 16px; border: 1px solid;">
-				<div style="display:inline-flex;">
-					<img src="resources/image/kang.jpg" alt="강경원" width="32px" height="32px" class="myPhoto" style="float: left;">
-					&nbsp;&nbsp;&nbsp;
-					<table>
-					<tr><td style="font-size: 30px"><a>kang1234</a></td></tr>
-					<tr><td id="myTitle">분할 Title이름</td></tr>
-					</table>
+				<div class = "blogForm" style="display:inline-flex;">
+				<table>
+				<thead id ="thead"></thead>
+				<tbody id ="tbody"></tbody>
+				</table>
+				
 				</div>
-				<div id=test>
-
-				</div>
-			</header>
+				</header>
 			<div style="width: 614px; height: 800px; border: 1px solid;">
-				 <table class="table">
-		   <thead>
-		   <tr style="font-weight: bolder;">
-		   <th width="150">Name</th><th width="150">Targeting</th>
-		   <th width="50">kg</th><th width="50">rep</th><th width="100">title</th><th width="100">date</th>
-		   </tr>
-		   </thead>
-		   <tbody id = "RoutineTable"></tbody>
-		   </table>
 			</div>
 			<div style="width: 614px; height: 60px;">
 				<section style="width: 614px; ">좋아요  댓글(클릭시 화면 전환) 공유버튼  저장버튼</section>
@@ -172,10 +184,42 @@ $(function(){
 	</div>
 </div>
 
+<!-- jihwan's version
+ <div style="position: relative; width: 614px; margin: 0 auto; margin-top: 50px; border: 1px solid; overflow: visible;">
+	<div style=" width: 614px;">
+		<article style="width: 614px;">
+			<header style="width: 614px; height: 60px; padding: 16px; border-bottom: 1px solid">
+				<div style="display:inline-flex;">
+					<img id="headerImg" src="resources/image/kang.jpg" alt="강경원" width="32px" height="32px">
+				</div>
+				<div style="margin-left: 10px; display: inline-block; width: 522px;" id=test>
+					<div>
+						<a class="gridA">kang1234</a>
+					</div>
+ 					<div>
+						<a class="gridA">분할</a>
+					</div>
+				</div>
+			</header>
+			<div style="width: 614px; height: 614px; border-bottom: 1px solid;">
+				<p>루틴 출력 칸</p>
+			</div>
+			<div style="width: 614px;">
+				<section style="width: 614px; ">좋아요  댓글(클릭시 화면 전환) 공유버튼  저장버튼</section>
+				<section style="width: 614px; ">좋아요 몇개인지 출력</section>
+				<div style="width: 614px; "> 본문 및 최근 댓글 출력</div>
+				<div style="width: 614px; ">routine upload 시간</div>
+				<section style="width: 614px; border-top: 1px solid; padding: 0px 16px;" >
+					<form>
+						<textarea rows="1" cols="" placeholder="댓글달기.." style="width: 80%; background-color: rgba(0,0,0,0.2); border: none; outline: none; resize: none; margin: 10px 0px;"></textarea>
+						<button type="submit"  disabled>게시</button>
+					</form>
+				</section>
+			</div>
+		</article>
+	</div>
+</div>-->
 
-
-
-<br><br>
 <div id="footer" role="contentinfo">
 <!-- <hr style="width: 100%;">
 <hr style="width: 100%; border-color: black;"> -->

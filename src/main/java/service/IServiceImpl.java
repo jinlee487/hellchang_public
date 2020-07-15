@@ -25,6 +25,10 @@ public class IServiceImpl implements IService {
 		return dao.selectPageList(pvo) ;
 	} // selectList()
 	
+	@Override
+	public InbodyPageVO selectGraphList(InbodyPageVO pvo) {
+		return dao.selectGraphList(pvo) ;
+	} // selectList()
 	
 	@Override
 	public InbodyVO selectOne(InbodyVO vo) {

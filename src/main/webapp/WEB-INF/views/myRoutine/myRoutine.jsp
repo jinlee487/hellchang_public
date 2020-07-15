@@ -13,6 +13,17 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src = "resources/jqLib/jquery-3.2.1.min.js"></script>
   <link rel="stylesheet" type="text/css" href="resources/jqLib/topBar.css">
+
+<style type="text/css">
+	.modal-content{
+		width: 300px;
+		text-align: left;
+	}
+	.modal-footer{
+		text-align: center;
+	}
+</style>
+
 <script>
 var logID = "<%=session.getAttribute("logID") %>"
 console.log("session : "+logID);
@@ -76,6 +87,33 @@ $(function(){
 			}); // ajax
 		}
 	}); // Test
+	
+	$('#addlist').hover(function(){
+		$(this).css("cursor", "pointer");
+	});
+	
+	$('#addlist').on("click",function(){
+		$('#addlist').css("display","none");
+		$('#linput').css("display","block");
+	});// ajax
+	
+	$("#listName").on("click", function(){
+		var lname =  $('.lname').val();
+		if(lname.length>0){
+			$('.modal-body').append('<input type="checkbox" id="'+lname+'" name="'+lname+'" value="'+lname+'"><label for="lname">&nbsp;&nbsp;'+ lname +' </label><br>');
+			
+			$('.lname').val('');
+			$('#addlist').css("display","block");
+			$('#linput').css("display","none");	
+		}
+		if(lname.length<0){
+			/* lname의 값이 null일때 저장되지 않도록 함 근데 저장 안된다는 표시를 어떻게 해야될지 모르겠음.  */
+		}
+		console.log($('#lname').val());
+	});
+	/* $('#lname'). */
+	
+	
 });
 
 </script>
@@ -245,7 +283,35 @@ function pull3(){
     <td width="175">REP</td></tr>
   </thead>
   <tbody id="my-tbody"></tbody>
-  <button id = "testT">Save</button>&nbsp;&nbsp;
+  
+  <button id ="testT" type="button" data-toggle="modal" data-target="#myModal">Save</button>
+<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ modal ver ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ --> 
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          
+          <h4 class="modal-title"> List 저장하기 </h4>
+        </div>
+        <div class="modal-body" >
+        </div>
+        <div class="modal-footer">
+          <span id="addlist" style="display: block;">리스트 추가하기</span>
+          <div id="linput" style="display: none;">
+          	<span>이름</span>
+          	<input type="text" class="lname" placeholder="list 이름 입력">
+          	<button id="listName">Add</button>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ modal ver ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+  <!-- <button id = "testT">Save</button>&nbsp;&nbsp; -->
   <button>Shared</button><br><br>
 </table>
 <br><br>

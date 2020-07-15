@@ -21,5 +21,9 @@
   <select id="allList" resultType="vo.SaveVO">
 	select id,name,target,kg,rep,title,date from `hellchang_schema_test`.`myRoutine` where title = #{title}
   </select> 
-    
+   
+  <select id="blogTest" resultType="vo.SaveVO"> 
+	select * from `hellchang_schema_test`.`myRoutine` order by id,title 
+  </select>
+  
  </mapper>

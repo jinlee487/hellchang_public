@@ -71,6 +71,18 @@
   <select id="selectPageList" resultType="vo.InbodyVO">
     	select date_date, date_string from hellchang_schema_test.inbody where id=#{id}
   </select>
+  
+  <!-- date select -->
+  <select id="selectGraphList" resultType="vo.InbodyVO">
+ 		 select * from hellchang_schema_test.inbody
+  		<if test="check.equals('false')">
+  		where id=#{id}
+		</if>
+		<if test="check.equals('true')">
+		where id=#{id} and date_date between #{start_date} and #{end_date}
+ 		</if>
+  </select>
+  
   <!-- inbodyDetailAjax() -->
   <select id="selectOne" resultType="vo.InbodyVO">
     	   select * from hellchang_schema_test.inbody where id=#{id} and date_date=#{date_date}

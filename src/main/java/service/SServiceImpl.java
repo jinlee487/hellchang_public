@@ -15,6 +15,11 @@ public class SServiceImpl implements SService {
 	SaveDAO dao;
 
 	@Override
+	public List<SaveVO> blogTest() {
+		return dao.blogTest() ;
+	} // selectList()
+	
+	@Override
 	public List<SaveVO> allList(SaveVO vo) {
 		return dao.allList(vo) ;
 	} // selectList()

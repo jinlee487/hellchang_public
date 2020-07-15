@@ -140,7 +140,6 @@ public class HomeController {
 
 	@RequestMapping(value = {"/home2"}, method = RequestMethod.GET)
 	public String home2(Locale locale, Model model) {
-		//logger.info("박지환이 짠 ... 코드~~ 버려 쓰레기 ", locale);
 		logger.info("Welcome home! The client locale is {}.", locale);
 		return "home2";
 	}
