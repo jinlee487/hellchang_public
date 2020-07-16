@@ -16,6 +16,6 @@
   
    <insert id="saveMyRoutine">
 	insert into `hellchang_schema_test`.`myRoutine` values 
-	 (#{id}, #{name}, #{target}, #{date})
+	 (#{id}, #{name}, #{target}, #{date}, #{title},#{shared})
   </insert>  
  </mapper>

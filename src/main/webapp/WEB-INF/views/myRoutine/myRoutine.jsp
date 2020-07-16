@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,11 +23,17 @@
 	.modal-footer{
 		text-align: center;
 	}
+	.buttonCss{
+		width: 315px;
+		
+	}
+	button{
+		background-color: white;
+	}
 </style>
 
 <script>
-var logID = "<%=session.getAttribute("logID") %>"
-console.log("session : "+logID);
+var logID = "${logID}";
 
 $(function(){
 	console.log("session : "+logID);
@@ -55,38 +62,7 @@ $(function(){
 		}); // ajax
 	}); // alogin_click	
 	
-	$('#testT').click(function(){
 
-		var table = document.getElementById("my-tbody");
-		var rowsCount = table.rows.length;
-		console.log(rowsCount);
-		for(var i =1 ; i<=rowsCount; i++){
-		var id = logID;
-		var name = $('#name'+i).val();
-		var target =$('#target'+i).val();
-		var kg = $('#kg'+i).val();
-		var rep = $('#rep'+i).val();
-		console.log(id+" ,"+name+" ,"+target+" ,"+kg+" ,"+rep)
-		$.ajax({
-			type:'Get',
-			url:'myRoutine',
-			data:{
-				id : id,
-				name : name,
-				target : target ,
-				kg : kg, 
-				rep : rep 
-				},
-			success:function(data){
-				console.log("저장중..");
-				$('#my-tbody').empty();
-				},
-			error:function(){
-				console.log("저장실패..")
-				}	
-			}); // ajax
-		}
-	}); // Test
 	
 	$('#addlist').hover(function(){
 		$(this).css("cursor", "pointer");
@@ -97,24 +73,124 @@ $(function(){
 		$('#linput').css("display","block");
 	});// ajax
 	
+	
+	var eqId = new Array();
+	var lname;
 	$("#listName").on("click", function(){
-		var lname =  $('.lname').val();
+		lname =  $('.lname').val();
+		
+		for(var i=0; i<eqId.length; i++){
+			if(lname == eqId[i]){
+				alert("중복된 list 이름입니다.");
+				$('.lname').val('');
+				return;
+			}		
+		}
+		
 		if(lname.length>0){
-			$('.modal-body').append('<input type="checkbox" id="'+lname+'" name="'+lname+'" value="'+lname+'"><label for="lname">&nbsp;&nbsp;'+ lname +' </label><br>');
-			
+			$('.modal-body').append('<input type="checkbox" onClick="inputList(''"'+lname+'")" id="'+lname+'" name="'+lname+'" value="'+lname+'"><label for="'+lname+'">&nbsp;&nbsp;'+ lname +' </label><br>');
 			$('.lname').val('');
+			
+			eqId.push($('#'+lname).val());	
+					
 			$('#addlist').css("display","block");
-			$('#linput').css("display","none");	
+			$('#linput').css("display","none");
+			/* eqId.length */
+			
+			console.log('ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ');
 		}
-		if(lname.length<0){
-			/* lname의 값이 null일때 저장되지 않도록 함 근데 저장 안된다는 표시를 어떻게 해야될지 모르겠음.  */
+	
+		if(lname.length<=0){
+			alert("list 이름을 적어주세요.");
 		}
-		console.log($('#lname').val());
+		for(var j in eqId){
+			console.log(eqId[j]);	
+		}
+		console.log("lname test =>" +lname);
+		console.log(lname);
 	});
-	/* $('#lname'). */
+	
+	
+	/* $('#testT').click(function(){
+		console.log("ddddddddd");
+		
+		var table = document.getElementById("my-tbody");
+		var rowsCount = table.rows.length;
+		console.log(rowsCount);
+		for(var i =1 ; i<=rowsCount; i++){
+		var id = logID;
+		var name = $('#name'+i).val();
+		var target =$('#target'+i).val();
+		var kg = $('#kg'+i).val();
+		var rep = $('#rep'+i).val();
+		var title = $('.title').val();
+		console.log(id+" ,"+name+" ,"+target+" ,"+kg+" ,"+rep+","+title)
+		$.ajax({
+			type:'Get',
+			url:'myRoutine',
+			data:{
+				id : id,
+				name : name,
+				target : target ,
+				kg : kg, 
+				rep : rep ,
+				title : title
+				},
+			success:function(data){
+				console.log("저장중..");
+				$('#my-tbody').empty();
+				},
+			error:function(){
+				console.log("저장실패..")
+				}	
+			}); // ajax
+		}
+	}); // Test */
 	
 	
 });
+
+function inputList(data){
+
+	console.log("date => " + data);
+	
+	var table = document.getElementById("my-tbody");
+	var rowsCount = table.rows.length;
+	console.log(rowsCount);
+	for(var i =1 ; i<=rowsCount; i++){
+	var id = logID;
+	var name = $('#name'+i).val();
+	var target =$('#target'+i).val();
+	var kg = $('#kg'+i).val();
+	var rep = $('#rep'+i).val();
+	/* 해야될 부분~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+	var title = data;
+	var shared = false;
+	console.log(id+" ,"+name+" ,"+target+" ,"+kg+" ,"+rep+","+title+","+shared);
+	$.ajax({
+		type:'Get',
+		url:'myRoutine',
+		data:{
+			id : id,
+			name : name,
+			target : target ,
+			kg : kg, 
+			rep : rep ,
+			title : title,
+			shared : shared	
+			},
+		success:function(data){
+			console.log("저장중..");
+			$('#my-tbody').empty();
+			},
+		error:function(){
+			console.log("저장실패..")
+			}	
+		}); // ajax
+	}
+}
+	
+
 
 </script>
 <script>
@@ -225,9 +301,16 @@ function pull3(){
         <li><a href="inbodyf">Inbody</a></li>
         <li><a href="one">1RM</a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
+      <ul class="nav navbar-nav navbar-right" >
+		<c:if test="${logID==null }">
+			<li><a href="loginf"><span class="glyphicon glyphicon-log-in"></span> Login</a><li>
+		</c:if>
+		<c:if test="${logID!=null }">
+			<li><a style="color: white;">${logName}님</a></li>
+			<li><a href="prof">MyProfile</a></li>
+			<li><a href="logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+		</c:if>
+	  </ul>
     </div>
   </div>
 </nav> 
@@ -284,7 +367,7 @@ function pull3(){
   </thead>
   <tbody id="my-tbody"></tbody>
   
-  <button id ="testT" type="button" data-toggle="modal" data-target="#myModal">Save</button>
+  <button class="buttonCss" id ="testT" type="button" data-toggle="modal" data-target="#myModal">Save</button>
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ modal ver ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ --> 
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
@@ -312,9 +395,13 @@ function pull3(){
   </div>
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ modal ver ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
   <!-- <button id = "testT">Save</button>&nbsp;&nbsp; -->
-  <button>Shared</button><br><br>
+   &nbsp;&nbsp;
+   <button class="buttonCss">Shared</button>
+   <div style="height: 10px;"></div>
+   
 </table>
 <br><br>
+
 <select id = "targetT">
      <option>-------------
      <option value = "chest" >Chest
