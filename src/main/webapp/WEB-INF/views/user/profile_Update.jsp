@@ -861,8 +861,8 @@ button:hover {
       <div id="location" class="collapse">
        <input style="width: 20%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px; margin-right: 40%; cursor: pointer;" type="text" name="zipcode" id="zipcode" size="7" onClick="sample4_execDaumPostcode()" readonly placeholder="우편번호" value="${myInfo.zipcode }">
 	<br><br>
-    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="address1" id="address" readonly placeholder="주소입력해주세요" value="${myInfo.address1}"><br><br>
-    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="address2" id="address" placeholder="상세주소를 입력해주세요" value="${myInfo.address2 }"><br>
+    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="address1" id="address1" readonly placeholder="주소입력해주세요" value="${myInfo.address1}"><br><br>
+    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="address2" id="address2" placeholder="상세주소를 입력해주세요" value="${myInfo.address2 }"><br>
        <a href="#location" data-toggle="collapse">
        <input type="reset" value="취소"></a>
        <input type="submit" value="전송">&nbsp;&nbsp;
