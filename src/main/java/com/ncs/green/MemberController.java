@@ -144,7 +144,6 @@ public class MemberController {
 				// 로그인 성공 -> login 정보 보관 (id, name을 session에) -> loginSuccess
 				request.getSession().setAttribute("logID", vo.getId());
 				request.getSession().setAttribute("logName", vo.getName());
-				request.getSession().setAttribute("profile_image", vo.getImage_path());
 				mv.setViewName("home");
 			} else {
 				// Password 오류 -> 재로그인
