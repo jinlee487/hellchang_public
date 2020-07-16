@@ -62,7 +62,7 @@ function inCheck() {
 </c:if>
 	<table>
 	<tr><td></td>
-	    <td><input  type="text" name="id" id="id" value="admin@gmail.com" placeholder=example@xxxxx.com><br> 
+	    <td><input  type="text" name="id" id="id" value="test1004@naver.com" placeholder=example@xxxxx.com><br> 
 	    	<span id="iMessage" class="eMessage"></span></td>
 	</tr>
 	<tr><td></td>

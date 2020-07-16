@@ -7,7 +7,7 @@
  
    <insert id="saveMyRoutine">
 	insert into `hellchang_schema_test`.`myRoutine` values 
-	 (#{id}, #{name}, #{target}, #{kg}, #{rep}, sysdate())
+	 (#{id}, #{name}, #{target}, #{kg}, #{rep}, sysdate(), #{title}, #{shared})
   </insert>  
   
   <select id="selectOne" resultType="vo.SaveVO">
