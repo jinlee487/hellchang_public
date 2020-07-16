@@ -46,6 +46,7 @@
     border: 0;
     font: inherit;
     vertical-align: baseline;
+    border-radius: 50%;
     
     }
     .profile{

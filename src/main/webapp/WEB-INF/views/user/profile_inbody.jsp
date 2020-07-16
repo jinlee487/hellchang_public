@@ -73,93 +73,11 @@ text-align: left;
   border: 1px solid #ccc;
   border-top: none;
 }
-
-
-*,*:after,*:before {
-    box-sizing: border-box;
-}
-.wrapper-dropdown-2 {
-    position: relative;
-    width: 200px;
-    margin: 0 auto;
-    padding: 10px 15px;
- 
-    /* Styles */
-    background: #fff;
-/*     border-left: 5px solid grey;
- */ 
+#dddd > li:hover {
+    background-color: #eee;
+    color: blue;
+    font-weight: bold;
     cursor: pointer;
-    outline: none;
-}
-.wrapper-dropdown-2:after {
-    content: "";
-    width: 0;
-    height: 0;
-    position: absolute;
-    right: 16px;
-    top: 50%;
-    margin-top: -3px;
-    border-width: 6px 6px 0 6px;
-    border-style: solid;
-    border-color: grey transparent;
-}
-.wrapper-dropdown-2 .dropdown {
-  /* Size & position */
-    position: absolute;
-    top: 60%;
-    left: -45px;
-    right: 0px;
- 
-    /* Styles */
-    background: white;
-    transition: all 0.3s ease-out;
-    list-style: none;
- 
-    /* Hiding */
-    opacity: 0;
-    pointer-events: none;
-}
-.wrapper-dropdown-2 .dropdown li span {
-    border-style:solid;
-    border-width: thick;
-    display: block;
-    text-decoration: none;
-    color: #333;
-    border-left: 5px solid;  
-    padding: 10px;
-    transition: all 0.3s ease-out;
-}
- 
-.wrapper-dropdown-2 .dropdown li:nth-child(1) span { 
-    border-left-color: #00ACED;
-}
- 
-.wrapper-dropdown-2 .dropdown li:nth-child(2) span {
-    border-left-color: #4183C4;
-}
- 
-.wrapper-dropdown-2 .dropdown li:nth-child(3) span {
-    border-left-color: #3B5998;
-}
-.wrapper-dropdown-2 .dropdown li i {
-    margin-right: 5px;
-    color: inherit;
-    vertical-align: middle;
-}
- 
-/* Hover state */
- 
-.wrapper-dropdown-2 .dropdown li:hover span {
-    color: grey;
-    background-color: darkgrey;
-}
-.wrapper-dropdown-2.active:after {
-    border-width: 0 6px 6px 6px;
-}
- 
-.wrapper-dropdown-2.active .dropdown {
-    opacity: 1;
-    pointer-events: auto;
 }
   </style>
 </head>
@@ -231,8 +149,8 @@ text-align: left;
    
     <div class="col-sm-7 inbodycontent">
      <div class="tab">
-        <button class="tablink" onclick="openPage(event,'results_tab')" id="defaultOpen">Results</button>
-		<button class="tablink" onclick="openPage(event,'history_tab')">History</button>
+        <button class="tablink" onclick="openPage(event,'results_tab')" >Results</button>
+		<button class="tablink" onclick="openPage(event,'history_tab')" id="defaultOpen">History</button>
 		<button class="tablink" onclick="openPage(event, 'ranking_tab')">Ranking</button>
     </div>   
       <div class="row">
@@ -250,17 +168,27 @@ text-align: left;
 		      </select>
 		    </div>
 		  </form> -->
-        
-        
-    	  <ul  class="pager">
-            <li class="previous" id= "resultback"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
-		    <li><span id="dd" class="wrapper-dropdown-2"><span id="results_date"></span>
-				  <ul class="dropdown" id="dddd" style="z-index:1;overflow-y:auto;height:285px;width:100%;">
+           <div class="panel-group">
+		    <div class="panel panel-default">
+		      <div class="panel-heading">
+		        <h4 class="panel-title">
+		          <ul class="pager">
+		            <li class="previous" id="resultsback"><a href="#results_tab"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+		            <li><a data-toggle="collapse" href="#collapse1"><span id="results_date"></span>
+		            												<span id="results_sign" class="glyphicon glyphicon-collapse-down"></span></a></li>
+		            <li class="next" id="resultsforward"><a href="#results_tab"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+		          </ul>
+		        </h4>
+		      </div>
+		      <div id="collapse1" class="panel-collapse collapse">
+		        <ul class="list-group" style="text-align: center;display:inline-block;padding: 5px 14px;
+		                               background-color: #fff;border: 1px solid #ddd;border-radius: 15px;" id="dddd">
+		        </ul>
+		        </div>
+		        <div class="panel-footer"></div>
+		      </div>
+		    </div>	  
 
-				  </ul></span></li>
-            <li class="next" id= "resultforward"><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li> 		    
-		  </ul> 
-		  
             <div class="well well-sm analysis-title">MUSCLE-FAT ANALYSIS</div>   
             <table class="columns" style="table-layout:fixed;word-break:break-all;width:100%;">
 		      <tr>
@@ -303,6 +231,7 @@ text-align: left;
 		    </table><br><br>  
         </div>
         
+        
         <div class="col-sm-12 tabcontent" id="history_tab">
 		             
 		<div class="panel-group">
@@ -310,10 +239,11 @@ text-align: left;
 		    <div class="panel-heading">
 		      <h4 class="panel-title">
 		      	<span><strong>Select Date</strong></span><br><br>
-		        <a data-toggle="collapse" href="#collapse1" id="selected_date"></a>
+		        <a data-toggle="collapse" href="#collapse2"><span id="selected_date"></span>
+		        						<span id="hist_sign" class="glyphicon glyphicon-collapse-down"></span></a>
 		      </h4>
 		    </div>
-		    <div id="collapse1" class="panel-collapse collapse">
+		    <div id="collapse2" class="panel-collapse collapse">
 		      <div class="panel-body">
 		      	<form>
 			    <div class="form-group">
@@ -340,37 +270,37 @@ text-align: left;
 		        <td><strong style="font-size: large;">Weight (kg)</strong></td>		        
 		      </tr>
 		      <tr>
-		        <td style="width:150%;"><div id="wComboID"></div></td>
+		        <td style="width:150%;"><div id="wComboID"></div><hr></td>
 		      </tr> 
 		      <tr>
 		        <td><strong style="font-size: large;"><br><br>Muscle Mass (kg)</strong></td>
 		      </tr>
 		      <tr>
-		        <td style="width:150%;"><div id="mmComboID"></div></td>
+		        <td style="width:150%;"><div id="mmComboID"></div><hr></td>
 		      </tr> 
 		      <tr>
 		        <td><strong style="font-size: large;"><br><br>Fat Mass (kg)</strong></td>
 		      </tr>
 		      <tr>
-		        <td style="width:150%;"><div id="fmComboID"></div></td>
+		        <td style="width:150%;"><div id="fmComboID"></div><hr></td>
 		      </tr> 
 		      <tr>
 		        <td><strong style="font-size: large;"><br><br>BMI (kg/m2)</strong></td>
 		      </tr>
 		      <tr>
-		        <td style="width:150%;"><div id="bComboID"></div></td>
+		        <td style="width:150%;"><div id="bComboID"></div><hr></td>
 		      </tr> 
 		      <tr>
 		        <td><strong style="font-size: large;"><br><br>Percent Body Fat (%)</strong></td>
 		      </tr>
 		      <tr>
-		        <td style="width:150%;"><div id="pComboID"></div></td>
+		        <td style="width:150%;"><div id="pComboID"></div><hr></td>
 		      </tr> 
 		      <tr>
 		        <td><strong style="font-size: large;"><br><br>Visceral Fat Level (level)</strong></td>
 		      </tr>
 		      <tr>
-		        <td style="width:150%;"><div id="vComboID"></div></td>
+		        <td style="width:150%;"><div id="vComboID"></div><hr></td>
 		      </tr> 
 		     </table>
 		     <br><br><br><br><br><br><br><br>
@@ -441,31 +371,9 @@ $(document).ready(function(){
 		function() { 
 		document.getElementsByClassName("tablink active")[0].click();})}
 	); 
-
-	function DropDown(el) {
-		  this.dd = el;
-		  this.initEvents();
-		}
-		DropDown.prototype = {
-		  initEvents : function() {
-		    var obj = this;
-		    obj.dd.on('click', function(event){
-		      $(this).toggleClass('active');
-		      event.stopPropagation();
-		    }); 
-		  }
-		}
-		$(function() {
-		  var dd = new DropDown( $('#dd') );
-			$(document).click(function() {
-			  $('.wrapper-dropdown-2').removeClass('active');
-			});
-		});
-
-
-	
 	
 	$('#resultback').click(function(){
+		$('#collapse1').collapse("hide");
 		var data;
 
 			$.ajax({
@@ -494,6 +402,7 @@ $(document).ready(function(){
 		 });
 		 
 	$('#resultforward').click(function(){
+		$('#collapse1').collapse("hide");
 		var data;
 
 			$.ajax({
@@ -593,9 +502,18 @@ $(document).ready(function(){
 		reloadGraphs();		
 	
 		})
-	
-		
-		
+	$("#collapse1").on("hide.bs.collapse", function(){
+		$("#results_sign").removeClass('glyphicon-collapse-up').addClass('glyphicon-collapse-down');
+		});
+	$("#collapse1").on("show.bs.collapse", function(){
+		$("#results_sign").removeClass('glyphicon-collapse-down').addClass('glyphicon-collapse-up');
+		});	
+	$("#collapse2").on("hide.bs.collapse", function(){
+		$("#hist_sign").removeClass('glyphicon-collapse-up').addClass('glyphicon-collapse-down');
+		});
+	$("#collapse2").on("show.bs.collapse", function(){
+		$("#hist_sign").removeClass('glyphicon-collapse-down').addClass('glyphicon-collapse-up');
+		});		
 
 });
 
@@ -758,7 +676,7 @@ function InitialloadResults() {
 			    console.log("first try inside success after ajax => \n" + data.date_date)
                 var result = "";
                 $.each(jsondata.dateList, function (id, pvo) {
-                    result += '<li><span onclick="datePick(this,reloadResults)">'+ pvo.date_date + '</span></li>';
+                    result += '<li class="list-group-item"><span onclick="datePick(this,reloadResults)">'+ pvo.date_date + '</span></li>';
                 });
         		$('#dddd').append(result);
         	    document.getElementById("results_date").innerHTML = data.date_date;
@@ -775,6 +693,7 @@ function InitialloadResults() {
 
  	}
 function reloadResults(){
+	$('#collapse1').collapse("hide");
 	var data; 
 	if(document.getElementById("results_date").innerHTML.length!=0){
 	    console.log("before ajax => " + document.getElementById("results_date").innerHTML)

@@ -93,19 +93,28 @@ $(function(){
 	console.log('test');
 	$.ajax({
 	type:'Get',
-	url:'allRoutine',
-	data : {
-		title : null
-		},
+	url:'blogTest',
 	success:function(data){
-		jsonData = data.AllTest;
-		
+		var nowID = "";
+		var nowTitle = "";
+		jsonData = data.Banana;
+		console.log(jsonData)
 		for(var i = 0; i<Object.keys(jsonData).length; i++){
-			$('#myTitle').empty();
-			$('#myTitle').html("[TITLE] " +jsonData[i].title);
-			var option = $('<tr><td>'+ jsonData[i].name+'</td><td>'+jsonData[i].target+'</td><td>'+ jsonData[i].kg+'</td><td>'+jsonData[i].rep+'</td><td>'+jsonData[i].title+'</td><td>'+jsonData[i].date+'</td></tr>');
-			$('#RoutineTable').append(option);
-		}
+			console.log(i + " :"+"nowID : " + nowID + ", jsonID : " +jsonData[i].id)
+			if(i == 0 || nowID != jsonData[i].id){
+				$('#thead').append('<tr><th>ID</th><th>Name</th><th>Target</th><th>Title</th><th>date</th></tr>')
+			}
+			if(i == 0 || nowTitle == jsonData[i].title){
+				console.log("IF Title : "+nowTitle)
+				$('#tbody').append("<tr><td>"+jsonData[i].id +"</td><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].title +"</td><td>"+jsonData[i].date+"</td></tr>")
+				
+					
+			}else{
+			}
+			nowID = jsonData[i].id;
+			nowTitle = jsonData[i].title;
+		 } // for 
+		
 		},
 	error:function(){
 		alert("실패")
@@ -149,28 +158,15 @@ $(function(){
 	<div style=" width: 614px; align-content: flex-start;">
 		<article style="width: 614px;">
 			<header style="width: 614px; height: 120px; padding: 16px; border: 1px solid;">
-				<div style="display:inline-flex;">
-					<img src="resources/image/kang.jpg" alt="강경원" width="32px" height="32px" class="myPhoto" style="float: left;">
-					&nbsp;&nbsp;&nbsp;
-					<table>
-					<tr><td style="font-size: 30px"><a>kang1234</a></td></tr>
-					<tr><td id="myTitle">분할 Title이름</td></tr>
-					</table>
+				<div class = "blogForm" style="display:inline-flex;">
+				<table>
+				<thead id ="thead"></thead>
+				<tbody id ="tbody"></tbody>
+				</table>
+				
 				</div>
-				<div id=test>
-
-				</div>
-			</header>
+				</header>
 			<div style="width: 614px; height: 800px; border: 1px solid;">
-				 <table class="table">
-		   <thead>
-		   <tr style="font-weight: bolder;">
-		   <th width="150">Name</th><th width="150">Targeting</th>
-		   <th width="50">kg</th><th width="50">rep</th><th width="100">title</th><th width="100">date</th>
-		   </tr>
-		   </thead>
-		   <tbody id = "RoutineTable"></tbody>
-		   </table>
 			</div>
 			<div style="width: 614px; height: 60px;">
 				<section style="width: 614px; ">좋아요  댓글(클릭시 화면 전환) 공유버튼  저장버튼</section>
