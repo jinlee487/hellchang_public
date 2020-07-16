@@ -31,7 +31,6 @@ public class SaveDAO {
 		return sqlsession.selectList(NS+"blogTest") ;
 	} // selectList()
 	
-	
 	public int saveMyRoutine(SaveVO vo) { 
 		return sqlsession.insert(NS+"saveMyRoutine", vo);
 	} // saveMyRoutine
