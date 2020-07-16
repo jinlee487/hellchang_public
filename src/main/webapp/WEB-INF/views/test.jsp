@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-finsihed merge. final push! 7/14 24:30 
-ttttt
+another merge test... 
 </body>
 </html>
