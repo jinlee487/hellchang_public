@@ -8,7 +8,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
-  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
   <link rel="stylesheet" type="text/css" href="resources/jqLib/topBar.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   
@@ -47,33 +46,51 @@
 	height: 100px;
     border-radius: 50%;
 	}
- .table {
      border-collapse: collapse;
      border-top: 3px solid #168;
-}  
+}
+ 
 .table th {
      color: #168;
      background: #f0f6f9;
      text-align: center;
 }
 .table th, .table td {
+text-align: center;
      padding: 10px;
      border: 1px solid #ddd;
+    
 }
 .table th:first-child, .table td:first-child {
+ text-align: center;
      border-left: 0;
 }
 .table th:last-child, .table td:last-child {
+ 
      border-right: 0;
 }
 .table tr td:first-child{
      text-align: center;
 }
 .table caption{caption-side: bottom; display: none;}   
-    /* a:link { color: black; text-decoration: none;}
- 	a:visited { color: black; text-decoration: none;}
-	a:hover {text-decoration: none;} */
 
+   
+   
+   
+#footer{
+	position: fixed;
+	color: black;
+	clear: both;
+    padding: 30px 0 15px 0;
+    text-align: center;
+	height: 50px;
+    max-width: 100%;
+    min-width: 460px;
+    background-color: white;    
+    width:100%;
+    bottom: 0px;
+    margin-bottom:0px;
+}
 </style>
 <script type="text/javascript">
 $(function(){
@@ -100,22 +117,34 @@ $(function(){
 		jsonData = data.Banana;
 		console.log(jsonData)
 		for(var i = 0; i<Object.keys(jsonData).length; i++){
+			if(i != 0 && nowTitle != jsonData[i].title && nowTitle != jsonData[i].title){
+				$('#Tableform').append("<tr><td></td></tr>")
+			} 
 			console.log(i + " :"+"nowID : " + nowID + ", jsonID : " +jsonData[i].id)
 			if(i == 0 || nowID != jsonData[i].id){
-				$('#thead').append('<tr><th>ID</th><th>Name</th><th>Target</th><th>Title</th><th>date</th></tr>')
-			}
-			if(i == 0 || nowTitle == jsonData[i].title){
+				if(i == 0 || nowTitle != jsonData[i].title){
 				console.log("IF Title : "+nowTitle)
-				$('#tbody').append("<tr><td>"+jsonData[i].id +"</td><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].title +"</td><td>"+jsonData[i].date+"</td></tr>")
-				
-					
-			}else{
+				$('#Tableform').append('<tr style="font-size: medium; font-weight: bold;"><td><img src="resources/image/lee.jpg" alt="이준호" class = "myPhoto"></td><td colspan = "6" align = "left">ID : '+jsonData[i].id+'<br>Title : '+jsonData[i].title+'</td></tr>')
+				$('#Tableform').append('<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th><th>date</th></tr>')
+				$('#Tableform').append("<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td><td>"+jsonData[i].date+"</td></tr>")
+				}else{
+					$('#Tableform').append("<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td><td>"+jsonData[i].date+"</td></tr>")
+				}	
 			}
+			else{
+				if(i == 0 || nowTitle != jsonData[i].title){
+					console.log("IF Title : "+nowTitle)
+					$('#Tableform').append('<tr style="font-size: medium; font-weight: bold;"><td><img src="resources/image/kang.jpg" alt="강경원" class = "myPhoto"></td><td colspan = "6" align = "left">ID : '+jsonData[i].id+'<br>Title : '+jsonData[i].title+'</td></tr>')
+					$('#Tableform').append('<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th><th>date</th></tr>')
+					$('#Tableform').append("<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td><td>"+jsonData[i].date+"</td></tr>")
+				}else{
+					$('#Tableform').append("<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td><td>"+jsonData[i].date+"</td></tr>")					
+					}
+			}		
 			nowID = jsonData[i].id;
-			nowTitle = jsonData[i].title;
-		 } // for 
-		
-		},
+			nowTitle = jsonData[i].title;		
+		 } // for 	
+		}, 
 	error:function(){
 		alert("실패")
 		}
@@ -154,21 +183,16 @@ $(function(){
 
 <!-- <div style="height: 100px;"></div> -->
 
-<div style=" width: 614px; padding-top: 50px; margin: 0 auto;">
-	<div style=" width: 614px; align-content: flex-start;">
-		<article style="width: 614px;">
-			<header style="width: 614px; height: 120px; padding: 16px; border: 1px solid;">
-				<div class = "blogForm" style="display:inline-flex;">
-				<table>
-				<thead id ="thead"></thead>
-				<tbody id ="tbody"></tbody>
+<div align="center">
+	<div>
+			<div class = "blogForm" style="display:inline-flex; width: 800px; height: 120px; padding: 16px;" align="center">
+				<table id = "Tableform" class = "table">
 				</table>
-				
-				</div>
-				</header>
-			<div style="width: 614px; height: 800px; border: 1px solid;">
 			</div>
-			<div style="width: 614px; height: 60px;">
+			
+			
+			
+			<!-- <div style="width: 614px; height: 60px;">
 				<section style="width: 614px; ">좋아요  댓글(클릭시 화면 전환) 공유버튼  저장버튼</section>
 				<section style="width: 614px; ">좋아요 몇개인지 출력</section>
 				<div style="width: 614px; "> 본문 및 최근 댓글 출력</div>
@@ -179,8 +203,7 @@ $(function(){
 						<button type="submit" disabled>게시</button>
 					</form>
 				</section>
-			</div>
-		</article>
+			</div> -->
 	</div>
 </div>
 

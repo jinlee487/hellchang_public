@@ -13,6 +13,8 @@ public class SaveVO {
 	private String title;
 	private String shared;
 	
+	
+	
 	public String getId() {
 		return id;
 	}
@@ -50,7 +52,6 @@ public class SaveVO {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	
 	public String getTitle() {
 		return title;
 	}
@@ -63,6 +64,8 @@ public class SaveVO {
 	public void setShared(String shared) {
 		this.shared = shared;
 	}
+	
+	
 	
 	@Override
 	public String toString() {
