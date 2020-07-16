@@ -268,17 +268,17 @@ $(function(){
 					<img src="resources/image/logo.jpg" style="width: 100%; display: inline-flex;"></button>
 				</div>
 				<div style="display: inline-flex; width: 30%" >
-					<a href="#" class="close" data-dismiss="alert" aria-label="close">
-					<img src="resources/image/logo.jpg" style="width: 100%; display: inline-flex;"></a>
+					<button id ="testT" type="button" data-toggle="modal" data-target="#myModal">
+					<img src="resources/image/logo.jpg" style="width: 100%; display: inline-flex;"></button>
 				</div>
 				<div style="display: inline-flex; width: 30%" >
-					<a href="#" class="close" data-dismiss="alert" aria-label="close">
-					<img src="resources/image/logo.jpg" style="width: 100%; display: inline-flex;"></a>
+					<button id ="testT" type="button" data-toggle="modal" data-target="#myModal">
+					<img src="resources/image/logo.jpg" style="width: 100%; display: inline-flex;"></button>
 				</div>
 			</div>
 		</div>
 		<br>
-			<div>
+		<%-- 	<div>
 			<div style="flex-direction: column; padding-bottom: 0px; padding-top: 0px;">
 				<div style="display: inline-flex; width: 30%" >
 					<a href="#" class="close" data-dismiss="alert" aria-label="close">
@@ -311,7 +311,7 @@ $(function(){
 				</div>
 			</div>
 		</div>
-		<br>
+		<br> --%>
 	
 	</article>
 
@@ -338,7 +338,16 @@ $(function(){
 		   </tr>
 		   </thead>
 		   <tbody id = "RoutineTable"></tbody>
+		   <tr style="font-weight: bolder;">
+		   <th width="150">${list.id}</th>
+		   </tr>
 		   </table>
+		   
+		   
+		   
+		   
+		   
+		   
 		   
 		   <div class="modal-body-text">
 		    <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -348,10 +357,12 @@ $(function(){
 					<tr><td id="myTitle">분할 Title이름</td></tr>
 					</tbody></table><hr>
 		 
+		 
+		 
 		  <div class="coment">
-		<img src="resources/image/kang.jpg" alt="강경원" width="30px" height="30px" class="myPhoto" style="float: left; border-radius: 50%">
+		<img src="resources/image/lee.jpg" alt="lee" width="30px" height="30px" class="myPhoto" style="float: left; border-radius: 50%">
           <table>
-					<tbody><tr><td style="font-size: 15px"><a>kang1234</a></td></tr>
+					<tbody><tr><td style="font-size: 15px"><a>lee</a></td></tr>
 					<tr><td id="myTitle">댓글 내용내용내용</td></tr>
 					</tbody></table><br>
 		 <img src="resources/image/kang.jpg" alt="강경원" width="30px" height="30px" class="myPhoto" style="float: left; border-radius: 50%">
@@ -359,9 +370,9 @@ $(function(){
 					<tbody><tr><td style="font-size: 15px"><a>kang1234</a></td></tr>
 					<tr><td id="myTitle">댓글 내용내용내용</td></tr>
 					</tbody></table><br>
-		<img src="resources/image/kang.jpg" alt="강경원" width="30px" height="30px" class="myPhoto" style="float: left; border-radius: 50%">
+		<img src="resources/image/hwang.jpg" alt="hwang" width="30px" height="30px" class="myPhoto" style="float: left; border-radius: 50%">
           <table>
-					<tbody><tr><td style="font-size: 15px"><a>kang1234</a></td></tr>
+					<tbody><tr><td style="font-size: 15px"><a>hwang</a></td></tr>
 					<tr><td id="myTitle">댓글 내용내용내용</td></tr>
 					</tbody></table><br>		
 		  </div>
@@ -393,7 +404,7 @@ $(function(){
          <section class="EDfFK ygqzn"><div class="  Igw0E IwRSH  eGOV_  ybXk5 vwCYk  ">
          <div class="Nm9Fw"><span class="Jv7Aj  MqpiF  ">
          <a class="FPmhX notranslate  cqXBL" title="oh_h_s_98" href="/oh_h_s_98/" tabindex="0">oh_h_s_98</a></span>님 
-         <button class="sqdOP yWX7d     _8A5w5    " type="button">여러 명
+         <button class="sqdOP yWX7d _8A5w5" type="button">여러 명
          </button>이 좋아합니다</div></div></section>
          <div class="k_Q0X NnvRN">
          <a class="c-Yi7" href="/p/CCSwYzaFcsMsL-hOcqx575R1LM08awaev6DBDo0/" tabindex="0">
@@ -412,21 +423,24 @@ $(function(){
         
         
         <div class="modal-footer">
-        
+        <address>
+			<em><a href="home" target="_blank" class="logo footfont"><span class="blind">HellChang</span></a></em>
+			<em class="copy footfont">Copyright</em>
+			<em class="u_cri footfont">©</em>
+			<a href="home" target="_blank" class="u_cra footfont">HellChang Corp.</a>
+			<span class="all_r footfont">All Rights Reserved.</span>
+		</address>
           </div>
         </div>
       </div>
       
-    </div>
+    </div> <!-- 종료 -->
+  
+  
+  
+  
+  
   </div>
-
-
-
-
-
-
-
-
 
 
 
