@@ -7,6 +7,6 @@
  
    <select id="selectList" resultType="vo.ExerciseVO" >
 	select * from `hellchang_schema_test`.`exercise` where target = #{target}
-  </select>	
+   </select>	
     
  </mapper>

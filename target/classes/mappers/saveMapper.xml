@@ -23,7 +23,7 @@
   </select> 
    
   <select id="blogTest" resultType="vo.SaveVO"> 
-	select myRoutine.* ,member.name from hellchang_schema_test.myRoutine , hellchang_schema_test.member where shared = 'true' and myRoutine.id = member.id  order by myRoutine.id,myRoutine.title ;
+	select myRoutine.* ,member.name as UserName from hellchang_schema_test.myRoutine , hellchang_schema_test.member where shared = 'true' and myRoutine.id = member.id  order by myRoutine.id,myRoutine.title ;
   </select>
   
  </mapper>

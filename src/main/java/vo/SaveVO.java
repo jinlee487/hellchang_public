@@ -13,7 +13,7 @@ public class SaveVO {
 	private String title;
 	private String shared;
 	
-	
+	private String userName;
 	
 	public String getId() {
 		return id;
@@ -67,10 +67,17 @@ public class SaveVO {
 	
 	
 	
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	
 	@Override
 	public String toString() {
 		return "SaveVO [id=" + id + ", name=" + name + ", target=" + target + ", kg=" + kg + ", rep=" + rep + ", date="
-				+ date + ", title=" + title + ", shared=" + shared + "]";
+				+ date + ", title=" + title + ", shared=" + shared + ", userName=" + userName + "]";
 	}
 	
 

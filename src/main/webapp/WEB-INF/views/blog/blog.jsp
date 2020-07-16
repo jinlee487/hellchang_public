@@ -46,33 +46,49 @@
 	height: 100px;
     border-radius: 50%;
 	}
+    
+.table {
+	width : 650px;
      border-collapse: collapse;
      border-top: 3px solid #168;
+     border-bottom: 3px solid #168;
 }
- 
+  
+
 .table th {
      color: #168;
      background: #f0f6f9;
      text-align: center;
 }
-.table th, .table td {
-text-align: center;
-     padding: 10px;
-     border: 1px solid #ddd;
-    
+
+.table td:first-child{
+	width : 150px;
+	vertical-align: middle;
+	
 }
+.table tr:first-child{
+	border-right: 3px solid #168;
+}
+
 .table th:first-child, .table td:first-child {
- text-align: center;
-     border-left: 0;
+     border-left: 3px solid #168;
 }
+
+
 .table th:last-child, .table td:last-child {
- 
-     border-right: 0;
+	border-right : 3px solid #168;
 }
+
+.table td{
+	text-align: center;
+}
+/*
 .table tr td:first-child{
      text-align: center;
 }
-.table caption{caption-side: bottom; display: none;}   
+.table caption{caption-side: bottom; display: none;} 
+*/
+ 
 
    
    
@@ -116,33 +132,41 @@ $(function(){
 		var nowTitle = "";
 		jsonData = data.Banana;
 		console.log(jsonData)
+		var j = 0;
+		var last = Object.keys(jsonData).length;
 		for(var i = 0; i<Object.keys(jsonData).length; i++){
-			if(i != 0 && nowTitle != jsonData[i].title && nowTitle != jsonData[i].title){
-				$('#Tableform').append("<tr><td></td></tr>")
-			} 
-			console.log(i + " :"+"nowID : " + nowID + ", jsonID : " +jsonData[i].id)
+			if(i != 0 && nowTitle != jsonData[i].title || nowID != jsonData[i].id){
+				$('#divF'+j).append("<tr><td align = 'left'><button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-heart'</span> Heart</button><br><button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-pencil'></span> Pencil</button></td><td colspan ='4'></td></tr>")
+				j++;
+				
+			}
 			if(i == 0 || nowID != jsonData[i].id){
+				
 				if(i == 0 || nowTitle != jsonData[i].title){
-				console.log("IF Title : "+nowTitle)
-				$('#Tableform').append('<tr style="font-size: medium; font-weight: bold;"><td><img src="resources/image/lee.jpg" alt="이준호" class = "myPhoto"></td><td colspan = "6" align = "left">ID : '+jsonData[i].id+'<br>Title : '+jsonData[i].title+'</td></tr>')
-				$('#Tableform').append('<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th><th>date</th></tr>')
-				$('#Tableform').append("<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td><td>"+jsonData[i].date+"</td></tr>")
+				$('#divT'+j).append('<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><img src="resources/image/lee.jpg" alt="이준호" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td><td colspan ="3"></td></tr>')
+				$('#divF'+j).append('<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>')
+				$('#divF'+j).append("<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>")
 				}else{
-					$('#Tableform').append("<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td><td>"+jsonData[i].date+"</td></tr>")
+					$('#divT'+j).append('<tr style="font-size: medium; font-weight: bold;"><td><img src="resources/image/lee.jpg" alt="이준호" class = "myPhoto"></td><td colspan = "5"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td></tr>')
+					$('#divF'+j).append('<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>')
+					$('#divF'+j).append("<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>")
 				}	
 			}
 			else{
 				if(i == 0 || nowTitle != jsonData[i].title){
-					console.log("IF Title : "+nowTitle)
-					$('#Tableform').append('<tr style="font-size: medium; font-weight: bold;"><td><img src="resources/image/kang.jpg" alt="강경원" class = "myPhoto"></td><td colspan = "6" align = "left">ID : '+jsonData[i].id+'<br>Title : '+jsonData[i].title+'</td></tr>')
-					$('#Tableform').append('<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th><th>date</th></tr>')
-					$('#Tableform').append("<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td><td>"+jsonData[i].date+"</td></tr>")
+					$('#divT'+j).append('<tr style="font-size: medium; font-weight: bold;"><td><img src="resources/image/kang.jpg" alt="강경원" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td><td colspan = "3"></td></tr>')
+					$('#divF'+j).append('<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>')
+					$('#divF'+j).append("<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>")
 				}else{
-					$('#Tableform').append("<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td><td>"+jsonData[i].date+"</td></tr>")					
+					$('#divF'+j).append("<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>")					
 					}
-			}		
+			}
+			if(i==(last-1)){
+				$('#divF'+j).append("<tr><td align = 'left'><button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-heart'</span> Heart</button><br><button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-pencil'></span> Pencil</button></td><td colspan ='4'></td></tr>")
+			}
+			nowTitle = jsonData[i].title ;
 			nowID = jsonData[i].id;
-			nowTitle = jsonData[i].title;		
+					
 		 } // for 	
 		}, 
 	error:function(){
@@ -185,11 +209,19 @@ $(function(){
 
 <div align="center">
 	<div>
+			<!-- 
 			<div class = "blogForm" style="display:inline-flex; width: 800px; height: 120px; padding: 16px;" align="center">
 				<table id = "Tableform" class = "table">
 				</table>
 			</div>
+			-->
 			
+			<%for(int i=1; i<10; i++){%>
+			
+			<table class = "table"><thead id = "divT<%=i %>" style=" width: 800px; height: 120px; padding: 16px;" align="left"></thead>
+			<tbody id = "divF<%=i %>"></tbody>
+			</table>
+			<%} %>
 			
 			
 			<!-- <div style="width: 614px; height: 60px;">
@@ -242,10 +274,10 @@ $(function(){
 		</article>
 	</div>
 </div>-->
-
+<!-- 
 <div id="footer" role="contentinfo">
-<!-- <hr style="width: 100%;">
-<hr style="width: 100%; border-color: black;"> -->
+<hr style="width: 100%;">
+<hr style="width: 100%; border-color: black;">
 	<address>
 		<em><a href="home" target="_blank" class="logo footfont"><span class="blind">HellChang</span></a></em>
 		<em class="copy footfont">Copyright</em>
@@ -254,5 +286,7 @@ $(function(){
 		<span class="all_r footfont">All Rights Reserved.</span>
 	</address>
 </div>
+ -->
+ 
 </body>
 </html>

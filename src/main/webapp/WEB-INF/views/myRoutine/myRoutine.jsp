@@ -56,7 +56,7 @@ $(function(){
 	}); // alogin_click	
 	
 	$('#testT').click(function(){
-
+		
 		var table = document.getElementById("my-tbody");
 		var rowsCount = table.rows.length;
 		console.log(rowsCount);
