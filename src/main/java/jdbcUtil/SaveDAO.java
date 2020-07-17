@@ -19,6 +19,10 @@ public class SaveDAO {
 		return sqlsession.selectList(NS+"selectList" , vo) ;
 	} // selectList()
 	
+	public List<SaveVO> selectTList() {
+		return sqlsession.selectList(NS+"selectTList") ;
+	} // selectList()
+	
 	public List<SaveVO> allList(SaveVO vo) {
 		return sqlsession.selectList(NS+"allList", vo) ;
 	} // allList()
@@ -33,6 +37,10 @@ public class SaveDAO {
 	
 	public int saveMyRoutine(SaveVO vo) { 
 		return sqlsession.insert(NS+"saveMyRoutine", vo);
+	} // saveMyRoutine
+	
+	public int delMyRoutine(SaveVO vo) { 
+		return sqlsession.delete(NS+"delMyRoutine", vo);
 	} // saveMyRoutine
 
 } // class

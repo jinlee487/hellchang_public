@@ -88,7 +88,7 @@ $(function(){
 		}
 		
 		if(lname.length>0){
-			$('.modal-body').append('<input type="checkbox" onClick="inputList(''"'+lname+'")" id="'+lname+'" name="'+lname+'" value="'+lname+'"><label for="'+lname+'">&nbsp;&nbsp;'+ lname +' </label><br>');
+			$('.modal-body').append('<input type="checkbox" onclick="inputList(\''+lname+'\')" id="'+lname+'" name="'+lname+'" value="'+lname+'"><label for="'+lname+'">&nbsp;&nbsp;'+ lname +' </label><br>');
 			$('.lname').val('');
 			
 			eqId.push($('#'+lname).val());	
@@ -111,87 +111,98 @@ $(function(){
 	});
 	
 	
-	/* $('#testT').click(function(){
-		console.log("ddddddddd");
-		
-		var table = document.getElementById("my-tbody");
-		var rowsCount = table.rows.length;
-		console.log(rowsCount);
-		for(var i =1 ; i<=rowsCount; i++){
-		var id = logID;
-		var name = $('#name'+i).val();
-		var target =$('#target'+i).val();
-		var kg = $('#kg'+i).val();
-		var rep = $('#rep'+i).val();
-		var title = $('.title').val();
-		console.log(id+" ,"+name+" ,"+target+" ,"+kg+" ,"+rep+","+title)
-		$.ajax({
-			type:'Get',
-			url:'myRoutine',
-			data:{
-				id : id,
-				name : name,
-				target : target ,
-				kg : kg, 
-				rep : rep ,
-				title : title
-				},
-			success:function(data){
-				console.log("저장중..");
-				$('#my-tbody').empty();
-				},
-			error:function(){
-				console.log("저장실패..")
-				}	
-			}); // ajax
-		}
-	}); // Test */
+	
 	
 	
 });
 
 function inputList(data){
-
-	console.log("date => " + data);
-	
 	var table = document.getElementById("my-tbody");
 	var rowsCount = table.rows.length;
 	console.log(rowsCount);
 	for(var i =1 ; i<=rowsCount; i++){
-	var id = logID;
-	var name = $('#name'+i).val();
-	var target =$('#target'+i).val();
-	var kg = $('#kg'+i).val();
-	var rep = $('#rep'+i).val();
-	/* 해야될 부분~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-	var title = data;
-	var shared = false;
-	console.log(id+" ,"+name+" ,"+target+" ,"+kg+" ,"+rep+","+title+","+shared);
-	$.ajax({
-		type:'Get',
-		url:'myRoutine',
-		data:{
-			id : id,
-			name : name,
-			target : target ,
-			kg : kg, 
-			rep : rep ,
-			title : title,
-			shared : shared	
-			},
-		success:function(data){
-			console.log("저장중..");
-			$('#my-tbody').empty();
-			},
-		error:function(){
-			console.log("저장실패..")
-			}	
-		}); // ajax
-	}
-}
+		var id = logID;
+		var name = $('#name'+i).val();
+		var target =$('#target'+i).val();
+		var kg = $('#kg'+i).val();
+		var rep = $('#rep'+i).val();
+		/* 해야될 부분~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+		var title = data;
+		var shared = false;
+		console.log("data test = > 	 " + title);
 	
-
-
+		/* console.log("check box Test ~~~~~~~~~~~~~~ =>"+$("input:checkbox[id="+title+"]").is(":checked")); */
+		
+		if($("input:checkbox[id="+title+"]").is(":checked")==false){
+			$.ajax({
+				type:'Get',
+				url:'myRoutineDel',
+				data:{
+					id : id,
+					name : name,
+					target : target ,
+					kg : kg, 
+					rep : rep ,
+					title : title,
+					shared : shared	
+					},
+				success:function(data){
+					console.log("저장 취소");
+					/* $('#my-tbody').empty(); */
+					},
+				error:function(){
+					console.log("저장 취소 실패..")
+					}	
+				}); // ajax
+			}
+		
+		if($("input:checkbox[id="+title+"]").is(":checked")==true){
+				$.ajax({
+					type:'Get',
+					url:'myRoutine',
+					data:{
+						id : id,
+						name : name,
+						target : target ,
+						kg : kg, 
+						rep : rep ,
+						title : title,
+						shared : shared	
+						},
+					success:function(data){
+						console.log("저장중..");
+						/* $('#my-tbody').empty(); */
+						},
+					error:function(){
+						console.log("저장실패..")
+						}	
+					}); // ajax	
+			}
+		
+		/* if($("input:checkbox[id=title]").is(":checked") == false){
+			$.ajax({
+				type:'Get',
+				url:'myRoutine',
+				data:{
+					id : id,
+					name : name,
+					target : target ,
+					kg : kg, 
+					rep : rep ,
+					title : title,
+					shared : shared	
+					},
+				success:function(data){
+					console.log("저장중..");
+					$('#my-tbody').empty();
+					},
+				error:function(){
+					console.log("저장실패..")
+					}	
+				}); // ajax
+		} */
+	}// for
+}
 </script>
 <script>
 $(function(){
@@ -380,6 +391,10 @@ function pull3(){
           <h4 class="modal-title"> List 저장하기 </h4>
         </div>
         <div class="modal-body" >
+        	<c:forEach var="list" items="${list}">
+        		<input type="checkbox" onclick="inputList('${list.title}')" id="${list.title}" name="${list.title}" value="${list.title}"><label for="${list.title}">&nbsp;&nbsp;${list.title}</label><br>
+        		
+        	</c:forEach>
         </div>
         <div class="modal-footer">
           <span id="addlist" style="display: block;">리스트 추가하기</span>
@@ -396,7 +411,7 @@ function pull3(){
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ modal ver ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
   <!-- <button id = "testT">Save</button>&nbsp;&nbsp; -->
    &nbsp;&nbsp;
-   <button class="buttonCss">Shared</button>
+   <button class="buttonCss" id ="testT" type="button" data-toggle="modal" data-target="#myModal">Share</button>
    <div style="height: 10px;"></div>
    
 </table>

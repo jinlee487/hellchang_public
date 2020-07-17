@@ -25,9 +25,26 @@ public class SaveController {
 	Date date = new Date();
 	
 	
+	@RequestMapping(value = "/myRoutineDel", method = RequestMethod.GET)
+	public ModelAndView myRoutineDel(HttpServletRequest request, ModelAndView mv, SaveVO vo) {
+		System.out.println("Deltet Test =>" + vo);
+		if(vo != null) {
+			if(service.delMyRoutine(vo) > 0) {
+				System.out.println("삭제로 들어옴");
+				mv.setViewName("jsonView");
+			}else {
+				System.out.println("삭제 실패");
+				mv.setViewName("jsonView");
+			}
+		}
+		
+		return mv;
+	}// saveMyRoutine
+	
+	
 	@RequestMapping(value = "/myRoutine", method = RequestMethod.GET)
 	public ModelAndView myRoutine(HttpServletRequest request, ModelAndView mv, SaveVO vo) {
-		System.out.println("insert Test" + vo);
+		System.out.println("insert Test =>" + vo);
 		if (service.saveMyRoutine(vo) > 0) {
 			System.out.println("??");
 			mv.setViewName("jsonView");

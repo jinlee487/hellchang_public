@@ -8,7 +8,11 @@
    <insert id="saveMyRoutine">
 	insert into `hellchang_schema_test`.`myRoutine` values 
 	 (#{id}, #{name}, #{target}, #{kg}, #{rep}, sysdate(), #{title}, #{shared})
-  </insert>  
+  </insert>
+  
+  <delete id="delMyRoutine">
+  	delete from `hellchang_schema_test`.`myRoutine` where id=#{id} and title=#{title} and target=#{target}
+  </delete>  
   
   <select id="selectOne" resultType="vo.SaveVO">
   	select * from `hellchang_schema_test`.`myRoutine` where id=#{id} and date = #{date}
@@ -16,6 +20,10 @@
   
   <select id="selectList" resultType="vo.SaveVO">
 	select id,name,target,kg,rep from `hellchang_schema_test`.`myRoutine` where id=#{id} and date = #{date}
+  </select>
+  
+  <select id="selectTList" resultType="vo.SaveVO">
+	select title from `hellchang_schema_test`.`myRoutine` group by title
   </select> 
   
   <select id="allList" resultType="vo.SaveVO">
