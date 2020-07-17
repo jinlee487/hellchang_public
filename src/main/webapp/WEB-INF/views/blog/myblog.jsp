@@ -17,7 +17,10 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style type="text/css">
 	/* Remove the navbar's default margin-bottom and rounded borders */ 
-  
+  .modal-content{
+		width: 1000px;
+		text-align: left;
+	}
     
      .navbar {
       margin-bottom: 0;
@@ -180,7 +183,40 @@ $(function(){
 		$('#test').css('margin-top', '5px');
 		$('#test').css('margin-bottom', '5px');
 	}
-})
+});
+
+$(function(){
+	console.log('test');
+	$.ajax({
+	type:'Get',
+	url:'blogTest',
+	success:function(data){
+		var nowID = "";
+		var nowTitle = "";
+		jsonData = data.Banana;
+		console.log(jsonData)
+		for(var i = 0; i<Object.keys(jsonData).length; i++){
+			console.log(i + " :"+"nowID : " + nowID + ", jsonID : " +jsonData[i].id)
+			if(i == 0 || nowID != jsonData[i].id){
+				$('#thead').append('<tr><th>ID</th><th>Name</th><th>Target</th><th>Title</th><th>date</th></tr>')
+			}
+			if(i == 0 || nowTitle == jsonData[i].title){
+				console.log("IF Title : "+nowTitle)
+				$('#tbody').append("<tr><td><h4>"+jsonData[i].id +"</h4></td><td><h4>"+jsonData[i].name +"</h4></td><td><h4>"+ jsonData[i].target +"</h4></td><td><h4>"+jsonData[i].title +"</h4></td><td><h4>"+jsonData[i].date+"</h4></td></tr>")
+				
+					
+			}else{
+			}
+			nowID = jsonData[i].id;
+			nowTitle = jsonData[i].title;
+		 } // for 
+		
+		},
+	error:function(){
+		alert("실패")
+		}
+		}); // ajax
+}); 
 </script>
 </head>
 <body>
@@ -222,7 +258,7 @@ $(function(){
 	
 	<section>
 		<div class="zz">
-			<h2 class="h2">IDID</h2>&nbsp;&nbsp;	
+			<h2 class="h2">IDIDIDIDIDIDID</h2>&nbsp;&nbsp;	
 			<a class="profile" href="/account/edit/" tabindex="0" 
 			 >프로필 편집</a>&nbsp;&nbsp;
     <div class="AFWDX">
@@ -318,7 +354,7 @@ $(function(){
 </div>
 	<div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
-      <!-- Modal content-->
+      <!-- Modal content-->	
       <div class="modal-content">
         <div class="modal-header">
         <!--   <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -329,27 +365,19 @@ $(function(){
 					</tbody></table> -->
         <!--   <h4 class="modal-title"> List 저장하기 </h4> -->
         </div>
-        <div class="modal-body" style="display: inline-flex;">
-         <table class="table">
-		   <thead>
-		   <tr style="font-weight: bolder;">
-		   <th width="150">Name</th><th width="150">Targeting</th>
-		   <th width="50">kg</th><th width="50">rep</th><th width="100">title</th><th width="100">date</th>
-		   </tr>
-		   </thead>
-		   <tbody id = "RoutineTable"></tbody>
-		   <tr style="font-weight: bolder;">
-		   <th width="150">${list.id}</th>
-		   </tr>
-		   </table>
+        <div class="modal-body" style="display: inline-flex; ">
+        <table style="margin-right: 50px; width: 100%">
+				<thead id ="thead"></thead>
+				<tbody id ="tbody"></tbody>
+				</table>
 		   
 		   
 		   
 		   
 		   
 		   
-		   
-		   <div class="modal-body-text">
+		
+		   <div class="modal-body-text" style="width : 450px;">
 		    <button type="button" class="close" data-dismiss="modal">&times;</button>
           <img src="resources/image/kang.jpg" alt="강경원" width="30px" height="30px" class="myPhoto" style="float: left; border-radius: 50%">
           <table>
