@@ -314,41 +314,7 @@ $(function(){
 			</div>
 		</div>
 		<br>
-		<%-- 	<div>
-			<div style="flex-direction: column; padding-bottom: 0px; padding-top: 0px;">
-				<div style="display: inline-flex; width: 30%" >
-					<a href="#" class="close" data-dismiss="alert" aria-label="close">
-					<img src="resources/image/logo.jpg" style="width: 100%; display: inline-flex;"></a>
-				</div>
-				<div style="display: inline-flex; width: 30%" >
-					<a href="#" class="close" data-dismiss="alert" aria-label="close">
-					<img src="resources/image/logo.jpg" style="width: 100%; display: inline-flex;"></a>
-				</div>
-				<div style="display: inline-flex; width: 30%" >
-					<a href="#" class="close" data-dismiss="alert" aria-label="close">
-					<img src="resources/image/logo.jpg" style="width: 100%; display: inline-flex;"></a>
-				</div>
-			</div>
-		</div>
-		<br>
-			<div>
-			<div style="flex-direction: column; padding-bottom: 0px; padding-top: 0px;">
-				<div style="display: inline-flex; width: 30%" >
-					<a href="#" class="close" data-dismiss="alert" aria-label="close">
-					<img src="${list.uploadfile}" style="width: 100%; display: inline-flex;"></a>
-				</div>
-				<div style="display: inline-flex; width: 30%" >
-					<a href="#" class="close" data-dismiss="alert" aria-label="close">
-					<img src="${list.uploadfile}" style="width: 100%; display: inline-flex;"></a>
-				</div>
-				<div style="display: inline-flex; width: 30%" >
-					<a href="#" class="close" data-dismiss="alert" aria-label="close">
-					<img src="${list.uploadfile}" style="width: 100%; display: inline-flex;"></a>
-				</div>
-			</div>
-		</div>
-		<br> --%>
-	
+		
 	</article>
 
 </div>
