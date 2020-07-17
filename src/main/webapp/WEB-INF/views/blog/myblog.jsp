@@ -332,6 +332,8 @@ $(function(){
         <!--   <h4 class="modal-title"> List 저장하기 </h4> -->
         </div>
         <div class="modal-body" style="display: inline-flex; ">
+       
+       
         <table style="margin-right: 50px; width: 100%">
 				<thead id ="thead"></thead>
 				<tbody id ="tbody"></tbody>
