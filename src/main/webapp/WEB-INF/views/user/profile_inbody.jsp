@@ -138,19 +138,21 @@ text-align: left;
 
 		<ul class="nav nav-pills nav-stacked">
 		  <li><a href="#">Start Workout</a></li>
-		  <li><a href="#">Manage Workout</a></li>
+		  <li><a href="manageWorkout">Manage Workout</a></li>
 		  <li><a href="inbodyf">InBody</a></li>
 		  <li><a href="#">Diet</a></li>
-		  <li><a href="#">Social</a></li>  
-		  <li><a href="#">Setting</a></li>  
+		  <li><a href="#">Social</a></li>    
+		  <li><a href="routine">Test</a></li>
+		  <li><a href="mdetail?code=U">Profile Update</a></li>
+		  <li><a href="delete">Drop Out</a></li>
 		  
 		</ul>
     </div>
    
     <div class="col-sm-7 inbodycontent">
      <div class="tab">
-        <button class="tablink" onclick="openPage(event,'results_tab')" >Results</button>
-		<button class="tablink" onclick="openPage(event,'history_tab')" id="defaultOpen">History</button>
+        <button class="tablink" onclick="openPage(event,'results_tab')" id="defaultOpen">Results</button>
+		<button class="tablink" onclick="openPage(event,'history_tab')" >History</button>
 		<button class="tablink" onclick="openPage(event, 'ranking_tab')">Ranking</button>
     </div>   
       <div class="row">
