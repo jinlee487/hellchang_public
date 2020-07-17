@@ -109,70 +109,74 @@
 }
 </style>
 <script type="text/javascript">
-$(function(){
-	console.log($('#test').css('height'));
-	var height = parseInt($('#test').css('height'));
-	
-	if(height > 20){
-		$('header').css('padding-top', '9px');
-		$('header').css('padding-bottom', '9px');
-	}else{
-		$('#test').css('margin-top', '5px');
-		$('#test').css('margin-bottom', '5px');
-	}
-});
 
 $(function(){
-	console.log('test');
+		
 	$.ajax({
-	type:'Get',
-	url:'blogTest',
-	success:function(data){
-		var nowID = "";
-		var nowTitle = "";
-		jsonData = data.Banana;
-		console.log(jsonData)
-		var j = 0;
-		var last = Object.keys(jsonData).length;
-		for(var i = 0; i<Object.keys(jsonData).length; i++){
-			if(i != 0 && nowTitle != jsonData[i].title || nowID != jsonData[i].id){
-				$('#divF'+j).append("<tr><td align = 'left'><button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-heart'</span> Heart</button><br><button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-pencil'></span> Pencil</button></td><td colspan ='4'></td></tr>")
-				j++;
+		type:'Get',
+		url:'blogTest',
+
+		success:function(data){
+			
+			jsonData1 = data.forName1
+			console.log(jsonData1)
+			var lastNum = Object.keys(jsonData1).length;
+			for(var i =0; i<Object.keys(jsonData1).length; i++){
+				if(i==0){
+					$('#BlogForm').append("<table>")
+					$('#BlogForm').append('<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><img src="resources/image/kang.jpg" alt="이준호" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData1[i].title+'<br>Name : '+jsonData1[i].userName+'<br>Date : '+jsonData1[i].date+'</td><td colspan ="3"></td></tr>')
+					$('#BlogForm').append('<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>')
+					$('#BlogForm').append("<tr><td>"+jsonData1[i].name +"</td><td>"+ jsonData1[i].target +"</td><td>"+jsonData1[i].kg +"</td><td>"+jsonData1[i].rep +"</td><td>"+jsonData1[i].title +"</td></tr>")	
+				}else if(i==lastNum){
+					$('#BlogForm').append("</table>")
+				}
+				else{
+					$('#BlogForm').append("<tr><td>"+jsonData1[i].name +"</td><td>"+ jsonData1[i].target +"</td><td>"+jsonData1[i].kg +"</td><td>"+jsonData1[i].rep +"</td><td>"+jsonData1[i].title +"</td></tr>")	
+				}
 				
 			}
-			if(i == 0 || nowID != jsonData[i].id){
+			
+			jsonData2 = data.forName2
+			console.log(jsonData2)
+			for(var i =0; i<Object.keys(jsonData2).length; i++){
+				if(i==0){
+					$('#BlogForm').append("<table>")
+					$('#BlogForm').append('<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><img src="resources/image/lee.jpg" alt="이준호" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData2[i].title+'<br>Name : '+jsonData2[i].userName+'<br>Date : '+jsonData2[i].date+'</td><td colspan ="3"></td></tr>')
+					$('#BlogForm').append('<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>')
+					$('#BlogForm').append("<tr><td>"+jsonData2[i].name +"</td><td>"+ jsonData2[i].target +"</td><td>"+jsonData2[i].kg +"</td><td>"+jsonData2[i].rep +"</td><td>"+jsonData2[i].title +"</td></tr>")	
+				}else if(i==lastNum){
+					$('#BlogForm').append("</table>")
+				}
+				else{
+					$('#BlogForm').append("<tr><td>"+jsonData2[i].name +"</td><td>"+ jsonData2[i].target +"</td><td>"+jsonData2[i].kg +"</td><td>"+jsonData2[i].rep +"</td><td>"+jsonData2[i].title +"</td></tr>")	
+				}
 				
-				if(i == 0 || nowTitle != jsonData[i].title){
-				$('#divT'+j).append('<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><img src="resources/image/lee.jpg" alt="이준호" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td><td colspan ="3"></td></tr>')
-				$('#divF'+j).append('<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>')
-				$('#divF'+j).append("<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>")
-				}else{
-					$('#divT'+j).append('<tr style="font-size: medium; font-weight: bold;"><td><img src="resources/image/lee.jpg" alt="이준호" class = "myPhoto"></td><td colspan = "5"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td></tr>')
-					$('#divF'+j).append('<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>')
-					$('#divF'+j).append("<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>")
-				}	
 			}
-			else{
-				if(i == 0 || nowTitle != jsonData[i].title){
-					$('#divT'+j).append('<tr style="font-size: medium; font-weight: bold;"><td><img src="resources/image/kang.jpg" alt="강경원" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td><td colspan = "3"></td></tr>')
-					$('#divF'+j).append('<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>')
-					$('#divF'+j).append("<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>")
-				}else{
-					$('#divF'+j).append("<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>")					
-					}
+			
+			jsonData3 = data.forName3
+			console.log(jsonData3)
+			
+			for(var i =0; i<Object.keys(jsonData3).length; i++){
+				if(i==0){
+					$('#BlogForm').append("<table>")
+					$('#BlogForm').append('<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><img src="resources/image/kang.jpg" alt="이준호" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData3[i].title+'<br>Name : '+jsonData3[i].userName+'<br>Date : '+jsonData3[i].date+'</td><td colspan ="3"></td></tr>')
+					$('#BlogForm').append('<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>')
+					$('#BlogForm').append("<tr><td>"+jsonData3[i].name +"</td><td>"+ jsonData3[i].target +"</td><td>"+jsonData3[i].kg +"</td><td>"+jsonData3[i].rep +"</td><td>"+jsonData3[i].title +"</td></tr>")	
+				}else if(i==lastNum){
+					$('#BlogForm').append("</table>")
+				}
+				else{
+					$('#BlogForm').append("<tr><td>"+jsonData3[i].name +"</td><td>"+ jsonData3[i].target +"</td><td>"+jsonData3[i].kg +"</td><td>"+jsonData3[i].rep +"</td><td>"+jsonData3[i].title +"</td></tr>")	
+				}
+				
 			}
-			if(i==(last-1)){
-				$('#divF'+j).append("<tr><td align = 'left'><button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-heart'</span> Heart</button><br><button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-pencil'></span> Pencil</button></td><td colspan ='4'></td></tr>")
-			}
-			nowTitle = jsonData[i].title ;
-			nowID = jsonData[i].id;
-					
-		 } // for 	
-		}, 
-	error:function(){
-		alert("실패")
+			
+			
+			}, 
+		error:function(){
+			alert("실패")
 		}
-		}); // ajax
+	}); // ajax 	
 }); 
 </script>
 </head>
@@ -204,77 +208,29 @@ $(function(){
     </div>
   </div>
 </nav>
+<div id = "BlogForm">
 
-<!-- <div style="height: 100px;"></div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
 
 <div align="center">
 	<div>
-			<!-- 
-			<div class = "blogForm" style="display:inline-flex; width: 800px; height: 120px; padding: 16px;" align="center">
-				<table id = "Tableform" class = "table">
-				</table>
-			</div>
-			-->
 			
-			<%for(int i=1; i<10; i++){%>
-			
-			<table class = "table"><thead id = "divT<%=i %>" style=" width: 800px; height: 120px; padding: 16px;" align="left"></thead>
-			<tbody id = "divF<%=i %>"></tbody>
-			</table>
-			<%} %>
-			
-			
-			<!-- <div style="width: 614px; height: 60px;">
-				<section style="width: 614px; ">좋아요  댓글(클릭시 화면 전환) 공유버튼  저장버튼</section>
-				<section style="width: 614px; ">좋아요 몇개인지 출력</section>
-				<div style="width: 614px; "> 본문 및 최근 댓글 출력</div>
-				<div style="width: 614px; ">routine upload 시간</div>
-				<section style="width: 614px; border: 1px solid;" >
-					<form>
-						<textarea rows="" cols="" placeholder="댓글달기.." style="height: 18px;"></textarea>
-						<button type="submit" disabled>게시</button>
-					</form>
-				</section>
-			</div> -->
 	</div>
 </div>
 
-<!-- jihwan's version
- <div style="position: relative; width: 614px; margin: 0 auto; margin-top: 50px; border: 1px solid; overflow: visible;">
-	<div style=" width: 614px;">
-		<article style="width: 614px;">
-			<header style="width: 614px; height: 60px; padding: 16px; border-bottom: 1px solid">
-				<div style="display:inline-flex;">
-					<img id="headerImg" src="resources/image/kang.jpg" alt="강경원" width="32px" height="32px">
-				</div>
-				<div style="margin-left: 10px; display: inline-block; width: 522px;" id=test>
-					<div>
-						<a class="gridA">kang1234</a>
-					</div>
- 					<div>
-						<a class="gridA">분할</a>
-					</div>
-				</div>
-			</header>
-			<div style="width: 614px; height: 614px; border-bottom: 1px solid;">
-				<p>루틴 출력 칸</p>
-			</div>
-			<div style="width: 614px;">
-				<section style="width: 614px; ">좋아요  댓글(클릭시 화면 전환) 공유버튼  저장버튼</section>
-				<section style="width: 614px; ">좋아요 몇개인지 출력</section>
-				<div style="width: 614px; "> 본문 및 최근 댓글 출력</div>
-				<div style="width: 614px; ">routine upload 시간</div>
-				<section style="width: 614px; border-top: 1px solid; padding: 0px 16px;" >
-					<form>
-						<textarea rows="1" cols="" placeholder="댓글달기.." style="width: 80%; background-color: rgba(0,0,0,0.2); border: none; outline: none; resize: none; margin: 10px 0px;"></textarea>
-						<button type="submit"  disabled>게시</button>
-					</form>
-				</section>
-			</div>
-		</article>
-	</div>
-</div>-->
-<!-- 
+
 <div id="footer" role="contentinfo">
 <hr style="width: 100%;">
 <hr style="width: 100%; border-color: black;">
@@ -286,7 +242,6 @@ $(function(){
 		<span class="all_r footfont">All Rights Reserved.</span>
 	</address>
 </div>
- -->
  
 </body>
 </html>
