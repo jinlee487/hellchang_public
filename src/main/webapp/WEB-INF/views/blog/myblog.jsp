@@ -330,18 +330,29 @@ $(function(){
         <!--   <h4 class="modal-title"> List 저장하기 </h4> -->
         </div>
         <div class="modal-body" style="display: inline-flex;">
-         <table class="table">
-		   <thead>
-		   <tr style="font-weight: bolder;">
-		   <th width="150">Name</th><th width="150">Targeting</th>
-		   <th width="50">kg</th><th width="50">rep</th><th width="100">title</th><th width="100">date</th>
-		   </tr>
-		   </thead>
-		   <tbody id = "RoutineTable"></tbody>
-		   <tr style="font-weight: bolder;">
-		   <th width="150">${list.id}</th>
-		   </tr>
-		   </table>
+        <header style="width: 614px; height: 120px; padding: 16px; border: 1px solid;">
+				<div class = "blogForm" style="display:inline-flex;">
+				<table>
+				<thead id ="thead"></thead>
+				<tbody id ="tbody"></tbody>
+				</table>
+				
+				</div>
+				</header>
+			<div style="width: 614px; height: 800px; border: 1px solid;">
+			</div>
+			<div style="width: 614px; height: 60px;">
+				<section style="width: 614px; ">좋아요  댓글(클릭시 화면 전환) 공유버튼  저장버튼</section>
+				<section style="width: 614px; ">좋아요 몇개인지 출력</section>
+				<div style="width: 614px; "> 본문 및 최근 댓글 출력</div>
+				<div style="width: 614px; ">routine upload 시간</div>
+				<section style="width: 614px; border: 1px solid;" >
+					<form>
+						<textarea rows="" cols="" placeholder="댓글달기.." style="height: 18px;"></textarea>
+						<button type="submit" disabled>게시</button>
+					</form>
+				</section>
+			</div>
 		   
 		   
 		   
