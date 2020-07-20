@@ -67,7 +67,7 @@ $(function(){
 		}); // ajax
 	}); // alogin_click	
 
-	$('#testT').click(function(){
+/* 	$('#testT').click(function(){
 		
 		var table = document.getElementById("my-tbody");
 		var rowsCount = table.rows.length;
@@ -98,7 +98,7 @@ $(function(){
 				}	
 			}); // ajax
 		}
-	}); // Test
+	}); // Test */
 
 	
 	$('#addlist').hover(function(){
@@ -111,47 +111,44 @@ $(function(){
 	});// ajax
 	
 /* ---------------------------list Name Checked 확인 ---------------------------------- */
-	var eqId = new Array();
+	
 	
 	$("#listName").on("click", function(){
+		oldTitle = document.querySelectorAll("input.oldTitle");
 		lname =  $('.lname').val();
-		
-		for(var i=0; i<eqId.length; i++){
-			if(lname == eqId[i]){
+	
+	 	for(var i=0; i<oldTitle.length; i++){
+	 		if(lname == oldTitle[i].value){
 				alert("중복된 list 이름입니다.");
 				$('.lname').val('');
 				return;
-			}		
-		}
+			}else{
+				
+		}		
+	} 
 
 		/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!하고있는 부분!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  */
-		var a = document.querySelectorAll("input");
-		console.log("lname test => " + a[5].value);
+		
+		//console.log("lname test => " + a[5].value);
 		//console.log("selector all test => " + a.value);
 		
 		if(lname.length>0){
-			$('.modal-body').append('<input type="checkbox" onclick="inputList(\''+lname+'\')" id="'+lname+'" name="'+lname+'" value="'+lname+'"><label for="'+lname+'">&nbsp;&nbsp;'+ lname +' </label><br>');
+			$('.modal-body').append('<input type="checkbox" onclick="inputList(\''+lname+'\')" class="oldTitle" name="'+lname+'" value="'+lname+'"><label for="'+lname+'">&nbsp;&nbsp;'+ lname +' </label><br>');
 			$('.lname').val('');
 			
-			
-			
-			eqId.push($('#'+lname).val());	
+			//eqId.push($('#'+lname).val());	
 					
 			$('#addlist').css("display","block");
 			$('#linput').css("display","none");
 			/* eqId.length */
-			
 			console.log('ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ');
 		}
-	
 		if(lname.length<=0){
 			alert("list 이름을 적어주세요.");
 		}
-		for(var j in eqId){
-			console.log(eqId[j]);	
-		}
-		console.log("lname test =>" +lname);
-		console.log(lname);
+
+/* 		console.log("lname test =>" +lname);
+		console.log(lname); */
 	});
 	
 	
@@ -173,11 +170,12 @@ function inputList(data){
 		var rep = $('#rep'+i).val();
 		var title = data;
 		var shared = true;
-		console.log("data test = > 	 " + title);
+		console.log("data test = > 	 " + data);
+		console.log("title test = >  " + title);
 	
 		/* console.log("check box Test ~~~~~~~~~~~~~~ =>"+$("input:checkbox[id="+title+"]").is(":checked")); */
-		
-		if($("input:checkbox[id="+title+"]").is(":checked")==false){
+		//if($("input:checkbox[id="+title+"]").is(":checked")==false){
+		if($("input:checkbox[class='oldTitle']").is(":checked")==false){
 			$.ajax({
 				type:'Get',
 				url:'myRoutineDel',
@@ -201,7 +199,7 @@ function inputList(data){
 				}); // ajax
 			}
 		
-		if($("input:checkbox[id="+title+"]").is(":checked")==true){
+		if($("input:checkbox[class='oldTitle']").is(":checked")==true){
 				$.ajax({
 					type:'Get',
 					url:'myRoutine',
@@ -399,6 +397,8 @@ function pull3(){
       <img src = "resources/image/hwang.jpg" width="300" height="450" >
       </div>
     </div>
+    
+    
    <div align="center" class="DivShow" >
 
 	</div> 
@@ -459,7 +459,7 @@ function pull3(){
         <div class="modal-body" >
         	<c:forEach var="list" items="${list}">
         		<c:if test="${logID eq list.id}">
-        			<input type="checkbox" onclick="inputList('${list.title}')" id="${list.title}" name="${list.title}" value="${list.title}"><label for="${list.title}">&nbsp;&nbsp;${list.title}</label><br>
+        			<input type="checkbox" onclick="inputList('${list.title}')" class="oldTitle" name="${list.title}" value="${list.title}"><label for="${list.title}">&nbsp;&nbsp;${list.title}</label><br>
         		</c:if>
         	</c:forEach>
         </div>
@@ -529,6 +529,8 @@ function delete_row() {
 </div><br><br>
 
 <div id="footer" role="contentinfo">
+
+
 <!-- <hr style="width: 100%;">
 <hr style="width: 100%; border-color: black;"> -->
 		<address>
