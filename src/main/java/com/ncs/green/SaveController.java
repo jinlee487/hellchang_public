@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -79,15 +78,7 @@ public class SaveController {
 	} // mlist
 	
 	@RequestMapping(value = "/myblog")
-	public ModelAndView myblog(ModelAndView mv, HttpServletRequest request, SaveVO vo) {
-		
-		HttpSession session = request.getSession(false);
-		String logID="";
-		if (session != null && session.getAttribute("logID") != null)  {
-			logID = (String)session.getAttribute("logID");
-		} else System.out.println("~~ session is null 또는 login ID is null ~~");
-		vo = service.selectOne(vo);
-		
+	public ModelAndView myblog(ModelAndView mv) {
 		List<SaveVO> list = service.blogTest();
 		if (list != null) {
 			mv.addObject("Banana", list); // scope 이 request 와 동일
