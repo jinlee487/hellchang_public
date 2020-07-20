@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -184,7 +185,6 @@ $(function(){
 		$('#test').css('margin-bottom', '5px');
 	}
 });
-
 $(function(){
 	console.log('test');
 	$.ajax({
@@ -202,7 +202,7 @@ $(function(){
 			}
 			if(i == 0 || nowTitle == jsonData[i].title){
 				console.log("IF Title : "+nowTitle)
-				$('#tbody').append("<tr><td><h4>"+jsonData[i].id +"</h4></td><td><h4>"+jsonData[i].name +"</h4></td><td><h4>"+ jsonData[i].target +"</h4></td><td><h4>"+jsonData[i].title +"</h4></td><td><h4>"+jsonData[i].date+"</h4></td></tr>")
+				$('#tbody').append("<tr><td>"+jsonData[i].id +"</td><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].title +"</td><td>"+jsonData[i].date+"</td></tr>")
 				
 					
 			}else{
@@ -240,11 +240,25 @@ $(function(){
 		<li><a href="one">OneRM</a></li>
       </ul>
 	
-      <ul class="nav navbar-nav navbar-right">
-      <li><a href="prof">UserTest</a></li>
-      	<li><a href="joinf">회원가입</a></li>
-        <li><a href="loginf"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
+      <ul class="nav navbar-nav navbar-right" >
+			  <c:if test="${logID != null }">
+			  	<li><a style="color: white;">${logName}님</a></li>
+			  	<li><a href="prof">MyProfile</a></li>
+			  </c:if>
+				<li>
+					<c:if test="${logID==null }">
+						<a href="joinf">회원가입</a>
+					</c:if>	
+				</li>
+				<li>
+					<c:if test="${logID==null }">
+						<a href="loginf"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+					</c:if>
+					<c:if test="${logID!=null }">
+						<a href="logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
+					</c:if>
+				</li>
+			  </ul>
     </div>
   </div>
 </nav>
@@ -258,7 +272,7 @@ $(function(){
 	
 	<section>
 		<div class="zz">
-			<h2 class="h2">IDIDIDIDIDIDID</h2>&nbsp;&nbsp;	
+			<h2 class="h2">${logName}</h2>&nbsp;&nbsp;	
 			<a class="profile" href="/account/edit/" tabindex="0" 
 			 >프로필 편집</a>&nbsp;&nbsp;
     <div class="AFWDX">
@@ -288,7 +302,7 @@ $(function(){
 		</li>
 		</ul>
 		<div>
-			<h1 class="h1">이름이름</h1><br>
+			<h1 class="h1">${logName}</h1><br>
 			<span>간단 소개</span>
 		</div>
 	</section>
@@ -453,4 +467,5 @@ $(function(){
 	</address>
 </div>
 </body>
+
 </html>

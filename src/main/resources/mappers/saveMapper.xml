@@ -26,7 +26,8 @@
 	select * from `hellchang_schema_test`.`myRoutine` order by id,title 
   </select>
   
-   <select id="myblog" resultType="vo.SaveVO"> 
-	select * from `hellchang_schema_test`.`myRoutine` order by id,title
+    <select id="myBlog" resultType="vo.SaveVO"> 
+	select * from `hellchang_schema_test`.`myRoutine` order by id=#{id},title=#{title} 
   </select>
+  
  </mapper>

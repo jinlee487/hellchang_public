@@ -140,7 +140,7 @@ $(function(){
       <ul class="nav navbar-nav">
         <li><a href="noob">Noob</a></li>
 		<li><a href="routine">Routine</a></li>
-		<li><a href="myblog">Blog</a></li>
+		<li><a href="myBlog">Blog</a></li>
 		<li><a href="one">OneRM</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">

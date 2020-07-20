@@ -25,6 +25,11 @@ public class SServiceImpl implements SService {
 	} // selectList()
 	
 	@Override
+	public List<SaveVO> myBlog(SaveVO vo) {
+		return dao.myBlog(vo) ;
+	} // selectList()
+	
+	@Override
 	public List<SaveVO> selectList(SaveVO vo) {
 		return dao.selectList(vo) ;
 	} // selectList()
@@ -38,5 +43,6 @@ public class SServiceImpl implements SService {
 	public int saveMyRoutine(SaveVO vo) {  
 		return dao.saveMyRoutine(vo);  // 처리된 row 갯수 return	 
 	} // insert
+	
 	
 } // class
