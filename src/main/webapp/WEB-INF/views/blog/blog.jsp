@@ -9,8 +9,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
   <link rel="stylesheet" type="text/css" href="resources/jqLib/topBar.css">
+  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -22,6 +22,7 @@
       border-radius: 0;
       background-color: #000000;
     }
+
     .gridA{ 
 		color: black; text-decoration: none;
 	}
@@ -48,7 +49,7 @@
 	}
     
 .table {
-	width : 650px;
+	width : 600px;
      border-collapse: collapse;
      border-top: 3px solid #168;
      border-bottom: 3px solid #168;
@@ -62,7 +63,7 @@
 }
 
 .table td:first-child{
-	width : 150px;
+	width : 200px;
 	vertical-align: middle;
 	
 }
@@ -83,10 +84,10 @@
 	text-align: center;
 }
 /*
-.table tr td:first-child{
+.test tr td:first-child{
      text-align: center;
 }
-.table caption{caption-side: bottom; display: none;} 
+.test caption{caption-side: bottom; display: none;} 
 */
  
 
@@ -111,72 +112,73 @@
 <script type="text/javascript">
 
 $(function(){
-		
+
+	
+	var cnt = 0;
+	
 	$.ajax({
 		type:'Get',
+		dataType : "json",
 		url:'blogTest',
-
+		
 		success:function(data){
-			
-			jsonData1 = data.forName1
-			console.log(jsonData1)
-			var lastNum = Object.keys(jsonData1).length;
-			for(var i =0; i<Object.keys(jsonData1).length; i++){
-				if(i==0){
-					$('#BlogForm').append("<table>")
-					$('#BlogForm').append('<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><img src="resources/image/kang.jpg" alt="이준호" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData1[i].title+'<br>Name : '+jsonData1[i].userName+'<br>Date : '+jsonData1[i].date+'</td><td colspan ="3"></td></tr>')
-					$('#BlogForm').append('<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>')
-					$('#BlogForm').append("<tr><td>"+jsonData1[i].name +"</td><td>"+ jsonData1[i].target +"</td><td>"+jsonData1[i].kg +"</td><td>"+jsonData1[i].rep +"</td><td>"+jsonData1[i].title +"</td></tr>")	
-				}else if(i==lastNum){
-					$('#BlogForm').append("</table>")
-				}
-				else{
-					$('#BlogForm').append("<tr><td>"+jsonData1[i].name +"</td><td>"+ jsonData1[i].target +"</td><td>"+jsonData1[i].kg +"</td><td>"+jsonData1[i].rep +"</td><td>"+jsonData1[i].title +"</td></tr>")	
-				}
+			var nowID = "";
+			var nowTitle = "";
+			for(var j=0; j<5; j++){
+				var lastNum = 0;
+				if(cnt == 0){jsonData = data.forName0}
+				else if(cnt == 1){jsonData = data.forName1}
+				else if(cnt == 2){jsonData = data.forName2}
+				else if(cnt == 3){jsonData = data.forName3}
+				else if(cnt == 4){jsonData = data.forName4}
 				
-			}
+				var last = Object.keys(jsonData).length;
+				for(var i = 0; i<Object.keys(jsonData).length; i++){
+					 
+					if(i == 0 || nowID != jsonData[i].id){
+						
+						if(i == 0 || nowTitle != jsonData[i].title){
+						$('#divT'+j).append('<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><img src="resources/image/lee.jpg" alt="이준호" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td><td colspan ="3"></td></tr>')
+						$('#divF'+j).append('<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>')
+						$('#divF'+j).append("<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>")
+						}else{
+							$('#divT'+j).append('<tr style="font-size: medium; font-weight: bold;"><td><img src="resources/image/lee.jpg" alt="이준호" class = "myPhoto"></td><td colspan = "5"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td></tr>')
+							$('#divF'+j).append('<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>')
+							$('#divF'+j).append("<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>")
+						}	
+					}
+					else{
+						if(i == 0 || nowTitle != jsonData[i].title){
+							$('#divT'+j).append('<tr style="font-size: medium; font-weight: bold;"><td><img src="resources/image/kang.jpg" alt="강경원" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td><td colspan = "3"></td></tr>')
+							$('#divF'+j).append('<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>')
+							$('#divF'+j).append("<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>")
+
+						}else{
+							$('#divF'+j).append("<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>")	
+							}
+					}
+					nowTitle = jsonData[i].title ;
+					nowID = jsonData[i].id;    
+				 } // for_i 	
+				cnt ++;
+			} // for_j 
 			
-			jsonData2 = data.forName2
-			console.log(jsonData2)
-			for(var i =0; i<Object.keys(jsonData2).length; i++){
-				if(i==0){
-					$('#BlogForm').append("<table>")
-					$('#BlogForm').append('<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><img src="resources/image/lee.jpg" alt="이준호" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData2[i].title+'<br>Name : '+jsonData2[i].userName+'<br>Date : '+jsonData2[i].date+'</td><td colspan ="3"></td></tr>')
-					$('#BlogForm').append('<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>')
-					$('#BlogForm').append("<tr><td>"+jsonData2[i].name +"</td><td>"+ jsonData2[i].target +"</td><td>"+jsonData2[i].kg +"</td><td>"+jsonData2[i].rep +"</td><td>"+jsonData2[i].title +"</td></tr>")	
-				}else if(i==lastNum){
-					$('#BlogForm').append("</table>")
-				}
-				else{
-					$('#BlogForm').append("<tr><td>"+jsonData2[i].name +"</td><td>"+ jsonData2[i].target +"</td><td>"+jsonData2[i].kg +"</td><td>"+jsonData2[i].rep +"</td><td>"+jsonData2[i].title +"</td></tr>")	
-				}
-				
-			}
-			
-			jsonData3 = data.forName3
-			console.log(jsonData3)
-			
-			for(var i =0; i<Object.keys(jsonData3).length; i++){
-				if(i==0){
-					$('#BlogForm').append("<table>")
-					$('#BlogForm').append('<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><img src="resources/image/kang.jpg" alt="이준호" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData3[i].title+'<br>Name : '+jsonData3[i].userName+'<br>Date : '+jsonData3[i].date+'</td><td colspan ="3"></td></tr>')
-					$('#BlogForm').append('<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>')
-					$('#BlogForm').append("<tr><td>"+jsonData3[i].name +"</td><td>"+ jsonData3[i].target +"</td><td>"+jsonData3[i].kg +"</td><td>"+jsonData3[i].rep +"</td><td>"+jsonData3[i].title +"</td></tr>")	
-				}else if(i==lastNum){
-					$('#BlogForm').append("</table>")
-				}
-				else{
-					$('#BlogForm').append("<tr><td>"+jsonData3[i].name +"</td><td>"+ jsonData3[i].target +"</td><td>"+jsonData3[i].kg +"</td><td>"+jsonData3[i].rep +"</td><td>"+jsonData3[i].title +"</td></tr>")	
-				}
-				
-			}
-			
-			
-			}, 
+		},
 		error:function(){
 			alert("실패")
 		}
 	}); // ajax 	
+	$('#divForm').scroll(function(){
+        var scrollT = $(this).scrollTop(); //스크롤바의 상단위치
+        var scrollH = $(this).height(); //스크롤바를 갖는 div의 높이
+        var contentH = $('#divContent').height(); //문서 전체 내용을 갖는 div의 높이
+        if(scrollT + scrollH +1 >= contentH) { // 스크롤바가 아래 쪽에 위치할 때
+            alert("T")
+        }
+    });
+
+
+	
 }); 
 </script>
 </head>
@@ -208,25 +210,18 @@ $(function(){
     </div>
   </div>
 </nav>
-<div id = "BlogForm">
 
 
-
-
-
-
-
-
-
-
-
-
-
-</div>
 
 <div align="center">
-	<div>
-			
+	<div id = "divForm"  style="overflow-y:scroll; height: 900px" >
+		<div id = "scorllTable">
+			<%for(int i=0; i<5; i++){%>		
+			<table class = "table"><thead id = "divT<%=i %>" style=" width: 800px; height: 120px; padding: 16px;" align="left"></thead>
+			<tbody id = "divF<%=i %>"></tbody>
+			</table>
+			<%} %>
+		</div>
 	</div>
 </div>
 

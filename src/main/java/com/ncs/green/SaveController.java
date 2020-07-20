@@ -1,5 +1,6 @@
 package com.ncs.green;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -76,7 +77,6 @@ public class SaveController {
 			vo.setTitle(array[i].getTitle());
 			List<SaveVO> test = service.findTest(vo);
 			System.out.println("==============================");
-			
 			String IDTest = "forName"+i;
 			mv.addObject(IDTest, test);
 			System.out.println("결과출력 : "+IDTest+test);

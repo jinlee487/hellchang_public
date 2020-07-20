@@ -1,6 +1,5 @@
 package vo;
 
-import java.sql.Date;
 
 public class SaveVO {
 	private String id;
@@ -9,11 +8,11 @@ public class SaveVO {
 	private int kg;
 	private int rep;
 	private String date;
-	
 	private String title;
 	private String shared;
-	
 	private String userName;
+	
+	
 	
 	public String getId() {
 		return id;
