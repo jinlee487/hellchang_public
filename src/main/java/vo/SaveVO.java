@@ -11,7 +11,7 @@ public class SaveVO {
 	private String title;
 	private String shared;
 	private String userName;
-	
+	private int pcnt;
 	
 	
 	public String getId() {
@@ -65,7 +65,6 @@ public class SaveVO {
 	}
 	
 	
-	
 	public String getUserName() {
 		return userName;
 	}
@@ -73,10 +72,14 @@ public class SaveVO {
 		this.userName = userName;
 	}
 	
+	
+	public void setPcnt(int pcnt) {
+		this.pcnt = pcnt;
+	}
 	@Override
 	public String toString() {
 		return "SaveVO [id=" + id + ", name=" + name + ", target=" + target + ", kg=" + kg + ", rep=" + rep + ", date="
-				+ date + ", title=" + title + ", shared=" + shared + ", userName=" + userName + "]";
+				+ date + ", title=" + title + ", shared=" + shared + ", userName=" + userName + ", pcnt=" + pcnt + "]";
 	}
 	
 

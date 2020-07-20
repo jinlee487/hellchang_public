@@ -24,16 +24,21 @@
 		text-align: center;
 	}
 	.buttonCss{
-		width: 315px;
+		width: 275px;
 		
 	}
 	button{
 		background-color: white;
 	}
+	
+	span:hover {
+		cursor: pointer;
+	}
 </style>
 
 <script>
 var logID = "${logID}";
+var lname;
 
 $(function(){
 	console.log("session : "+logID);
@@ -105,9 +110,9 @@ $(function(){
 		$('#linput').css("display","block");
 	});// ajax
 	
-	
+/* ---------------------------list Name Checked 확인 ---------------------------------- */
 	var eqId = new Array();
-	var lname;
+	
 	$("#listName").on("click", function(){
 		lname =  $('.lname').val();
 		
@@ -120,7 +125,7 @@ $(function(){
 		}
 		
 		if(lname.length>0){
-			$('.modal-body').append('<input type="checkbox" onClick="inputList(''"'+lname+'")" id="'+lname+'" name="'+lname+'" value="'+lname+'"><label for="'+lname+'">&nbsp;&nbsp;'+ lname +' </label><br>');
+			$('.modal-body').append('<input type="checkbox" onclick="inputList(\''+lname+'\')" id="'+lname+'" name="'+lname+'" value="'+lname+'"><label for="'+lname+'">&nbsp;&nbsp;'+ lname +' </label><br>');
 			$('.lname').val('');
 			
 			eqId.push($('#'+lname).val());	
@@ -143,87 +148,100 @@ $(function(){
 	});
 	
 	
-	/* $('#testT').click(function(){
-		console.log("ddddddddd");
-		
-		var table = document.getElementById("my-tbody");
-		var rowsCount = table.rows.length;
-		console.log(rowsCount);
-		for(var i =1 ; i<=rowsCount; i++){
+	
+	
+	
+}); // ready
+
+function inputList(data){
+	var table = document.getElementById("my-tbody");
+	var rowsCount = table.rows.length;
+	console.log(rowsCount);
+	
+	for(var i =1 ; i<=rowsCount; i++){
 		var id = logID;
 		var name = $('#name'+i).val();
 		var target =$('#target'+i).val();
 		var kg = $('#kg'+i).val();
 		var rep = $('#rep'+i).val();
-		var title = $('.title').val();
-		console.log(id+" ,"+name+" ,"+target+" ,"+kg+" ,"+rep+","+title)
-		$.ajax({
-			type:'Get',
-			url:'myRoutine',
-			data:{
-				id : id,
-				name : name,
-				target : target ,
-				kg : kg, 
-				rep : rep ,
-				title : title
-				},
-			success:function(data){
-				console.log("저장중..");
-				$('#my-tbody').empty();
-				},
-			error:function(){
-				console.log("저장실패..")
-				}	
-			}); // ajax
-		}
-	}); // Test */
+		var title = data;
+		var shared = true;
+		console.log("data test = > 	 " + title);
 	
-	
-});
-
-function inputList(data){
-
-	console.log("date => " + data);
-	
-	var table = document.getElementById("my-tbody");
-	var rowsCount = table.rows.length;
-	console.log(rowsCount);
-	for(var i =1 ; i<=rowsCount; i++){
-	var id = logID;
-	var name = $('#name'+i).val();
-	var target =$('#target'+i).val();
-	var kg = $('#kg'+i).val();
-	var rep = $('#rep'+i).val();
-	/* 해야될 부분~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-	var title = data;
-	var shared = false;
-	console.log(id+" ,"+name+" ,"+target+" ,"+kg+" ,"+rep+","+title+","+shared);
-	$.ajax({
-		type:'Get',
-		url:'myRoutine',
-		data:{
-			id : id,
-			name : name,
-			target : target ,
-			kg : kg, 
-			rep : rep ,
-			title : title,
-			shared : shared	
-			},
-		success:function(data){
-			console.log("저장중..");
-			$('#my-tbody').empty();
-			},
-		error:function(){
-			console.log("저장실패..")
-			}	
-		}); // ajax
-	}
+		/* console.log("check box Test ~~~~~~~~~~~~~~ =>"+$("input:checkbox[id="+title+"]").is(":checked")); */
+		
+		if($("input:checkbox[id="+title+"]").is(":checked")==false){
+			$.ajax({
+				type:'Get',
+				url:'myRoutineDel',
+				data:{
+					id : id,
+					name : name,
+					target : target ,
+					kg : kg, 
+					rep : rep ,
+					title : title,
+					shared : shared	
+					},
+				success:function(data){
+					console.log("저장 취소");
+					alert("저장 취소되었습니다.");
+					/* $('#my-tbody').empty(); */
+					},
+				error:function(){
+					console.log("저장 취소 실패..")
+					}	
+				}); // ajax
+			}
+		
+		if($("input:checkbox[id="+title+"]").is(":checked")==true){
+				$.ajax({
+					type:'Get',
+					url:'myRoutine',
+					data:{
+						id : id,
+						name : name,
+						target : target ,
+						kg : kg, 
+						rep : rep ,
+						title : title,
+						shared : shared	
+						},
+					success:function(data){
+						console.log("저장중..");
+ 						alert("저장 완료되었습니다.");
+						/* $('#my-tbody').empty(); */
+						},
+					error:function(){
+						console.log("저장실패..")
+						}	
+					}); // ajax	
+			}
+		
+		/* if($("input:checkbox[id=title]").is(":checked") == false){
+			$.ajax({
+				type:'Get',
+				url:'myRoutine',
+				data:{
+					id : id,
+					name : name,
+					target : target ,
+					kg : kg, 
+					rep : rep ,
+					title : title,
+					shared : shared	
+					},
+				success:function(data){
+					console.log("저장중..");
+					$('#my-tbody').empty();
+					},
+				error:function(){
+					console.log("저장실패..")
+					}	
+				}); // ajax
+		} */
+	}// for
 }
-	
-
-
 </script>
 <script>
 $(function(){
@@ -387,8 +405,8 @@ function pull3(){
   	
     
    <br>	 
-<div align="center">
-<table id = "mytest" border="1">
+<div align="center" >
+<table id = "mytest" border="1" style="width: 739px; height: 56px;">
   <thead align="center">
     
 	<tr align="center">
@@ -398,43 +416,9 @@ function pull3(){
     <td width="175">REP</td></tr>
   </thead>
   <tbody id="my-tbody"></tbody>
-  
-  <button class="buttonCss" id ="testT" type="button" data-toggle="modal" data-target="#myModal">Save</button>
-<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ modal ver ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ --> 
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          
-          <h4 class="modal-title"> List 저장하기 </h4>
-        </div>
-        <div class="modal-body" >
-        </div>
-        <div class="modal-footer">
-          <span id="addlist" style="display: block;">리스트 추가하기</span>
-          <div id="linput" style="display: none;">
-          	<span>이름</span>
-          	<input type="text" class="lname" placeholder="list 이름 입력">
-          	<button id="listName">Add</button>
-          </div>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ modal ver ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
-  <!-- <button id = "testT">Save</button>&nbsp;&nbsp; -->
-   &nbsp;&nbsp;
-   <button class="buttonCss">Shared</button>
-   <div style="height: 10px;"></div>
-   
 </table>
 <br><br>
-
-<select id = "targetT">
+<select id = "targetT" style="width: 85px;">
      <option>-------------
      <option value = "chest" >Chest
      <option value = "back"  >Back
@@ -445,14 +429,42 @@ function pull3(){
      <option value = "abs" >abs
      <option value = "aerobic">aerobic
      <option value = "core">core
-     
-     
-     </select>
-     <select id="targetingT" name="targetingT">
-     <option>--------------------</option>
-     </select>
-     <button onclick="add_row()" style="width: 75px">+</button>
-   <button onclick="delete_row()" style="width: 75px">-</button>
+</select>
+<select id="targetingT" name="targetingT" style="width: 125px;">
+	<option>--------------------</option>
+</select>
+   
+<button onclick="add_row()" style="width: 122px">+</button>
+<button onclick="delete_row()" style="width: 122px">-</button>
+<button class="buttonCss" type="button" data-toggle="modal" data-target="#myModal">Save</button>
+
+<div style="height: 10px;"></div>
+<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ modal ver ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ --> 
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"> List 저장하기 </h4>
+        </div>
+        <div class="modal-body" >
+        	<c:forEach var="list" items="${list}">
+        		<input type="checkbox" onclick="inputList('${list.title}')" id="${list.title}" name="${list.title}" value="${list.title}"><label for="${list.title}">&nbsp;&nbsp;${list.title}</label><br>
+        	</c:forEach>
+        </div>
+        <div class="modal-footer">
+        	<span id="addlist" style="display: block;">리스트 추가하기</span>
+        	<div id="linput" style="display: none;">
+          		<span>이름</span>
+          		<input type="text" class="lname" placeholder="list 이름 입력">
+          		<span id="listName">Add</span>
+          	</div>
+        </div>
+      </div>
+    </div>
+  </div>
 <br>
 </div>
 <script>

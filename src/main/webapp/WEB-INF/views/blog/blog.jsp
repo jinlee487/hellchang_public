@@ -83,14 +83,6 @@
 .table td{
 	text-align: center;
 }
-/*
-.test tr td:first-child{
-     text-align: center;
-}
-.test caption{caption-side: bottom; display: none;} 
-*/
- 
-
    
    
    
@@ -113,6 +105,7 @@
 
 $(function(){
 	var cnt = 0;
+	var last = 0;
 	$.ajax({
 		type:'Get',
 		dataType : "json",
@@ -129,7 +122,7 @@ $(function(){
 				else if(cnt == 3){jsonData = data.forName3}
 				else if(cnt == 4){jsonData = data.forName4}
 				
-				var last = Object.keys(jsonData).length;
+				last = Object.keys(jsonData).length;
 				for(var i = 0; i<Object.keys(jsonData).length; i++){
 					 
 					if(i == 0 || nowID != jsonData[i].id){
@@ -162,9 +155,30 @@ $(function(){
 			
 		},
 		error:function(){
-			alert("실패")
+			
 		}
-	}); // ajax 		
+	}); // ajax 
+$(window).scroll(function(){
+	console.log($(document).height())
+	console.log($(window).scrollTop())
+	console.log($(window).height())
+	if($(document).height() <= $(window).scrollTop() + $(window).height()){
+		
+	loadNext();
+	}
+	function loadNext(){
+		$.ajax({
+			type:'Get',
+			dataType : "json",
+			success:function(data){
+			},
+			error:function(){
+			}
+	})
+	}
+});
+
+
 }); 
 
 
@@ -200,17 +214,12 @@ $(function(){
 </nav>
 
 
-
-<div align="center">
-	<div id = "divForm"  style="overflow-y:scroll; height: 900px" >
-		<div id = "scorllTable">
-			<%for(int i=0; i<5; i++){%>		
-			<table class = "table"><thead id = "divT<%=i %>" style=" width: 800px; height: 120px; padding: 16px;" align="left"></thead>
-			<tbody id = "divF<%=i %>"></tbody>
-			</table>
-			<%} %>
-		</div>
-	</div>
+<div align="center"><br><br>
+	<%for(int i=0; i<5; i++){%>		
+	<table class = "table"><thead id = "divT<%=i %>" style=" width: 800px; height: 120px; padding: 16px;" align="left"></thead>
+	<tbody id = "divF<%=i %>"></tbody>
+	</table>
+	<%} %>	
 </div>
 
 
@@ -225,6 +234,5 @@ $(function(){
 		<span class="all_r footfont">All Rights Reserved.</span>
 	</address>
 </div>
- 
 </body>
 </html>
