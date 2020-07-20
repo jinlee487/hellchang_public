@@ -112,10 +112,7 @@
 <script type="text/javascript">
 
 $(function(){
-
-	
 	var cnt = 0;
-	
 	$.ajax({
 		type:'Get',
 		dataType : "json",
@@ -167,19 +164,10 @@ $(function(){
 		error:function(){
 			alert("실패")
 		}
-	}); // ajax 	
-	$('#divForm').scroll(function(){
-        var scrollT = $(this).scrollTop(); //스크롤바의 상단위치
-        var scrollH = $(this).height(); //스크롤바를 갖는 div의 높이
-        var contentH = $('#divContent').height(); //문서 전체 내용을 갖는 div의 높이
-        if(scrollT + scrollH +1 >= contentH) { // 스크롤바가 아래 쪽에 위치할 때
-            alert("T")
-        }
-    });
-
-
-	
+	}); // ajax 		
 }); 
+
+
 </script>
 </head>
 <body>
