@@ -35,11 +35,11 @@ public class WorkoutController {
 		
 		List<SaveVO> list = sService.selectTList();
 		
+		System.out.println("list test => " + list);
 		request.getSession().getAttribute("logID");
 		request.getSession().getAttribute("logName");
 		
 		mv.addObject("list", list);
-		
 		
 		mv.setViewName("myRoutine/myRoutine");
 		return mv; 

@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="resources/jqLib/noobCss.css">
   
-  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
+  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -123,10 +123,17 @@ $(function(){
 				return;
 			}		
 		}
+
+		/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!하고있는 부분!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  */
+		var a = document.querySelectorAll("input");
+		console.log("lname test => " + a[5].value);
+		//console.log("selector all test => " + a.value);
 		
 		if(lname.length>0){
 			$('.modal-body').append('<input type="checkbox" onclick="inputList(\''+lname+'\')" id="'+lname+'" name="'+lname+'" value="'+lname+'"><label for="'+lname+'">&nbsp;&nbsp;'+ lname +' </label><br>');
 			$('.lname').val('');
+			
+			
 			
 			eqId.push($('#'+lname).val());	
 					
@@ -210,6 +217,7 @@ function inputList(data){
 					success:function(data){
 						console.log("저장중..");
  						alert("저장 완료되었습니다.");
+ 						self.close();
 						/* $('#my-tbody').empty(); */
 						},
 					error:function(){
@@ -347,9 +355,8 @@ function pull3(){
       <ul class="nav navbar-nav">
         <li><a href="noob">Noob</a></li>
         <li><a href="routine">Routine</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="inbodyf">Inbody</a></li>
-        <li><a href="one">1RM</a></li>
+        <li><a href="blog">Blog</a></li>
+        <li><a href="one">OneRM</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right" >
 		<c:if test="${logID==null }">
@@ -451,7 +458,9 @@ function pull3(){
         </div>
         <div class="modal-body" >
         	<c:forEach var="list" items="${list}">
-        		<input type="checkbox" onclick="inputList('${list.title}')" id="${list.title}" name="${list.title}" value="${list.title}"><label for="${list.title}">&nbsp;&nbsp;${list.title}</label><br>
+        		<c:if test="${logID eq list.id}">
+        			<input type="checkbox" onclick="inputList('${list.title}')" id="${list.title}" name="${list.title}" value="${list.title}"><label for="${list.title}">&nbsp;&nbsp;${list.title}</label><br>
+        		</c:if>
         	</c:forEach>
         </div>
         <div class="modal-footer">

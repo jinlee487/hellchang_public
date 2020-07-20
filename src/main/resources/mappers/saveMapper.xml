@@ -23,7 +23,7 @@
   </select>
   
   <select id="selectTList" resultType="vo.SaveVO">
-	select title from `hellchang_schema_test`.`myRoutine` group by title
+	select id,title from `hellchang_schema_test`.`myRoutine` group by title
   </select> 
   
   <select id="allList" resultType="vo.SaveVO">

@@ -9,7 +9,8 @@ address {
 }
 
 #footer{
-	position: relative;
+	position: absolute;
+	bottom : 0;
 	z-index: -100;
 	color: black;
 	clear: both;

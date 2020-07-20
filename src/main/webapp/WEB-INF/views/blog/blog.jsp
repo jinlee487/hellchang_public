@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -198,20 +199,26 @@ $(function(){
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="noob">Noob</a></li>
-		<li><a href="routine">Routine</a></li>
-		<li><a href="myblog">Blog</a></li>
-		<li><a href="one">OneRM</a></li>
+        <li><a href="routine">Routine</a></li>
+        <li><a href="blog">Blog</a></li>
+        <li><a href="one">OneRM</a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-      <li><a href="prof">UserTest</a></li>
-      	<li><a href="joinf">회원가입</a></li>
-        <li><a href="loginf"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
+      <ul class="nav navbar-nav navbar-right" >
+		<c:if test="${logID==null }">
+			<li><a href="loginf"><span class="glyphicon glyphicon-log-in"></span> Login</a><li>
+		</c:if>
+		<c:if test="${logID!=null }">
+			<li><a style="color: white;">${logName}님</a></li>
+			<li><a href="prof">MyProfile</a></li>
+			<li><a href="logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+		</c:if>
+	  </ul>
     </div>
   </div>
 </nav>
 
 
+<a href="myblog">임시 my Blog</a>
 
 <div align="center">
 	<div id = "divForm"  style="overflow-y:scroll; height: 900px" >
