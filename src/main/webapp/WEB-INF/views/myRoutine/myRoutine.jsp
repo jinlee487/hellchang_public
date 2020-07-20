@@ -66,7 +66,39 @@ $(function(){
 		}	
 		}); // ajax
 	}); // alogin_click	
-	
+
+	$('#testT').click(function(){
+		
+		var table = document.getElementById("my-tbody");
+		var rowsCount = table.rows.length;
+		console.log(rowsCount);
+		for(var i =1 ; i<=rowsCount; i++){
+		var id = logID;
+		var name = $('#name'+i).val();
+		var target =$('#target'+i).val();
+		var kg = $('#kg'+i).val();
+		var rep = $('#rep'+i).val();
+		console.log(id+" ,"+name+" ,"+target+" ,"+kg+" ,"+rep)
+		$.ajax({
+			type:'Get',
+			url:'myRoutine',
+			data:{
+				id : id,
+				name : name,
+				target : target ,
+				kg : kg, 
+				rep : rep 
+				},
+			success:function(data){
+				console.log("저장중..");
+				$('#my-tbody').empty();
+				},
+			error:function(){
+				console.log("저장실패..")
+				}	
+			}); // ajax
+		}
+	}); // Test
 
 	
 	$('#addlist').hover(function(){

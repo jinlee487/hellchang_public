@@ -31,7 +31,12 @@
   </select> 
    
   <select id="blogTest" resultType="vo.SaveVO"> 
-	select * from `hellchang_schema_test`.`myRoutine` order by id,title 
+	select * from `hellchang_schema_test`.`myRoutine` where shared = 'true' group by id,title order by date desc limit 5 ;
   </select>
   
+  <select id="findTest" resultType="vo.SaveVO"> 
+	select myRoutine.* ,member.name as userName from hellchang_schema_test.myRoutine , hellchang_schema_test.member
+	where  myRoutine.id = #{id} and myRoutine.title = #{title} and myRoutine.id = member.id
+  </select>
+ 
  </mapper>

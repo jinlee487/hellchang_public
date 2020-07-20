@@ -1,7 +1,9 @@
 package com.ncs.green;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -79,32 +81,26 @@ public class SaveController {
 	}// mdetail
 
 	
+
+	
 	@RequestMapping(value = "/blogTest")
-	public ModelAndView blogTest(ModelAndView mv) {
+	public ModelAndView blogTest(HttpServletRequest request, ModelAndView mv, SaveVO vo) {
+		SaveVO[] array = {}; 
 		List<SaveVO> list = service.blogTest();
-		if (list != null) {
-			mv.addObject("Banana", list); // scope 이 request 와 동일
-		} else {
-			mv.addObject("message", "~~ 검색된 자료가 1건도 없습니다. ~~");
-		}
 		System.out.println(list);
+		array = list.toArray(new SaveVO[list.size()]);
+		for(int i=0; i<array.length; i++) {
+			vo.setId(array[i].getId());
+			vo.setTitle(array[i].getTitle());
+			List<SaveVO> test = service.findTest(vo);
+			System.out.println("==============================");
+			String IDTest = "forName"+i;
+			mv.addObject(IDTest, test);
+			System.out.println("결과출력 : "+IDTest+test);
+			mv.setViewName("jsonView");
 		
-		mv.setViewName("jsonView");
+		}
+		
 		return mv;
-	} // mlist
-	
-//	@RequestMapping(value = "/blogTest1")
-//	public ModelAndView blogTest1(ModelAndView mv) {
-//		List<SaveVO> list = service.blogTest();
-//		if (list != null) {
-//			mv.addObject("Banana", list); // scope 이 request 와 동일
-//		} else {
-//			mv.addObject("message", "~~ 검색된 자료가 1건도 없습니다. ~~");
-//		}
-//		System.out.println(list);
-//		mv.setViewName("blogTest1");
-//		return mv;
-//	} // mlist
-	
-	
+	}// mdetail
 }

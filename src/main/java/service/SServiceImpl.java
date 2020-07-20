@@ -20,6 +20,11 @@ public class SServiceImpl implements SService {
 	} // selectList()
 
 	@Override
+	public List<SaveVO> findTest(SaveVO vo) {
+		return dao.findTest(vo) ;
+	} // selectList()
+	
+	@Override
 	public List<SaveVO> blogTest() {
 		return dao.blogTest() ;
 	} // selectList()

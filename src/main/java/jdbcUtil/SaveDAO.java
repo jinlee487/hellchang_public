@@ -15,6 +15,10 @@ public class SaveDAO {
 	private SqlSession sqlsession;
 	private static final String NS="green.mappers.saveMapper.";
 	
+	public List<SaveVO> findTest(SaveVO vo) {
+		return sqlsession.selectList(NS+"findTest", vo);
+	} // selectList()
+	
 	public List<SaveVO> selectList(SaveVO vo) {
 		return sqlsession.selectList(NS+"selectList" , vo) ;
 	} // selectList()
