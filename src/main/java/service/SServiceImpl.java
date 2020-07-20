@@ -24,10 +24,6 @@ public class SServiceImpl implements SService {
 		return dao.allList(vo) ;
 	} // selectList()
 	
-	@Override
-	public List<SaveVO> myBlog(SaveVO vo) {
-		return dao.myBlog(vo) ;
-	} // selectList()
 	
 	@Override
 	public List<SaveVO> selectList(SaveVO vo) {

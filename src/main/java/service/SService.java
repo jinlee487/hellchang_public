@@ -15,7 +15,6 @@ public interface SService {
 	List<SaveVO> allList(SaveVO vo);
 
 	List<SaveVO> blogTest();
-	
-	List<SaveVO> myBlog(SaveVO vo);
+
 } // interface
 

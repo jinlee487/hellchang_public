@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -77,7 +78,27 @@ public class SaveController {
 		return mv;
 	} // mlist
 	
-
+	@RequestMapping(value = "/myblog")
+	public ModelAndView myblog(ModelAndView mv, HttpServletRequest request, SaveVO vo) {
+		
+		HttpSession session = request.getSession(false);
+		String logID="";
+		if (session != null && session.getAttribute("logID") != null)  {
+			logID = (String)session.getAttribute("logID");
+		} else System.out.println("~~ session is null 또는 login ID is null ~~");
+		vo = service.selectOne(vo);
+		
+		List<SaveVO> list = service.blogTest();
+		if (list != null) {
+			mv.addObject("Banana", list); // scope 이 request 와 동일
+		} else {
+			mv.addObject("message", "~~ 검색된 자료가 1건도 없습니다. ~~");
+		}
+		System.out.println(list);
+		
+		mv.setViewName("jsonView");
+		return mv;
+	} // mlist
 	
 
 	
