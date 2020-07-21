@@ -130,10 +130,10 @@ button:hover {
   <div>
   
    <label for="name" class="int"><b>Email</b></label><br>
-      <p class="text-center">${myInfo.id }</p><br>
+      <p class="text-center">${logID }</p><br>
    
     <label for="name" class="int"><b>Name</b></label><br>
-      <p class="text-center">${myInfo.name }</p>
+      <p class="text-center">${logName }</p>
       <a href="#name" data-toggle="collapse">
       <b>이름 수정하기</b>
       </a>
@@ -148,7 +148,7 @@ button:hover {
     
     
     <label for="phonenumber" class="int"><b>Phone Number</b></label><br>
-    <p class="text-center">${myInfo.phone}</p>
+    <p class="text-center">${logPhone}</p>
       <a href="#phonenumber" data-toggle="collapse">
       <b>폰 번호 수정하기</b>
       </a>
@@ -797,7 +797,7 @@ button:hover {
                                             홍콩 +852
                                         </option>
                         </select><br><br>
-    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="phoneNo"  id="phoneNo" placeholder="Ex 010-1234-5678" class="input" value="${myInfo.phoneNo }"><br>
+    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="phoneNo"  id="phoneNo" placeholder="Ex 010-1234-5678" class="input" value="${logPhone}"><br>
        <a href="#phonenumber" data-toggle="collapse">
        <input type="reset" value="취소"></a>
        <input type="submit" value="전송">&nbsp;&nbsp;
@@ -806,15 +806,15 @@ button:hover {
 	
 	
 	<label for="location" class="int"><b>location</b></label><br>
-	 <p class="text-center">${myInfo.address }</p>
+	 <p class="text-center">${logaddress}</p>
       <a href="#location" data-toggle="collapse">
       <b>주소 수정하기</b>
       </a>
       <div id="location" class="collapse">
-       <input style="width: 20%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px; margin-right: 40%; cursor: pointer;" type="text" name="zipcode" id="zipcode" size="7" onClick="sample4_execDaumPostcode()" readonly placeholder="우편번호" value="${myInfo.zipcode }">
+       <input style="width: 20%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px; margin-right: 40%; cursor: pointer;" type="text" name="zipcode" id="zipcode" size="7" onClick="sample4_execDaumPostcode()" readonly placeholder="우편번호" value="${logzipcode }">
 	<br><br>
-    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="address1" id="address1" readonly placeholder="주소입력해주세요" value="${myInfo.address1}"><br><br>
-    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="address2" id="address2" placeholder="상세주소를 입력해주세요" value="${myInfo.address2 }"><br>
+    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="address1" id="address1" readonly placeholder="주소입력해주세요" value="${logaddress1}"><br><br>
+    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="address2" id="address2" placeholder="상세주소를 입력해주세요" value="${logaddress2}"><br>
        <a href="#location" data-toggle="collapse">
        <input type="reset" value="취소"></a>
        <input type="submit" value="전송">&nbsp;&nbsp;
@@ -829,9 +829,9 @@ button:hover {
       </a>
       <div id="password" class="collapse">
        <label for="psw" class="int"><b>Password</b></label><br> 
-    <input style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Enter Password"  name="password" class="input" value="" ><br>
+    <input style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Enter Password"  name="password" class="input" value="${logpassword}" ><br>
     <label for="psw-repeat" class="int"><b>Repeat Password</b></label><br>
-    <input  style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Repeat Password" name="psw-repeat" class="input" value=""><br>
+    <input  style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Repeat Password" name="psw-repeat" class="input" value="${logpassword}"><br>
        <a href="#password" data-toggle="collapse">
        <input type="reset" value="취소"></a>
        <input type="submit" value="전송">&nbsp;&nbsp;
@@ -906,7 +906,7 @@ function sample4_execDaumPostcode() {
    new daum.Postcode({
 	    oncomplete: function(data) {
 	    	 document.getElementById('zipcode').value = data.zonecode;
-	         document.getElementById("address").value = data.address;
+	         document.getElementById("address1").value = data.address;
 	    }
 	}).open();
 }
