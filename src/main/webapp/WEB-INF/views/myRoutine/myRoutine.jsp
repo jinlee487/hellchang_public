@@ -8,6 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="resources/jqLib/noobCss.css">
   
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
   <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -16,12 +18,37 @@
   <link rel="stylesheet" type="text/css" href="resources/jqLib/topBar.css">
 
 <style type="text/css">
+
+	.material-icons{
+		font-size: 18px;
+	}
+	
+	/* modal 가운데 위치 (Css) */
+	.modal {
+        text-align: center;
+	}
+	@media screen and (min-width: 768px) { 
+        .modal:before {
+                display: inline-block;
+                vertical-align: middle;
+                content: " ";
+                height: 100%;
+        }
+	}
+	.modal-dialog {
+        display: inline-block;
+        text-align: left;
+	}
+	/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+
+	.modal-header{
+	}
 	.modal-content{
+		margin: 0 auto;
 		width: 300px;
-		text-align: left;
 	}
 	.modal-footer{
-		text-align: center;
+	
 	}
 	.buttonCss{
 		width: 275px;
@@ -110,9 +137,6 @@ $(function(){
 		$('#linput').css("display","block");
 	});// ajax
 	
-/* ---------------------------list Name Checked 확인 ---------------------------------- */
-	
-	
 	$("#listName").on("click", function(){
 		oldTitle = document.querySelectorAll("input.oldTitle");
 		lname =  $('.lname').val();
@@ -126,40 +150,34 @@ $(function(){
 				
 		}		
 	} 
-
-		/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!하고있는 부분!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  */
-		
-		//console.log("lname test => " + a[5].value);
-		//console.log("selector all test => " + a.value);
 		
 		if(lname.length>0){
-			$('.modal-body').append('<input type="checkbox" onclick="inputList(\''+lname+'\')" class="oldTitle" name="'+lname+'" value="'+lname+'"><label for="'+lname+'">&nbsp;&nbsp;'+ lname +' </label><br>');
+			if($('#Privacy').val() == 'true'){
+				$('.modal-body').append('<input type="checkbox" onclick="inputList(\''+lname+'\')" class="oldTitle" name="'+lname+'" value="'+lname+'"><label for="'+lname+'">&nbsp;&nbsp;'+ lname 
+				+' </label> <i style="vertical-align: sub;" class="material-icons">lock_open</i> <br>');
+			}else{
+				$('.modal-body').append('<input type="checkbox" onclick="inputList(\''+lname+'\')" class="oldTitle" name="'+lname+'" value="'+lname+'"><label for="'+lname+'">&nbsp;&nbsp;'+ lname 
+				+' </label> <i style="vertical-align: sub;" class="material-icons">lock_outline</i> <br>');
+				$('.modal-body').append()	
+			}
+			
+			
 			$('.lname').val('');
 			
-			//eqId.push($('#'+lname).val());	
-					
 			$('#addlist').css("display","block");
 			$('#linput').css("display","none");
-			/* eqId.length */
-			console.log('ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ');
 		}
 		if(lname.length<=0){
 			alert("list 이름을 적어주세요.");
 		}
-
-/* 		console.log("lname test =>" +lname);
-		console.log(lname); */
 	});
-	
-	
-	
-	
-	
 }); // ready
 
 function inputList(data){
 	var table = document.getElementById("my-tbody");
 	var rowsCount = table.rows.length;
+	var shared = $('#Privacy').val();
+	
 	console.log(rowsCount);
 	
 	for(var i =1 ; i<=rowsCount; i++){
@@ -169,7 +187,7 @@ function inputList(data){
 		var kg = $('#kg'+i).val();
 		var rep = $('#rep'+i).val();
 		var title = data;
-		var shared = true;
+		var shared = shared;
 		console.log("data test = > 	 " + data);
 		console.log("title test = >  " + title);
 	
@@ -446,34 +464,6 @@ function pull3(){
 <button class="buttonCss" type="button" data-toggle="modal" data-target="#myModal">Save</button>
 
 <div style="height: 10px;"></div>
-<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ modal ver ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ --> 
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title"> List 저장하기 </h4>
-        </div>
-        <div class="modal-body" >
-        	<c:forEach var="list" items="${list}">
-        		<c:if test="${logID eq list.id}">
-        			<input type="checkbox" onclick="inputList('${list.title}')" class="oldTitle" name="${list.title}" value="${list.title}"><label for="${list.title}">&nbsp;&nbsp;${list.title}</label><br>
-        		</c:if>
-        	</c:forEach>
-        </div>
-        <div class="modal-footer">
-        	<span id="addlist" style="display: block;">리스트 추가하기</span>
-        	<div id="linput" style="display: none;">
-          		<span>이름</span>
-          		<input type="text" class="lname" placeholder="list 이름 입력">
-          		<span id="listName">Add</span>
-          	</div>
-        </div>
-      </div>
-    </div>
-  </div>
 <br>
 </div>
 <script>
@@ -520,17 +510,10 @@ function delete_row() {
 </div><br>
 
 <div class="container-fluid bg-3 text-center">    
-  <div class="row">
-  	
-  	
-  	
-  	
-  </div>
+  <div class="row"></div>
 </div><br><br>
 
 <div id="footer" role="contentinfo">
-
-
 <!-- <hr style="width: 100%;">
 <hr style="width: 100%; border-color: black;"> -->
 		<address>
@@ -541,5 +524,46 @@ function delete_row() {
 			<span class="all_r footfont" >All Rights Reserved.</span>
 		</address>
 </div>
+<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ modal ver ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ --> 
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog ">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">List</h4>
+        </div>
+        <div class="modal-body" >
+        	<c:forEach var="list" items="${list}">
+        		<c:if test="${logID eq list.id}">
+        			<input type="checkbox" onclick="inputList('${list.title}')" class="oldTitle" name="${list.title}" value="${list.title}"><label for="${list.title}">&nbsp;&nbsp;${list.title}</label>
+        			<c:if test="${list.shared == false }">
+						<i style="vertical-align: sub;" class="material-icons">lock_outline</i>    				
+        			</c:if>
+        			<c:if test="${list.shared == true }">
+						<i style="vertical-align: sub;" class="material-icons">lock_open</i>        				
+        			</c:if>
+        			<br>
+        		</c:if>
+        	</c:forEach>
+        </div>
+        <div class="modal-footer">
+        	<span id="addlist" style="display: block;">리스트 추가하기</span>
+        	<div id="linput" style="display: none;">
+          		<span style="text-align: left">이름</span><br>
+          		<input type="text" style="width: 100%" class="lname" placeholder="list 이름 입력">
+          		<br><br>
+      			<span style="text-align: left">공개 범위 설정</span><br>
+          		<select id="Privacy" style="width: 100%">
+          			<option value="true">공개</option>
+          			<option value="false">비공개</option>
+          		</select>
+          	 	<span id="listName" style="text-align: center">Add</span>
+          	</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
