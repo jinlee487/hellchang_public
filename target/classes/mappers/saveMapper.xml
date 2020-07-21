@@ -23,7 +23,7 @@
   </select>
   
   <select id="selectTList" resultType="vo.SaveVO">
-	select title from `hellchang_schema_test`.`myRoutine` group by title
+	select id,title,shared from `hellchang_schema_test`.`myRoutine` group by title
   </select> 
   
   <select id="allList" resultType="vo.SaveVO">
@@ -39,7 +39,7 @@
   
   <select id="blogTestS" resultType="vo.SaveVO"> 
 	<![CDATA[
-	select * 
+  select * 
   from (select @rownum:=@rownum+1 as rownum, m.* from `hellchang_schema_test`.`myRoutine` as m, 
   (select @rownum :=0) R order by date desc)sub
   where rownum >= #{rownum}
