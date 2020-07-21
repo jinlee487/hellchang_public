@@ -23,5 +23,7 @@ public interface SService {
 	
 	List<SaveVO> blogTest();
 	
+	List<SaveVO> blogTestS(SaveVO svo);
+	
 } // interface
 

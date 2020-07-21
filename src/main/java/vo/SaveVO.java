@@ -11,8 +11,7 @@ public class SaveVO {
 	private String title;
 	private String shared;
 	private String userName;
-	private int pcnt;
-	
+	private int rownum;
 	
 	public String getId() {
 		return id;
@@ -73,13 +72,19 @@ public class SaveVO {
 	}
 	
 	
-	public void setPcnt(int pcnt) {
-		this.pcnt = pcnt;
+
+	
+	public int getRownum() {
+		return rownum;
+	}
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
 	}
 	@Override
 	public String toString() {
 		return "SaveVO [id=" + id + ", name=" + name + ", target=" + target + ", kg=" + kg + ", rep=" + rep + ", date="
-				+ date + ", title=" + title + ", shared=" + shared + ", userName=" + userName + ", pcnt=" + pcnt + "]";
+				+ date + ", title=" + title + ", shared=" + shared + ", userName=" + userName + ", rownum=" + rownum
+				+ "]";
 	}
 	
 
