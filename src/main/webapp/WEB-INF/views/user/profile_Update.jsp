@@ -126,14 +126,14 @@ button:hover {
           <div class="panel panel-default text-center">
           <div class="panel-heading"><label>Update</label></div>
             <div class="panel-body">
-				 <form action="mdetail" method="post" >
+				 <form action="mupdate" method="post" enctype="multipart/form-data">
   <div>
   
    <label for="name" class="int"><b>Email</b></label><br>
-      <p class="text-center">${logID }</p><br>
+      <p class="text-center">${myInfo.id }</p><br>
    
     <label for="name" class="int"><b>Name</b></label><br>
-      <p class="text-center">${logName }</p>
+      <p class="text-center">${myInfo.name }</p>
       <a href="#name" data-toggle="collapse">
       <b>이름 수정하기</b>
       </a>
@@ -148,7 +148,7 @@ button:hover {
     
     
     <label for="phonenumber" class="int"><b>Phone Number</b></label><br>
-    <p class="text-center">${logPhone}</p>
+    <p class="text-center">${myInfo.phone}</p>
       <a href="#phonenumber" data-toggle="collapse">
       <b>폰 번호 수정하기</b>
       </a>
@@ -797,7 +797,7 @@ button:hover {
                                             홍콩 +852
                                         </option>
                         </select><br><br>
-    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="phoneNo"  id="phoneNo" placeholder="Ex 010-1234-5678" class="input" value="${logPhone}"><br>
+    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="phoneNo"  id="phoneNo" placeholder="Ex 010-1234-5678" class="input" value="${myInfo.phone}"><br>
        <a href="#phonenumber" data-toggle="collapse">
        <input type="reset" value="취소"></a>
        <input type="submit" value="전송">&nbsp;&nbsp;
@@ -806,7 +806,7 @@ button:hover {
 	
 	
 	<label for="location" class="int"><b>location</b></label><br>
-	 <p class="text-center">${logaddress}</p>
+	 <p class="text-center">${myInfo.address}</p>
       <a href="#location" data-toggle="collapse">
       <b>주소 수정하기</b>
       </a>
@@ -829,9 +829,9 @@ button:hover {
       </a>
       <div id="password" class="collapse">
        <label for="psw" class="int"><b>Password</b></label><br> 
-    <input style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Enter Password"  name="password" class="input" value="${logpassword}" ><br>
+    <input style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Enter Password"  name="password" class="input" value="${myInfo.password}" ><br>
     <label for="psw-repeat" class="int"><b>Repeat Password</b></label><br>
-    <input  style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Repeat Password" name="psw-repeat" class="input" value="${logpassword}"><br>
+    <input  style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Repeat Password" name="psw-repeat" class="input" value="${myInfo.password}"><br>
        <a href="#password" data-toggle="collapse">
        <input type="reset" value="취소"></a>
        <input type="submit" value="전송">&nbsp;&nbsp;

@@ -194,6 +194,7 @@ public class MemberController {
 		mv.setViewName("user/profile_myProfile");
 		if ("U".equals(request.getParameter("code"))) {
 			// 내정보 수정화면으로
+			session.setAttribute("encodedPassword", vo.getPassword());
 			mv.setViewName("user/profile_Update");
 		} else if ("E".equals(request.getParameter("code"))) { // 내정보 수정에서 오류 상황
 			mv.addObject("message", "~~ 내정보 수정 오류  !!! 다시 하세요 ~~");
@@ -214,7 +215,7 @@ public class MemberController {
 		vo.setPassword((String)request.getSession().getAttribute("encodedPassword"));
 	}
 	
-	if (service.update(vo) > 0) {
+	if (service.mupdate(vo) > 0) {
 		// 회원수정 성공 -> memberList 출력
 		// session 의 Attribute logName 도 변경
 		request.getSession().setAttribute("loginName", vo.getName());
