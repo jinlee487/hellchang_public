@@ -97,12 +97,12 @@
 				<!-- 제외시킬 파일 경로 
 				<exclude-mapping path="joinF"/>
 				-->
-				<mvc:mapping path="/myRoutine"/>
+				<mvc:mapping path="/routine"/>
 				<beans:ref bean="LoginInterceptor"/>
 			</mvc:interceptor>
 	</mvc:interceptors>	
 	
-	
+</beans:beans>
 	
 	
 	<!-- <?xml version="1.0" encoding="UTF-8"?>
@@ -129,4 +129,4 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
 </beans:beans>
 
  -->
-</beans:beans>
+

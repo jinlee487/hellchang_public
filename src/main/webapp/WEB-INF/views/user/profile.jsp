@@ -18,10 +18,46 @@
   <link rel="stylesheet" type="text/css" href="resources/jqLib/topBar.css">
   
   <style>
-  @media (min-width: 768px){
+  	@media (min-width: 768px){
 	.col-sm-4 {
 	  /* margin-left: 200px; */
 	  text-align: center;
+	}
+	
+	/* modal 가운데 위치 (Css) */
+	.modal {
+        text-align: center;
+	}
+	@media screen and (min-width: 768px) { 
+        .modal:before {
+                display: inline-block;
+                vertical-align: middle;
+                content: " ";
+                height: 100%;
+        }
+	}
+	.modal-dialog {
+        display: inline-block;
+        text-align: left;
+	}
+	/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+	.modal-content{
+		margin: 0 auto;
+		width: 300px;
+	}
+	
+	.bEffect{
+		border: 0;
+		outline: 0;
+		border-color: #f5f5f5;
+		color:#f5f5f5;
+		background-color: #f5f5f5;
+	}
+	.modal-title{
+		text-align: center;
+		color: #262626;
+		font-size: 18px;
+		font-style: -apple-system;
 	}
   </style>
 </head>
@@ -76,9 +112,11 @@
     <div class="col-sm-3 well">
       <div class="well">
         <p><a href="myProfile">My Profile</a></p>
-        <img src="${profile_image}" class="img-circle" height="100" width="100" alt="Avatar">
+        <a type="button" data-toggle="modal" data-target="#myModal">
+        <button class="bEffect" title="프로필 사진 바꾸기">
+        	<img src="${mem.image_path}" class="img-circle" height="100" width="100" alt="프로필 사진 바꾸기">
+        </button>
       </div>
-
 		<ul class="nav nav-pills nav-stacked">
 		  <li><a href="#">Start Workout</a></li>
 		  <li><a href="manageWorkout">Manage Workout</a></li>
@@ -198,7 +236,25 @@
 			<span class="all_r footfont">All Rights Reserved.</span>
 		</address>
 </div>
-
-
+<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ modal ver ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ --> 
+  <!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog ">
+      <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h3 class="modal-title">프로필 사진 바꾸기</h3>
+      </div>
+      <div class="modal-body" >	
+      	<button>사진업로드</button>
+      	<hr>
+      	<button>현재 사진 삭제</button>
+      </div>
+      <div class="modal-footer">
+        <button>취소</button>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

@@ -43,7 +43,13 @@ public class MemberController {
 		return mv; 
 	} // 
 	@RequestMapping(value = "/prof")
-	public ModelAndView prof(ModelAndView mv) {
+	public ModelAndView prof(ModelAndView mv, HttpServletRequest request, MemberVO vo) {
+		String id = (String) request.getSession().getAttribute("logID");
+		vo.setId(id);
+		vo = service.selectOne(vo);
+		
+		mv.addObject("mem", vo);
+		
 		mv.setViewName("user/profile");
 		return mv; 
 	} // 
@@ -144,7 +150,10 @@ public class MemberController {
 				// 로그인 성공 -> login 정보 보관 (id, name을 session에) -> loginSuccess
 				request.getSession().setAttribute("logID", vo.getId());
 				request.getSession().setAttribute("logName", vo.getName());
-				request.getSession().setAttribute("profile_image", vo.getImage_path());
+				
+				// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!주의!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				// 	session에 저장할 필요없을거 같아서 일단 주석처리하고 직접 불러와서 사용하겠습니다.
+				//request.getSession().setAttribute("profile_image", vo.getImage_path());
 				mv.setViewName("home");
 			} else {
 				// Password 오류 -> 재로그인
