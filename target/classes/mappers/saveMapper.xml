@@ -39,7 +39,7 @@
   
   <select id="blogTestS" resultType="vo.SaveVO"> 
 	<![CDATA[
-	select * 
+  select * 
   from (select @rownum:=@rownum+1 as rownum, m.* from `hellchang_schema_test`.`myRoutine` as m, 
   (select @rownum :=0) R order by date desc)sub
   where rownum >= #{rownum}

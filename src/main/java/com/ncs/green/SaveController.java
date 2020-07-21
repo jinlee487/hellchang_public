@@ -101,7 +101,7 @@ public class SaveController {
 			mv.addObject("num", cnt);
 			mv.setViewName("jsonView");
 		}
-		System.out.println("blogTestTF : "+rownum );
+		System.out.println("blogTest : "+rownum );
 		return mv;
 	}// blog첫화면 상위 5개
 	
@@ -125,7 +125,7 @@ public class SaveController {
 			System.out.println("scrollP : "+IDTest+test);
 			rownum = array[i].getRownum();
 			cnt ++;
-			mv.addObject("num", cnt);
+			mv.addObject("num", (cnt));
 			mv.setViewName("jsonView");
 		}
 		System.out.println("scrollP : "+rownum);
