@@ -1,6 +1,7 @@
 package jdbcUtil;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -37,7 +38,11 @@ public class SaveDAO {
 	
 	public List<SaveVO> blogTest() {
 		return sqlsession.selectList(NS+"blogTest") ;
-	} // selectList()
+	} // blogTest() 처음 초기 5개
+	
+	public List<SaveVO> blogTestS(SaveVO svo) {
+		return sqlsession.selectList(NS+"blogTestS",svo) ;
+	} // 스크롤()
 	
 	public int saveMyRoutine(SaveVO vo) { 
 		return sqlsession.insert(NS+"saveMyRoutine", vo);
@@ -46,5 +51,6 @@ public class SaveDAO {
 	public int delMyRoutine(SaveVO vo) { 
 		return sqlsession.delete(NS+"delMyRoutine", vo);
 	} // saveMyRoutine
-
+	
+	
 } // class

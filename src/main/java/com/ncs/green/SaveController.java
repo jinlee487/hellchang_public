@@ -1,9 +1,7 @@
 package com.ncs.green;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -25,6 +23,7 @@ public class SaveController {
 	// MService service = new ServiceImpl();
 	SaveVO vo ;
 	Date date = new Date();
+	int rownum = 0;
 	
 	
 	@RequestMapping(value = "/myRoutineDel", method = RequestMethod.GET)
@@ -85,9 +84,9 @@ public class SaveController {
 	
 	@RequestMapping(value = "/blogTest")
 	public ModelAndView blogTest(HttpServletRequest request, ModelAndView mv, SaveVO vo) {
+		int cnt = 0;
 		SaveVO[] array = {}; 
 		List<SaveVO> list = service.blogTest();
-		System.out.println(list);
 		array = list.toArray(new SaveVO[list.size()]);
 		for(int i=0; i<array.length; i++) {
 			vo.setId(array[i].getId());
@@ -96,11 +95,40 @@ public class SaveController {
 			System.out.println("==============================");
 			String IDTest = "forName"+i;
 			mv.addObject(IDTest, test);
-			System.out.println("결과출력 : "+IDTest+test);
+			System.out.println("blogTest : "+IDTest+test);
+			rownum = array[i].getRownum();
+			cnt ++;
+			mv.addObject("num", cnt);
 			mv.setViewName("jsonView");
-		
 		}
-		
+		System.out.println("blogTestTF : "+rownum );
 		return mv;
-	}// mdetail
+	}// blog첫화면 상위 5개
+	
+	@RequestMapping(value = "/scrollP")
+	public ModelAndView scrollP(HttpServletRequest request, ModelAndView mv, SaveVO vo, SaveVO svo) {
+		int cnt = 0;
+		System.out.println("scrollP : "+rownum);
+		SaveVO[] array = {}; 
+		svo.setRownum(rownum);
+		List<SaveVO> list = service.blogTestS(svo); 
+		System.out.println("scrollP : "+ list);
+		array = list.toArray(new SaveVO[list.size()]);
+		for(int i=0; i<array.length; i++) {
+			vo.setId(array[i].getId());
+			vo.setTitle(array[i].getTitle());
+			List<SaveVO> test = service.findTest(vo);
+			vo.setRownum(svo.getRownum());
+			System.out.println("==============================");
+			String IDTest = "forName"+i;
+			mv.addObject(IDTest, test);
+			System.out.println("scrollP : "+IDTest+test);
+			rownum = array[i].getRownum();
+			cnt ++;
+			mv.addObject("num", cnt);
+			mv.setViewName("jsonView");
+		}
+		System.out.println("scrollP : "+rownum);
+		return mv;
+	}// blog첫화면 상위 5개
 }

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jdbcUtil.SaveDAO;
+import vo.PageVO;
+import vo.SPageVO;
 import vo.SaveVO;
 
 
@@ -27,6 +29,11 @@ public class SServiceImpl implements SService {
 	@Override
 	public List<SaveVO> blogTest() {
 		return dao.blogTest() ;
+	} // selectList()
+	
+	@Override
+	public List<SaveVO> blogTestS(SaveVO svo) {
+		return dao.blogTestS(svo) ;
 	} // selectList()
 	
 	@Override
@@ -55,5 +62,6 @@ public class SServiceImpl implements SService {
 	public int delMyRoutine(SaveVO vo) {
 		return dao.delMyRoutine(vo);
 	}
+	
 	
 } // class

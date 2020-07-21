@@ -2,6 +2,7 @@ package service;
 
 import java.util.List;
 
+import vo.SPageVO;
 import vo.SaveVO;
 
 public interface SService {
@@ -21,5 +22,8 @@ public interface SService {
 	List<SaveVO> findTest(SaveVO vo);
 	
 	List<SaveVO> blogTest();
+	
+	List<SaveVO> blogTestS(SaveVO svo);
+	
 } // interface
 
