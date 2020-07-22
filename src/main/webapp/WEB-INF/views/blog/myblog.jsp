@@ -370,15 +370,15 @@ $(window).scroll(function(){
 			<div style="flex-direction: column; padding-bottom: 0px; padding-top: 0px;">
 				<div style="display: inline-flex; width: 30%" >
 					<button id ="testT" type="button" data-toggle="modal" data-target="#myModal">
-					<img src="resources/image/logo.jpg" style="width: 100%; display: inline-flex;"></button>
+					<img src="resources/image/armPull.jpg" style="width: 100%; display: inline-flex;"></button>
 				</div>
 				<div style="display: inline-flex; width: 30%" >
 					<button id ="testT" type="button" data-toggle="modal" data-target="#myModal">
-					<img src="resources/image/logo.jpg" style="width: 100%; display: inline-flex;"></button>
+					<img src="resources/image/dBench.jpg" style="width: 100%; display: inline-flex;"></button>
 				</div>
 				<div style="display: inline-flex; width: 30%" >
 					<button id ="testT" type="button" data-toggle="modal" data-target="#myModal">
-					<img src="resources/image/logo.jpg" style="width: 100%; display: inline-flex;"></button>
+					<img src="resources/image/latPull.jpg" style="width: 100%; display: inline-flex;"></button>
 				</div>
 			</div>
 		</div>
@@ -407,12 +407,6 @@ $(window).scroll(function(){
 				<thead id ="thead"></thead>
 				<tbody id ="tbody"></tbody>
 				</table>
-		   
-		   
-		   
-		   
-		   
-		   
 		
 		   <div class="modal-body-text" style="width : 450px;">
 		    <button type="button" class="close" data-dismiss="modal">&times;</button>
