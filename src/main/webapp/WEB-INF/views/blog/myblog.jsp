@@ -12,166 +12,11 @@
   <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
   <link rel="stylesheet" type="text/css" href="resources/jqLib/topBar.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  
+  <link rel="stylesheet" type="text/css" href="resources/jqLib/myblog.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<style type="text/css">
-	/* Remove the navbar's default margin-bottom and rounded borders */ 
-  .modal-content{
-		width: 1000px;
-		text-align: left;
-	}
-    
-     .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-      background-color: #000000;
-    }
-    .gridA{ text-decoration: none; }
-   	
-   	.fade-in-bottom {
-	-webkit-animation: fade-in-bottom 2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-	        animation: fade-in-bottom 2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-	}	
-    
-    .imgb{
-    	width: 10%;
-    	background-color: white;
-    	border-color: white;
-    	flex-basis: 0;
-    -webkit-box-flex: 1;
-    flex-grow: 1;
-    align-items: stretch;
-    border: 0 solid #000;
-    }
-    .img{
-    	width: 50%;
-    	margin: 0;
-    padding: 0;
-    border: 0;
-    font: inherit;
-    vertical-align: baseline;
-    border-radius: 50%;
-    
-    }
-    .profile{
-    	margin-top: 10%;
-    background-color: transparent;
-    border: 1px solid #dbdbdb;
-    border: 1px solid rgba(var(--ca6,219,219,219),1);
-    color: #262626;
-    color: rgba(var(--f75,38,38,38),1);
-    border-radius: 4px;
-    color: #fff;
-    color: rgba(var(--eca,255,255,255),1);
-    position: relative;
-    text-decoration: none;
-        user-select: auto;
-        -webkit-appearance: none;
-        background: 0 0;
-        box-sizing: border-box;
-    cursor: pointer;
-    display: block;
-    font-weight: 600;
-    padding: 5px 9px;
-    text-align: center;
-    text-transform: inherit;
-    text-overflow: ellipsis;
-    width: auto;
-    flex-shrink: 0;
-    margin-left: 20px
-    }
-    .wpO6b{
-    	align-items: center;
-    background: 0 0;
-    border: 0;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    padding: 8px;
-    -webkit-box-pack: center;
-    margin-top: 20%;
-}
-    	
-    }
-    .h2{
-    display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    color: rgba(var(--i1d,38,38,38),1);
-    font-weight: 300;
-    font-size: 28px;
-    line-height: 32px;
-    margin: -5px 0 -6px;
-    padding: 0;
-    border: 0;
-    font: inherit;
-    vertical-align: baseline;
-    margin-block-start: 0.83em;
-    margin-block-end: 0.83em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    }
-    .ul{
-    margin-bottom: 20px;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    flex-direction: row;
-    list-style: none;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
-    list-style: none;
-    }
-	.li{
-	display: inline-flex;
-	margin-left: 0;
-	font-size: 16px;
-    margin-right: 40px;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font: inherit;
-    vertical-align: baseline;
-    display: list-item;
-    text-align: -webkit-match-parent;
-	}
-.h1{
-	display: inline;
-    font-weight: 600;
-        margin: 0;
-    padding: 0;
-    border: 0;
-    font: inherit;
-    vertical-align: baseline;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;	
-}
-    
-  .zz{
-  	margin-bottom: 20px;
-  	-webkit-box-align: center;
-  	align-items: center;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    flex-direction: row;
-    flex-shrink: 1;
-    min-width: 0;
-    display: flex;
-  
-  }  
-    /* a:link { color: black; text-decoration: none;}
- 	a:visited { color: black; text-decoration: none;}
-	a:hover {text-decoration: none;} */
 
-</style>
 <script type="text/javascript">
 $(function(){
 	var cnt = 0;
@@ -403,14 +248,14 @@ $(window).scroll(function(){
         <div class="modal-body" style="display: inline-flex; ">
        
        
-        <table style="margin-right: 50px; width: 100%">
-				<thead id ="thead"></thead>
-				<tbody id ="tbody"></tbody>
-				</table>
+       <div align="center" class = "blogForm"><br><br>
+
+
+		</div>
 		
-		   <div class="modal-body-text" style="width : 450px;">
+		   <div class="modal-body-text" style="width : 350px; margin-left: 50px; margin-top: 50px;">
 		    <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <img src="resources/image/kang.jpg" alt="강경원" width="30px" height="30px" class="myPhoto" style="float: left; border-radius: 50%">
+          <img src="resources/image/kang.jpg" alt="강경원" width="30px" height="30px" class="myPhoto1" style="float: left; border-radius: 50%">
           <table>
 					<tbody><tr><td style="font-size: 15px"><a>kang1234</a></td></tr>
 					<tr><td id="myTitle">분할 Title이름</td></tr>
@@ -419,17 +264,17 @@ $(window).scroll(function(){
 		 
 		 
 		  <div class="coment">
-		<img src="resources/image/lee.jpg" alt="lee" width="30px" height="30px" class="myPhoto" style="float: left; border-radius: 50%">
+		<img src="resources/image/lee.jpg" alt="lee" width="30px" height="30px" class="myPhoto1" style="float: left; border-radius: 50%">
           <table>
 					<tbody><tr><td style="font-size: 15px"><a>lee</a></td></tr>
 					<tr><td id="myTitle">댓글 내용내용내용</td></tr>
 					</tbody></table><br>
-		 <img src="resources/image/kang.jpg" alt="강경원" width="30px" height="30px" class="myPhoto" style="float: left; border-radius: 50%">
+		 <img src="resources/image/kang.jpg" alt="강경원" width="30px" height="30px" class="myPhoto1" style="float: left; border-radius: 50%">
           <table>
 					<tbody><tr><td style="font-size: 15px"><a>kang1234</a></td></tr>
 					<tr><td id="myTitle">댓글 내용내용내용</td></tr>
 					</tbody></table><br>
-		<img src="resources/image/hwang.jpg" alt="hwang" width="30px" height="30px" class="myPhoto" style="float: left; border-radius: 50%">
+		<img src="resources/image/hwang.jpg" alt="hwang" width="30px" height="30px" class="myPhoto1" style="float: left; border-radius: 50%">
           <table>
 					<tbody><tr><td style="font-size: 15px"><a>hwang</a></td></tr>
 					<tr><td id="myTitle">댓글 내용내용내용</td></tr>
