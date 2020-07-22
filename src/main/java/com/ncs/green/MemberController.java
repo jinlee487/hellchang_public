@@ -209,21 +209,17 @@ public class MemberController {
 	public ModelAndView update(HttpServletRequest request, ModelAndView mv, MemberVO vo)
 				throws IOException {
 		if (vo.getPassword().length() > 3 && vo.getPassword()!=null) {
-			// new password 를 encode
+			
 		vo.setPassword( passwordEncoder.encode(vo.getPassword()));
-	}else {	// session에 보관해 놓은 password 사용
+	}else {
 		vo.setPassword((String)request.getSession().getAttribute("encodedPassword"));
 	}
-	
 	if (service.update(vo) > 0) {
-		// 회원수정 성공 -> memberList 출력
-		// session 의 Attribute logName 도 변경
 		request.getSession().setAttribute("loginName", vo.getName());
 		mv.setViewName("redirect:home");
 	} else {
-		// 회원수정 실패 -> 내정보 보기 화면으로
 		mv.setViewName("redirect:mdetail?code=E");
-	} // if
+	}
 	return mv;
 	}// mupdate
 	
