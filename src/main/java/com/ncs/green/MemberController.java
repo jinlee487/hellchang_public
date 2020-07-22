@@ -215,7 +215,7 @@ public class MemberController {
 		vo.setPassword((String)request.getSession().getAttribute("encodedPassword"));
 	}
 	
-	if (service.mupdate(vo) > 0) {
+	if (service.update(vo) > 0) {
 		// 회원수정 성공 -> memberList 출력
 		// session 의 Attribute logName 도 변경
 		request.getSession().setAttribute("loginName", vo.getName());

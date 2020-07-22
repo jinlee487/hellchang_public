@@ -240,13 +240,13 @@ button:hover {
   </div>
 </div><br>
  
-<div style="margin-left: 650px;">
+<!-- <div style="margin-left: 650px;">
  <label for="KG" class="int">결과입력</label><br>
  <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="kg" >
  <button type="button" class="signupbtn" onclick="drawChart()">결과확인</button>
  <div id="columnchart_material" style="width: 60%; height: 400px;"></div>
  
- </div> 
+ </div>  -->
 
  
     

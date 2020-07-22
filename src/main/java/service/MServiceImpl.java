@@ -31,8 +31,8 @@ public class MServiceImpl implements MService {
 	} // insert
 	
 	@Override
-	public int mupdate(MemberVO vo) { // row(vo) 전달 받아 수정
-		return dao.mupdate(vo);  // 처리된 row 갯수 return
+	public int update(MemberVO vo) { // row(vo) 전달 받아 수정
+		return dao.update(vo);  // 처리된 row 갯수 return
 	} // update
 
 	@Override

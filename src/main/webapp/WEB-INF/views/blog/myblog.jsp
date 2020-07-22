@@ -174,48 +174,103 @@
 </style>
 <script type="text/javascript">
 $(function(){
-	console.log($('#test').css('height'));
-	var height = parseInt($('#test').css('height'));
-	
-	if(height > 20){
-		$('header').css('padding-top', '9px');
-		$('header').css('padding-bottom', '9px');
-	}else{
-		$('#test').css('margin-top', '5px');
-		$('#test').css('margin-bottom', '5px');
-	}
-});
-$(function(){
-	console.log('test');
+	var cnt = 0;
+	var last = 0;
 	$.ajax({
-	type:'Get',
-	url:'blogTest',
-	success:function(data){
+		type:'Get',
+		dataType : "json",
+		url:'blogTest',
+		
+		success:function(data){
+			var nowID = "";
+			var nowTitle = "";
+			var num = data.num;
+			console.log(num);
+			for(var j=0; j<5; j++){
+				var lastNum = 0;
+				if(cnt == 0){jsonData = data.forName0}
+				else if(cnt == 1){jsonData = data.forName1}
+				else if(cnt == 2){jsonData = data.forName2}
+				else if(cnt == 3){jsonData = data.forName3}
+				else if(cnt == 4){jsonData = data.forName4}
+				
+				lastNum = Object.keys(jsonData).length;
+				var appendT = "";
+				appendT += "<table class = 'table'>"
+				for(var i = 0; i<Object.keys(jsonData).length; i++){	
+					if(i==0){
+						appendT += '<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><img src="resources/image/lee.jpg" alt="이준호" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td><td colspan ="3"></td></tr>'
+						appendT += '<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>'
+						appendT += "<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>"							
+					}else if(i!=0 || i!=lastNum){
+						appendT += "<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>"
+					}else if(i==lastNum){
+						appendT += "<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>"
+						
+					}
+					nowTitle = jsonData[i].title ;
+					nowID = jsonData[i].id; 
+				} // for_i
+				appendT += "</table>"
+				$('.blogForm').append(appendT)
+				cnt ++;
+			} // for_j 
+		},
+		error:function(){
+			
+		}
+	}); // ajax 
+$(window).scroll(function(){
+	if($(document).height() <= $(window).scrollTop() + $(window).height()){	
+	loadNext();
+	}
+	function loadNext(){
+		var cnt = 0;
 		var nowID = "";
 		var nowTitle = "";
-		jsonData = data.Banana;
-		console.log(jsonData)
-		for(var i = 0; i<Object.keys(jsonData).length; i++){
-			console.log(i + " :"+"nowID : " + nowID + ", jsonID : " +jsonData[i].id)
-			if(i == 0 || nowID != jsonData[i].id){
-				$('#thead').append('<tr><th>ID</th><th>Name</th><th>Target</th><th>Title</th><th>date</th></tr>')
-			}
-			if(i == 0 || nowTitle == jsonData[i].title){
-				console.log("IF Title : "+nowTitle)
-				$('#tbody').append("<tr><td>"+jsonData[i].id +"</td><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].title +"</td><td>"+jsonData[i].date+"</td></tr>")
+		$.ajax({
+			type:'Get',
+			url : "scrollP",
+			success:function(data){
 				
+				var num = data.num;
+				console.log(num);
+				for(var j=0; j<num; j++){
+					var lastNum = 0;
+					if(cnt == 0){jsonData = data.forName0}
+					else if(cnt == 1){jsonData = data.forName1}
+					else if(cnt == 2){jsonData = data.forName2}
+					else if(cnt == 3){jsonData = data.forName3}
+					else if(cnt == 4){jsonData = data.forName4}
 					
-			}else{
+					lastNum = Object.keys(jsonData).length;
+					var appendT = "";
+					appendT += "<table class = 'table'>"
+					for(var i = 0; i<Object.keys(jsonData).length; i++){
+						if(i==0){
+							appendT += '<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><img src="resources/image/lee.jpg" alt="이준호" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td><td colspan ="3"></td></tr>'
+							appendT += '<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>'
+							appendT += "<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>"							
+						}else if(i!=0 || i!=lastNum){
+							appendT += "<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>"
+						}else if(i==lastNum){
+							appendT += "<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>"
+							
+						}
+						nowTitle = jsonData[i].title ;
+						nowID = jsonData[i].id; 
+					} // for_i
+					appendT += "</table>"
+					$('.blogForm').append(appendT)
+					cnt ++;
+				} // for_j 
+			},
+			error:function(){
+				alert("실패")
 			}
-			nowID = jsonData[i].id;
-			nowTitle = jsonData[i].title;
-		 } // for 
-		
-		},
-	error:function(){
-		alert("실패")
-		}
-		}); // ajax
+	})
+	}
+});
 }); 
 </script>
 </head>

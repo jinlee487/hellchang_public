@@ -81,7 +81,7 @@
   </insert>	
   
   <!-- memberUpdate() -->
-  <update id="mupdate">
+  <update id="update">
 	update hellchang_schema_test.member set password=#{password},name=#{name},
 	address=#{address},phone=#{phone},image_path=#{image_path} where id=#{id}
   </update>

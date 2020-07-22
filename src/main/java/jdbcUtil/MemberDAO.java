@@ -27,8 +27,8 @@ public class MemberDAO {
 		return sqlsession.insert(NS+"insert", vo);
 	}
 	
-	public int mupdate(MemberVO vo) { 
-		return sqlsession.update(NS+"mupdate", vo);
+	public int update(MemberVO vo) { 
+		return sqlsession.update(NS+"update", vo);
 	}
 	public int delete(MemberVO vo) {
 		return sqlsession.delete(NS+"delete", vo) ;
