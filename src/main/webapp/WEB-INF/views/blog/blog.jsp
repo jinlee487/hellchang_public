@@ -165,6 +165,7 @@ $(function(){
 			
 		}
 	}); // ajax 
+
 $(window).scroll(function(){
 	if($(document).height() <= $(window).scrollTop() + $(window).height()){	
 	loadNext();
@@ -211,7 +212,7 @@ $(window).scroll(function(){
 				} // for_j 
 			},
 			error:function(){
-				alert("실패")
+				$('.blogForm').append("<h2>더이상 불러 올 데이터가 존재 하지 않습니다</h2>")
 			}
 	})
 	}
