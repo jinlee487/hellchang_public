@@ -31,10 +31,10 @@ public class SaveController {
 		System.out.println("Deltet Test =>" + vo);
 		if(vo != null) {
 			if(service.delMyRoutine(vo) > 0) {
-				System.out.println("삭제로 들어옴");
+				System.out.println("�궘�젣濡� �뱾�뼱�샂");
 				mv.setViewName("jsonView");
 			}else {
-				System.out.println("삭제 실패");
+				System.out.println("�궘�젣 �떎�뙣");
 				mv.setViewName("jsonView");
 			}
 		}
@@ -103,13 +103,14 @@ public class SaveController {
 		}
 		System.out.println("blogTest : "+rownum );
 		return mv;
-	}// blog첫화면 상위 5개
+	}// blog泥ロ솕硫� �긽�쐞 5媛�
 	
 	@RequestMapping(value = "/scrollP")
 	public ModelAndView scrollP(HttpServletRequest request, ModelAndView mv, SaveVO vo, SaveVO svo) {
 		int cnt = 0;
 		System.out.println("scrollP : "+rownum);
 		SaveVO[] array = {}; 
+		rownum += 1;
 		svo.setRownum(rownum);
 		List<SaveVO> list = service.blogTestS(svo); 
 		System.out.println("scrollP : "+ list);
@@ -125,10 +126,10 @@ public class SaveController {
 			System.out.println("scrollP : "+IDTest+test);
 			rownum = array[i].getRownum();
 			cnt ++;
-			mv.addObject("num", (cnt));
+			mv.addObject("num", cnt);
 			mv.setViewName("jsonView");
 		}
 		System.out.println("scrollP : "+rownum);
 		return mv;
-	}// blog첫화면 상위 5개
+	}// blog泥ロ솕硫� �긽�쐞 5媛�
 }

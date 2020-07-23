@@ -219,8 +219,6 @@ $(window).scroll(function(){
 
 
 }); 
-
-
 </script>
 </head>
 <body>
