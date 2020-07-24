@@ -53,6 +53,10 @@ public class SaveDAO {
 	} // saveMyRoutine
 	
 	public int heartUp(SaveVO vo) { 
-		return sqlsession.update(NS+"update", vo);
+		return sqlsession.update(NS+"heartUp", vo);
 	}
+	
+	public SaveVO heartSelect(SaveVO vo) {
+		return sqlsession.selectOne(NS+"heartSelect", vo);
+	} // selectList()
 } // class

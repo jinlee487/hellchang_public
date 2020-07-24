@@ -68,4 +68,9 @@ public class SServiceImpl implements SService {
 	public int heartUp(SaveVO vo) { // row(vo) 전달 받아 수정
 		return dao.heartUp(vo);  // 처리된 row 갯수 return
 	} // update
+	
+	@Override
+	public SaveVO heartSelect(SaveVO vo) {
+		return dao.heartSelect(vo);
+	} // selectOne
 } // class

@@ -27,5 +27,7 @@ public interface SService {
 	List<SaveVO> blogTestS(SaveVO svo);
 	
 	int heartUp(SaveVO vo); // update
+	
+	SaveVO heartSelect(SaveVO vo);
 } // interface
 

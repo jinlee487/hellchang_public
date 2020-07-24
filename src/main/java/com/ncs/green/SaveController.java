@@ -142,6 +142,13 @@ public class SaveController {
 		vo.setTitle(request.getParameter("title"));
 		vo.setId(request.getParameter("id"));
 		service.heartUp(vo);
+		System.out.println(vo);
+		
+		vo = service.heartSelect(vo); 
+		System.out.println(vo);
+		
+		mv.addObject("countHeartTest", vo.getHeart());
+		
 		mv.setViewName("jsonView");
 
 		return mv;

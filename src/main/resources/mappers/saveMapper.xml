@@ -52,7 +52,11 @@
 	where  myRoutine.id = #{id} and myRoutine.title = #{title} and myRoutine.id = member.id
   </select>
   
-  <update id="update">
+  <update id="heartUp">
 	update hellchang_schema_test.myRoutine set heart = heart + 1 where id=#{id} and title = #{title}
   </update>
+  
+  <select id="heartSelect" resultType="vo.SaveVO">
+  	select * from `hellchang_schema_test`.`myRoutine` where id=#{id} and title = #{title}
+  </select> 
  </mapper>

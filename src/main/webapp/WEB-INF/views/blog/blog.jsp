@@ -157,7 +157,7 @@ $(function(){
 					nowID = jsonData[i].id; 
 					
 				} // for_i
-				appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'>하트</span><br><span class = 'reply'>댓글</span></td><td colspan = '4'></td></tr>"
+				appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'> </span><span id = 'cnt"+nowTitle+"'></span><br><span class = 'reply'>댓글</span></td><td colspan = '4'></td></tr>"
 				appendT += "</table>"
 				$('.blogForm').append(appendT)
 				cnt ++;
@@ -209,7 +209,7 @@ $(window).scroll(function(){
 						nowID = jsonData[i].id; 
 					} // for_i 
 					
-					appendT += "<tr><td><span class ='heart "+nowID+"' id ='"+nowTitle+"'>하트</span><br><span class = 'reply'>댓글</span></td><td colspan = '4'></td></tr>"
+					appendT += "<tr><td><span class ='heart "+nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'></span><span id = 'cnt"+nowTitle+"'></span><br><span class = 'reply'>댓글</span></td><td colspan = '4'></td></tr>"
 					appendT += "</table>"
 					$('.blogForm').append(appendT)
 					cnt ++;
@@ -233,8 +233,9 @@ $(document).on("click",".heart", function(){
 			title: title
 		},
 		success:function(data){
-			alert("1")
-			$('#id').append(appendT)	
+			var cnt = data.countHeartTest
+			$('#cnt'+title).html(cnt);
+			alert("좋아요를 눌렀습니다 \n현재 좋아요의 갯수 =>"+ cnt)
 		}, // success
 		error:function(){
 			alert("!!!!!!!!")
