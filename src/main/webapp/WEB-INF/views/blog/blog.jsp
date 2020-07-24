@@ -155,7 +155,9 @@ $(function(){
 					}
 					nowTitle = jsonData[i].title ;
 					nowID = jsonData[i].id; 
+					
 				} // for_i
+				appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'>하트</span><br><span class = 'reply'>댓글</span></td><td colspan = '4'></td></tr>"
 				appendT += "</table>"
 				$('.blogForm').append(appendT)
 				cnt ++;
@@ -205,7 +207,9 @@ $(window).scroll(function(){
 						}
 						nowTitle = jsonData[i].title ;
 						nowID = jsonData[i].id; 
-					} // for_i
+					} // for_i 
+					
+					appendT += "<tr><td><span class ='heart "+nowID+"' id ='"+nowTitle+"'>하트</span><br><span class = 'reply'>댓글</span></td><td colspan = '4'></td></tr>"
 					appendT += "</table>"
 					$('.blogForm').append(appendT)
 					cnt ++;
@@ -216,10 +220,29 @@ $(window).scroll(function(){
 			}
 	})
 	}
-});
+})
+$(document).on("click",".heart", function(){
+    var title = $(this).attr("id");
+    var id = $(this).attr("class");
+    id = id.substring(6);
+    $.ajax({
+		type:'Get',
+		url : "heartUp",
+		data:{
+			id : id,
+			title: title
+		},
+		success:function(data){
+			alert("1")
+			$('#id').append(appendT)	
+		}, // success
+		error:function(){
+			alert("!!!!!!!!")
+		}
+	})
+}) // click 이벤트
+}) // ready
 
-
-}); 
 </script>
 </head>
 <body>

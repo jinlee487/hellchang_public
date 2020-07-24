@@ -52,5 +52,7 @@ public class SaveDAO {
 		return sqlsession.delete(NS+"delMyRoutine", vo);
 	} // saveMyRoutine
 	
-	
+	public int heartUp(SaveVO vo) { 
+		return sqlsession.update(NS+"update", vo);
+	}
 } // class

@@ -1,5 +1,7 @@
 package com.ncs.green;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -10,9 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import service.SService;
+import vo.MemberVO;
 import vo.SaveVO;
 
 
@@ -131,5 +135,15 @@ public class SaveController {
 		}
 		System.out.println("scrollP : "+rownum);
 		return mv;
-	}// blog泥ロ솕硫� �긽�쐞 5媛�
+	}//
+	
+	@RequestMapping(value = "/heartUp")
+	public ModelAndView heartUp(HttpServletRequest request, ModelAndView mv, SaveVO vo){
+		vo.setTitle(request.getParameter("title"));
+		vo.setId(request.getParameter("id"));
+		service.heartUp(vo);
+		mv.setViewName("jsonView");
+
+		return mv;
+	}// mupdate
 }
