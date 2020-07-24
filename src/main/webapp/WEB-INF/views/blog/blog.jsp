@@ -156,6 +156,7 @@ $(function(){
 					nowTitle = jsonData[i].title ;
 					nowID = jsonData[i].id; 
 				} // for_i
+				appendT += "<tr><td colspan = '1' align = 'left'><span class = 'heart'>하트</span><br><span class = 'reply'>댓글</span></td><td colspan = '4'></td></tr>"
 				appendT += "</table>"
 				$('.blogForm').append(appendT)
 				cnt ++;
@@ -178,7 +179,6 @@ $(window).scroll(function(){
 			type:'Get',
 			url : "scrollP",
 			success:function(data){
-				
 				var num = data.num;
 				console.log(num);
 				for(var j=0; j<num; j++){
@@ -201,14 +201,15 @@ $(window).scroll(function(){
 							appendT += "<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>"
 						}else if(i==lastNum){
 							appendT += "<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>"
-							
 						}
 						nowTitle = jsonData[i].title ;
 						nowID = jsonData[i].id; 
 					} // for_i
+					appendT += "<tr><td colspan = '1' align = 'left'><span class = 'heart'>하트</span><br><span class = 'reply'>댓글</span></td><td colspan = '4'></td></tr>"
 					appendT += "</table>"
 					$('.blogForm').append(appendT)
 					cnt ++;
+					`
 				} // for_j 
 			},
 			error:function(){
@@ -217,7 +218,33 @@ $(window).scroll(function(){
 	})
 	}
 });
+$(document).on("click",".heart",function(){
+	alert("!")
+	$.ajax({
+		type:'Get',
+		dataType : "json",		
+		success:function(data){ 
+			alert('!');
+		},
+		error:function(){
+			
+		}
+	}); // ajax
+})
 
+$(document).on("click",".reply",function(){
+	alert("!")
+	$.ajax({
+		type:'Get',
+		dataType : "json",		
+		success:function(data){ 
+			alert('!');
+		},
+		error:function(){
+			
+		}
+	}); // ajax
+})
 
 }); 
 </script>
