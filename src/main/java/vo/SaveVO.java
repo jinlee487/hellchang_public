@@ -12,6 +12,7 @@ public class SaveVO {
 	private String shared;
 	private String userName;
 	private int rownum;
+	private int heart;
 	
 	public String getId() {
 		return id;
@@ -70,21 +71,26 @@ public class SaveVO {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	
-	
-
-	
+		
 	public int getRownum() {
 		return rownum;
 	}
 	public void setRownum(int rownum) {
 		this.rownum = rownum;
 	}
+	
+	
+	public int getHeart() {
+		return heart;
+	}
+	public void setHeart(int heart) {
+		this.heart = heart;
+	}
 	@Override
 	public String toString() {
 		return "SaveVO [id=" + id + ", name=" + name + ", target=" + target + ", kg=" + kg + ", rep=" + rep + ", date="
 				+ date + ", title=" + title + ", shared=" + shared + ", userName=" + userName + ", rownum=" + rownum
-				+ "]";
+				+ ", heart=" + heart + "]";
 	}
 	
 

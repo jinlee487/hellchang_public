@@ -7,9 +7,9 @@
  
    <insert id="saveMyRoutine">
 	insert into `hellchang_schema_test`.`myRoutine` values 
-	 (#{id}, #{name}, #{target}, #{kg}, #{rep}, sysdate(), #{title}, #{shared})
+	 (#{id}, #{name}, #{target}, #{kg}, #{rep}, sysdate(), #{title}, #{shared}, 0);
   </insert>
-  
+    
   <delete id="delMyRoutine">
   	delete from `hellchang_schema_test`.`myRoutine` where id=#{id} and title=#{title} and target=#{target}
   </delete>  
@@ -51,4 +51,12 @@
 	select myRoutine.* ,member.name as userName from hellchang_schema_test.myRoutine , hellchang_schema_test.member
 	where  myRoutine.id = #{id} and myRoutine.title = #{title} and myRoutine.id = member.id
   </select>
+   
+  <update id="heartUp">
+	update hellchang_schema_test.myRoutine set heart = heart + 1 where id=#{id} and title = #{title}
+  </update>
+  
+  <select id="heartSelect" resultType="vo.SaveVO">
+  	select * from `hellchang_schema_test`.`myRoutine` where id=#{id} and title = #{title}
+  </select> 
  </mapper>

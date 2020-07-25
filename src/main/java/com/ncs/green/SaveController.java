@@ -1,5 +1,7 @@
 package com.ncs.green;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -10,9 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import service.SService;
+import vo.HeartVO;
+import vo.MemberVO;
 import vo.SaveVO;
 
 
@@ -25,7 +30,7 @@ public class SaveController {
 	Date date = new Date();
 	int rownum = 0;
 	
-	
+	 
 	@RequestMapping(value = "/myRoutineDel", method = RequestMethod.GET)
 	public ModelAndView myRoutineDel(HttpServletRequest request, ModelAndView mv, SaveVO vo) {
 		System.out.println("Deltet Test =>" + vo);
@@ -46,7 +51,7 @@ public class SaveController {
 	@RequestMapping(value = "/myRoutine", method = RequestMethod.GET)
 	public ModelAndView myRoutine(HttpServletRequest request, ModelAndView mv, SaveVO vo) {
 		System.out.println("insert Test =>" + vo);
-		if (service.saveMyRoutine(vo) > 0) {
+		if (service.saveMyRoutine(vo) > 0 ) {
 			System.out.println("??");
 			mv.setViewName("jsonView");
 		} else {
@@ -65,7 +70,7 @@ public class SaveController {
 		System.out.println("Test List : " +  list);
 		System.out.println(vo.getKg());
 		mv.addObject("myInfo", list); 
-		mv.setViewName("jsonView");
+		mv.setViewName("jsonView"); 
 		return mv;
 	}// mdetail
 	
@@ -131,5 +136,26 @@ public class SaveController {
 		}
 		System.out.println("scrollP : "+rownum);
 		return mv;
-	}// blog泥ロ솕硫� �긽�쐞 5媛�
+	}//
+	
+	@RequestMapping(value = "/heartUp")
+	public ModelAndView heartUp(HttpServletRequest request, ModelAndView mv, SaveVO vo){
+		String cnt = request.getParameter("rowcnt");
+		System.out.println("String : " + cnt);
+		int test = Integer.parseInt(cnt);
+		System.out.println("integer : " + test);
+		vo.setTitle(request.getParameter("title"));
+		vo.setId(request.getParameter("id"));
+		service.heartUp(vo);
+		System.out.println(vo);
+		
+		vo = service.heartSelect(vo); 
+		System.out.println(vo);
+		
+		mv.addObject("countHeartTest", vo.getHeart());
+		
+		mv.setViewName("jsonView");
+
+		return mv;
+	}// heartUp
 }

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jdbcUtil.SaveDAO;
+import vo.HeartVO;
+import vo.MemberVO;
 import vo.PageVO;
 import vo.SPageVO;
 import vo.SaveVO;
@@ -55,7 +57,7 @@ public class SServiceImpl implements SService {
 	
 	@Override
 	public int saveMyRoutine(SaveVO vo) {  
-		return dao.saveMyRoutine(vo);  // 처리된 row 갯수 return	 
+		return dao.saveMyRoutine(vo);  // 泥섎━�맂 row 媛��닔 return	 
 	} // insert
 
 	@Override
@@ -63,5 +65,14 @@ public class SServiceImpl implements SService {
 		return dao.delMyRoutine(vo);
 	}
 	
+	@Override
+	public int heartUp(SaveVO vo) { // row(vo) �쟾�떖 諛쏆븘 �닔�젙
+		return dao.heartUp(vo);  // 泥섎━�맂 row 媛��닔 return
+	} // update
+	
+	@Override
+	public SaveVO heartSelect(SaveVO vo) {
+		return dao.heartSelect(vo);
+	} // selectOne
 	
 } // class

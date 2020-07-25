@@ -121,6 +121,7 @@
 $(function(){
 	var cnt = 0;
 	var last = 0;
+	var rowcnt = 0;
 	$.ajax({
 		type:'Get',
 		dataType : "json",
@@ -142,7 +143,9 @@ $(function(){
 				lastNum = Object.keys(jsonData).length;
 				var appendT = "";
 				appendT += "<table class = 'table'>"
+				rowcnt = 0;
 				for(var i = 0; i<Object.keys(jsonData).length; i++){	
+					
 					if(i==0){
 						appendT += '<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><img src="resources/image/lee.jpg" alt="이준호" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td><td colspan ="3"></td></tr>'
 						appendT += '<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>'
@@ -155,11 +158,14 @@ $(function(){
 					}
 					nowTitle = jsonData[i].title ;
 					nowID = jsonData[i].id; 
+					var cntHeart = jsonData[i].heart;
+					rowcnt++;
 				} // for_i
-				appendT += "<tr><td colspan = '1' align = 'left'><span class = 'heart'>하트</span><br><span class = 'reply'>댓글</span></td><td colspan = '4'></td></tr>"
+				appendT += "<tr><td><span class = 'heart "+rowcnt + nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+cntHeart+"</span><span id = 'cnt"+nowTitle+"'></span><br><span class = 'reply'>댓글</span></td><td colspan = '4'></td></tr>"
 				appendT += "</table>"
 				$('.blogForm').append(appendT)
 				cnt ++;
+				console.log(j+", " + rowcnt);				
 			} // for_j 
 		},
 		error:function(){
@@ -192,6 +198,7 @@ $(window).scroll(function(){
 					lastNum = Object.keys(jsonData).length;
 					var appendT = "";
 					appendT += "<table class = 'table'>"
+					rowcnt = 0;
 					for(var i = 0; i<Object.keys(jsonData).length; i++){
 						if(i==0){
 							appendT += '<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><img src="resources/image/lee.jpg" alt="이준호" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td><td colspan ="3"></td></tr>'
@@ -203,50 +210,51 @@ $(window).scroll(function(){
 							appendT += "<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>"
 						}
 						nowTitle = jsonData[i].title ;
-						nowID = jsonData[i].id; 
+						nowID = jsonData[i].id;
+						var cntHeart = jsonData[i].heart;
+						rowcnt++;
 					} // for_i
-					appendT += "<tr><td colspan = '1' align = 'left'><span class = 'heart'>하트</span><br><span class = 'reply'>댓글</span></td><td colspan = '4'></td></tr>"
+					appendT += "<tr><td><span class = 'heart "+ rowcnt+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+cntHeart+"</span><span id = 'cnt"+nowTitle+"'></span><br><span class = 'reply'>댓글</span></td><td colspan = '4'></td></tr>"
 					appendT += "</table>"
 					$('.blogForm').append(appendT)
 					cnt ++;
-					`
+					console.log(j+", " + rowcnt);
 				} // for_j 
 			},
 			error:function(){
 				$('.blogForm').append("<h2>더이상 불러 올 데이터가 존재 하지 않습니다</h2>")
 			}
-	})
-	}
+	}) // ajax
+	} // loadNext
 });
-$(document).on("click",".heart",function(){
-	alert("!")
-	$.ajax({
-		type:'Get',
-		dataType : "json",		
-		success:function(data){ 
-			alert('!');
-		},
-		error:function(){
-			
-		}
-	}); // ajax
-})
 
-$(document).on("click",".reply",function(){
-	alert("!")
-	$.ajax({
+$(document).on("click",".heart", function(){
+    var title = $(this).attr("id");
+    var id = $(this).attr("class");
+    id = id.substring(7);
+    var rowcnt = $(this).attr("class");
+    rowcnt = rowcnt.substring(6,7);
+    $.ajax({
 		type:'Get',
-		dataType : "json",		
-		success:function(data){ 
-			alert('!');
+		url : "heartUp",
+		data:{
+			id : id,
+			title: title,
+			rowcnt : rowcnt
 		},
+		success:function(data){
+			var cnt = data.countHeartTest
+			console.log(rowcnt)
+			$('#'+title).empty();
+			$('#cnt'+title).html("<img src = 'resources/image/heart.png'>"+cnt);
+		}, // success
 		error:function(){
-			
+			alert(rowcnt);
+			alert("좋아요 오류 발생\n 지금 row가 여러개인 타이틀 좋아요 오류 수정중")
 		}
-	}); // ajax
-})
-
-}); 
+	}) // ajax
+}) // click 이벤트
+}) // ready
 </script>
 </head>
 <body>
@@ -268,7 +276,7 @@ $(document).on("click",".reply",function(){
         <li><a href="routine">Routine</a></li>
         <li><a href="blog">Blog</a></li>
         <li><a href="one">OneRM</a></li>
-      </ul>
+      </ul> 
       <ul class="nav navbar-nav navbar-right" >
 		<c:if test="${logID==null }">
 			<li><a href="loginf"><span class="glyphicon glyphicon-log-in"></span> Login</a><li>
