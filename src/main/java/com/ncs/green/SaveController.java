@@ -103,7 +103,6 @@ public class SaveController {
 			hvo.setId(array[i].getId());
 			hvo.setTitle(array[i].getTitle());
 			hvo = service.heartSelect(hvo);
-			System.out.println(hvo);
 			String HTest = "heart"+i;
 			mv.addObject(HTest, hvo.getHeart());
 			List<SaveVO> test = service.findTest(vo);
@@ -122,10 +121,11 @@ public class SaveController {
 	
 	@RequestMapping(value = "/scrollP")
 	public ModelAndView scrollP(HttpServletRequest request, ModelAndView mv, SaveVO vo, SaveVO svo, HeartVO hvo) {
+		int row = Integer.parseInt(request.getParameter("rowcnt"));
 		int cnt = 0;
 		System.out.println("scrollP : "+rownum);
 		SaveVO[] array = {}; 
-		rownum += 1;
+		rownum = rownum + row;
 		svo.setRownum(rownum);
 		List<SaveVO> list = service.blogTestS(svo); 
 		System.out.println("scrollP : "+ list);
@@ -136,7 +136,6 @@ public class SaveController {
 			hvo.setId(array[i].getId());
 			hvo.setTitle(array[i].getTitle());
 			hvo = service.heartSelect(hvo);
-			System.out.println(hvo);
 			String HTest = "heart"+i;
 			mv.addObject(HTest, hvo.getHeart());
 			List<SaveVO> test = service.findTest(vo);

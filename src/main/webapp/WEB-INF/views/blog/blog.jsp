@@ -121,6 +121,7 @@
 $(function(){
 	var cnt = 0;
 	var last = 0;
+	var rowcnt = 0;
 	$.ajax({
 		type:'Get',
 		dataType : "json",
@@ -142,8 +143,8 @@ $(function(){
 				lastNum = Object.keys(jsonData).length;
 				var appendT = "";
 				appendT += "<table class = 'table'>"
-				for(var i = 0; i<Object.keys(jsonData).length; i++){	
-					
+				rowcnt = 0;
+				for(var i = 0; i<Object.keys(jsonData).length; i++){		
 					if(i==0){
 						appendT += '<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><img src="resources/image/lee.jpg" alt="이준호" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td><td colspan ="3"></td></tr>'
 						appendT += '<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>'
@@ -155,7 +156,8 @@ $(function(){
 						
 					}
 					nowTitle = jsonData[i].title ;
-					nowID = jsonData[i].id; 
+					nowID = jsonData[i].id;
+					rowcnt ++;
 				} // for_i
 				appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowTitle+"'></span><br><span class = 'reply'>댓글</span></td><td colspan = '4'></td></tr>"
 				appendT += "</table>"
@@ -176,9 +178,13 @@ $(window).scroll(function(){
 		var cnt = 0;
 		var nowID = "";
 		var nowTitle = "";
+		console.log(rowcnt)
 		$.ajax({
 			type:'Get',
 			url : "scrollP",
+			data : {
+				rowcnt : rowcnt
+			},
 			success:function(data){
 				var num = data.num;
 				console.log(num);
@@ -194,6 +200,7 @@ $(window).scroll(function(){
 					var appendT = "";
 					appendT += "<table class = 'table'>"
 					for(var i = 0; i<Object.keys(jsonData).length; i++){
+						rowcnt = 0;
 						if(i==0){
 							appendT += '<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><img src="resources/image/lee.jpg" alt="이준호" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td><td colspan ="3"></td></tr>'
 							appendT += '<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>'
@@ -205,7 +212,7 @@ $(window).scroll(function(){
 						}
 						nowTitle = jsonData[i].title ;
 						nowID = jsonData[i].id;
-						var cntHeart = jsonData[i].heart;
+						rowcnt ++;
 					} // for_i
 					appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowTitle+"'></span><br><span class = 'reply'>댓글</span></td><td colspan = '4'></td></tr>"
 					appendT += "</table>"
