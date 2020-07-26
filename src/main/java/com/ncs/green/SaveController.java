@@ -49,15 +49,19 @@ public class SaveController {
 	
 	
 	@RequestMapping(value = "/myRoutine", method = RequestMethod.GET)
-	public ModelAndView myRoutine(HttpServletRequest request, ModelAndView mv, SaveVO vo) {
+	public ModelAndView myRoutine(HttpServletRequest request, ModelAndView mv, SaveVO vo, HeartVO hvo) {
 		System.out.println("insert Test =>" + vo);
-		if (service.saveMyRoutine(vo) > 0 ) {
+		if (service.saveMyRoutine(vo) > 0 ) {			
 			System.out.println("??");
 			mv.setViewName("jsonView");
 		} else {
 			System.out.println("!!");
 			mv.setViewName("jsonView");
 		}
+		hvo.setId(vo.getId());
+		hvo.setTitle(vo.getTitle());
+		service.heartTest(hvo);
+//		위 3줄 추가한 이유 테이블 따로 생성 해주기 위해서
 		return mv;
 	}// saveMyRoutine
 
@@ -88,7 +92,7 @@ public class SaveController {
 
 	
 	@RequestMapping(value = "/blogTest")
-	public ModelAndView blogTest(HttpServletRequest request, ModelAndView mv, SaveVO vo) {
+	public ModelAndView blogTest(HttpServletRequest request, ModelAndView mv, SaveVO vo, HeartVO hvo) {
 		int cnt = 0;
 		SaveVO[] array = {}; 
 		List<SaveVO> list = service.blogTest();
@@ -96,6 +100,12 @@ public class SaveController {
 		for(int i=0; i<array.length; i++) {
 			vo.setId(array[i].getId());
 			vo.setTitle(array[i].getTitle());
+			hvo.setId(array[i].getId());
+			hvo.setTitle(array[i].getTitle());
+			hvo = service.heartSelect(hvo);
+			System.out.println(hvo);
+			String HTest = "heart"+i;
+			mv.addObject(HTest, hvo.getHeart());
 			List<SaveVO> test = service.findTest(vo);
 			System.out.println("==============================");
 			String IDTest = "forName"+i;
@@ -111,7 +121,7 @@ public class SaveController {
 	}// blog泥ロ솕硫� �긽�쐞 5媛�
 	
 	@RequestMapping(value = "/scrollP")
-	public ModelAndView scrollP(HttpServletRequest request, ModelAndView mv, SaveVO vo, SaveVO svo) {
+	public ModelAndView scrollP(HttpServletRequest request, ModelAndView mv, SaveVO vo, SaveVO svo, HeartVO hvo) {
 		int cnt = 0;
 		System.out.println("scrollP : "+rownum);
 		SaveVO[] array = {}; 
@@ -123,6 +133,12 @@ public class SaveController {
 		for(int i=0; i<array.length; i++) {
 			vo.setId(array[i].getId());
 			vo.setTitle(array[i].getTitle());
+			hvo.setId(array[i].getId());
+			hvo.setTitle(array[i].getTitle());
+			hvo = service.heartSelect(hvo);
+			System.out.println(hvo);
+			String HTest = "heart"+i;
+			mv.addObject(HTest, hvo.getHeart());
 			List<SaveVO> test = service.findTest(vo);
 			vo.setRownum(svo.getRownum());
 			System.out.println("==============================");
@@ -139,20 +155,16 @@ public class SaveController {
 	}//
 	
 	@RequestMapping(value = "/heartUp")
-	public ModelAndView heartUp(HttpServletRequest request, ModelAndView mv, SaveVO vo){
-		String cnt = request.getParameter("rowcnt");
-		System.out.println("String : " + cnt);
-		int test = Integer.parseInt(cnt);
-		System.out.println("integer : " + test);
-		vo.setTitle(request.getParameter("title"));
-		vo.setId(request.getParameter("id"));
-		service.heartUp(vo);
-		System.out.println(vo);
+	public ModelAndView heartUp(HttpServletRequest request, ModelAndView mv, SaveVO vo, HeartVO hvo){
+		hvo.setTitle(request.getParameter("title"));
+		hvo.setId(request.getParameter("id"));
+		service.heartUp(hvo);
+		System.out.println("now Test : "+hvo);
 		
-		vo = service.heartSelect(vo); 
-		System.out.println(vo);
+		hvo = service.heartSelect(hvo); 
+		System.out.println(hvo);
 		
-		mv.addObject("countHeartTest", vo.getHeart());
+		mv.addObject("countHeartTest", hvo.getHeart());
 		
 		mv.setViewName("jsonView");
 

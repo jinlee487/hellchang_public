@@ -53,13 +53,15 @@ public class SaveDAO {
 		return sqlsession.delete(NS+"delMyRoutine", vo);
 	} // saveMyRoutine
 	
-	public int heartUp(SaveVO vo) { 
-		return sqlsession.update(NS+"heartUp", vo);
+	public int heartUp(HeartVO hvo) { 
+		return sqlsession.update(NS+"heartUp", hvo);
 	}
 	
-	public SaveVO heartSelect(SaveVO vo) {
-		return sqlsession.selectOne(NS+"heartSelect", vo);
+	public HeartVO heartSelect(HeartVO hvo) {
+		return sqlsession.selectOne(NS+"heartSelect", hvo);
 	} // selectList()
 	
-
+	public int heartTest(HeartVO hvo) { 
+		return sqlsession.insert(NS+"heartTest", hvo);
+	} // saveMyRoutine
 } // class

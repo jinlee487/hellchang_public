@@ -4,7 +4,6 @@ public class HeartVO {
 	private String id;
 	private String title;
 	private int heart;
-	private String reply;
 	public String getId() {
 		return id;
 	}
@@ -23,15 +22,10 @@ public class HeartVO {
 	public void setHeart(int heart) {
 		this.heart = heart;
 	}
-	public String getReply() {
-		return reply;
-	}
-	public void setReply(String reply) {
-		this.reply = reply;
-	}
+	
 	@Override
 	public String toString() {
-		return "HeartVO [id=" + id + ", title=" + title + ", heart=" + heart + ", reply=" + reply + "]";
+		return "HeartVO [id=" + id + ", title=" + title + ", heart=" + heart + "]";
 	}
 	
 	

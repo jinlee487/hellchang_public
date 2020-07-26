@@ -121,7 +121,6 @@
 $(function(){
 	var cnt = 0;
 	var last = 0;
-	var rowcnt = 0;
 	$.ajax({
 		type:'Get',
 		dataType : "json",
@@ -134,16 +133,15 @@ $(function(){
 			console.log(num);
 			for(var j=0; j<5; j++){
 				var lastNum = 0;
-				if(cnt == 0){jsonData = data.forName0}
-				else if(cnt == 1){jsonData = data.forName1}
-				else if(cnt == 2){jsonData = data.forName2}
-				else if(cnt == 3){jsonData = data.forName3}
-				else if(cnt == 4){jsonData = data.forName4}
+				if(cnt == 0){jsonData = data.forName0; heartCnt = data.heart0}
+				else if(cnt == 1){jsonData = data.forName1; heartCnt = data.heart1}
+				else if(cnt == 2){jsonData = data.forName2; heartCnt = data.heart2}
+				else if(cnt == 3){jsonData = data.forName3; heartCnt = data.heart3}
+				else if(cnt == 4){jsonData = data.forName4; heartCnt = data.heart4}
 				
 				lastNum = Object.keys(jsonData).length;
 				var appendT = "";
 				appendT += "<table class = 'table'>"
-				rowcnt = 0;
 				for(var i = 0; i<Object.keys(jsonData).length; i++){	
 					
 					if(i==0){
@@ -158,14 +156,11 @@ $(function(){
 					}
 					nowTitle = jsonData[i].title ;
 					nowID = jsonData[i].id; 
-					var cntHeart = jsonData[i].heart;
-					rowcnt++;
 				} // for_i
-				appendT += "<tr><td><span class = 'heart "+rowcnt + nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+cntHeart+"</span><span id = 'cnt"+nowTitle+"'></span><br><span class = 'reply'>댓글</span></td><td colspan = '4'></td></tr>"
+				appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowTitle+"'></span><br><span class = 'reply'>댓글</span></td><td colspan = '4'></td></tr>"
 				appendT += "</table>"
 				$('.blogForm').append(appendT)
 				cnt ++;
-				console.log(j+", " + rowcnt);				
 			} // for_j 
 		},
 		error:function(){
@@ -189,16 +184,15 @@ $(window).scroll(function(){
 				console.log(num);
 				for(var j=0; j<num; j++){
 					var lastNum = 0;
-					if(cnt == 0){jsonData = data.forName0}
-					else if(cnt == 1){jsonData = data.forName1}
-					else if(cnt == 2){jsonData = data.forName2}
-					else if(cnt == 3){jsonData = data.forName3}
-					else if(cnt == 4){jsonData = data.forName4}
+					if(cnt == 0){jsonData = data.forName0; heartCnt = data.heart0}
+					else if(cnt == 1){jsonData = data.forName1; heartCnt = data.heart1}
+					else if(cnt == 2){jsonData = data.forName2; heartCnt = data.heart2}
+					else if(cnt == 3){jsonData = data.forName3; heartCnt = data.heart3}
+					else if(cnt == 4){jsonData = data.forName4; heartCnt = data.heart4}
 					
 					lastNum = Object.keys(jsonData).length;
 					var appendT = "";
 					appendT += "<table class = 'table'>"
-					rowcnt = 0;
 					for(var i = 0; i<Object.keys(jsonData).length; i++){
 						if(i==0){
 							appendT += '<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><img src="resources/image/lee.jpg" alt="이준호" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td><td colspan ="3"></td></tr>'
@@ -212,13 +206,11 @@ $(window).scroll(function(){
 						nowTitle = jsonData[i].title ;
 						nowID = jsonData[i].id;
 						var cntHeart = jsonData[i].heart;
-						rowcnt++;
 					} // for_i
-					appendT += "<tr><td><span class = 'heart "+ rowcnt+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+cntHeart+"</span><span id = 'cnt"+nowTitle+"'></span><br><span class = 'reply'>댓글</span></td><td colspan = '4'></td></tr>"
+					appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowTitle+"'></span><br><span class = 'reply'>댓글</span></td><td colspan = '4'></td></tr>"
 					appendT += "</table>"
 					$('.blogForm').append(appendT)
 					cnt ++;
-					console.log(j+", " + rowcnt);
 				} // for_j 
 			},
 			error:function(){
@@ -231,20 +223,17 @@ $(window).scroll(function(){
 $(document).on("click",".heart", function(){
     var title = $(this).attr("id");
     var id = $(this).attr("class");
-    id = id.substring(7);
-    var rowcnt = $(this).attr("class");
-    rowcnt = rowcnt.substring(6,7);
+    id = id.substring(6);
+    console.log(id);
     $.ajax({
 		type:'Get',
 		url : "heartUp",
 		data:{
 			id : id,
 			title: title,
-			rowcnt : rowcnt
 		},
 		success:function(data){
 			var cnt = data.countHeartTest
-			console.log(rowcnt)
 			$('#'+title).empty();
 			$('#cnt'+title).html("<img src = 'resources/image/heart.png'>"+cnt);
 		}, // success

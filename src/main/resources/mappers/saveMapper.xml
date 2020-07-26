@@ -9,7 +9,12 @@
 	insert into `hellchang_schema_test`.`myRoutine` values 
 	 (#{id}, #{name}, #{target}, #{kg}, #{rep}, sysdate(), #{title}, #{shared}, 0);
   </insert>
-    
+  
+  <!-- heartData 저장 -->
+  <insert id="heartTest">
+    insert into `hellchang_schema_test`.`heart` values 
+	 (#{id}, #{title}, 0);
+  </insert>
   <delete id="delMyRoutine">
   	delete from `hellchang_schema_test`.`myRoutine` where id=#{id} and title=#{title} and target=#{target}
   </delete>  
@@ -53,10 +58,10 @@
   </select>
    
   <update id="heartUp">
-	update hellchang_schema_test.myRoutine set heart = heart + 1 where id=#{id} and title = #{title}
+	update hellchang_schema_test.heart set heart = heart + 1 where id=#{id} and title = #{title}
   </update>
   
-  <select id="heartSelect" resultType="vo.SaveVO">
-  	select * from `hellchang_schema_test`.`myRoutine` where id=#{id} and title = #{title}
+  <select id="heartSelect" resultType="vo.HeartVO">
+  	select * from `hellchang_schema_test`.`heart` where id=#{id} and title = #{title}
   </select> 
  </mapper>

@@ -66,13 +66,17 @@ public class SServiceImpl implements SService {
 	}
 	
 	@Override
-	public int heartUp(SaveVO vo) { // row(vo) �쟾�떖 諛쏆븘 �닔�젙
-		return dao.heartUp(vo);  // 泥섎━�맂 row 媛��닔 return
+	public int heartUp(HeartVO hvo) { // row(vo) �쟾�떖 諛쏆븘 �닔�젙
+		return dao.heartUp(hvo);  // 泥섎━�맂 row 媛��닔 return
 	} // update
 	
 	@Override
-	public SaveVO heartSelect(SaveVO vo) {
-		return dao.heartSelect(vo);
+	public HeartVO heartSelect(HeartVO hvo) {
+		return dao.heartSelect(hvo);
 	} // selectOne
 	
+	@Override
+	public int heartTest(HeartVO hvo) {  
+		return dao.heartTest(hvo);  // 泥섎━�맂 row 媛��닔 return	 
+	} // insert
 } // class
