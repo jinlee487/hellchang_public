@@ -21,7 +21,7 @@ import vo.MemberVO;
 import vo.SaveVO;
 
 
-@Controller
+@Controller 
 public class SaveController {
 	@Autowired
 	SService service;
