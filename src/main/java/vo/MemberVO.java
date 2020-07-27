@@ -19,8 +19,8 @@ public class MemberVO {
 	private String mm;
 	private String dd;
 	private String level;	
-	private String image_path; 
-	private MultipartFile image_file; 
+	private String image_path;        // db와 동일한 이름
+	private MultipartFile image_file; // form에서 저장하는 image 
 
 	public String getId() {return id;}
 	public void setId(String id) {this.id = id;}

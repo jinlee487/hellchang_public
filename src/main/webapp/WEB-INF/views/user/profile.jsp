@@ -14,62 +14,81 @@
   <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  
-  
+  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
+  <link rel="stylesheet" type="text/css" href="resources/jqLib/topBar.css">
   <style>
-  #p_pos{
-  	margin-right: 80px;
-  }
-  		  
-  address {
-	color: white;
-	margin-bottom:0px;
-	}
-  #footer{
-	clear: both;
-    margin: 0 auto;
-    padding: 30px 0 15px 0;
-    text-align: center;
-    margin: 0 auto;
-	height: 50px;
-    max-width: 100%;
-    min-width: 460px;
-    background-color: #3d3b3c;
-    bottom:0px;
-    
-	}
-  
-    /* Remove the navbar's default margin-bottom and rounded borders */ 
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-      background-color: #000000;
-    }
-    
-    /* Add a gray background color and some padding to the footer */
-    footer {
-      background-color: #3d3b3c;
-      padding: 25px;
-    }
-    
-  .carousel-inner img {
-      width: 100%; /* Set width to 100% */
-      margin: auto;
-      min-height:200px;
-  }
-
-  /* Hide the carousel text when the screen is less than 600 pixels wide */
-  @media (max-width: 600px) {
-    .carousel-caption {
-      display: none; 
-      margin-left: 20	0px;
-    }
-  }
-  @media (min-width: 768px){
+  	@media (min-width: 768px){
 	.col-sm-4 {
 	  /* margin-left: 200px; */
 	  text-align: center;
 	}
+	
+	/* modal 가운데 위치 (Css) */
+	.modal {
+        text-align: center;
+	}
+	@media screen and (min-width: 768px) { 
+        .modal:before {
+                display: inline-block;
+                vertical-align: middle;
+                content: " ";
+                height: 100%;
+        }
+	}
+	.modal-dialog {
+        display: inline-block;
+        text-align: left;
+	}
+	/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+	.modal-content{
+		margin: 0 auto;
+		width: 300px;
+	}
+	.modal-body{
+		padding: 0;
+		background-color: white;
+	}
+	
+	.bEffect{
+		border: 0;
+		outline: 0;
+		border-color: #f5f5f5;
+		color:#f5f5f5;
+		background-color: #f5f5f5;
+	}
+	.modal-title{
+		text-align: center;
+		color: #262626;
+		font-size: 18px;
+		font-style: -apple-system;
+	}
+	.imageChange{
+		width: 100%;
+		height: 48px;
+		background-color: white;
+		border-left: 0;
+		border-right: 0;
+		border-top: 0;
+		border-bottom: 0;
+	}
+	.sel{
+		border-top: 1 solid;
+		border-color: rgb(219, 219, 219);
+		color: rgb(0, 149, 246);
+	}
+	.del{
+		border-top: 1 solid;
+		border-color: rgb(219, 219, 219);
+		color: rgb(237, 73, 86);
+	}
+	.can{
+		border-top: 1 solid;
+		border-color: rgb(219, 219, 219);
+	}
+	#image_file{
+		width: 0px;
+	}
+	
   </style>
 </head>
 <body >
@@ -123,9 +142,11 @@
     <div class="col-sm-3 well">
       <div class="well">
         <p><a href="myProfile">My Profile</a></p>
-        <img src="resources/uploadImage/emptyImage.png" class="img-circle" height="100" width="100" alt="Avatar">
+        <a type="button" data-toggle="modal" data-target="#myModal">
+        <button class="bEffect" title="프로필 사진 바꾸기">
+        	<img src="${mem.image_path}" class="img-circle" height="100" width="100" alt="프로필 사진 바꾸기">
+        </button>
       </div>
-
 		<ul class="nav nav-pills nav-stacked">
 		  <li><a href="#">Start Workout</a></li>
 		  <li><a href="manageWorkout">Manage Workout</a></li>
@@ -133,7 +154,7 @@
 		  <li><a href="#">Diet</a></li>
 		  <li><a href="#">Social</a></li>    
 		  <li><a href="routine">Test</a></li>
-		  <li><a href="mdetail?code=U">Setting</a></li>
+		  <li><a href="mdetail?code=U">Profile Update</a></li>
 		  <li><a href="delete">Drop Out</a></li>
 		</ul>
     </div>
@@ -220,17 +241,76 @@
       </div>
     </div>
   </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 </div>
 
 <div id="footer" role="contentinfo">
+<!-- <hr style="width: 100%;">
+<hr style="width: 100%; border-color: black;"> -->
 		<address>
-			<em><a href="home" target="_blank" class="logo"><span class="blind">HellChang</span></a></em>
-			<em class="copy">Copyright</em>
-			<em class="u_cri">©</em>
-			<a href="home" target="_blank" class="u_cra">HellChang Corp.</a>
-			<span class="all_r">All Rights Reserved.</span>
+			<em><a href="home" target="_blank" class="logo footfont"><span class="blind">HellChang</span></a></em>
+			<em class="copy footfont">Copyright</em>
+			<em class="u_cri footfont">©</em>
+			<a href="home" target="_blank" class="u_cra footfont">HellChang Corp.</a>
+			<span class="all_r footfont">All Rights Reserved.</span>
 		</address>
-	</div>
-
+</div>
+<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ modal ver ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ --> 
+  <!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog ">
+      <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h3 class="modal-title">프로필 사진 바꾸기</h3>
+      </div>
+      <div class="modal-body" >	
+      	<button class="imageChange sel"  tabindex="0">사진업로드</button>
+      	<button class="imageChange del" tabindex="0">현재 사진 삭제</button>
+        <button class="imageChange can" tabindex="0">취소</button>
+        <form style="height: 0;" action="imgUpdate" name="chImg" method="POST" enctype="multipart/form-data">
+        	<input type="file" id="image_file" name="image_file">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){
+	$('.sel').on('click', function(){
+		$('input[type=file]').click();
+	}); // file select 
+	
+	$('input').change(function(){
+		var chImg = document.chImg;
+		chImg.submit();
+	}); // file submit 
+	
+	$('.del').on('click', function(){
+		$.ajax({
+			type: "post",
+			url: "imgUpdate",
+			data: {
+				code : 44,
+			},
+			success: {
+				
+			}
+		});// ajax
+	}); // file del
+});//ready
+</script>
 </body>
 </html>
