@@ -25,7 +25,7 @@ $(function(){
 	$.ajax({
 		type:'Get',
 		dataType : "json",
-		url:'blogselectone',
+		url:'blogTest',
 		
 		success:function(data){
 			var nowID = "";
