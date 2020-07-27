@@ -23,6 +23,7 @@
       border-radius: 0;
       background-color: #000000;
     }
+
     .gridA{ 
 		color: black; text-decoration: none;
 	}
@@ -40,6 +41,8 @@
    		border-radius: 70%;
    		overflow: hidden;
    	}
+
+
 	.myPhoto{
 	width: 100px;
 	height: 100px;
@@ -53,6 +56,7 @@
      border-bottom: 3px solid #168;
 }
   
+
 .table th {
      color: #168;
      background: #f0f6f9;
@@ -63,6 +67,7 @@
     background: #f0f6f9;
     text-align: center;
 }
+
 .table td:first-child{
 	width : 200px;
 	vertical-align: middle;
@@ -74,6 +79,7 @@
 .firsttr{
 	border-right: 3px solid #168;
 }
+
 .table th:first-child, .table td:first-child {
      border-left: 3px solid #168;
 }
@@ -82,6 +88,7 @@
 	width : 200px;
 	vertical-align: middle;
 }
+
 .table th:last-child, .table td:last-child {
 	border-right : 3px solid #168;
 }
@@ -110,6 +117,8 @@
 }
 </style>
 <script type="text/javascript">
+var logID = "<%=session.getAttribute("logID") %>"
+console.log("session : "+logID);
 $(function(){
 	var cnt = 0;
 	var last = 0;
@@ -138,7 +147,7 @@ $(function(){
 				rowcnt = 0;
 				for(var i = 0; i<Object.keys(jsonData).length; i++){		
 					if(i==0){
-						appendT += '<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><img src="resources/image/lee.jpg" alt="이준호" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td><td colspan ="3"></td></tr>'
+						appendT += '<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><img src = "'+jsonData[i].userImage+'" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td><td colspan ="3"></td></tr>'
 						appendT += '<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>'
 						appendT += "<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>"							
 					}else if(i!=0 || i!=lastNum){
@@ -149,9 +158,11 @@ $(function(){
 					}
 					nowTitle = jsonData[i].title ;
 					nowID = jsonData[i].id;
+					replyTitle = jsonData[i].title ;
+					var replyRow = jsonData[i].title;
 					rowcnt ++;
 				} // for_i
-				appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowTitle+"'></span><br><span class = 'reply'>댓글</span></td><td colspan = '4'></td></tr>"
+				appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowTitle+"'></span><br><span class = 'reply " + nowID +"' id = '"+replyTitle+"'><img src = 'resources/image/pencil.png'></span></td><td colspan = '4'></td></tr>"
 				appendT += "</table>"
 				$('.blogForm').append(appendT)
 				cnt ++;
@@ -161,6 +172,7 @@ $(function(){
 			
 		}
 	}); // ajax 
+
 $(window).scroll(function(){
 	if($(document).height() <= $(window).scrollTop() + $(window).height()){	
 	loadNext();
@@ -193,7 +205,7 @@ $(window).scroll(function(){
 					for(var i = 0; i<Object.keys(jsonData).length; i++){
 						rowcnt = 0;
 						if(i==0){
-							appendT += '<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><img src="resources/image/lee.jpg" alt="이준호" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td><td colspan ="3"></td></tr>'
+							appendT += '<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><img src = "'+jsonData[i].userImage+'" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td><td colspan ="3"></td></tr>'
 							appendT += '<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>'
 							appendT += "<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>"							
 						}else if(i!=0 || i!=lastNum){
@@ -205,7 +217,7 @@ $(window).scroll(function(){
 						nowID = jsonData[i].id;
 						rowcnt ++;
 					} // for_i
-					appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowTitle+"'></span><br><span class = 'reply'>댓글</span></td><td colspan = '4'></td></tr>"
+					appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowTitle+"'></span><br><span class = 'reply " + nowID +"' id = '"+replyTitle+"'><img src = 'resources/image/pencil.png'></span></td><td colspan = '4'></td></tr>"
 					appendT += "</table>"
 					$('.blogForm').append(appendT)
 					cnt ++;
@@ -217,6 +229,7 @@ $(window).scroll(function(){
 	}) // ajax
 	} // loadNext
 });
+
 $(document).on("click",".heart", function(){
     var title = $(this).attr("id");
     var id = $(this).attr("class");
@@ -239,7 +252,33 @@ $(document).on("click",".heart", function(){
 			alert("좋아요 오류 발생\n 지금 row가 여러개인 타이틀 좋아요 오류 수정중")
 		}
 	}) // ajax
-}) // click 이벤트
+}) // heart_click 이벤트
+
+$(document).on("click",".reply", function(){
+    var title = $(this).attr("id");
+    var id = $(this).attr("class");
+    id = id.substring(6);
+    console.log("log " + logID);
+    console.log(title);
+    var content = prompt("댓글을 입력해주세요");
+    $.ajax({
+		type:'Get',
+		url : 'replyInsert',
+		data:{
+			id : id,
+			title: title,
+			replyContent : content,
+			replyId : logID
+		},
+		success:function(data){
+
+		}, // success
+		error:function(){
+			alert(rowcnt);
+			alert("좋아요 오류 발생\n 지금 row가 여러개인 타이틀 좋아요 오류 수정중")
+		}
+	}) // ajax
+}) // heart_click 이벤트
 }) // ready
 </script>
 </head>

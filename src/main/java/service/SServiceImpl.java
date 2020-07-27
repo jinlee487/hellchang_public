@@ -9,6 +9,7 @@ import jdbcUtil.SaveDAO;
 import vo.HeartVO;
 import vo.MemberVO;
 import vo.PageVO;
+import vo.ReplyVO;
 import vo.SPageVO;
 import vo.SaveVO;
 
@@ -79,4 +80,14 @@ public class SServiceImpl implements SService {
 	public int heartTest(HeartVO hvo) {  
 		return dao.heartTest(hvo);  // 泥섎━�맂 row 媛��닔 return	 
 	} // insert
+	
+	@Override
+	public int replyInsert(ReplyVO rvo) {  
+		return dao.replyInsert(rvo);  // 泥섎━�맂 row 媛��닔 return	 
+	} // insert
+	
+	@Override
+	public List<ReplyVO> replyResult(ReplyVO rvo) {
+		return dao.replyResult(rvo);
+	} // selectOne
 } // class

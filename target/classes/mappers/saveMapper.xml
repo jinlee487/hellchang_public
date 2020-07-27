@@ -8,6 +8,15 @@
    <insert id="saveMyRoutine">
 	insert into `hellchang_schema_test`.`myRoutine` values 
 	 (#{id}, #{name}, #{target}, #{kg}, #{rep}, sysdate(), #{title}, #{shared}, 0);
+<<<<<<< HEAD
+=======
+  </insert>
+  
+  <!-- heartData 저장 -->
+  <insert id="heartTest">
+    insert into `hellchang_schema_test`.`heart` values 
+	 (#{id}, #{title}, 0);
+>>>>>>> refs/remotes/origin/sungho
   </insert>
   
   <!-- heartData 저장 -->
@@ -24,7 +33,8 @@
   </select> 
   
   <select id="selectList" resultType="vo.SaveVO">
-	select id,name,target,kg,rep from `hellchang_schema_test`.`myRoutine` where id=#{id} and date = #{date}
+	select id,name,target,kg,rep from `hellchang_schema_test`.`myRoutine` where id=#{id} and date like CONCAT('%',#{date},'%')
+
   </select>
   
   <select id="selectTList" resultType="vo.SaveVO">
@@ -53,7 +63,7 @@
   </select>
   
   <select id="findTest" resultType="vo.SaveVO"> 
-	select myRoutine.* ,member.name as userName from hellchang_schema_test.myRoutine , hellchang_schema_test.member
+	select myRoutine.* ,member.name as userName, member.image_path as userImage from hellchang_schema_test.myRoutine , hellchang_schema_test.member
 	where  myRoutine.id = #{id} and myRoutine.title = #{title} and myRoutine.id = member.id
   </select>
    
@@ -63,6 +73,7 @@
   
   <select id="heartSelect" resultType="vo.HeartVO">
   	select * from `hellchang_schema_test`.`heart` where id=#{id} and title = #{title}
+<<<<<<< HEAD
   </select> 
   
   <select id="blogselectone" resultType="vo.SaveVO">
@@ -72,3 +83,18 @@
   group by id,title order by sub.rownum asc limit 5;
   </select>
  </mapper>
+=======
+  </select>
+  
+  <insert id="replyInsert">
+    insert into `hellchang_schema_test`.`reply` values 
+	 (#{id}, #{title}, #{replyContent}, #{replyId});
+  </insert> 
+  
+  <select id="replyResult" resultType="vo.ReplyVO">
+  	select r.replyContent, m.name as userName 
+  	from hellchang_schema_test.reply as r,  hellchang_schema_test.member as m 
+  	where r.id = #{id} and r.title = #{title} and r.replyContent = #{replyContent} and r.id = m.id;
+  </select>
+ </mapper>
+>>>>>>> refs/remotes/origin/sungho

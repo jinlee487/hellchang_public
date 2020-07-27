@@ -13,6 +13,7 @@ public class SaveVO {
 	private String userName;
 	private int rownum;
 	private int heart;
+	private String userImage;
 	
 	public String getId() {
 		return id;
@@ -86,11 +87,19 @@ public class SaveVO {
 	public void setHeart(int heart) {
 		this.heart = heart;
 	}
+	
+	
+	public String getUserImage() {
+		return userImage;
+	}
+	public void setUserImage(String userImage) {
+		this.userImage = userImage;
+	}
 	@Override
 	public String toString() {
 		return "SaveVO [id=" + id + ", name=" + name + ", target=" + target + ", kg=" + kg + ", rep=" + rep + ", date="
 				+ date + ", title=" + title + ", shared=" + shared + ", userName=" + userName + ", rownum=" + rownum
-				+ ", heart=" + heart + "]";
+				+ ", heart=" + heart + ", userImage=" + userImage + "]";
 	}
 	
 
