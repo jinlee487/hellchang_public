@@ -263,7 +263,7 @@ $(document).on("click",".heart", function(){
         </div>
         <div class="modal-body" style="display: inline-flex; ">
        <div align="left" class = "blogForm"><br><br>
-		</div>
+		</div> 
 		  
 		   <div class="modal-body-text" style="width : 350px; margin-left: 50px; margin-top: 50px;">
 		    <button type="button" class="close" data-dismiss="modal">&times;</button>
