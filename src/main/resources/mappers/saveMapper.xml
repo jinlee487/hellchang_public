@@ -15,6 +15,7 @@
     insert into `hellchang_schema_test`.`heart` values 
 	 (#{id}, #{title}, 0);
   </insert>
+  
   <delete id="delMyRoutine">
   	delete from `hellchang_schema_test`.`myRoutine` where id=#{id} and title=#{title} and target=#{target}
   </delete>  
@@ -24,7 +25,8 @@
   </select> 
   
   <select id="selectList" resultType="vo.SaveVO">
-	select id,name,target,kg,rep from `hellchang_schema_test`.`myRoutine` where id=#{id} and date = #{date}
+	select id,name,target,kg,rep from `hellchang_schema_test`.`myRoutine` where id=#{id} and date like CONCAT('%',#{date},'%')
+
   </select>
   
   <select id="selectTList" resultType="vo.SaveVO">
@@ -63,5 +65,16 @@
   
   <select id="heartSelect" resultType="vo.HeartVO">
   	select * from `hellchang_schema_test`.`heart` where id=#{id} and title = #{title}
-  </select> 
+  </select>
+  
+  <insert id="replyInsert">
+    insert into `hellchang_schema_test`.`reply` values 
+	 (#{id}, #{title}, #{replyContent}, #{replyId});
+  </insert> 
+  
+  <select id="replyResult" resultType="vo.ReplyVO">
+  	select r.replyContent, m.name as userName 
+  	from hellchang_schema_test.reply as r,  hellchang_schema_test.member as m 
+  	where r.id = #{id} and r.title = #{title} and r.replyContent = #{replyContent} and r.id = m.id;
+  </select>
  </mapper>

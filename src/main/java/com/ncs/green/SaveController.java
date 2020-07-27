@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import service.SService;
 import vo.HeartVO;
 import vo.MemberVO;
+import vo.ReplyVO;
 import vo.SaveVO;
 
 
@@ -69,10 +70,10 @@ public class SaveController {
 	public ModelAndView mySaveRoutine(HttpServletRequest request, ModelAndView mv, SaveVO vo) {
 		HttpSession session = request.getSession(false);
 		vo.setId((String) session.getAttribute("logID"));
-		System.out.println((String) session.getAttribute("logID"));
+		vo.setDate(request.getParameter("date"));
+		System.out.println(vo.getDate()); 
 		List<SaveVO> list = service.selectList(vo);
 		System.out.println("Test List : " +  list);
-		System.out.println(vo.getKg());
 		mv.addObject("myInfo", list); 
 		mv.setViewName("jsonView"); 
 		return mv;
@@ -169,4 +170,22 @@ public class SaveController {
 
 		return mv;
 	}// heartUp
+	
+	@RequestMapping(value = "/replyInsert")
+	public ModelAndView replyInsert(HttpServletRequest request, ModelAndView mv, ReplyVO rvo){
+		System.out.println("insert Test =>" + rvo);
+		if (service.replyInsert(rvo) > 0 ) {			
+			System.out.println(rvo);
+			rvo.setId(request.getParameter("id"));
+			rvo.setTitle(request.getParameter("title"));
+			List<ReplyVO> list = service.replyResult(rvo); 
+			System.out.println(list);
+			
+			mv.addObject("replyTest", list);
+		} 
+		
+		mv.setViewName("jsonView");
+
+		return mv;
+	}// reply
 }
