@@ -153,205 +153,68 @@ text-align: left;
     </div>
     
     <div class="col-sm-7 inbodycontent">    
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#inbodyOption" id="inbodyBtn"><span class="glyphicon glyphicon-plus"></span></button>
-     <!-- Modal -->
-	  <div class="modal fade" id="inbodyOption" role="dialog">
-	    <div class="modal-dialog">
-	    
-	      <!-- Modal content-->
-	      <div class="modal-content">
-	        <div class="modal-header">
-	          <button type="button" class="close" data-dismiss="modal">&times;</button>
-	          <h4 class="modal-title">Inbody Test</h4>
-	        </div>
-	        <div class="modal-body">
-	          <table class="columns" style="table-layout:fixed;word-break:break-all;width:100%;">
-	          <tr>
-	          <td><a href="inbodyInsertf"><span class="glyphicon glyphicon-pencil"></span></a></td>
-	          <td><a href="inbodyUpdatef"><span class="glyphicon glyphicon-edit"></span></a></td>   
-	          <td><a href="inbodyUpdatef"><span class="glyphicon glyphicon-share"></span></a></td>        
-	          </tr>
-	          </table>
-	        </div>
-	      </div>
-	      
-	    </div>
-	  </div>
-
-     <div class="tab">
-        <button class="tablink" onclick="openPage(event,'results_tab')" id="defaultOpen">Results</button>
-		<button class="tablink" onclick="openPage(event,'history_tab')" >History</button>
-		<button class="tablink" onclick="openPage(event, 'ranking_tab')">Ranking</button>
-    </div>   
-      <div class="row">
-        <div class="col-sm-12 tabcontent" id="results_tab">
-        
-<!--          <form>
-		    <div class="form-group">
-		   		 <br>
-		      <label for="sel1">Select Inbody Record</label>
-		      <select class="form-control" id="sel1 sel1Results">
-		        <option>1</option>
-		        <option>2</option>
-		        <option>3</option>
-		        <option>4</option>
-		      </select>
-		    </div>
-		  </form> -->
-           <div class="panel-group">
-		    <div class="panel panel-default">
-		      <div class="panel-heading">
-		        <h4 class="panel-title">
-		          <ul class="pager">
-		            <li class="previous" id="resultsback"><a href="#results_tab"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
-		            <li><a data-toggle="collapse" href="#collapse1"><span id="results_date"></span>
-		            												<span id="results_sign" class="glyphicon glyphicon-collapse-down"></span></a></li>
-		            <li class="next" id="resultsforward"><a href="#results_tab"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
-		          </ul>
-		        </h4>
-		      </div>
-		      <div id="collapse1" class="panel-collapse collapse">
-		        <ul class="list-group" style="text-align: center;display:inline-block;padding: 5px 14px;
-		                               background-color: #fff;border: 1px solid #ddd;border-radius: 15px;" id="dddd">
-		        </ul>
-		        </div>
-		        <div class="panel-footer"></div>
-		      </div>
-		    </div>	  
-
-            <div class="well well-sm analysis-title">MUSCLE-FAT ANALYSIS</div>   
-            <table class="columns" style="table-layout:fixed;word-break:break-all;width:100%;">
-		      <tr>
-		        <td style="width:40%;">Weight<br><strong style="font-size: large;" id="wChartID2"></strong>kg</td>
-		        <td style="width:150%;"><div id="wChartID"></div></td>
-		      </tr> 
-		      <tr>
-		        <td style="width:40%;">Muscle Mass<br><strong style="font-size: large;" id="mmChartID2"></strong>kg</td>
-		        <td style="width:150%;"><div id="mmChartID"></div></td>
-		      </tr>
-		      <tr>
-		        <td style="width:40%;">Fat Mass<br><strong style="font-size: large;" id="fmChartID2"></strong>kg</td>
-		        <td style="width:150%;"><div id="fmChartID"></div></td>
-		      </tr>
-		    </table><br><br>
-		    <div class="well well-sm analysis-title">Obesity Analysis</div>   
-            <table class="columns" style="table-layout:fixed;word-break:break-all;width:100%;">
-		      <tr>
-		        <td style="width:40%;">BMI<br><strong style="font-size: large;" id="bChartID2"></strong>kg/m2</td>
-		        <td style="width:150%;"><div id="bChartID"></div></td>
-		      </tr>
-		      <tr>
-		        <td style="width:40%;">percent<br>Body Fat<br><strong style="font-size: large;" id="pChartID2"></strong>%</td>
-		        <td style="width:150%;"><div id="pChartID"></div></td>
-		      </tr>
-		    </table><br><br>
-		    <div class="well well-sm analysis-title">Visceral Fat Analysis</div>   
-		     <table class="columns" style="table-layout:fixed;word-break:break-all;width:100%;">
-		      <tr>
-		        <td style="width:40%;">Visceral <br> Fat Level<br><strong style="font-size: large;" id="vChartID2"></strong>Level</td>
-		        <td style="width:150%;"><div id="vChartID"></div></td>
-		      </tr>
-		    </table><br><br>
-		    <div class="well well-sm analysis-title">Research Parameters</div>   
-		     <table class="columns"  style="table-layout:fixed;word-break:break-all;width:100%;">
-		      <tr>
-		        <td style="width:40%;">Basal Metaboilic Rate</td>
-		        <td style="width:150%;text-align: right"><strong style="font-size: large;" id="bmiID"></strong>kcal</td>
-		      </tr>
-		    </table><br><br>  
-        </div>
-        
-        
-        <div class="col-sm-12 tabcontent" id="history_tab">
-		             
-		<div class="panel-group">
-		  <div class="panel panel-default">
-		    <div class="panel-heading">
-		      <h4 class="panel-title">
-		      	<span><strong>Select Date</strong></span><br><br>
-		        <a data-toggle="collapse" href="#collapse2"><span id="selected_date"></span>
-		        						<span id="hist_sign" class="glyphicon glyphicon-collapse-down"></span></a>
-		      </h4>
-		    </div>
-		    <div id="collapse2" class="panel-collapse collapse">
-		      <div class="panel-body">
-		      	<form>
-			    <div class="form-group">
-			      <label for="sel1">Select Start Date</label>
-			      <select class="form-control" id="sel1">
-			      </select>
-			      <label for="sel2">Select End Date</label>
-			      <select class="form-control" id="sel2">
-			      </select>
-			      <hr>
-			      </div>
-			    </form>
-			        <button id="reset_date" class="btn btn-default">Reset</button>
-			        <button id="reset_date_ajax" class="btn btn-default">Submit</button>
-
-		      </div>
-		    </div>
-		  </div>
-		</div>
-			        
-		      <br>
-            <table class="columns" style="table-layout:fixed;word-break:break-all;width:100%;">
-		      <tr>
-		        <td><strong style="font-size: large;">Weight (kg)</strong></td>		        
-		      </tr>
-		      <tr>
-		        <td style="width:150%;"><div id="wComboID"></div><hr></td>
-		      </tr> 
-		      <tr>
-		        <td><strong style="font-size: large;"><br><br>Muscle Mass (kg)</strong></td>
-		      </tr>
-		      <tr>
-		        <td style="width:150%;"><div id="mmComboID"></div><hr></td>
-		      </tr> 
-		      <tr>
-		        <td><strong style="font-size: large;"><br><br>Fat Mass (kg)</strong></td>
-		      </tr>
-		      <tr>
-		        <td style="width:150%;"><div id="fmComboID"></div><hr></td>
-		      </tr> 
-		      <tr>
-		        <td><strong style="font-size: large;"><br><br>BMI (kg/m2)</strong></td>
-		      </tr>
-		      <tr>
-		        <td style="width:150%;"><div id="bComboID"></div><hr></td>
-		      </tr> 
-		      <tr>
-		        <td><strong style="font-size: large;"><br><br>Percent Body Fat (%)</strong></td>
-		      </tr>
-		      <tr>
-		        <td style="width:150%;"><div id="pComboID"></div><hr></td>
-		      </tr> 
-		      <tr>
-		        <td><strong style="font-size: large;"><br><br>Visceral Fat Level (level)</strong></td>
-		      </tr>
-		      <tr>
-		        <td style="width:150%;"><div id="vComboID"></div><hr></td>
-		      </tr> 
-		     </table>
-		     <br><br><br><br><br><br><br><br>
-		     
-        </div>
-        
-        <div class="col-sm-12 tabcontent" id="ranking_tab">
-             <div class="weekday">      
-			  <ul style="list-style-type: none;">
-			    <li class="prev">&#10094;</li>
-			    <li class="next">&#10095;</li>
-			    <li>
-			      This is a Test Tab 3<br>
-			    </li>
-			  </ul>
-			</div>  
-        </div>
-        
-        
-       </div>
- 
+        <form action="join" method="post" style="border:1px solid #ccc" name="regform">
+			<input type="text" id="yy" name="yy" placeholder="년(4자)" aria-label="년(4자)" class="yy" maxlength="4" required>
+    		<select id="mm" class="mm" name="mm" aria-label="월" required>
+										<option value="">월</option>
+										  	 			<option value="01">
+                                                            1월
+                                                        </option>
+										  	 			<option value="02">
+                                                            2월
+                                                        </option>
+										  	 			<option value="03">
+                                                            3월
+                                                        </option>
+										  	 			<option value="04">
+                                                            4월
+                                                        </option>
+										  	 			<option value="05">
+                                                            5월
+                                                        </option>
+										  	 			<option value="06">
+                                                            6월
+                                                        </option>
+										  	 			<option value="07">
+                                                            7월
+                                                        </option>
+										  	 			<option value="08">
+                                                            8월
+                                                        </option>
+										  	 			<option value="09">
+                                                            9월
+                                                        </option>
+										  	 			<option value="10">
+                                                            10월
+                                                        </option>
+										  	 			<option value="11">
+                                                            11월
+                                                        </option>
+										  	 			<option value="12">
+                                                            12월
+                                                        </option>
+									</select>
+	
+	
+	
+	
+	<input type="text" id="dd" name="dd" placeholder="일" aria-label="일" class="yy" maxlength="2" required><br>
+		<label for="weight" class="int"><b>Weight(kg)</b></label><br>
+    <input type="number" id="weight" placeholder="Enter weight"  name="weight" class="input" required ><br>
+        <label for="psw" class="int"><b>Muscle Mass(kg)</b></label><br>
+    <input type="number" id="password" placeholder="Enter Password"  name="password" class="input" required ><br>
+    	<label for="psw" class="int"><b>Fat Mass</b></label><br>
+    <input type="number" id="password" placeholder="Enter Password"  name="password" class="input" required ><br>
+    	<label for="psw" class="int"><b>BMI</b></label><br>
+    <input type="number" id="password" placeholder="Enter Password"  name="password" class="input" required ><br>
+    	<label for="psw" class="int"><b>percent Body Fat</b></label><br>
+    <input type="number" id="password" placeholder="Enter Password"  name="password" class="input" required ><br>
+    	<label for="psw" class="int"><b>Visceral Fat Level</b></label><br>
+    <input type="number" id="password" placeholder="Enter Password"  name="password" class="input" required ><br>
+    	<label for="psw" class="int"><b>Basal Metabolic Rate</b></label><br>
+    <input type="number" id="password" placeholder="Enter Password"  name="password" class="input" required ><br>
+	</form>
+	<br><br><br><br><br><br><br><br><br><br>  
      </div>
      
     <div class="col-sm-2 well" style="margin-top: 100px">
