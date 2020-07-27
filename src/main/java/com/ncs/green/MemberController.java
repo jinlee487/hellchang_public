@@ -29,29 +29,37 @@ public class MemberController {
 	@RequestMapping(value = "/imgUpdate")
 	public ModelAndView imgUpdate(MemberVO vo, HttpServletRequest request) throws IOException {
 		ModelAndView mv = new ModelAndView();
-		
+		int code=0;
+		if(request.getParameter("code") != null) {
+			code = Integer.parseInt(request.getParameter("code"));
+		}
+	
 		MultipartFile image_file;
-		image_file = vo.getImage_file();
+		String file1, file2;
 		
+		image_file = vo.getImage_file();
+
 		String id = (String)request.getSession().getAttribute("logID");
 		vo.setId(id);
 		vo = service.selectOne(vo);
 		
-		String file1, file2;
-		
-		System.out.println("vo.getImage_file => " + image_file);
+		System.out.println(code);
+		if(code == 44) {
+			System.out.println("들어옴!!!!!!!!!!!");
+			file2="resources/uploadImage/emptyImage.png";
+			vo.setImage_path(file2);
+		}else {
+			file1="D:/MTest/MyWork/hellchang/src/main/webapp/resources/uploadImage/"
+					+ image_file.getOriginalFilename();
+			image_file.transferTo(new File(file1));
+			file2="resources/uploadImage/"+image_file.getOriginalFilename();
+			vo.setImage_path(file2);
+		}
 		
 //		file1="D:/MTest/MyWork/Spring05/src/main/webapp/resources/uploadImage/"
 //				+ image_file.getOriginalFilename();
 //		file1="D:/workSpace/hellchang/src/main/webapp/resources/uploadImage/"
 //				+ image_file.getOriginalFilename();
-		file1="D:/MTest/MyWork/hellchang/src/main/webapp/resources/uploadImage/"
-				+ image_file.getOriginalFilename();
-		
-		image_file.transferTo(new File(file1));
-		file2="resources/uploadImage/"+image_file.getOriginalFilename();
-		vo.setImage_path(file2);
-		
 		service.update(vo);
 		
 		mv.addObject("mem", vo);

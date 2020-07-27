@@ -291,15 +291,26 @@
 $(function(){
 	$('.sel').on('click', function(){
 		$('input[type=file]').click();
-	});
+	}); // file select 
 	
 	$('input').change(function(){
 		var chImg = document.chImg;
 		chImg.submit();
-	});
+	}); // file submit 
 	
-});
-//ready
+	$('.del').on('click', function(){
+		$.ajax({
+			type: "post",
+			url: "imgUpdate",
+			data: {
+				code : 44,
+			},
+			success: {
+				
+			}
+		});// ajax
+	}); // file del
+});//ready
 </script>
 </body>
 </html>
