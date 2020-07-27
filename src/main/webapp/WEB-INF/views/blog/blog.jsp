@@ -214,7 +214,7 @@ $(window).scroll(function(){
 						nowID = jsonData[i].id;
 						rowcnt ++;
 					} // for_i
-					appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowTitle+"'></span><br><span class = 'reply'>댓글</span></td><td colspan = '4'></td></tr>"
+					appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowTitle+"'></span><br><span class = 'reply'><img src = 'resources/image/pencil.png'></span></td><td colspan = '4'></td></tr>"
 					appendT += "</table>"
 					$('.blogForm').append(appendT)
 					cnt ++;
