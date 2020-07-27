@@ -16,7 +16,6 @@
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
   <link rel="stylesheet" type="text/css" href="resources/jqLib/topBar.css">
-  
   <style>
   	@media (min-width: 768px){
 	.col-sm-4 {
@@ -45,6 +44,10 @@
 		margin: 0 auto;
 		width: 300px;
 	}
+	.modal-body{
+		padding: 0;
+		background-color: white;
+	}
 	
 	.bEffect{
 		border: 0;
@@ -59,6 +62,33 @@
 		font-size: 18px;
 		font-style: -apple-system;
 	}
+	.imageChange{
+		width: 100%;
+		height: 48px;
+		background-color: white;
+		border-left: 0;
+		border-right: 0;
+		border-top: 0;
+		border-bottom: 0;
+	}
+	.sel{
+		border-top: 1 solid;
+		border-color: rgb(219, 219, 219);
+		color: rgb(0, 149, 246);
+	}
+	.del{
+		border-top: 1 solid;
+		border-color: rgb(219, 219, 219);
+		color: rgb(237, 73, 86);
+	}
+	.can{
+		border-top: 1 solid;
+		border-color: rgb(219, 219, 219);
+	}
+	#image_file{
+		width: 0px;
+	}
+	
   </style>
 </head>
 <body >
@@ -247,14 +277,29 @@
           <h3 class="modal-title">프로필 사진 바꾸기</h3>
       </div>
       <div class="modal-body" >	
-      	<button>사진업로드</button>
-      	<hr>
-      	<button>현재 사진 삭제</button>
-      </div>
-      <div class="modal-footer">
-        <button>취소</button>
+      	<button class="imageChange sel"  tabindex="0">사진업로드</button>
+      	<button class="imageChange del" tabindex="0">현재 사진 삭제</button>
+        <button class="imageChange can" tabindex="0">취소</button>
+        <form style="height: 0;" action="imgUpdate" name="chImg" method="POST" enctype="multipart/form-data">
+        	<input type="file" id="image_file" name="image_file" accept="image/jpeg,image/png">
+        </form>
       </div>
     </div>
   </div>
+</div>
+<script type="text/javascript">
+$(function(){
+	$('.sel').on('click', function(){
+		$('input[type=file]').click();
+	});
+	
+	$('input').change(function(){
+		var chImg = document.chImg;
+		chImg.submit();
+	});
+	
+});
+//ready
+</script>
 </body>
 </html>
