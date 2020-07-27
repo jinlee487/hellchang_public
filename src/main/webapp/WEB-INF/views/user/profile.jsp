@@ -281,7 +281,7 @@
       	<button class="imageChange del" tabindex="0">현재 사진 삭제</button>
         <button class="imageChange can" tabindex="0">취소</button>
         <form style="height: 0;" action="imgUpdate" name="chImg" method="POST" enctype="multipart/form-data">
-        	<input type="file" id="image_file" name="image_file" accept="image/jpeg,image/png">
+        	<input type="file" id="image_file" name="image_file">
         </form>
       </div>
     </div>

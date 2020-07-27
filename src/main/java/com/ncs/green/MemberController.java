@@ -29,22 +29,30 @@ public class MemberController {
 	@RequestMapping(value = "/imgUpdate")
 	public ModelAndView imgUpdate(MemberVO vo, HttpServletRequest request) throws IOException {
 		ModelAndView mv = new ModelAndView();
-		String id = (String)request.getSession().getAttribute("logID");
-		vo.setId(id);
-		service.selectOne(vo);
 		
 		MultipartFile image_file;
+		image_file = vo.getImage_file();
+		
+		String id = (String)request.getSession().getAttribute("logID");
+		vo.setId(id);
+		vo = service.selectOne(vo);
+		
 		String file1, file2;
 		
-		image_file = vo.getImage_file();
+		System.out.println("vo.getImage_file => " + image_file);
 		
 //		file1="D:/MTest/MyWork/Spring05/src/main/webapp/resources/uploadImage/"
 //				+ image_file.getOriginalFilename();
-		file1="D:/workSpace/hellchang/src/main/webapp/resources/uploadImage/"
+//		file1="D:/workSpace/hellchang/src/main/webapp/resources/uploadImage/"
+//				+ image_file.getOriginalFilename();
+		file1="D:/MTest/MyWork/hellchang/src/main/webapp/resources/uploadImage/"
 				+ image_file.getOriginalFilename();
+		
 		image_file.transferTo(new File(file1));
 		file2="resources/uploadImage/"+image_file.getOriginalFilename();
 		vo.setImage_path(file2);
+		
+		service.update(vo);
 		
 		mv.addObject("mem", vo);
 		

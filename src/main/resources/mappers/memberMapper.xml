@@ -85,6 +85,11 @@
 	update hellchang_schema_test.member set password=#{password},name=#{name},level=#{level},birthday=#{birthday}
 	,address=#{address},phone=#{phone},gender=#{gender},image_path=#{image_path} where id=#{id}
   </update>
+  
+    <!-- memberUpdate() -->
+  <update id="imgUpdate">
+	update hellchang_schema_test.member set image_path=#{image_path} where id=#{id}
+  </update>
 
   <!-- memberDelete() -->
   <delete id="delete">
