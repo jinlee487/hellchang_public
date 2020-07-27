@@ -11,24 +11,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import service.EService;
+import service.SService;
 import vo.ExerciseVO;
 import vo.MemberVO;
+import vo.SaveVO;
 
 
 @Controller
 public class WorkoutController {
 	@Autowired
 	EService service;
+	@Autowired
+	SService sService;
+	
 	// MService service = new ServiceImpl();
 	ExerciseVO vo ;
 	MemberVO mVo;
+	SaveVO sVo;
 
 	
 	@RequestMapping(value = "/routine")
 	public ModelAndView TTTTTTT(ModelAndView mv, HttpServletRequest request) {
+		
+		List<SaveVO> list = sService.selectTList();
+		
+		System.out.println("list test => " + list);
 		request.getSession().getAttribute("logID");
 		request.getSession().getAttribute("logName");
-		System.out.println(request.getSession().getAttribute("logID"));
+		
+		mv.addObject("list", list);
+		
 		mv.setViewName("myRoutine/myRoutine");
 		return mv; 
 	} // test

@@ -79,6 +79,7 @@ public class InbodyController {
 				&& pvo.getList().get(0).getDate_date().equals(vo.getDate_date())) {
 			System.out.println("contorller datethis is not null vo=> " + vo.getDate_date());
 		}
+		System.out.println("this is vo before select one => " + vo);
 		vo = service.selectOne(vo);	
 
 		System.out.println("this is vo after selectOne =>\n" + vo.getDate_date());
@@ -112,4 +113,33 @@ public class InbodyController {
 		mv.setViewName("jsonView");
 		return mv;
 	} //
+	
+	@RequestMapping(value = "/inbodyInsertf")
+	public ModelAndView inbodyInsertf(HttpServletRequest request, ModelAndView mv, InbodyVO vo) {
+		System.out.println("this is working !");
+		mv.setViewName("inbody/inbody_insertForm");
+		return mv;
+	} //
+	
+	@RequestMapping(value = "/inbodyInsert")
+	public ModelAndView inbodyInsert(HttpServletRequest request, ModelAndView mv, InbodyVO vo) {
+		System.out.println(" we  are in inbodyInsert");
+		HttpSession session = request.getSession(false);
+		String id = (String) session.getAttribute("logID");
+		System.out.println("how is this null vo => " + vo);
+		vo.setId(id);
+		vo.setDate_string(vo.getDate_date());
+		if(service.selectOne(vo)!=null) {
+			mv.addObject("check_date_duplicate", "duplicate!"); 
+			mv.setViewName("user/inbody_insertForm");
+			return mv;
+		};
+		System.out.println("this is getting inserted => " + vo);
+
+		service.insert(vo);
+		  
+		mv.setViewName("user/profile_inbody");
+		return mv;
+	} //
+	
 }

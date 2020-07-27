@@ -89,7 +89,7 @@
   </select>
 
   <insert id="insert">
-	INSERT INTO hellchang_schema_test.inbody VALUES (#{id},#{date_date},#{date},#{seq},
+	INSERT INTO hellchang_schema_test.inbody VALUES (#{id},#{date_date},#{date_string},#{seq},
 	#{weight},#{weight_under},#{weight_over},#{muscle_mass},#{muscle_mass_under},#{muscle_mass_over},#{fat_mass},#{fat_mass_under},#{fat_mass_over},
 	#{bmi},#{bmi_under},#{bmi_over},#{pbf},#{pbf_under},#{pbf_over},#{vfl},#{vfl_under},#{vfl_over},#{bmr})
   </insert>	
