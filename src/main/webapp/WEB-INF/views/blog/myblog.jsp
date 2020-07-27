@@ -292,7 +292,7 @@ $(document).on("click",".heart", function(){
 					<tr><td id="myTitle">댓글 내용내용내용</td></tr>
 					</tbody></table><br>		
 		  </div>
-		<div align="center" class="blogForm2"></div>
+		<div align="left" class="blogForm2"></div>
           <section>
           	<div class="">
           		<form method="post">
