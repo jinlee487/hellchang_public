@@ -137,7 +137,15 @@ $(document).ready(function(){
   <p>Bootstrap Theme Made By <a href="https://www.w3schools.com" data-toggle="tooltip" title="Visit w3schools">www.w3schools.com</a></p> 
 </footer>
 
-
+<div id="footer" role="contentinfo">
+		<address>
+			<em><a href="home" target="_blank" class="logo footfont"><span class="blind">HellChang</span></a></em>
+			<em class="copy footfont">Copyright</em>
+			<em class="u_cri footfont">©</em>
+			<a href="home" target="_blank" class="u_cra footfont">HellChang Corp.</a>
+			<span class="all_r footfont">All Rights Reserved.</span>
+		</address>
+</div>
 
 </body>
 </html>
