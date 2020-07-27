@@ -262,7 +262,7 @@ $(document).on("click",".heart", function(){
         <!--   <h4 class="modal-title"> List 저장하기 </h4> -->
         </div>
         <div class="modal-body" style="display: inline-flex; ">
-       <div align="left" class = "blogForm"><br><br>
+       <div align="center" class = "blogForm"><br><br>
 		</div>
 		  
 		   <div class="modal-body-text" style="width : 350px; margin-left: 50px; margin-top: 50px;">
