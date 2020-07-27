@@ -130,10 +130,10 @@
     color: rgba(var(--eca,255,255,255),1);
     position: relative;
     text-decoration: none;
-        user-select: auto;
-        -webkit-appearance: none;
-        background: 0 0;
-        box-sizing: border-box;
+    user-select: auto;
+    -webkit-appearance: none;
+    background: 0 0;
+    box-sizing: border-box;
     cursor: pointer;
     display: block;
     font-weight: 600;
