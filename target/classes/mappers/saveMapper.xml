@@ -8,15 +8,6 @@
    <insert id="saveMyRoutine">
 	insert into `hellchang_schema_test`.`myRoutine` values 
 	 (#{id}, #{name}, #{target}, #{kg}, #{rep}, sysdate(), #{title}, #{shared}, 0);
-<<<<<<< HEAD
-=======
-  </insert>
-  
-  <!-- heartData 저장 -->
-  <insert id="heartTest">
-    insert into `hellchang_schema_test`.`heart` values 
-	 (#{id}, #{title}, 0);
->>>>>>> refs/remotes/origin/sungho
   </insert>
   
   <!-- heartData 저장 -->
@@ -24,6 +15,7 @@
     insert into `hellchang_schema_test`.`heart` values 
 	 (#{id}, #{title}, 0);
   </insert>
+  
   <delete id="delMyRoutine">
   	delete from `hellchang_schema_test`.`myRoutine` where id=#{id} and title=#{title} and target=#{target}
   </delete>  
@@ -73,17 +65,6 @@
   
   <select id="heartSelect" resultType="vo.HeartVO">
   	select * from `hellchang_schema_test`.`heart` where id=#{id} and title = #{title}
-<<<<<<< HEAD
-  </select> 
-  
-  <select id="blogselectone" resultType="vo.SaveVO">
-  	select * from  from (select @rownum:=@rownum+1 as rownum, m.* from `hellchang_schema_test`.`myRoutine` as m, 
-  (select @rownum :=0) R order by date desc)sub 
-  where id = #{id} and title = #{title}
-  group by id,title order by sub.rownum asc limit 5;
-  </select>
- </mapper>
-=======
   </select>
   
   <insert id="replyInsert">
@@ -97,4 +78,3 @@
   	where r.id = #{id} and r.title = #{title} and r.replyContent = #{replyContent} and r.id = m.id;
   </select>
  </mapper>
->>>>>>> refs/remotes/origin/sungho

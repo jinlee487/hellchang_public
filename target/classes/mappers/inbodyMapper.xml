@@ -64,7 +64,7 @@
   <!-- memberList()   DECODE(lev,'A','관리자','B','나무','C', '잎새', '새싹') 
   	select * from member order by id -->
   <select id="selectList" resultType="vo.InbodyVO">
-	select * from hellchang_schema_test.inbody where id=#{id}
+	select * from hellchang_schema_test.inbody where id=#{id} order by date_date
   </select>
   
   <!-- date select -->
