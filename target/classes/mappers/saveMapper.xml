@@ -53,7 +53,7 @@
   </select>
   
   <select id="findTest" resultType="vo.SaveVO"> 
-	select myRoutine.* ,member.name as userName from hellchang_schema_test.myRoutine , hellchang_schema_test.member
+	select myRoutine.* ,member.name as userName, member.image_path as userImage from hellchang_schema_test.myRoutine , hellchang_schema_test.member
 	where  myRoutine.id = #{id} and myRoutine.title = #{title} and myRoutine.id = member.id
   </select>
    
