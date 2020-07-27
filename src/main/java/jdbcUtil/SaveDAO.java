@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import vo.HeartVO;
 import vo.SaveVO;
 
 @Repository
@@ -38,11 +39,11 @@ public class SaveDAO {
 	
 	public List<SaveVO> blogTest() {
 		return sqlsession.selectList(NS+"blogTest") ;
-	} // blogTest() 처음 초기 5개
+	} // blogTest() 泥섏쓬 珥덇린 5媛�
 	
 	public List<SaveVO> blogTestS(SaveVO svo) {
 		return sqlsession.selectList(NS+"blogTestS",svo) ;
-	} // 스크롤()
+	} // �뒪�겕濡�()
 	
 	public int saveMyRoutine(SaveVO vo) { 
 		return sqlsession.insert(NS+"saveMyRoutine", vo);
@@ -52,5 +53,15 @@ public class SaveDAO {
 		return sqlsession.delete(NS+"delMyRoutine", vo);
 	} // saveMyRoutine
 	
+	public int heartUp(HeartVO hvo) { 
+		return sqlsession.update(NS+"heartUp", hvo);
+	}
 	
+	public HeartVO heartSelect(HeartVO hvo) {
+		return sqlsession.selectOne(NS+"heartSelect", hvo);
+	} // selectList()
+	
+	public int heartTest(HeartVO hvo) { 
+		return sqlsession.insert(NS+"heartTest", hvo);
+	} // saveMyRoutine
 } // class

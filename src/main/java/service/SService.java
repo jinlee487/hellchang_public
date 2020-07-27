@@ -2,7 +2,7 @@ package service;
 
 import java.util.List;
 
-import vo.SPageVO;
+import vo.HeartVO;
 import vo.SaveVO;
 
 public interface SService {
@@ -25,4 +25,9 @@ public interface SService {
 	
 	List<SaveVO> blogTestS(SaveVO svo);
 	
+	int heartUp(HeartVO hvo); // update
+	
+	HeartVO heartSelect(HeartVO hvo);
+	
+	int heartTest(HeartVO hvo); // saveMyRoutine
 } // interface

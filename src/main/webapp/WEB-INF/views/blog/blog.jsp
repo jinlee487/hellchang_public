@@ -113,6 +113,7 @@
 $(function(){
 	var cnt = 0;
 	var last = 0;
+	var rowcnt = 0;
 	$.ajax({
 		type:'Get',
 		dataType : "json",
@@ -125,16 +126,17 @@ $(function(){
 			console.log(num);
 			for(var j=0; j<5; j++){
 				var lastNum = 0;
-				if(cnt == 0){jsonData = data.forName0}
-				else if(cnt == 1){jsonData = data.forName1}
-				else if(cnt == 2){jsonData = data.forName2}
-				else if(cnt == 3){jsonData = data.forName3}
-				else if(cnt == 4){jsonData = data.forName4}
+				if(cnt == 0){jsonData = data.forName0; heartCnt = data.heart0}
+				else if(cnt == 1){jsonData = data.forName1; heartCnt = data.heart1}
+				else if(cnt == 2){jsonData = data.forName2; heartCnt = data.heart2}
+				else if(cnt == 3){jsonData = data.forName3; heartCnt = data.heart3}
+				else if(cnt == 4){jsonData = data.forName4; heartCnt = data.heart4}
 				
 				lastNum = Object.keys(jsonData).length;
 				var appendT = "";
 				appendT += "<table class = 'table'>"
-				for(var i = 0; i<Object.keys(jsonData).length; i++){	
+				rowcnt = 0;
+				for(var i = 0; i<Object.keys(jsonData).length; i++){		
 					if(i==0){
 						appendT += '<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><img src="resources/image/lee.jpg" alt="이준호" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td><td colspan ="3"></td></tr>'
 						appendT += '<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>'
@@ -146,8 +148,10 @@ $(function(){
 						
 					}
 					nowTitle = jsonData[i].title ;
-					nowID = jsonData[i].id; 
+					nowID = jsonData[i].id;
+					rowcnt ++;
 				} // for_i
+				appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowTitle+"'></span><br><span class = 'reply'>댓글</span></td><td colspan = '4'></td></tr>"
 				appendT += "</table>"
 				$('.blogForm').append(appendT)
 				cnt ++;
@@ -165,25 +169,29 @@ $(window).scroll(function(){
 		var cnt = 0;
 		var nowID = "";
 		var nowTitle = "";
+		console.log(rowcnt)
 		$.ajax({
 			type:'Get',
 			url : "scrollP",
+			data : {
+				rowcnt : rowcnt
+			},
 			success:function(data){
-				
 				var num = data.num;
 				console.log(num);
 				for(var j=0; j<num; j++){
 					var lastNum = 0;
-					if(cnt == 0){jsonData = data.forName0}
-					else if(cnt == 1){jsonData = data.forName1}
-					else if(cnt == 2){jsonData = data.forName2}
-					else if(cnt == 3){jsonData = data.forName3}
-					else if(cnt == 4){jsonData = data.forName4}
+					if(cnt == 0){jsonData = data.forName0; heartCnt = data.heart0}
+					else if(cnt == 1){jsonData = data.forName1; heartCnt = data.heart1}
+					else if(cnt == 2){jsonData = data.forName2; heartCnt = data.heart2}
+					else if(cnt == 3){jsonData = data.forName3; heartCnt = data.heart3}
+					else if(cnt == 4){jsonData = data.forName4; heartCnt = data.heart4}
 					
 					lastNum = Object.keys(jsonData).length;
 					var appendT = "";
 					appendT += "<table class = 'table'>"
 					for(var i = 0; i<Object.keys(jsonData).length; i++){
+						rowcnt = 0;
 						if(i==0){
 							appendT += '<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><img src="resources/image/lee.jpg" alt="이준호" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td><td colspan ="3"></td></tr>'
 							appendT += '<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>'
@@ -192,23 +200,47 @@ $(window).scroll(function(){
 							appendT += "<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>"
 						}else if(i==lastNum){
 							appendT += "<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>"
-							
 						}
 						nowTitle = jsonData[i].title ;
-						nowID = jsonData[i].id; 
+						nowID = jsonData[i].id;
+						rowcnt ++;
 					} // for_i
+					appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowTitle+"'></span><br><span class = 'reply'>댓글</span></td><td colspan = '4'></td></tr>"
 					appendT += "</table>"
 					$('.blogForm').append(appendT)
 					cnt ++;
 				} // for_j 
 			},
 			error:function(){
-				alert("실패")
+				$('.blogForm').append("<h2>더이상 불러 올 데이터가 존재 하지 않습니다</h2>")
 			}
-	})
-	}
+	}) // ajax
+	} // loadNext
 });
-}); 
+$(document).on("click",".heart", function(){
+    var title = $(this).attr("id");
+    var id = $(this).attr("class");
+    id = id.substring(6);
+    console.log(id);
+    $.ajax({
+		type:'Get',
+		url : "heartUp",
+		data:{
+			id : id,
+			title: title,
+		},
+		success:function(data){
+			var cnt = data.countHeartTest
+			$('#'+title).empty();
+			$('#cnt'+title).html("<img src = 'resources/image/heart.png'>"+cnt);
+		}, // success
+		error:function(){
+			alert(rowcnt);
+			alert("좋아요 오류 발생\n 지금 row가 여러개인 타이틀 좋아요 오류 수정중")
+		}
+	}) // ajax
+}) // click 이벤트
+}) // ready
 </script>
 </head>
 <body>
@@ -230,7 +262,7 @@ $(window).scroll(function(){
         <li><a href="routine">Routine</a></li>
         <li><a href="blog">Blog</a></li>
         <li><a href="one">OneRM</a></li>
-      </ul>
+      </ul> 
       <ul class="nav navbar-nav navbar-right" >
 		<c:if test="${logID==null }">
 			<li><a href="loginf"><span class="glyphicon glyphicon-log-in"></span> Login</a><li>
