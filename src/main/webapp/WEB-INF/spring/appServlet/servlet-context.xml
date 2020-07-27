@@ -112,6 +112,5 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
 <beans:property name="javaMailSender" ref="javaMailSender" />
 </beans:bean>
 </beans:beans>
-
  -->
 </beans:beans>

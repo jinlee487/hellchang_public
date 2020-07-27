@@ -262,8 +262,8 @@ $(document).on("click",".heart", function(){
         <!--   <h4 class="modal-title"> List 저장하기 </h4> -->
         </div>
         <div class="modal-body" style="display: inline-flex; ">
-       <div align="left" class = "blogForm"><br><br>
-		</div> 
+       <div align="center" class = "blogForm"><br><br>
+		</div>
 		  
 		   <div class="modal-body-text" style="width : 350px; margin-left: 50px; margin-top: 50px;">
 		    <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -279,20 +279,20 @@ $(document).on("click",".heart", function(){
 		<img src="resources/image/lee.jpg" alt="lee" width="30px" height="30px" class="myPhoto1" style="float: left; border-radius: 50%">
           <table>
 					<tbody><tr><td style="font-size: 15px"><a>lee</a></td></tr>
-					<tr><td id="myTitle">댓글 내용내용</td></tr>
+					<tr><td id="myTitle">댓글 내용내용내용</td></tr>
 					</tbody></table><br>
 		 <img src="resources/image/kang.jpg" alt="강경원" width="30px" height="30px" class="myPhoto1" style="float: left; border-radius: 50%">
           <table>
 					<tbody><tr><td style="font-size: 15px"><a>kang1234</a></td></tr>
-					<tr><td id="myTitle">댓글 내용내용</td></tr>
+					<tr><td id="myTitle">댓글 내용내용내용</td></tr>
 					</tbody></table><br>
 		<img src="resources/image/hwang.jpg" alt="hwang" width="30px" height="30px" class="myPhoto1" style="float: left; border-radius: 50%">
           <table>
 					<tbody><tr><td style="font-size: 15px"><a>hwang</a></td></tr>
-					<tr><td id="myTitle">댓글 내용내용</td></tr>
+					<tr><td id="myTitle">댓글 내용내용내용</td></tr>
 					</tbody></table><br>		
 		  </div>
-		<div align="left" class="blogForm2"></div>
+		<div align="center" class="blogForm2"></div>
           <section>
           	<div class="">
           		<form method="post">
