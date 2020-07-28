@@ -2,6 +2,7 @@ package com.ncs.green;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import service.SService;
+import vo.BoardVO;
 import vo.HeartVO;
 import vo.MemberVO;
 import vo.ReplyVO;
@@ -188,4 +190,28 @@ public class SaveController {
 
 		return mv;
 	}// reply
-}
+	@RequestMapping(value = "/bdetail")
+	public ModelAndView bdetail(HttpServletRequest request, ModelAndView mv, SaveVO vo) {
+		String id = "";
+		HttpSession session = request.getSession(false);
+		if (session != null && session.getAttribute("logID") != null) {
+			id = (String) session.getAttribute("logID");
+		} else {
+			// login 하도록 유도 후에 메서드 return 으로 종료
+			mv.addObject("message", "~~ 로그인 후에 하세요 ~~");
+			mv.setViewName("login/loginForm");
+			return mv;
+		}
+		
+		// 3) selectOne
+		vo = service.selectOne(vo);
+		if (vo!=null) {
+			mv.addObject("Detail", vo);
+		
+		}else {
+			mv.addObject("fCode","BN");
+		
+		}
+		return mv;
+	}// bdetail
+}//class

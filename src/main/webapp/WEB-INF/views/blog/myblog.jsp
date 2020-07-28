@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,13 +17,13 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+	<script src="resources/jqLib/axmyblog.js"></script>
 <script type="text/javascript">
 $(function(){
 	var cnt = 0;
 	var last = 0;
 	var rowcnt = 0;
-	$.ajax({
+	 $.ajax({
 		type:'Get',
 		dataType : "json",
 		url:'blogTest',
@@ -74,7 +75,7 @@ $(function(){
 			
 		}
 	}); // ajax 
-
+	
 $(document).on("click",".heart", function(){
     var title = $(this).attr("id");
     var id = $(this).attr("class");
@@ -231,6 +232,7 @@ $(document).on("click",".heart", function(){
 
 </div>
 </div>
+
 	<div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->	
@@ -245,7 +247,19 @@ $(document).on("click",".heart", function(){
         <!--   <h4 class="modal-title"> List 저장하기 </h4> -->
         </div>
         <div class="modal-body" style="display: inline-flex; ">
-       <div align="left" class = "blogForm"><br><br>
+       <div> 
+        
+         <table class="table">
+         	<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td>
+         	<img src="resources/image/lee.jpg" alt="이준호" class = "myPhoto"></td>
+         	<td colspan="2"><br>Title : ${Detail.title}<br>Name : ${Detail.name}<br> Date : ${Detail.date}</td>
+         	<td colspan="3"></td></tr>
+         	<tr><td>${Detail.name}</td><td>${Detail.target}</td><td>${Detail.kg}</td><td>${Detail.rep}</td><td>${Detail.title}</td></tr>
+         </table>
+       
+         
+         
+         <br><br>
 		</div> 
 		  
 		   <div class="modal-body-text" style="width : 350px; margin-left: 50px; margin-top: 50px;">
@@ -302,6 +316,8 @@ $(document).on("click",".heart", function(){
       </div>
       
     </div> <!-- 모달종료 -->
+
+    
     
     	<div class="modal fade" id="myModal2" role="dialog">
     <div class="modal-dialog">
