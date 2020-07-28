@@ -49,7 +49,6 @@ public class MemberController {
 			vo.setImage_file(image_file);
 			file2="resources/uploadImage/emptyImage.png";
 			vo.setImage_path(file2);
-			System.out.println(vo.getImage_file());
 		}else {
 			file1="D:/MTest/MyWork/hellchang/src/main/webapp/resources/uploadImage/"
 					+ image_file.getOriginalFilename();
@@ -125,9 +124,9 @@ public class MemberController {
 	public ModelAndView mlist(ModelAndView mv) {
 		List<MemberVO> list = service.selectList();
 		if (list != null) {
-			mv.addObject("Banana", list); // scope �씠 request �� �룞�씪
+			mv.addObject("Banana", list); // scope 이 request 와 동일
 		} else {
-			mv.addObject("message", "~~ 寃��깋�맂 �옄猷뚭� 1嫄대룄 �뾾�뒿�땲�떎. ~~");
+			mv.addObject("message", "~~ 검색된 자료가 1건도 없습니다. ~~");
 		}
 		mv.setViewName("member/memberList");
 		return mv;
@@ -138,7 +137,7 @@ public class MemberController {
 		String password = "123!";
 		String password1 = passwordEncoder.encode(password) ;
 		String password2 = passwordEncoder.encode(password) ;
-		// 占쎌뜚癰귣㈇�궢 �뜮袁㏉꺍 揶쎛�占쎈뮟
+		// �썝蹂멸낵 鍮꾧탳 媛�뒫
 		System.out.println("password1 =>"+password1);
 		System.out.println("password1 maches =>"+passwordEncoder.matches(password, password1)); // T
 		System.out.println("password2 =>"+password2);
@@ -162,13 +161,13 @@ public class MemberController {
 		int cnt = service.insert(vo);
 		
 		if (cnt > 0) {
-			// Join �꽦怨�
+			// Join 성공
 			mv.addObject("joinID", vo.getId());
 			mv.addObject("fCode", "JS");
 			mv.setViewName("login/loginForm");
 
 		} else {
-			// Join �떎�뙣
+			// Join 실패
 			mv.addObject("fCode", "JF");
 			mv.setViewName("member/joinForm");
 
@@ -188,24 +187,27 @@ public class MemberController {
 		vo = service.selectOne(vo);
 		System.out.println(vo);
 		
-		if (vo != null) { // id 議댁옱
-			System.out.println("vo null �넻怨�" + vo.getPassword());
+		if (vo != null) { // id 존재
+			System.out.println("vo null 통과" + vo.getPassword());
 			if (passwordEncoder.matches(password, vo.getPassword())){
-				System.out.println("match �넻怨�");
-				// 濡쒓렇�씤 �꽦怨� -> login �젙蹂� 蹂닿� (id, name�쓣 session�뿉) -> loginSuccess
+				System.out.println("match 통과");
+				// 로그인 성공 -> login 정보 보관 (id, name을 session에) -> loginSuccess
 				request.getSession().setAttribute("logID", vo.getId());
 				request.getSession().setAttribute("logName", vo.getName());
-				
-				// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!二쇱쓽!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-				// 	session�뿉 ���옣�븷 �븘�슂�뾾�쓣嫄� 媛숈븘�꽌 �씪�떒 二쇱꽍泥섎━�븯怨� 吏곸젒 遺덈윭���꽌 �궗�슜�븯寃좎뒿�땲�떎.
-				//request.getSession().setAttribute("profile_image", vo.getImage_path());
+				request.getSession().setAttribute("logPhone", vo.getPhone());
+				request.getSession().setAttribute("logaddress", vo.getAddress());
+				request.getSession().setAttribute("logaddress1", vo.getAddress1());
+				request.getSession().setAttribute("logaddress2", vo.getAddress2());
+				request.getSession().setAttribute("logzipcode", vo.getZipcode());
+				request.getSession().setAttribute("logpassword", vo.getPassword());
+				request.getSession().setAttribute("profile_image", vo.getImage_path());
 				mv.setViewName("home");
 			} else {
-				// Password �삤瑜� -> �옱濡쒓렇�씤
-				mv.addObject("message", "鍮꾨�踰덊샇媛� ���졇�뒿�땲�떎.");
+				// Password 오류 -> 재로그인
+				mv.addObject("message", "비밀번호가 틀렸습니다.");
 			}
-		} else { // ID �삤瑜� -> �옱濡쒓렇�씤
-			mv.addObject("message", "�뾾�뒗 ID�엯�땲�떎.");
+		} else { // ID 오류 -> 재로그인
+			mv.addObject("message", "없는 ID입니다.");
 		}
 		return mv;
 	} // login
@@ -222,14 +224,14 @@ public class MemberController {
 	@RequestMapping(value = "/mdetail")
 	public ModelAndView mdetail(HttpServletRequest request, ModelAndView mv, MemberVO vo){
 
-		// 1) login �뿬遺� �솗�씤
+		// 1) login 여부 확인
 		String id = "";
 		HttpSession session = request.getSession(false);
 		if (session != null && session.getAttribute("logID") != null) {
 			id = (String) session.getAttribute("logID");
 		} else {
-			// login �븯�룄濡� �쑀�룄 �썑�뿉 硫붿꽌�뱶 return �쑝濡� 醫낅즺
-			mv.addObject("message", "~~ 濡쒓렇�씤 �썑�뿉 �븯�꽭�슂 ~~");
+			// login 하도록 유도 후에 메서드 return 으로 종료
+			mv.addObject("message", "~~ 로그인 후에 하세요 ~~");
 			mv.setViewName("login/loginForm");
 			return mv;
 		}
@@ -237,14 +239,15 @@ public class MemberController {
 		vo = service.selectOne(vo);
 		mv.addObject("myInfo", vo);
 
-		// 4) 寃곌낵 ( Detail or Update �씤吏� )
-		// => request.getParameter("code") 媛� U �씤吏� �솗�씤
+		// 4) 결과 ( Detail or Update 인지 )
+		// => request.getParameter("code") 가 U 인지 확인
 		mv.setViewName("user/profile_myProfile");
 		if ("U".equals(request.getParameter("code"))) {
-			// �궡�젙蹂� �닔�젙�솕硫댁쑝濡�
+			// 내정보 수정화면으로
+			session.setAttribute("encodedPassword", vo.getPassword());
 			mv.setViewName("user/profile_Update");
-		} else if ("E".equals(request.getParameter("code"))) { // �궡�젙蹂� �닔�젙�뿉�꽌 �삤瑜� �긽�솴
-			mv.addObject("message", "~~ �궡�젙蹂� �닔�젙 �삤瑜�  !!! �떎�떆 �븯�꽭�슂 ~~");
+		} else if ("E".equals(request.getParameter("code"))) { // 내정보 수정에서 오류 상황
+			mv.addObject("message", "~~ 내정보 수정 오류  !!! 다시 하세요 ~~");
 		}
 		
 		
@@ -255,40 +258,19 @@ public class MemberController {
 	@RequestMapping(value = "/mupdate")
 	public ModelAndView update(HttpServletRequest request, ModelAndView mv, MemberVO vo)
 				throws IOException {
-		System.out.println("vo null Test=>"+vo);
-		String id = "";
-		HttpSession session = request.getSession(false);
-		if (session != null && session.getAttribute("logID") != null) {
-			id = (String) session.getAttribute("logID");
-		} else {
-			// login �븯�룄濡� �쑀�룄 �썑�뿉 硫붿꽌�뱶 return �쑝濡� 醫낅즺
-			mv.addObject("message", "~~ 濡쒓렇�씤 �썑�뿉 �븯�꽭�슂 ~~");
-			mv.setViewName("login/loginForm");
-			return mv;
-		}
-		vo.setId(id);
-		vo = service.selectOne(vo);
-		mv.addObject("myInfo", vo);
-
-		
-		// password �엯�젰媛�  �솗�씤 諛� �븫�샇�� 泥섎━
 		if (vo.getPassword().length() > 3 && vo.getPassword()!=null) {
-				// new password 瑜� encode
-			vo.setPassword( passwordEncoder.encode(vo.getPassword()));
-		}else {	// session�뿉 蹂닿��빐 �넃�� password �궗�슜
-			vo.setPassword((String)request.getSession().getAttribute("encodedPassword"));
-		}
-		
-		if (service.update(vo) > 0) {
-			// �쉶�썝�닔�젙 �꽦怨� -> memberList 異쒕젰
-			// session �쓽 Attribute logName �룄 蹂�寃�
-			request.getSession().setAttribute("loginName", vo.getName());
-			mv.setViewName("redirect:mdetail");
-		} else {
-			// �쉶�썝�닔�젙 �떎�뙣 -> �궡�젙蹂� 蹂닿린 �솕硫댁쑝濡�
-			mv.setViewName("home");
-		} // if
-		return mv;
+			
+		vo.setPassword( passwordEncoder.encode(vo.getPassword()));
+	}else {
+		vo.setPassword((String)request.getSession().getAttribute("encodedPassword"));
+	}
+	if (service.update(vo) > 0) {
+		request.getSession().setAttribute("loginName", vo.getName());
+		mv.setViewName("redirect:home");
+	} else {
+		mv.setViewName("redirect:mdetail?code=E");
+	}
+	return mv;
 	}// mupdate
 	
 	@RequestMapping(value = "/delete")
