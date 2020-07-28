@@ -101,11 +101,12 @@ public class SaveController {
 		for(int i=0; i<array.length; i++) {
 			vo.setId(array[i].getId());
 			vo.setTitle(array[i].getTitle());
-			hvo.setId(array[i].getId());
-			hvo.setTitle(array[i].getTitle());
-			hvo = service.heartSelect(hvo);
-			String HTest = "heart"+i;
-			mv.addObject(HTest, hvo.getHeart());
+			
+//			hvo.setId(array[i].getId());
+//			hvo.setTitle(array[i].getTitle());
+//			hvo = service.heartSelect(hvo);
+//			String HTest = "heart"+i;
+//			mv.addObject(HTest, hvo.getHeart());
 			List<SaveVO> test = service.findTest(vo);
 			System.out.println("==============================");
 			String IDTest = "forName"+i;
