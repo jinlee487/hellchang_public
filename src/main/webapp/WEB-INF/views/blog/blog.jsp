@@ -98,8 +98,25 @@
 .table td{
 	text-align: center;
 }
-   
-   
+.sendR{
+	color: rgb(0, 149, 246);
+	font-weight: bold;
+	background-color: white;
+	border: 0;
+	padding-top: 16px;
+	padding-bottom: 16px;
+	vertical-align: middle;
+}
+textarea{
+	border : 0px;
+	outline: none;
+	resize: none;
+	min-height: 18px;
+	max-height: 72px;
+	padding-top: 16px;
+	padding-bottom: 16px;
+	background-origin: padding-box;
+}
    
 #footer{
 	position: fixed;
@@ -161,8 +178,10 @@ $(function(){
 					replyTitle = jsonData[i].title ;
 					var replyRow = jsonData[i].title;
 					rowcnt ++;
-				} // for_i
-				appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowTitle+"'></span><br><span class = 'reply " + nowID +"' id = '"+replyTitle+"'><img src = 'resources/image/pencil.png'></span></td><td colspan = '4'></td></tr>"
+				} // for_iMb
+				appendT += "<tr><td colspan='5'><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span>"
+				appendT += "<span id = 'cnt"+nowTitle+"'></span><br><span class = 'reply " + nowID +"' id = '"+replyTitle+"'></td></tr>"
+				appendT += "<tr><td colspan='5'><form action='replyInsert'><textarea style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea><button type='submit' class='sendR'>게시</button></form></td></tr>"
 				appendT += "</table>"
 				$('.blogForm').append(appendT)
 				cnt ++;
@@ -217,7 +236,9 @@ $(window).scroll(function(){
 						nowID = jsonData[i].id;
 						rowcnt ++;
 					} // for_i
-					appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowTitle+"'></span><br><span class = 'reply " + nowID +"' id = '"+replyTitle+"'><img src = 'resources/image/pencil.png'></span></td><td colspan = '4'></td></tr>"
+					appendT += "<tr><td colspan='5'><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span>"
+					appendT += "<span id = 'cnt"+nowTitle+"'></span><br><span class = 'reply " + nowID +"' id = '"+replyTitle+"'></td></tr>"
+					appendT += "<tr><td colspan='5'><form><textarea style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea><button type='submit' class='sendR'>게시</button></form></td></tr>"
 					appendT += "</table>"
 					$('.blogForm').append(appendT)
 					cnt ++;
@@ -254,31 +275,25 @@ $(document).on("click",".heart", function(){
 	}) // ajax
 }) // heart_click 이벤트
 
-$(document).on("click",".reply", function(){
-    var title = $(this).attr("id");
-    var id = $(this).attr("class");
-    id = id.substring(6);
-    console.log("log " + logID);
-    console.log(title);
-    var content = prompt("댓글을 입력해주세요");
-    $.ajax({
-		type:'Get',
-		url : 'replyInsert',
+$('.sendR').on("click",function(){
+	var id = "<%=session.getAttribute("logID") %>"; 
+	$.ajax({
+		type: "post",
+		url:"replyInsert",
 		data:{
 			id : id,
-			title: title,
-			replyContent : content,
-			replyId : logID
+			title : 
+			content : $('textarea').val();
 		},
-		success:function(data){
-
-		}, // success
-		error:function(){
-			alert(rowcnt);
-			alert("좋아요 오류 발생\n 지금 row가 여러개인 타이틀 좋아요 오류 수정중")
+		success: function(){
+			
 		}
-	}) // ajax
-}) // heart_click 이벤트
+		error: function(){
+			
+		}			
+	});
+}); // 댓글 
+
 }) // ready
 </script>
 </head>
@@ -316,10 +331,8 @@ $(document).on("click",".reply", function(){
   </div>
 </nav>
 
-
 <div align="center" class = "blogForm"><br><br>
 <a href="myblog">임시 my Blog</a>
-
 </div>
 
 
