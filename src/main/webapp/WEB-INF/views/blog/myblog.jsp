@@ -17,13 +17,12 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-	<script src="resources/jqLib/axmyblog.js"></script>
 <script type="text/javascript">
 $(function(){
 	var cnt = 0;
 	var last = 0;
 	var rowcnt = 0;
-	 $.ajax({
+	  $.ajax({
 		type:'Get',
 		dataType : "json",
 		url:'blogTest',
@@ -57,12 +56,11 @@ $(function(){
 						appendT += "<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>"
 						
 					}
-					
+					$('.blogForm').append(appendT)
 					nowTitle = jsonData[i].title ;
 					nowID = jsonData[i].id;
 					rowcnt ++;
 					appendT += "</table>"
-					$('.blogForm').append(appendT)
 				} // for_i
 				appendH+="<table>"
 				appendH+= "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowTitle+"'></span></td></tr>"

@@ -35,3 +35,4 @@ public class ReplyVO {
 		return "ReplyVO [id=" + id + ", title=" + title + ", replyContent=" + replyContent + ", replyId=" + replyId
 				+ "]";
 	}
+}

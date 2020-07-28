@@ -193,8 +193,8 @@ public class SaveController {
 
 		return mv;
 	}// reply
-	@RequestMapping(value = "/bdetail")
-	public ModelAndView bdetail(HttpServletRequest request, ModelAndView mv, SaveVO vo) {
+	@RequestMapping(value = "/selectone")
+	public ModelAndView selectone(HttpServletRequest request, ModelAndView mv, SaveVO vo) {
 		String id = "";
 		HttpSession session = request.getSession(false);
 		if (session != null && session.getAttribute("logID") != null) {
