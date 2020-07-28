@@ -87,7 +87,22 @@
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
 	</aop:config>
 	
+		<!-- 인터셉터 객체 생성 -->
+	<beans:bean id="LoginInterceptor" class="com.ncs.green.LoginInterceptor" />
 	
+	<!-- 인터셉터 설정 -->
+	<mvc:interceptors>
+			<mvc:interceptor>
+				<!-- <mapping path="/**"/>  전체경로 지정-->
+				<!-- 제외시킬 파일 경로 
+				<exclude-mapping path="joinF"/>
+				-->
+				<mvc:mapping path="/routine"/>
+				<beans:ref bean="LoginInterceptor"/>
+			</mvc:interceptor>
+	</mvc:interceptors>	
+	
+</beans:beans>
 	
 	
 	<!-- <?xml version="1.0" encoding="UTF-8"?>
@@ -112,5 +127,6 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
 <beans:property name="javaMailSender" ref="javaMailSender" />
 </beans:bean>
 </beans:beans>
+
  -->
-</beans:beans>
+

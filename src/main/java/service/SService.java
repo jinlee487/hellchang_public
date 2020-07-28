@@ -3,6 +3,7 @@ package service;
 import java.util.List;
 
 import vo.HeartVO;
+import vo.ReplyVO;
 import vo.SaveVO;
 
 public interface SService {
@@ -30,4 +31,9 @@ public interface SService {
 	HeartVO heartSelect(HeartVO hvo);
 	
 	int heartTest(HeartVO hvo); // saveMyRoutine
+	
+	int replyInsert(ReplyVO rvo); // reply
+	
+	List<ReplyVO> replyResult(ReplyVO rvo);
 } // interface
+

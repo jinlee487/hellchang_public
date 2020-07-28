@@ -13,6 +13,7 @@ import vo.MemberVO;
 public class MemberDAO {
 	@Autowired
 	private SqlSession sqlsession;
+	public int imgUpdate;
 	private static final String NS="green.mappers.memberMapper.";
 
 	public List<MemberVO> selectList() {
@@ -30,6 +31,11 @@ public class MemberDAO {
 	public int update(MemberVO vo) { 
 		return sqlsession.update(NS+"update", vo);
 	}
+	
+	public int imgUpdate(MemberVO vo) { 
+		return sqlsession.update(NS+"imgUpdate", vo);
+	}
+	
 	public int delete(MemberVO vo) {
 		return sqlsession.delete(NS+"delete", vo) ;
 	}

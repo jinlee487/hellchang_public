@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import vo.HeartVO;
+import vo.ReplyVO;
 import vo.SaveVO;
 
 @Repository
@@ -63,5 +64,13 @@ public class SaveDAO {
 	
 	public int heartTest(HeartVO hvo) { 
 		return sqlsession.insert(NS+"heartTest", hvo);
+	} // heartTest()
+	
+	public int replyInsert(ReplyVO rvo) { 
+		return sqlsession.insert(NS+"replyInsert", rvo);
 	} // saveMyRoutine
+	
+	public List<ReplyVO> replyResult(ReplyVO rvo) {
+		return sqlsession.selectList(NS+"replyResult", rvo);
+	} // selectList()
 } // class

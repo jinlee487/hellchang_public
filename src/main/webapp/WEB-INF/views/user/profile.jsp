@@ -16,13 +16,79 @@
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
   <link rel="stylesheet" type="text/css" href="resources/jqLib/topBar.css">
-  
   <style>
-  @media (min-width: 768px){
+  	@media (min-width: 768px){
 	.col-sm-4 {
 	  /* margin-left: 200px; */
 	  text-align: center;
 	}
+	
+	/* modal 가운데 위치 (Css) */
+	.modal {
+        text-align: center;
+	}
+	@media screen and (min-width: 768px) { 
+        .modal:before {
+                display: inline-block;
+                vertical-align: middle;
+                content: " ";
+                height: 100%;
+        }
+	}
+	.modal-dialog {
+        display: inline-block;
+        text-align: left;
+	}
+	/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+	.modal-content{
+		margin: 0 auto;
+		width: 300px;
+	}
+	.modal-body{
+		padding: 0;
+		background-color: white;
+	}
+	
+	.bEffect{
+		border: 0;
+		outline: 0;
+		border-color: #f5f5f5;
+		color:#f5f5f5;
+		background-color: #f5f5f5;
+	}
+	.modal-title{
+		text-align: center;
+		color: #262626;
+		font-size: 18px;
+		font-style: -apple-system;
+	}
+	.imageChange{
+		width: 100%;
+		height: 48px;
+		background-color: white;
+		border-left: 0;
+		border-right: 0;
+		border-top: 0;
+		border-bottom: 0;
+	}
+	.sel{
+		border-top: 1 solid;
+		border-color: rgb(219, 219, 219);
+		color: rgb(0, 149, 246);
+	}
+	.del{
+		border-top: 1 solid;
+		border-color: rgb(219, 219, 219);
+		color: rgb(237, 73, 86);
+	}
+	.can{
+		border-top: 1 solid;
+		border-color: rgb(219, 219, 219);
+	}
+	#image_file{
+		width: 0px;
+	}
+	
   </style>
 </head>
 <body >
@@ -76,9 +142,11 @@
     <div class="col-sm-3 well">
       <div class="well">
         <p><a href="myProfile">My Profile</a></p>
-        <img src="${profile_image}" class="img-circle" height="100" width="100" alt="Avatar">
+        <a type="button" data-toggle="modal" data-target="#myModal">
+        <button class="bEffect" title="프로필 사진 바꾸기">
+        	<img src="${mem.image_path}" class="img-circle" height="100" width="100" alt="프로필 사진 바꾸기">
+        </button>
       </div>
-
 		<ul class="nav nav-pills nav-stacked">
 		  <li><a href="#">Start Workout</a></li>
 		  <li><a href="manageWorkout">Manage Workout</a></li>
@@ -198,7 +266,51 @@
 			<span class="all_r footfont">All Rights Reserved.</span>
 		</address>
 </div>
-
-
+<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ modal ver ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ --> 
+  <!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog ">
+      <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h3 class="modal-title">프로필 사진 바꾸기</h3>
+      </div>
+      <div class="modal-body" >	
+      	<button class="imageChange sel"  tabindex="0">사진업로드</button>
+      	<button class="imageChange del" tabindex="0">현재 사진 삭제</button>
+        <button class="imageChange can" tabindex="0">취소</button>
+        <form style="height: 0;" action="imgUpdate" name="chImg" method="POST" enctype="multipart/form-data">
+        	<input type="file" id="image_file" name="image_file">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){
+	$('.sel').on('click', function(){
+		$('input[type=file]').click();
+	}); // file select 
+	
+	$('input').change(function(){
+		var chImg = document.chImg;
+		chImg.submit();
+	}); // file submit 
+	
+	$('.del').on('click', function(){
+		$.ajax({
+			type: "post",
+			url: "imgUpdate",
+			data: {
+				code : 44,
+			},
+			success: {
+				
+			}
+		});// ajax
+	}); // file del
+});//ready
+</script>
 </body>
 </html>

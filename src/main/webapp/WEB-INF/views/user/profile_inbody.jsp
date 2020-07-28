@@ -15,8 +15,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script src="resources/jqLib/google_chart_functions.js"></script>
-  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
+  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position.css">
   <link rel="stylesheet" type="text/css" href="resources/jqLib/topBar.css">
+  <link rel="stylesheet" type="text/css" href="resources/jqLib/inbodyButton.css">
   
   <script>
   
@@ -133,23 +134,50 @@ text-align: left;
     <div class="col-sm-3 well">
       <div class="well">
         <p><a href="#">My Profile</a></p>
-        <img src="resources/uploadImage/emptyImage.png" class="img-circle" height="100" width="100" alt="Avatar">
+        <c:if test="${image_path==null}">
+			<img src="resources/uploadImage/emptyImage.png" class="img-circle" height="100" width="100" alt="Avatar">
+		</c:if>
+		<c:if test="${image_path!=null}">
+			<img src="${image_path}" class="img-circle" height="100" width="100" alt="Avatar">
+		</c:if>
       </div>
 
 		<ul class="nav nav-pills nav-stacked">
 		  <li><a href="#">Start Workout</a></li>
-		  <li><a href="manageWorkout">Manage Workout</a></li>
+		  <li><a href="#">Manage Workout</a></li>
 		  <li><a href="inbodyf">InBody</a></li>
 		  <li><a href="#">Diet</a></li>
-		  <li><a href="#">Social</a></li>    
-		  <li><a href="routine">Test</a></li>
-		  <li><a href="mdetail?code=U">Profile Update</a></li>
-		  <li><a href="delete">Drop Out</a></li>
-		  
+		  <li><a href="#">Social</a></li>  
+		  <li><a href="#">Setting</a></li>  
 		</ul>
     </div>
-   
-    <div class="col-sm-7 inbodycontent">
+    
+    <div class="col-sm-7 inbodycontent">    
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#inbodyOption" id="inbodyBtn"><span class="glyphicon glyphicon-plus"></span></button>
+     <!-- Modal -->
+	  <div class="modal fade" id="inbodyOption" role="dialog">
+	    <div class="modal-dialog">
+	    
+	      <!-- Modal content-->
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title">Inbody Test</h4>
+	        </div>
+	        <div class="modal-body">
+	          <table class="columns" style="table-layout:fixed;word-break:break-all;width:100%;">
+	          <tr>
+	          <td><a href="inbodyInsertf"><span class="glyphicon glyphicon-pencil"></span></a></td>
+	          <td><a href="inbodyUpdatef"><span class="glyphicon glyphicon-edit"></span></a></td>   
+	          <td><a href="inbodyUpdatef"><span class="glyphicon glyphicon-share"></span></a></td>        
+	          </tr>
+	          </table>
+	        </div>
+	      </div>
+	      
+	    </div>
+	  </div>
+
      <div class="tab">
         <button class="tablink" onclick="openPage(event,'results_tab')" id="defaultOpen">Results</button>
 		<button class="tablink" onclick="openPage(event,'history_tab')" >History</button>
@@ -359,6 +387,7 @@ text-align: left;
 		</address>
 </div>
 
+
 </body>
 <script> 
 	  
@@ -374,7 +403,7 @@ $(document).ready(function(){
 		document.getElementsByClassName("tablink active")[0].click();})}
 	); 
 	
-	$('#resultback').click(function(){
+	$('#resultsback').click(function(){
 		$('#collapse1').collapse("hide");
 		var data;
 
@@ -403,7 +432,7 @@ $(document).ready(function(){
 
 		 });
 		 
-	$('#resultforward').click(function(){
+	$('#resultsforward').click(function(){
 		$('#collapse1').collapse("hide");
 		var data;
 
@@ -516,8 +545,20 @@ $(document).ready(function(){
 	$("#collapse2").on("show.bs.collapse", function(){
 		$("#hist_sign").removeClass('glyphicon-collapse-down').addClass('glyphicon-collapse-up');
 		});		
-
+	$(window).scroll(function () {
+		if ($(window).scrollTop() > 20 || $(window).scrollTop() > 20) {
+		    $('#inbodyBtn').css("display","block");
+		  } else {
+			$('#inbodyBtn').css("display","none");
+		  }
+	});
 });
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
 
 
 function datePick(elmnt, callback){ 

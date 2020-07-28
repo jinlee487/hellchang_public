@@ -26,6 +26,49 @@ public class MemberController {
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
 	
+	@RequestMapping(value = "/imgUpdate")
+	public ModelAndView imgUpdate(MemberVO vo, HttpServletRequest request) throws IOException {
+		ModelAndView mv = new ModelAndView();
+		int code=0;
+		if(request.getParameter("code") != null) {
+			code = Integer.parseInt(request.getParameter("code"));
+		}
+	
+		MultipartFile image_file;
+		String file1, file2;
+		
+		image_file = vo.getImage_file();
+
+		String id = (String)request.getSession().getAttribute("logID");
+		vo.setId(id);
+		vo = service.selectOne(vo);
+		
+		System.out.println(code);
+		if(code == 44) {
+			System.out.println("들어옴!!!!!!!!!!!");
+			file2="resources/uploadImage/emptyImage.png";
+			vo.setImage_path(file2);
+		}else {
+			file1="D:/MTest/MyWork/hellchang/src/main/webapp/resources/uploadImage/"
+					+ image_file.getOriginalFilename();
+			image_file.transferTo(new File(file1));
+			file2="resources/uploadImage/"+image_file.getOriginalFilename();
+			vo.setImage_path(file2);
+		}
+		
+//		file1="D:/MTest/MyWork/Spring05/src/main/webapp/resources/uploadImage/"
+//				+ image_file.getOriginalFilename();
+//		file1="D:/workSpace/hellchang/src/main/webapp/resources/uploadImage/"
+//				+ image_file.getOriginalFilename();
+		service.update(vo);
+		
+		mv.addObject("mem", vo);
+		
+		mv.setViewName("user/profile");
+		
+		return mv;
+	}
+	
 	@RequestMapping(value = "/loginf")
 	public ModelAndView loginf(ModelAndView mv) {
 		mv.setViewName("login/loginForm");
@@ -43,7 +86,13 @@ public class MemberController {
 		return mv; 
 	} // 
 	@RequestMapping(value = "/prof")
-	public ModelAndView prof(ModelAndView mv) {
+	public ModelAndView prof(ModelAndView mv, HttpServletRequest request, MemberVO vo) {
+		String id = (String) request.getSession().getAttribute("logID");
+		vo.setId(id);
+		vo = service.selectOne(vo);
+		
+		mv.addObject("mem", vo);
+		
 		mv.setViewName("user/profile");
 		return mv; 
 	} // 

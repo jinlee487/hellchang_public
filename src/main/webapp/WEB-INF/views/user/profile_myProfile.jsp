@@ -833,7 +833,7 @@ button:hover {
        <label for="psw" class="int"><b>Password</b></label><br> 
     <input style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Enter Password"  name="password" class="input" value="${logpassword}" ><br>
     <label for="psw-repeat" class="int"><b>Repeat Password</b></label><br>
-    <input  style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Repeat Password" name="password" class="input" value="${logpassword}"><br>
+    <input  style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Repeat Password" name="password" class="input" value=""><br>
        <a href="#password" data-toggle="collapse">
        <input type="reset" value="취소"></a>&nbsp;&nbsp;
        <input type="submit" value="전송">
@@ -884,7 +884,7 @@ button:hover {
 			<a href="home" target="_blank" class="u_cra footfont">HellChang Corp.</a>
 			<span class="all_r footfont">All Rights Reserved.</span>
 		</address>
-</div>
+	</div>
 
 <script>
 function check_form() {
