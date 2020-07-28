@@ -23,7 +23,6 @@
       border-radius: 0;
       background-color: #000000;
     }
-
     .gridA{ 
 		color: black; text-decoration: none;
 	}
@@ -41,8 +40,6 @@
    		border-radius: 70%;
    		overflow: hidden;
    	}
-
-
 	.myPhoto{
 	width: 100px;
 	height: 100px;
@@ -56,7 +53,6 @@
      border-bottom: 3px solid #168;
 }
   
-
 .table th {
      color: #168;
      background: #f0f6f9;
@@ -67,7 +63,6 @@
     background: #f0f6f9;
     text-align: center;
 }
-
 .table td:first-child{
 	width : 200px;
 	vertical-align: middle;
@@ -79,7 +74,6 @@
 .firsttr{
 	border-right: 3px solid #168;
 }
-
 .table th:first-child, .table td:first-child {
      border-left: 3px solid #168;
 }
@@ -88,7 +82,6 @@
 	width : 200px;
 	vertical-align: middle;
 }
-
 .table th:last-child, .table td:last-child {
 	border-right : 3px solid #168;
 }
@@ -172,7 +165,6 @@ $(function(){
 			
 		}
 	}); // ajax 
-
 $(window).scroll(function(){
 	if($(document).height() <= $(window).scrollTop() + $(window).height()){	
 	loadNext();
@@ -229,7 +221,6 @@ $(window).scroll(function(){
 	}) // ajax
 	} // loadNext
 });
-
 $(document).on("click",".heart", function(){
     var title = $(this).attr("id");
     var id = $(this).attr("class");
@@ -253,7 +244,6 @@ $(document).on("click",".heart", function(){
 		}
 	}) // ajax
 }) // heart_click 이벤트
-
 $(document).on("click",".reply", function(){
     var title = $(this).attr("id");
     var id = $(this).attr("class");
@@ -271,7 +261,6 @@ $(document).on("click",".reply", function(){
 			replyId : logID
 		},
 		success:function(data){
-
 		}, // success
 		error:function(){
 			alert(rowcnt);
