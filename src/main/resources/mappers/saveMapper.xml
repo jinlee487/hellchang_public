@@ -21,7 +21,7 @@
   </delete>  
   
   <select id="selectOne" resultType="vo.SaveVO">
-  	select * from `hellchang_schema_test`.`myRoutine` where id=#{id} and date = #{date}
+  	select * from 'hellchang_schema_test'.'myRoutine' where id= #{id} and date=#{date}
   </select> 
   
   <select id="selectList" resultType="vo.SaveVO">
@@ -77,4 +77,5 @@
   	from hellchang_schema_test.reply as r,  hellchang_schema_test.member as m 
   	where r.id = #{id} and r.title = #{title} and r.replyContent = #{replyContent} and r.id = m.id;
   </select>
+  
  </mapper>

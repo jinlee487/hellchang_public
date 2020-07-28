@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import service.SService;
+import vo.BoardVO;
 import vo.HeartVO;
 import vo.MemberVO;
 import vo.ReplyVO;
@@ -47,7 +49,7 @@ public class SaveController {
 		
 		return mv;
 	}// saveMyRoutine
-	
+
 	
 	@RequestMapping(value = "/myRoutine", method = RequestMethod.GET)
 	public ModelAndView myRoutine(HttpServletRequest request, ModelAndView mv, SaveVO vo, HeartVO hvo) {
@@ -119,6 +121,21 @@ public class SaveController {
 		System.out.println("blogTest : "+rownum );
 		return mv;
 	}// blog泥ロ솕硫� �긽�쐞 5媛�
+	
+	@RequestMapping(value="/blogDetail")
+	public ModelAndView blogDetail(ModelAndView mv, SaveVO vo,
+					HttpServletRequest request, HttpServletResponse response) {
+		
+		response.setContentType("text/html;charset=UTF-8");
+		vo=service.selectOne(vo);
+		if (vo == null) 
+			 mv.addObject("title", "타이틀에 해당하는 자료가 없습니다.~~");
+		else mv.addObject("title", vo.getTitle());
+		
+		mv.setViewName("jsonView");
+		return mv ;
+	} // jsbdetail	
+	
 	
 	@RequestMapping(value = "/scrollP")
 	public ModelAndView scrollP(HttpServletRequest request, ModelAndView mv, SaveVO vo, SaveVO svo, HeartVO hvo) {

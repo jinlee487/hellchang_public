@@ -166,23 +166,6 @@ $(document).on("click",".heart", function(){
     </button>
     </div>
 		</div>
-		<ul class="ul">
-		<li class="li"  >
-		<span>
-			게시물&nbsp;<span>92</span>&nbsp;&nbsp;&nbsp;
-		</span>
-		</li>
-		<li class="li" >
-		<span>
-			팔로워&nbsp;<span>177</span>&nbsp;&nbsp;&nbsp;
-		</span>
-		</li>
-		<li class="li" >
-		<span>
-			팔로잉&nbsp;<span>322</span>&nbsp;&nbsp;&nbsp;
-		</span>
-		</li>
-		</ul>
 		<div>
 			<h1 class="h1">${logName}</h1><br>
 			<span>간단 소개</span>
