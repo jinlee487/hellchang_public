@@ -8,10 +8,10 @@
   <link rel="icon" href="resources/image/logo.jpg">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
   <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 
   <link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -25,7 +25,13 @@
   <link rel="stylesheet" type="text/css" href="resources/jqLib/inbodyButton.css">
   
   <script>
+  $(document).ready(function(){
+		$('#datetimepicker1').datepicker({
+	        format:'YYYY-MM-DD HH:mm',
+	        defaultDate:moment(dateNow).hours(0).minutes(0).seconds(0).milliseconds(0)
 
+	    })
+  })
  </script>
   
   <style>
@@ -35,56 +41,6 @@
 	  text-align: center;
 		}
 	}
-
-.analysis-title{
-text-align: left;
-}
-
-/* Style the tab */
-.tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
-}
-
-/* Style the buttons that are used to open the tab content */
-.tab button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-}
-
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd;
-}
-
-/* Create an active/current tablink class */
-.tab button.active {
-  background-color: #ccc;
-}
-
-/* Style the tab content */
-.tabcontent {
-	display: block;
-    height: 0;
-    overflow-y: hidden;
-}
-.inbodycontent{
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-top: none;
-}
-#dddd > li:hover {
-    background-color: #eee;
-    color: blue;
-    font-weight: bold;
-    cursor: pointer;
-}
   </style>
 </head>
 <body>
@@ -164,7 +120,7 @@ text-align: left;
 	
         <form action="inbodyInsert" method="post" style="border:none" name="regform">
         <table style="border-collapse:separate;border-spacing:0 5px;border-style: hidden">
-		<tr><td><label for="test_date" class="int"><b>Test Date</b></label></td>
+		<tr><td><label for="test_date" class="int"><b>Enter Test Date</b></label></td>
 		   <td style="width:70%">
 			            <div class="form-group">
 			                <div class='input-group date' id='datetimepicker1'>
@@ -179,39 +135,55 @@ text-align: left;
 			                $('#datetimepicker1').datetimepicker();
 			            });
 			        </script></td>
-	   </tr>
+	   </tr></table>
+	   <div class="well well-sm analysis-title">MUSCLE-FAT ANALYSIS</div> 
+	   <table style="border-collapse:separate;border-spacing:0 5px;border-style: hidden">
+	        <tr><th></th><th>Measurement</th><th>Lower bound</th><th>Upper bound </th></tr>
 			<tr><td><label for="weight" class="int"><b>Weight(kg):</b></label></td>
-	    	<td><input type="number" id="weight" placeholder="Enter weight"  name="weight" class="input"></td></tr>
-	    			<tr><td></td></tr>
+	    	<td><input type="number" id="weight" placeholder="Enter weight"  name="weight" class="input"></td>
+	    	<td><input type="number" id="weight_under" placeholder="Enter lower bound"  name="weight_under" class="input"></td>
+	    	<td><input type="number" id="weight_over" placeholder="Enter Upper bound"  name="weight_over" class="input"></td></tr>
 	    	
 	        <tr><td><label for="mm" class="int"><b>Muscle Mass(kg):</b></label></td>
-	    	<td><input type="number" id="muscleMass" placeholder="Enter muscle mass"  name="muscle_mass" class="input"></td></tr>
-	    			<tr><td></td></tr>
-	    	
-	    	<tr><td><label for="fm" class="int"><b>Fat Mass:</b></label></td>
-	   		<td><input type="number" id="fatMass" placeholder="Enter fat mass"  name="fat_mass" class="input"></td></tr>
-	    			<tr><td></td></tr>
-	   		
+	    	<td><input type="number" id="muscleMass" placeholder="Enter muscle mass"  name="muscle_mass" class="input"></td>
+	    	<td><input type="number" id="muscleMass_under" placeholder="Enter lower bound"  name="muscle_mass_under" class="input"></td>
+	    	<td><input type="number" id="muscleMass_over" placeholder="Enter Upper bound"  name="muscle_mass_over" class="input"></td></tr>
+	        
+	        <tr><td><label for="fm" class="int"><b>Fat Mass:</b></label></td>
+	   		<td><input type="number" id="fatMass" placeholder="Enter fat mass"  name="fat_mass" class="input"></td>
+	   		<td><input type="number" id="fatMass_under" placeholder="Enter lower bound"  name="fat_mass_under" class="input"></td>
+	   		<td><input type="number" id="fatMass_over" placeholder="Enter Upper bound"  name="fat_mass_over" class="input"></td></tr>		
+	   	</table>	
+	   <div class="well well-sm analysis-title">MUSCLE-FAT ANALYSIS</div> 
+	   <table style="border-collapse:separate;border-spacing:0 5px;border-style: hidden">
+	        <tr><th></th><th>Measurement</th><th>Lower bound</th><th>Upper bound </th></tr>
 	    	<tr><td><label for="BMI" class="int"><b>BMI:</b></label></td>
-	   		<td><input type="number" id="BMI" placeholder="Enter bmi"  name="bmi" class="input"></td></tr>
-	    			<tr><td></td></tr>
+	   		<td><input type="number" id="BMI" placeholder="Enter bmi"  name="bmi" class="input"></td>
+	   		<td><input type="number" id="BMI_under" placeholder="Enter lower bound"  name="bmi_under" class="input"></td>
+	   		<td><input type="number" id="BMI_over" placeholder="Enter Upper bound"  name="bmi_over" class="input"></td></tr>
 	   		
 	    	<tr><td><label for="PBF" class="int"><b>percent Body Fat:</b></label></td>
-	        <td><input type="number" id="PBF" placeholder="Enter percent body fat"  name="pbf" class="input"></td></tr>
-	    			<tr><td></td></tr>
+	        <td><input type="number" id="PBF" placeholder="Enter percent body fat"  name="pbf" class="input"></td>
+	        <td><input type="number" id="PBF_under" placeholder="Enter lower bound"  name="pbf_under" class="input"></td>
+	        <td><input type="number" id="PBF_over" placeholder="Enter Upper bound"  name="pbf_over" class="input"></td></tr>
 	        
+	   </table>
+	   <div class="well well-sm analysis-title">MUSCLE-FAT ANALYSIS</div> 
+	   <table style="border-collapse:separate;border-spacing:0 5px;border-style: hidden">   
+	        <tr><th></th><th>Measurement</th><th>Lower bound</th><th>Upper bound </th></tr>	    	
 	    	<tr><td><label for="VFL" class="int"><b>Visceral Fat Level:</b></label></td>
-	   		<td><input type="number" id="VFL" placeholder="Enter visceral fat level"  name="vfl" class="input"></td></tr>
-	    			<tr><td></td></tr>
+	   		<td><input type="number" id="VFL" placeholder="Enter visceral fat level"  name="vfl" class="input"></td>
+	   		<td><input type="number" id="VFL_under" placeholder="Enter lower bound"  name="vfl_under" class="input"></td>
+	   		<td><input type="number" id="VFL_over" placeholder="Enter Upper bound"  name="vfl_over" class="input"></td></tr>
 	   		
+	   </table>
+	   <div class="well well-sm analysis-title">MUSCLE-FAT ANALYSIS</div> 
+	   <table style="border-collapse:separate;border-spacing:0 5px;border-style: hidden">	
 	    	<tr><td><label for="BMR" class="int"><b>Basal Metabolic Rate:</b></label></td>
-	 	   	<td><input type="number" id="BMR" placeholder="Enter basal metabolic rate"  name="bmr" class="input"></td></tr>
-	    			<tr><td></td></tr>
-	 	   	
-	 	   	<tr><td></td><td style=""><button type="submit" class="signupbtn">Submit</button>
-	 	   	</td></tr>
+	 	   	<td><input type="number" id="BMR" placeholder="Enter BMR"  name="bmr" class="input"></td></tr>
 		</table>
-	
+		<hr>
+		    <button type="submit" class="signupbtn btn btn-primary btn-lg">Submit</button>
 		</form>
 
 
