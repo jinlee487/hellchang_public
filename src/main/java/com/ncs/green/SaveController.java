@@ -2,7 +2,6 @@ package com.ncs.green;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import service.SService;
-import vo.BoardVO;
 import vo.HeartVO;
 import vo.MemberVO;
 import vo.ReplyVO;
@@ -103,9 +101,14 @@ public class SaveController {
 		for(int i=0; i<array.length; i++) {
 			vo.setId(array[i].getId());
 			vo.setTitle(array[i].getTitle());
+			
 			hvo.setId(array[i].getId());
+			System.out.println("** id :"+hvo.getId());
 			hvo.setTitle(array[i].getTitle());
+			System.out.println("** title :"+ hvo.getTitle());
 			hvo = service.heartSelect(hvo);
+			System.out.println(hvo);
+			System.out.println(hvo.getHeart());
 			String HTest = "heart"+i;
 			mv.addObject(HTest, hvo.getHeart());
 			List<SaveVO> test = service.findTest(vo);
@@ -207,6 +210,7 @@ public class SaveController {
 		vo = service.selectOne(vo);
 		if (vo!=null) {
 			mv.addObject("Detail", vo);
+			mv.setViewName("blog/myblog");
 		
 		}else {
 			mv.addObject("fCode","BN");
