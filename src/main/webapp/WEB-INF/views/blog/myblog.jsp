@@ -18,61 +18,23 @@
   <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-$(function(){
-	var cnt = 0;
-	var last = 0;
-	var rowcnt = 0;
-	  $.ajax({
-		type:'Get',
-		dataType : "json",
-		url:'blogTest',
-		
-		success:function(data){
-			var nowID = "";
-			var nowTitle = "";
-			var num = data.num;
-			console.log(num);
-			for(var j=0; j<5; j++){
-				var lastNum = 0;
-				if(cnt == 0){jsonData = data.forName0; heartCnt = data.heart0}
-				else if(cnt == 1){jsonData = data.forName1; heartCnt = data.heart1}
-				else if(cnt == 2){jsonData = data.forName2; heartCnt = data.heart2}
-				else if(cnt == 3){jsonData = data.forName3; heartCnt = data.heart3}
-				else if(cnt == 4){jsonData = data.forName4; heartCnt = data.heart4}
-				
-				lastNum = Object.keys(jsonData).length;
-				var appendT = "";
-				var appendH = "";
-				appendT += "<table class = 'table'>"
-				rowcnt = 0;
-				for(var i = 0; i<Object.keys(jsonData).length; i++){		
-					if(i==0){
-						appendT += '<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><img src="resources/image/lee.jpg" alt="이준호" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td><td colspan ="3"></td></tr>'
-						appendT += '<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>'
-						appendT += "<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>"							
-					}else if(i!=0 || i!=lastNum){
-						appendT += "<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>"
-					}else if(i==lastNum){
-						appendT += "<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>"
-						
-					}
-					$('.blogForm').append(appendT)
-					nowTitle = jsonData[i].title ;
-					nowID = jsonData[i].id;
-					rowcnt ++;
-					appendT += "</table>"
-				} // for_i
-				appendH+="<table>"
-				appendH+= "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowTitle+"'></span></td></tr>"
-				appendH += "</table>"
-				$('.blogForm2').append(appendH)
-				cnt ++;
-			} // for_j 
+function axBDetail(id,title){
+	console.log('axBDetail : id ='+id+', title'+title);
+	$.ajax({
+		type='Get',
+		data:{
+			id=id,
+			title=title
 		},
-		error:function(){
-			
-		}
-	}); // ajax 
+		url:'selectone',
+		success:function(result){
+			$('.table').hrml(result);
+		}//success
+		
+	});//ajax
+	
+}//axBDetail
+$(function(){
 	
 $(document).on("click",".heart", function(){
     var title = $(this).attr("id");
@@ -230,7 +192,7 @@ $(document).on("click",".heart", function(){
 
 </div>
 </div>
-
+<!-- 모달 시작 -->
 	<div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->	
@@ -247,7 +209,7 @@ $(document).on("click",".heart", function(){
         <div class="modal-body" style="display: inline-flex; ">
        <div> 
         
-         <table class="table">
+         <table class="table" id="backtable">
          	<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td>
          	<img src="resources/image/lee.jpg" alt="이준호" class = "myPhoto"></td>
          	<td colspan="2"><br>Title : ${Detail.title}<br>Name : ${Detail.name}<br> Date : ${Detail.date}</td>
@@ -312,8 +274,8 @@ $(document).on("click",".heart", function(){
           </div>
         </div>
       </div>
-      
-    </div> <!-- 모달종료 -->
+    </div> 
+    <!-- 모달종료 -->
 
     
     

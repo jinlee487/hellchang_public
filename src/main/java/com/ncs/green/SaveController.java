@@ -210,11 +210,11 @@ public class SaveController {
 		vo = service.selectOne(vo);
 		if (vo!=null) {
 			mv.addObject("Detail", vo);
-			mv.setViewName("blog/myblog");
+			mv.setViewName("jsonview");
 		
 		}else {
 			mv.addObject("fCode","BN");
-		
+			mv.setViewName("jsonview");
 		}
 		return mv;
 	}// bdetail
