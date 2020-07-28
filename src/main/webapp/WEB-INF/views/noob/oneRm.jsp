@@ -272,6 +272,7 @@ $(function(){
     	  var bench = new Array();
     	  var dead = new Array();
     	  var squat = new Array();
+    	  var total = new Array();
     	  $.ajax({
       		type:'Post',
       		url : 'showMyRM',
@@ -286,23 +287,22 @@ $(function(){
       				bench[i] = jsonData[i].bench;
       				dead[i] = jsonData[i].dead;
       				squat[i] = jsonData[i].squat;
+      				total[i] = bench[i] + dead[i] + squat[i]
       			}
       			var arr = [
-      				['date', 'bench', 'dead', 'squat'],
-      				[date[0], bench[0], dead[0], squat[0]],
-      				[date[1], bench[1], dead[1], squat[1]],
-      				[date[2], bench[2], dead[2], squat[2]]
+      				['date', 'bench', 'dead', 'squat', 'total'],
+      				[date[0], bench[0], dead[0], squat[0], total[0]],
+      				[date[1], bench[1], dead[1], squat[1], total[1]],
+      				[date[2], bench[2], dead[2], squat[2], total[2]]
       				];
    			var dataTable = google.visualization.arrayToDataTable(arr);
-      		var options = {
-      		title: jsonData[0].id,
-      		hAxis: {
-      		title: '년도',
-      		titleTextStyle: {
-      		color: 'red'
-      		}
-      		}
-      		};
+   			var options = {
+   		          title : '3대 1RM Total',
+   		          vAxis: {title: 'KG'},
+   		          hAxis: {title: 'Week'},
+   		          seriesType: 'bars',
+   		          series: {3: {type: 'line'}}        };
+
       		var objDiv = document.getElementById('chart_div');
       		var chart = new google.visualization.ColumnChart(objDiv);
       		chart.draw(dataTable, options);
