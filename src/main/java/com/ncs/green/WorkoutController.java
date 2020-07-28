@@ -4,6 +4,7 @@ package com.ncs.green;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,15 +59,25 @@ public class WorkoutController {
 	}
 	
 	@RequestMapping(value = "/saveMyRM")
-	public ModelAndView saveMyRM(ModelAndView mv, RmVO rvo) {
-		System.out.println("RM insert =>" + rvo);
+	public ModelAndView saveMyRM(HttpServletRequest request, ModelAndView mv, RmVO rvo) {
+		System.out.println("RM insert =>" + rvo.getId());
 		if (service.saveMyRM(rvo) > 0 ) {			
 			System.out.println("저장완료");
-			mv.setViewName("jsonView");
 		} else {
 			System.out.println("저장실패");
-			mv.setViewName("jsonView");
 		}
+		mv.setViewName("jsonView");
+		return mv;
+	}
+	
+	
+	@RequestMapping(value = "/showMyRM")
+	public ModelAndView showMyRM(HttpServletRequest request, ModelAndView mv, RmVO rvo) {
+		HttpSession session = request.getSession(false);
+		rvo.setId((String) session.getAttribute("logID"));
+		List<RmVO> list = service.RmList(rvo);
+		System.out.println(list);
+		mv.addObject("myList",list);
 		mv.setViewName("jsonView");
 		return mv;
 	}

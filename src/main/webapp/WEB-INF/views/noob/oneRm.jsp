@@ -16,44 +16,13 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="resources/jqLib/topBar.css">
   <script>
-  
-  /* $(function(){
-		stickyFooter();
-
-		$(window).scroll(stickyFooter).resize(stickyFooter);
-	});
-
-
-	function stickyFooter(){
-		document_height = $(document).height(); // 문서 전체 높이
-		document_scrollTop = $(document).scrollTop(); // 문서 전체 높이 중 스크롤 위치
-		window_height = $(window).height(); // 창 높이
-		footer_height = $("#footer").height();
-
-		gap = document_height - footer_height - window_height; 
-		bottom = document_scrollTop - gap ; 
-
-		if(document_scrollTop > gap){
-			$("#footer").css("bottom", bottom+"px");
-		}else{
-			$("#footer").css("bottom","0");
-		}
-	}
-   */
-  
-  
 	  function rm(){
 		  for(var i=1; i<=10; i++)	{
-			 
 			 $('.num'+i).html(" ");
 			 $('.result'+i).html(" ");  
 		  }
-		  
-		
-		  
 		var kg = parseInt($('#kg').val());
 		var rep = parseInt($('#rep').val());
-		
 		arm = kg/(1.0278-(0.0278*rep));
 		// arm = 1rm 구한 값
 		var j = rep;
@@ -65,8 +34,6 @@
 			j--;
 		}
 	}	 
-  
-
   </script>
   <style>
 
@@ -238,7 +205,7 @@ button:hover {
   </div>
 </div><br>    
 
-  <div class="col-sm-7 inbodycontent" style="width: 100%">
+  <div class="col-sm-7 inbodycontent" style="width: 100%" align="center">
  				<div class="tab">	
  					 <h2>3대 중량 입력</h2>
  					 </div>
@@ -253,15 +220,15 @@ button:hover {
        		<label for="Sq" class="int">Sq</label><br>
        		<input  style="width: 50%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Sq">
        		<br>
-       		<button type="button" class="signupbtn1" id="saveResult">save</button>
-    </div>
+       		<button type="button" class="signupbtn1" id="saveResult">save</button><br>
+       		<button type="button" class="signupbtn1" id="showResult">show</button>
+    		</div>
         </div>
        </div>
      </div>
-     
-     <div class="col-sm-4" style="display: inline-block; margin: 0; width: 100%">
+     <div style="display: inline-block; margin: 0; width: 100%" align="center">
       	<label for="gra" class="int">3대 중량 그래프</label>
-	   <div id="chart_div" style="width: 50%; height: 400px; margin-left: 500px"></div>
+	   <div id="chart_div" style="width: 75%; height: 400px;"></div>
     </div>
 
     
@@ -276,10 +243,10 @@ $(function(){
     	  var dead = $('#Dead').val();
     	  var squat = $('#Sq').val();
     	  var date = $('#date').val();
-    	  console.log(date);
     	  $.ajax({
       		type:'Post',
       		url : 'saveMyRM',
+      		dataType: "json",
       		data :{
       			bench : bench,
       			dead : dead,
@@ -288,13 +255,63 @@ $(function(){
       			date : date
       		},
       		success:function(data){
-      			alert(bench +","+dead+" , " + squat);
+      			 alert("저장완료");
+      			 $('#Bench').val("");
+      	    	 $('#Dead').val("");
+      	    	 $('#Sq').val("");
+      	    	 $('#date').val("");      			
       		}, // success
     		error:function(){
      			alert("!")
      		}
      		}) // ajax
-
+      }) // click
+      
+      $('#showResult').click(function() {
+    	  var data = new Array();
+    	  var bench = new Array();
+    	  var dead = new Array();
+    	  var squat = new Array();
+    	  $.ajax({
+      		type:'Post',
+      		url : 'showMyRM',
+      		dataType: "json",
+      		data :{
+      			id : logID,
+      		},
+      		success:function(data){
+      			jsonData = data.myList;
+      			for(var i=0; i<Object.keys(jsonData).length; i++){
+      				date[i] = jsonData[i].date;
+      				bench[i] = jsonData[i].bench;
+      				dead[i] = jsonData[i].dead;
+      				squat[i] = jsonData[i].squat;
+      			}
+      			var arr = [
+      				['date', 'bench', 'dead', 'squat'],
+      				[date[0], bench[0], dead[0], squat[0]],
+      				[date[1], bench[1], dead[1], squat[1]],
+      				[date[2], bench[2], dead[2], squat[2]]
+      				];
+   			var dataTable = google.visualization.arrayToDataTable(arr);
+      		var options = {
+      		title: jsonData[0].id,
+      		hAxis: {
+      		title: '년도',
+      		titleTextStyle: {
+      		color: 'red'
+      		}
+      		}
+      		};
+      		var objDiv = document.getElementById('chart_div');
+      		var chart = new google.visualization.ColumnChart(objDiv);
+      		chart.draw(dataTable, options);
+				alert(jsonData[0].id+"님의 데이터");
+      		}, // success
+    		error:function(){
+     			alert("!")
+     		}
+     		}) // ajax
       }) // click
 });
     </script>

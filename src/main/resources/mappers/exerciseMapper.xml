@@ -24,4 +24,7 @@
 	 (#{id}, #{bench}, #{dead}, #{squat}, #{date})
   </insert>  
 
+   <select id="RmList" resultType="vo.RmVO" >
+	select * from `hellchang_schema_test`.`saveRM` where id = #{id} order by date desc limit 3;
+   </select>
  </mapper>

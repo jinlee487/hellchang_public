@@ -127,7 +127,6 @@ $(function(){
 		type:'Get',
 		dataType : "json",
 		url:'blogTest',
-		
 		success:function(data){
 			var nowID = "";
 			var nowTitle = "";

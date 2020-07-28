@@ -31,5 +31,9 @@ public class ExerciseDAO {
 	public int saveMyRM(RmVO rvo) { 
 		return sqlsession.insert(NS+"saveMyRM", rvo);
 	} // saveMyRoutine
+	
+	public List<RmVO> RmList(RmVO rvo) {
+		return sqlsession.selectList(NS+"RmList",rvo) ;
+	} // selectList()
 
 } // class
