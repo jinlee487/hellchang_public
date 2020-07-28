@@ -167,9 +167,9 @@ text-align: left;
 	        <div class="modal-body">
 	          <table class="columns" style="table-layout:fixed;word-break:break-all;width:100%;">
 	          <tr>
-	          <td><a href="inbodyInsertf"><span class="glyphicon glyphicon-pencil"></span></a></td>
-	          <td><a href="inbodyUpdatef"><span class="glyphicon glyphicon-edit"></span></a></td>   
-	          <td><a href="inbodyUpdatef"><span class="glyphicon glyphicon-share"></span></a></td>        
+	          <td><button type="button" class="btn btn-default io" id="ii"><span class="glyphicon glyphicon-pencil"></span></button></td>
+	          <td><button type="button" class="btn btn-default io" id="iu"><span class="glyphicon glyphicon-edit"></span></button></td>
+	          <td><button type="button" class="btn btn-default io" id="is"><span class="glyphicon glyphicon-share"></span></button></td>
 	          </tr>
 	          </table>
 	        </div>
@@ -552,6 +552,17 @@ $(document).ready(function(){
 			$('#inbodyBtn').css("display","none");
 		  }
 	});
+	$('.io').on("click",function(){
+		if($(this).attr("id")=='ii'){
+			location.href = "inbodyInsertf";  
+		}
+		else if($(this).attr("id")=='iu'){
+			location.href = "inbodyDetail?code=U&date_date="+$('#results_date').html();
+		}
+		else if($(this).attr("id")=='is'){
+			location.href = "inbodySharef";
+		}
+	})
 });
 
 // When the user clicks on the button, scroll to the top of the document

@@ -116,10 +116,26 @@ public class InbodyController {
 	
 	@RequestMapping(value = "/inbodyInsertf")
 	public ModelAndView inbodyInsertf(HttpServletRequest request, ModelAndView mv, InbodyVO vo) {
-		System.out.println("this is working !");
 		mv.setViewName("inbody/inbody_insertForm");
 		return mv;
 	} //
+	
+	@RequestMapping(value = "/inbodyDetail")
+	public ModelAndView inbodyDetail(HttpServletRequest request, ModelAndView mv, InbodyVO vo) {
+		HttpSession session = request.getSession(false);
+		String id = (String) session.getAttribute("logID");
+		vo.setId(id);
+		System.out.println("this is vo => " + vo);
+		vo = service.selectOne(vo);	
+		mv.addObject("inbodyVO", vo);
+		System.out.println("this is vo afte detail => \n" + vo);
+		if ("U".equals(request.getParameter("code"))) {
+			// 내정보 수정화면으로
+			mv.setViewName("inbody/inbody_updateForm");
+		}
+		return mv;
+	}
+	
 	
 	@RequestMapping(value = "/inbodyInsert")
 	public ModelAndView inbodyInsert(HttpServletRequest request, ModelAndView mv, InbodyVO vo) {
