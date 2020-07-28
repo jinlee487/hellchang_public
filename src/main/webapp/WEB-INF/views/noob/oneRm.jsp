@@ -224,8 +224,6 @@ button:hover {
        <c:forEach begin="1" end="10" varStatus="status">
 	   			<%-- <output class="num${status.count} " ></output>
 	   			<output class="result${status.count}"></output> --%>
-	   			
-	   			
 	   			 <table style="text-align: center;">
 	   				<tr>
 	   				</tr>
@@ -238,32 +236,16 @@ button:hover {
     </div>
     
   </div>
-</div><br>
- 
-<!-- <div style="margin-left: 650px;">
- <label for="KG" class="int">결과입력</label><br>
- <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="kg" >
- <button type="button" class="signupbtn" onclick="drawChart()">결과확인</button>
- <div id="columnchart_material" style="width: 60%; height: 400px;"></div>
- 
- </div>  -->
-
- 
-    
+</div><br>    
 
   <div class="col-sm-7 inbodycontent" style="width: 100%">
  				<div class="tab">	
  					 <h2>3대 중량 입력</h2>
  					 </div>
-     <div class="tab">
-        <button class="tablink" onclick="openPage(event,'results_tab')" id="defaultOpen">2주전</button>
-		<button class="tablink" onclick="openPage(event,'history_tab')">1주전</button>
-		<button class="tablink" onclick="openPage(event, 'ranking_tab')">현재</button>
-    </div>   
       <div class="row">
-        <div class="col-sm-12 tabcontent" id="results_tab">
-		 <div class="container text-center">    
-  <h2>2주전</h2><br> 
+        <div class="col-sm-12 tabcontent" id="saveMyRM">
+             <div class="container text-center">    
+ 		 <h3><input type = "date" id = "date"></h3><br> 
        		<label for="Bench" class="int">Dead</label><br>
        		<input  style="width: 50%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Dead" ><br>
        		<label for="Dead" class="int">Bench</label><br>
@@ -271,35 +253,7 @@ button:hover {
        		<label for="Sq" class="int">Sq</label><br>
        		<input  style="width: 50%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Sq">
        		<br>
-       		<button type="button" class="signupbtn1" onclick="drawVisualization()">결과확인</button>
-    </div>
-        </div>
-        
-        <div class="col-sm-12 tabcontent" id="history_tab">
-            <div class="container text-center">    
- 			 <h2>1주전</h2><br> 
-       		<label for="Bench" class="int">Dead</label><br>
-       		<input  style="width: 50%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Dead2" ><br>
-       		<label for="Dead" class="int">Bench</label><br>
-       		<input  style="width: 50%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Bench2"><br>
-       		<label for="Sq" class="int">Sq</label><br>
-       		<input  style="width: 50%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Sq2">
-       		<br>
-       		<button type="button" class="signupbtn1" onclick="drawVisualization()">결과확인</button>
-    </div>
-        </div>
-        
-        <div class="col-sm-12 tabcontent" id="ranking_tab">
-             <div class="container text-center">    
- 		 <h2>현재</h2><br> 
-       		<label for="Bench" class="int">Dead</label><br>
-       		<input  style="width: 50%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Dead3" ><br>
-       		<label for="Dead" class="int">Bench</label><br>
-       		<input  style="width: 50%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Bench3"><br>
-       		<label for="Sq" class="int">Sq</label><br>
-       		<input  style="width: 50%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text"  placeholder="무게를 입력하세요." id="Sq3">
-       		<br>
-       		<button type="button" class="signupbtn1" onclick="drawVisualization()">결과확인</button>
+       		<button type="button" class="signupbtn1" id="saveResult">save</button>
     </div>
         </div>
        </div>
@@ -309,131 +263,40 @@ button:hover {
       	<label for="gra" class="int">3대 중량 그래프</label>
 	   <div id="chart_div" style="width: 50%; height: 400px; margin-left: 500px"></div>
     </div>
- <div id="footer" role="contentinfo">
-<!-- <hr style="width: 100%;">
-<hr style="width: 100%; border-color: black;"> -->
-		<address>
-			<em><a href="home" target="_blank" class="logo footfont"><span class="blind">HellChang</span></a></em>
-			<em class="copy footfont">Copyright</em>
-			<em class="u_cri footfont">©</em>
-			<a href="home" target="_blank" class="u_cra footfont">HellChang Corp.</a>
-			<span class="all_r footfont">All Rights Reserved.</span>
-		</address>
-</div>    
+
     
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawVisualization);
+$(function(){
+	var logID = "<%=session.getAttribute("logID") %>"
+	console.log("session : "+logID);
+      $('#saveResult').click(function() {
+    	  var bench = $('#Bench').val();
+    	  var dead = $('#Dead').val();
+    	  var squat = $('#Sq').val();
+    	  var date = $('#date').val();
+    	  console.log(date);
+    	  $.ajax({
+      		type:'Post',
+      		url : 'saveMyRM',
+      		data :{
+      			bench : bench,
+      			dead : dead,
+      			squat : squat,
+      			id : logID,
+      			date : date
+      		},
+      		success:function(data){
+      			alert(bench +","+dead+" , " + squat);
+      		}, // success
+    		error:function(){
+     			alert("!")
+     		}
+     		}) // ajax
 
-      function drawVisualization() {
-        // Some raw data (not necessarily accurate)
-       var week = String($('#week').val());
-       var bench = parseInt($('#Bench').val());
-	   var dead = parseInt($('#Dead').val());
-	   var sq = parseInt($('#Sq').val());
-	   total = bench+dead+sq;
-	   var bench2 = parseInt($('#Bench2').val());
-	   var dead2 = parseInt($('#Dead2').val());
-	   var sq2= parseInt($('#Sq2').val());
-	   total2 = bench2+dead2+sq2;
-	   var bench3 = parseInt($('#Bench3').val());
-	   var dead3 = parseInt($('#Dead3').val());
-	   var sq3 = parseInt($('#Sq3').val());
-	   total3 = bench3+dead3+sq3;
-	   
-        var data = google.visualization.arrayToDataTable([
-          ['Week', 'Dead', 'Bench', 'sq','Total'],
-          ['2주전',  dead,      bench,         sq,    	total],
-          ['1주전',  dead2,      bench2,         sq2,	    total2],
-          ['현재',  dead3,      bench3,         sq3,		total3]
-        ]);
-
-        var options = {
-          title : '3대 1RM Total',
-          vAxis: {title: 'KG'},
-          hAxis: {title: 'Week'},
-          seriesType: 'bars',
-          series: {3: {type: 'line'}}        };
-
-        var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-      }
+      }) // click
+});
     </script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['bar']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Week', 'Sales', 'Expenses', 'Profit','999'],
-          ['1Week', 1000, 400, 200,500],
-          ['2Week', 1170, 460, 250,600],
-          ['3Week', 660, 1120, 300,700],
-          ['4Week', 1030, 540, 350,800]
-        ]);
-
-        var options = {
-          chart: {
-            title: 'My 1Rm Check',
-          }
-        };
-
-        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
-
-        chart.draw(data, google.charts.Bar.convertOptions(options));
-      };
-      
-      document.getElementById("defaultOpen").click();
-      function openPage(evt,tabName) {
-      	  var i, tabcontent, tablinks;
-      	  // Get all elements with class="tabcontent" and hide them
-      	  tabcontent = document.getElementsByClassName("tabcontent");
-      	  for (i = 0; i < tabcontent.length; i++) {
-      	    tabcontent[i].style.display = "none";
-      	  }
-
-      	  // Get all elements with class="tablinks" and remove the class "active"
-      	  tablinks = document.getElementsByClassName("tablink");
-      	  for (i = 0; i < tablinks.length; i++) {
-      	    tablinks[i].className = tablinks[i].className.replace(" active", "");
-      	  }
-
-      	  // Show the current tab, and add an "active" class to the button that opened the tab
-      	  document.getElementById(tabName).style.display = "block";
-      	  evt.currentTarget.className += " active";
-      	  google.charts.load('current', {'packages':['gauge','table','line','corechart','bar']}); 
-
-      	  if(tabName=='history_tab'){
-      		  google.charts.setOnLoadCallback(function(){
-      			  rPage = r.slice(Math.max(r.length - 7, 1));
-      			  inbodycombochart(rPage,'wComboID');  
-      			  rPage2 = r2.slice(Math.max(r2.length - 7, 1));
-      			  inbodycombochart(rPage2,'mmComboID');  
-      			  rPage3 = r3.slice(Math.max(r3.length - 7, 1));
-      			  inbodycombochart(rPage3,'fmComboID');  
-      			  rPage4 = r4.slice(Math.max(r4.length - 7, 1));
-      			  inbodycombochart(rPage4,'bComboID');  
-      			  rPage5 = r5.slice(Math.max(r5.length - 7, 1));
-      			  inbodycombochart(rPage5,'pComboID');  
-      			  rPage6 = r6.slice(Math.max(r6.length - 7, 1));
-      			  inbodycombochart(rPage6,'vComboID');  
-
-      		  });
-      	  }
-      	  else if(tabName=='results_tab'){
-      		  google.charts.setOnLoadCallback(function(){
-      			  inbodybarchart(r[resultPage],'wChartID','wChartID2');
-      			  inbodybarchart(r2[resultPage],'mmChartID','mmChartID2');
-      			  inbodybarchart(r3[resultPage],'fmChartID','fmChartID2');
-      			  inbodybarchart(r4[resultPage],'bChartID','bChartID2');
-      			  inbodybarchart(r5[resultPage],'pChartID','pChartID2');
-      			  inbodybarchart(r6[resultPage],'vChartID','vChartID2');
-      			  calcBMR(r[resultPage],'bmiID');
-      		  }); 
-      	  }
-      	}
-    </script>
-
-</body>
+    </body>
 </html>

@@ -9,6 +9,7 @@ import jdbcUtil.ExerciseDAO;
 import vo.BoardVO;
 import vo.ExerciseVO;
 import vo.MemberVO;
+import vo.RmVO;
 
 
 @Service
@@ -27,7 +28,12 @@ public class EServiceImpl implements EService {
 
 	@Override
 	public int saveMyRoutine(ExerciseVO vo) {  
-		return dao.saveMyRoutine(vo);  // 처리된 row 갯수 return	 
+		return dao.saveMyRoutine(vo);  // 泥섎━�맂 row 媛��닔 return	 
+	} // insert
+	
+	@Override
+	public int saveMyRM(RmVO rvo) {  
+		return dao.saveMyRM(rvo);  // 泥섎━�맂 row 媛��닔 return	 
 	} // insert
 	
 } // class

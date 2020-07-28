@@ -14,6 +14,7 @@ import service.EService;
 import service.SService;
 import vo.ExerciseVO;
 import vo.MemberVO;
+import vo.RmVO;
 import vo.SaveVO;
 
 
@@ -53,6 +54,20 @@ public class WorkoutController {
 		mv.addObject("target", list);
 		mv.setViewName("jsonView");
 		System.out.println(list.toString());
+		return mv;
+	}
+	
+	@RequestMapping(value = "/saveMyRM")
+	public ModelAndView saveMyRM(ModelAndView mv, RmVO rvo) {
+		System.out.println("RM insert =>" + rvo);
+		if (service.saveMyRM(rvo) > 0 ) {			
+			System.out.println("저장완료");
+			mv.setViewName("jsonView");
+		} else {
+			System.out.println("저장실패");
+			mv.setViewName("jsonView");
+		}
+		mv.setViewName("jsonView");
 		return mv;
 	}
 }

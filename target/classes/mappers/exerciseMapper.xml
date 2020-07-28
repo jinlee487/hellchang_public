@@ -18,5 +18,10 @@
 	insert into `hellchang_schema_test`.`myRoutine` values 
 	 (#{id}, #{name}, #{target}, #{date}, #{title},#{shared})
   </insert>  
+  
+  <insert id="saveMyRM">
+	insert into `hellchang_schema_test`.`saveRM` values 
+	 (#{id}, #{bench}, #{dead}, #{squat}, #{date})
+  </insert>  
 
  </mapper>
