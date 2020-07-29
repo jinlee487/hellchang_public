@@ -193,29 +193,5 @@ public class SaveController {
 
 		return mv;
 	}// reply
-	@RequestMapping(value = "/selectone")
-	public ModelAndView selectone(HttpServletRequest request, ModelAndView mv, SaveVO vo) {
-		String id = "";
-		HttpSession session = request.getSession(false);
-		if (session != null && session.getAttribute("logID") != null) {
-			id = (String) session.getAttribute("logID");
-		} else {
-			// login 하도록 유도 후에 메서드 return 으로 종료
-			mv.addObject("message", "~~ 로그인 후에 하세요 ~~");
-			mv.setViewName("login/loginForm");
-			return mv;
-		}
-		
-		// 3) selectOne
-		vo = service.selectOne(vo);
-		if (vo!=null) {
-			mv.addObject("Detail", vo);
-			mv.setViewName("jsonview");
-		
-		}else {
-			mv.addObject("fCode","BN");
-			mv.setViewName("jsonview");
-		}
-		return mv;
-	}// bdetail
+	
 }//class
