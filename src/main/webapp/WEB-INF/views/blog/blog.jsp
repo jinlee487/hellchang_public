@@ -140,6 +140,7 @@ $(function(){
 	var cnt = 0;
 	var last = 0;
 	var rowcnt = 0;
+	
 	$.ajax({
 		type:'Get',
 		dataType : "json",
@@ -150,6 +151,7 @@ $(function(){
 			var nowTitle = "";
 			var num = data.num;
 			console.log(num);
+			/* 한페이지당 blog 개수 j  */
 			for(var j=0; j<5; j++){
 				var lastNum = 0;
 				if(cnt == 0){jsonData = data.forName0; heartCnt = data.heart0}
@@ -158,10 +160,11 @@ $(function(){
 				else if(cnt == 3){jsonData = data.forName3; heartCnt = data.heart3}
 				else if(cnt == 4){jsonData = data.forName4; heartCnt = data.heart4}
 				
-				lastNum = Object.keys(jsonData).length;
+				lastNum = Object.keys(jsonData).length;  /* title 안에 있는 운동 종목의 개수  */
 				var appendT = "";
+				/* 본문 출력 i  */
 				appendT += "<table class = 'table'>"
-				rowcnt = 0;
+				rowcnt = 0;							     /* 중  */
 				for(var i = 0; i<Object.keys(jsonData).length; i++){		
 					if(i==0){
 						appendT += '<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><img src = "'+jsonData[i].userImage+'" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td><td colspan ="3"></td></tr>'
@@ -178,10 +181,11 @@ $(function(){
 					replyTitle = jsonData[i].title ;
 					var replyRow = jsonData[i].title;
 					rowcnt ++;
+					console.log("row count 어따씀 ? " + rowcnt);
 				} // for_iMb
 				appendT += "<tr><td colspan='5'><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span>"
 				appendT += "<span id = 'cnt"+nowTitle+"'></span><br><span class = 'reply " + nowID +"' id = '"+replyTitle+"'></td></tr>"
-				appendT += "<tr><td colspan='5'><form action='replyInsert'><textarea style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea><button type='submit' class='sendR'>게시</button></form></td></tr>"
+				appendT += "<tr><td colspan='5'><form action='replyInsert'><textarea style='vertical-align: bottom; width: 90%;' name='replyContent' rows='1' placeholder='댓글달기...'></textarea><button type='submit' class='sendR'>게시</button></form></td></tr>"
 				appendT += "</table>"
 				$('.blogForm').append(appendT)
 				cnt ++;
@@ -197,10 +201,11 @@ $(window).scroll(function(){
 	loadNext();
 	}
 	function loadNext(){
+		/* cnt = 한 페이지에 출력되는 개수 확인하기 위해 사용 */
 		var cnt = 0;
 		var nowID = "";
 		var nowTitle = "";
-		console.log(rowcnt)
+		console.log("row cnt 출력 =>" +	rowcnt);
 		$.ajax({
 			type:'Get',
 			url : "scrollP",
@@ -209,7 +214,8 @@ $(window).scroll(function(){
 			},
 			success:function(data){
 				var num = data.num;
-				console.log(num);
+				console.log("내가 몇번째까지 출력함 ?"+num);
+				/* 한페이지당 blog 개수  */
 				for(var j=0; j<num; j++){
 					var lastNum = 0;
 					if(cnt == 0){jsonData = data.forName0; heartCnt = data.heart0}
@@ -238,10 +244,11 @@ $(window).scroll(function(){
 					} // for_i
 					appendT += "<tr><td colspan='5'><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span>"
 					appendT += "<span id = 'cnt"+nowTitle+"'></span><br><span class = 'reply " + nowID +"' id = '"+replyTitle+"'></td></tr>"
-					appendT += "<tr><td colspan='5'><form><textarea style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea><button type='submit' class='sendR'>게시</button></form></td></tr>"
+					appendT += "<tr><td colspan='5'><form action='replyInsert'><textarea style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea><button type='submit' class='sendR'>게시</button></form></td></tr>"
 					appendT += "</table>"
 					$('.blogForm').append(appendT)
 					cnt ++;
+					console.log("row count 어따씀 ? " + rowcnt);
 				} // for_j 
 			},
 			error:function(){
@@ -253,7 +260,9 @@ $(window).scroll(function(){
 
 $(document).on("click",".heart", function(){
     var title = $(this).attr("id");
+    console.log($(this).attr("id"));
     var id = $(this).attr("class");
+    console.log($(this).attr("class"));
     id = id.substring(6);
     console.log(id);
     $.ajax({
@@ -275,24 +284,34 @@ $(document).on("click",".heart", function(){
 	}) // ajax
 }) // heart_click 이벤트
 
-$('.sendR').on("click",function(){
-	var id = "<%=session.getAttribute("logID") %>"; 
+ $('.sendR').on("click",function(){
+	var title = $(this).attr("id");
+    var id = "<%=session.getAttribute("logID") %>";
+    //var content = $('.').val();
+	//var replyId = 
+	//replyId = id.substring(6);		
+	
+    console.log(title);
+    console.log(id);
+    console.log(content);
+    console.log(replyId);
+ 
 	$.ajax({
 		type: "post",
 		url:"replyInsert",
 		data:{
 			id : id,
-			title : 
-			content : $('textarea').val();
+			title : title,
+			replyId : replyId
 		},
 		success: function(){
 			
-		}
+		},
 		error: function(){
 			
 		}			
 	});
-}); // 댓글 
+}); // 댓글
 
 }) // ready
 </script>
