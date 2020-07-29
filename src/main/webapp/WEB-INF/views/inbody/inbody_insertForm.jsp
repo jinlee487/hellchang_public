@@ -19,9 +19,9 @@
   <link rel="stylesheet" type="text/css" href="resources/jqLib/inbodyButton.css">
   
   <script>
-  $(document).ready(function(){
-		$('#testdate').val(new Date().toJSON().slice(0,19));
-  })
+   $(document).ready(function(){
+		$('#testdate').val(new Date().toJSON().slice(0,16));
+  }) 
  </script>
   
   <style>
@@ -37,7 +37,9 @@
 	th{ display:none;}
 	input{width: 100%;}
 	}
-	
+	input {
+	text-align: center;
+	}
   </style>
 </head>
 <body>
@@ -117,10 +119,12 @@
 	
         <form action="inbodyInsert" method="post" style="border:none;" name="regform">
         <table style="border-collapse:separate;border-spacing:0 5px;border-style: hidden">
+        
 		<tr><td><label for="test_date" class="int"><b>Enter Test Date</b></label></td>
 		   <td><input type="datetime-local" id="testdate" name="date_date"></td>
+		   
 	   </tr></table>
-	   <div class="well well-sm analysis-title">MUSCLE-FAT ANALYSIS</div> 
+	   <div class="well well-sm analysis-title">Muscle-Fat Analysis</div> 
 	   <table style="border-collapse:separate;border-spacing:0 5px;border-style: hidden">
 	        <tr><th></th><th>Measurement</th><th>Lower bound</th><th>Upper bound </th></tr>
 			<tr><td><label for="weight" class="int"><b>Weight(kg):</b></label></td>
@@ -138,7 +142,7 @@
 	   		<td><input type="number" step="any" id="fatMass_under" placeholder="Enter lower bound"  name="fat_mass_under" class="input"></td>
 	   		<td><input type="number" step="any" id="fatMass_over" placeholder="Enter Upper bound"  name="fat_mass_over" class="input"></td></tr>		
 	   	</table>	
-	   <div class="well well-sm analysis-title">MUSCLE-FAT ANALYSIS</div> 
+	   <div class="well well-sm analysis-title">Obesity Analysis</div> 
 	   <table style="border-collapse:separate;border-spacing:0 5px;border-style: hidden">
 	        <tr><th></th><th>Measurement</th><th>Lower bound</th><th>Upper bound </th></tr>
 	    	<tr><td><label for="BMI" class="int"><b>BMI:</b></label></td>
@@ -152,7 +156,7 @@
 	        <td><input type="number" id="PBF_over" placeholder="Enter Upper bound"  name="pbf_over" class="input"></td></tr>
 	        
 	   </table>
-	   <div class="well well-sm analysis-title">MUSCLE-FAT ANALYSIS</div> 
+	   <div class="well well-sm analysis-title">Visceral Fat Analysis</div> 
 	   <table style="border-collapse:separate;border-spacing:0 5px;border-style: hidden">   
 	        <tr><th></th><th>Measurement</th><th>Lower bound</th><th>Upper bound </th></tr>	    	
 	    	<tr><td><label for="VFL" class="int"><b>Visceral Fat Level:</b></label></td>
@@ -161,7 +165,7 @@
 	   		<td><input type="number" step="any" id="VFL_over" placeholder="Enter Upper bound"  name="vfl_over" class="input"></td></tr>
 	   		
 	   </table>
-	   <div class="well well-sm analysis-title">MUSCLE-FAT ANALYSIS</div> 
+	   <div class="well well-sm analysis-title">Research Parameters</div> 
 	   <table style="border-collapse:separate;border-spacing:0 5px;border-style: hidden">	
 	    	<tr><td><label for="BMR" class="int"><b>Basal Metabolic Rate:</b></label></td>
 	 	   	<td><input type="number" step="any" id="BMR" placeholder="Enter BMR"  name="bmr" class="input"></td></tr>

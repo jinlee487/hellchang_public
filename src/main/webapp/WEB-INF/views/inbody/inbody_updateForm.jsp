@@ -35,6 +35,7 @@
 	th{ display:none;}
 	input{width: 100%;}
 	}
+	input {text-align: center;}
 	
   </style>
 </head>
@@ -113,12 +114,13 @@
   <div class="panel-heading">Press and edit the values to record your most recent results manually</div>
   <div class="panel-body table-responsive">
 	
-        <form action="inbodyInsert" method="post" style="border:none;" name="regform">
+        <form action="inbodyUpdate" method="post" style="border:none;" name="regform">
         <table style="border-collapse:separate;border-spacing:0 5px;border-style: hidden">
-		<tr><td><label for="test_date" class="int"><b>Test Date</b></label></td>
-		   <td><input type="text" id="testdate" name="date_date" value="${inbodyVO.date_date}" disabled></td>
+		<tr><td><label for="test_date" class="int"><b>Test Date:</b></label></td>
+		   <td><input type="text" id="testidx" style="display:none" name="idx" value="${inbodyVO.idx}" readonly="readonly"></td>
+		   <td><input type="text" id="testdate" name="date_date" value="${inbodyVO.date_date}" readonly="readonly"></td>
 	   </tr></table>
-	   <div class="well well-sm analysis-title">MUSCLE-FAT ANALYSIS</div> 
+	   <div class="well well-sm analysis-title">Muscle-Fat Analysis</div> 
 	   <table style="border-collapse:separate;border-spacing:0 5px;border-style: hidden">
 	        <tr><th></th><th>Measurement</th><th>Lower bound</th><th>Upper bound </th></tr>
 			<tr><td><label for="weight" class="int"><b>Weight(kg):</b></label></td>
@@ -136,7 +138,7 @@
 	   		<td><input type="number" step="any" id="fatMass_under" placeholder="Enter lower bound"  name="fat_mass_under" class="input" value="${inbodyVO.fat_mass_under}"></td>
 	   		<td><input type="number" step="any" id="fatMass_over" placeholder="Enter Upper bound"  name="fat_mass_over" class="input" value="${inbodyVO.fat_mass_over}"></td></tr>		
 	   	</table>	
-	   <div class="well well-sm analysis-title">MUSCLE-FAT ANALYSIS</div> 
+	   <div class="well well-sm analysis-title">Obesity Analysis</div> 
 	   <table style="border-collapse:separate;border-spacing:0 5px;border-style: hidden">
 	        <tr><th></th><th>Measurement</th><th>Lower bound</th><th>Upper bound </th></tr>
 	    	<tr><td><label for="BMI" class="int"><b>BMI:</b></label></td>
@@ -145,12 +147,12 @@
 	   		<td><input type="number" step="any" id="BMI_over" placeholder="Enter Upper bound"  name="bmi_over" class="input" value="${inbodyVO.fat_mass_over}"></td></tr>
 	   		
 	    	<tr><td><label for="PBF" class="int"><b>percent Body Fat:</b></label></td>
-	        <td><input type="number" id="PBF" placeholder="Enter percent body fat"  name="pbf" class="input" value="${inbodyVO.pbf}"></td>
-	        <td><input type="number" id="PBF_under" placeholder="Enter lower bound"  name="pbf_under" class="input" value="${inbodyVO.pbf_under}"></td>
-	        <td><input type="number" id="PBF_over" placeholder="Enter Upper bound"  name="pbf_over" class="input" value="${inbodyVO.pbf_over}"></td></tr>
+	        <td><input type="number" step="any" id="PBF" placeholder="Enter percent body fat"  name="pbf" class="input" value="${inbodyVO.pbf}"></td>
+	        <td><input type="number" step="any" id="PBF_under" placeholder="Enter lower bound"  name="pbf_under" class="input" value="${inbodyVO.pbf_under}"></td>
+	        <td><input type="number" step="any" id="PBF_over" placeholder="Enter Upper bound"  name="pbf_over" class="input" value="${inbodyVO.pbf_over}"></td></tr>
 	        
 	   </table>
-	   <div class="well well-sm analysis-title">MUSCLE-FAT ANALYSIS</div> 
+	   <div class="well well-sm analysis-title">Visceral Fat Analysis</div> 
 	   <table style="border-collapse:separate;border-spacing:0 5px;border-style: hidden">   
 	        <tr><th></th><th>Measurement</th><th>Lower bound</th><th>Upper bound </th></tr>	    	
 	    	<tr><td><label for="VFL" class="int"><b>Visceral Fat Level:</b></label></td>
@@ -159,14 +161,15 @@
 	   		<td><input type="number" step="any" id="VFL_over" placeholder="Enter Upper bound"  name="vfl_over" class="input" value="${inbodyVO.vfl_over}"></td></tr>
 	   		
 	   </table>
-	   <div class="well well-sm analysis-title">MUSCLE-FAT ANALYSIS</div> 
+	   <div class="well well-sm analysis-title">Research Parameters</div> 
 	   <table style="border-collapse:separate;border-spacing:0 5px;border-style: hidden">	
 	    	<tr><td><label for="BMR" class="int"><b>Basal Metabolic Rate:</b></label></td>
 	 	   	<td><input type="number" step="any" id="BMR" placeholder="Enter BMR"  name="bmr" class="input" value="${inbodyVO.bmr}"></td></tr>
 		</table>
 		<hr>
 		    <button type="submit" class="signupbtn btn btn-primary btn-lg">Submit Change</button>
-		    <button type="button" class="btn btn-warning btn-lg">Delete Section</button>
+		    <button type="reset"  class="btn btn-info btn-lg">Reset Change</button>
+		    <button type="button" class="btn btn-warning btn-lg" id="del_btn">Delete Section</button>
 		    
 		</form>
 	</div>
@@ -213,7 +216,9 @@
 
 </body>
 <script> 
-
+$('#del_btn').on("click",function(){
+	location.href = "inbodyDelete?date_date="+$('#testdate').val()+"&idx="+$('#testidx').val();  
+});
 </script>
 </html>
 
