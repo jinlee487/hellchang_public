@@ -6,5 +6,5 @@ import vo.BoardVO;
 import vo.PageVO;
 
 public interface BService {
-
+	BoardVO selectOne(BoardVO vo);
 }

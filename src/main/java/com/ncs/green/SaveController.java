@@ -16,11 +16,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import service.SService;
+import vo.HeartVO;
 import vo.MemberVO;
+import vo.ReplyVO;
 import vo.SaveVO;
 
 
-@Controller
+@Controller 
 public class SaveController {
 	@Autowired
 	SService service;
@@ -29,7 +31,7 @@ public class SaveController {
 	Date date = new Date();
 	int rownum = 0;
 	
-	
+	 
 	@RequestMapping(value = "/myRoutineDel", method = RequestMethod.GET)
 	public ModelAndView myRoutineDel(HttpServletRequest request, ModelAndView mv, SaveVO vo) {
 		System.out.println("Deltet Test =>" + vo);
@@ -48,15 +50,19 @@ public class SaveController {
 	
 	
 	@RequestMapping(value = "/myRoutine", method = RequestMethod.GET)
-	public ModelAndView myRoutine(HttpServletRequest request, ModelAndView mv, SaveVO vo) {
+	public ModelAndView myRoutine(HttpServletRequest request, ModelAndView mv, SaveVO vo, HeartVO hvo) {
 		System.out.println("insert Test =>" + vo);
-		if (service.saveMyRoutine(vo) > 0) {
+		if (service.saveMyRoutine(vo) > 0 ) {			
 			System.out.println("??");
 			mv.setViewName("jsonView");
 		} else {
 			System.out.println("!!");
 			mv.setViewName("jsonView");
 		}
+		hvo.setId(vo.getId());
+		hvo.setTitle(vo.getTitle());
+		service.heartTest(hvo);
+//		위 3줄 추가한 이유 테이블 따로 생성 해주기 위해서
 		return mv;
 	}// saveMyRoutine
 
@@ -64,12 +70,12 @@ public class SaveController {
 	public ModelAndView mySaveRoutine(HttpServletRequest request, ModelAndView mv, SaveVO vo) {
 		HttpSession session = request.getSession(false);
 		vo.setId((String) session.getAttribute("logID"));
-		System.out.println((String) session.getAttribute("logID"));
+		vo.setDate(request.getParameter("date"));
+		System.out.println(vo.getDate()); 
 		List<SaveVO> list = service.selectList(vo);
 		System.out.println("Test List : " +  list);
-		System.out.println(vo.getKg());
 		mv.addObject("myInfo", list); 
-		mv.setViewName("jsonView");
+		mv.setViewName("jsonView"); 
 		return mv;
 	}// mdetail
 	
@@ -85,20 +91,37 @@ public class SaveController {
 
 	
 
-	
+	// 처음 blog에서 출력되는  5개
 	@RequestMapping(value = "/blogTest")
-	public ModelAndView blogTest(HttpServletRequest request, ModelAndView mv, SaveVO vo) {
+	public ModelAndView blogTest(HttpServletRequest request, ModelAndView mv, SaveVO vo, HeartVO hvo) {
 		int cnt = 0;
 		SaveVO[] array = {}; 
 		List<SaveVO> list = service.blogTest();
 		array = list.toArray(new SaveVO[list.size()]);
+		System.out.println("blogTest : " + list);
 		for(int i=0; i<array.length; i++) {
 			vo.setId(array[i].getId());
 			vo.setTitle(array[i].getTitle());
+			hvo.setId(array[i].getId());
+			System.out.println("** id :"+hvo.getId());
+			hvo.setTitle(array[i].getTitle());
+			System.out.println("** title :"+ hvo.getTitle());
+			hvo = service.heartSelect(hvo);
+			System.out.println(hvo);
+			System.out.println(hvo.getHeart());
+			String HTest = "heart"+i;
+			mv.addObject(HTest, hvo.getHeart());
+			// id와 title 별로 저장된 heart 출력
 			List<SaveVO> test = service.findTest(vo);
+			System.out.println("findTest : " + test);
+			// myRoutine *, member.name, member.image 뽑아냄 
 			System.out.println("==============================");
 			String IDTest = "forName"+i;
+			
 			mv.addObject(IDTest, test);
+			// find 리스트를 IDTest에 담아 보냄 IDTest라는 이름으로
+			// jsp에서 jsonData[i]로 사용됨 
+			
 			System.out.println("blogTest : "+IDTest+test);
 			rownum = array[i].getRownum();
 			cnt ++;
@@ -109,20 +132,31 @@ public class SaveController {
 		return mv;
 	}// blog泥ロ솕硫� �긽�쐞 5媛�
 	
+	// 스크롤할 때 마다 출력되는 blog
 	@RequestMapping(value = "/scrollP")
-	public ModelAndView scrollP(HttpServletRequest request, ModelAndView mv, SaveVO vo, SaveVO svo) {
+	public ModelAndView scrollP(HttpServletRequest request, ModelAndView mv, SaveVO vo, SaveVO svo, HeartVO hvo) {
+		int row = Integer.parseInt(request.getParameter("rowcnt"));
 		int cnt = 0;
 		System.out.println("scrollP : "+rownum);
 		SaveVO[] array = {}; 
-		rownum += 1;
+		rownum = rownum + row;
+		// rownum에 출력된 개수 누적 저장
 		svo.setRownum(rownum);
 		List<SaveVO> list = service.blogTestS(svo); 
+		// blogTests = 처음 5개 이후에 스크롤시 나머지 출력
 		System.out.println("scrollP : "+ list);
 		array = list.toArray(new SaveVO[list.size()]);
 		for(int i=0; i<array.length; i++) {
 			vo.setId(array[i].getId());
 			vo.setTitle(array[i].getTitle());
+			hvo.setId(array[i].getId());
+			hvo.setTitle(array[i].getTitle());
+			hvo = service.heartSelect(hvo);
+			String HTest = "heart"+i;
+			mv.addObject(HTest, hvo.getHeart());
+			// title 과 id 당 저장된 좋아요 개수 가져오기 
 			List<SaveVO> test = service.findTest(vo);
+			// myRoutine *와 member의 name, image 뽑아냄 
 			vo.setRownum(svo.getRownum());
 			System.out.println("==============================");
 			String IDTest = "forName"+i;
@@ -134,23 +168,49 @@ public class SaveController {
 			mv.setViewName("jsonView");
 		}
 		System.out.println("scrollP : "+rownum);
+		System.out.println();
 		return mv;
 	}//
 	
 	@RequestMapping(value = "/heartUp")
-	public ModelAndView heartUp(HttpServletRequest request, ModelAndView mv, SaveVO vo){
-		vo.setTitle(request.getParameter("title"));
-		vo.setId(request.getParameter("id"));
-		service.heartUp(vo);
-		System.out.println(vo);
+	public ModelAndView heartUp(HttpServletRequest request, ModelAndView mv, SaveVO vo, HeartVO hvo){
+		hvo.setTitle(request.getParameter("title"));
+		hvo.setId(request.getParameter("id"));
+		service.heartUp(hvo);
+		System.out.println("now Test : "+hvo);
 		
-		vo = service.heartSelect(vo); 
-		System.out.println(vo);
+		hvo = service.heartSelect(hvo); 
+		System.out.println(hvo);
 		
-		mv.addObject("countHeartTest", vo.getHeart());
+		mv.addObject("countHeartTest", hvo.getHeart());
 		
 		mv.setViewName("jsonView");
 
 		return mv;
-	}// mupdate
-}
+	}// heartUp
+	
+	@RequestMapping(value = "/replyInsert")
+	public ModelAndView replyInsert(HttpServletRequest request, ModelAndView mv, ReplyVO rvo){
+		String id = request.getParameter("id"); //content id
+		String title = request.getParameter("title"); // content 
+		String replyId = request.getParameter("replyId");
+		String replyContent = request.getParameter("content");
+		
+		rvo.setId(id);
+		rvo.setTitle(title);
+		rvo.setReplyId(replyId);
+		rvo.setReplyContent(replyContent);
+		System.out.println(rvo);
+		
+		if (service.replyInsert(rvo) > 0 ) {			
+			System.out.println("success rvo : " + rvo);
+			
+			List<ReplyVO> list = service.replyResult(rvo); 
+			System.out.println(list);
+			mv.addObject("replyTest", list);
+		} 
+		mv.setViewName("jsonView");
+		return mv;
+	}// reply
+	
+}//class

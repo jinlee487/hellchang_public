@@ -36,7 +36,7 @@ public class InbodyController {
 		String id = (String) session.getAttribute("logID");
 		vo.setId(id);
 		pvo.setId(id);
-		pvo = service.selectPageList(pvo);
+		pvo = service.selectPageList(pvo);zz
 		System.out.println("how is this null vo => " + vo);
 //		System.out.println("this is pvo =>\n"+pvo.getList().toString());
 		if (direction == null && vo.getidx() == 0) {

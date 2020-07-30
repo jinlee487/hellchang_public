@@ -39,5 +39,10 @@ public class MServiceImpl implements MService {
 	public int delete(MemberVO vo) {
 		return dao.delete(vo);  // 처리된 row 갯수 return
 	} // delete
+
+	@Override
+	public int imgUpdate(MemberVO vo) {
+		return dao.imgUpdate;
+	}
 	
 } // class
