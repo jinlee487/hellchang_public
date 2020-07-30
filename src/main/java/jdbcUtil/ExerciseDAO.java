@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import vo.BoardVO;
 import vo.ExerciseVO;
+import vo.RmVO;
 
 @Repository
 public class ExerciseDAO {
@@ -26,5 +27,21 @@ public class ExerciseDAO {
 	public int saveMyRoutine(ExerciseVO vo) { 
 		return sqlsession.insert(NS+"saveMyRoutine", vo);
 	} // saveMyRoutine
+	
+	public int saveMyRM(RmVO rvo) { 
+		return sqlsession.insert(NS+"saveMyRM", rvo);
+	} // saveMyRoutine
+	
+	public List<RmVO> RmList(RmVO rvo) {
+		return sqlsession.selectList(NS+"RmList",rvo) ;
+	} // selectList()
+	
+	public List<RmVO> RmListB(RmVO rvo) {
+		return sqlsession.selectList(NS+"RmListB",rvo) ;
+	} 
+	
+	public List<RmVO> RmListA(RmVO rvo) {
+		return sqlsession.selectList(NS+"RmListA",rvo) ;
+	} // selectList()
 
 } // class

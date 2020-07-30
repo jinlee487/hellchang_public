@@ -41,6 +41,8 @@
    		border-radius: 70%;
    		overflow: hidden;
    	}
+
+
 	.myPhoto{
 	width: 100px;
 	height: 100px;
@@ -132,7 +134,7 @@ textarea{
 }
 </style>
 <script type="text/javascript">
-var logID = "<%=session.getAttribute("logID") %>";
+var logID = "<%=session.getAttribute("logID") %>"
 console.log("session : "+logID);
 $(function(){
 	var cnt = 0;
@@ -143,7 +145,6 @@ $(function(){
 		type:'Get',
 		dataType : "json",
 		url:'blogTest',
-		
 		success:function(data){
 			var nowID = "";
 			var nowTitle = "";
@@ -157,8 +158,8 @@ $(function(){
 				else if(cnt == 2){jsonData = data.forName2; heartCnt = data.heart2}
 				else if(cnt == 3){jsonData = data.forName3; heartCnt = data.heart3}
 				else if(cnt == 4){jsonData = data.forName4; heartCnt = data.heart4}
+				lastNum = Object.keys(jsonData).length;
 				
-				lastNum = Object.keys(jsonData).length;  /* title 안에 있는 운동 종목의 개수  */
 				var appendT = "";
 				/* 본문 출력 i  */
 				appendT += "<table class = 'table'>"
@@ -183,9 +184,9 @@ $(function(){
 				} // for_iMb
 				appendT += "<tr><td colspan='5'><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span>"
 				appendT += "<span id = 'cnt"+nowTitle+"'></span><br><span class = 'reply " + nowID +"' id = '"+replyTitle+"'></td></tr>"
-				appendT += "<tr><td colspan='5'><textarea class='repl' name='replyContent' style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea>"
-				appendT += "<input type='text' name='id' value='"+ nowID +"' hidden><input type='text' name='title' value='"+ nowTitle +"' hidden><input type='text' name='replyId' value='"+ logID +"' hidden>"
-				appendT += "<button type='submit' id='"+nowID+"' class='sendR "+nowTitle+"'>게시</button></form></td></tr></table>"
+				appendT += "<tr><td colspan='5'><form action='replyInsert'><textarea style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea>"
+				appendT += "<input type='text' name="+" value='"+ nowID +"' hidden><input type='text' value='"+ nowTitle +"' hidden>"
+				appendT += "<button type='submit' class='sendR'>게시</button></form></td></tr></table>"
 				$('.blogForm').append(appendT)
 				cnt ++;
 			} // for_j 
@@ -284,11 +285,12 @@ $(document).on("click",".heart", function(){
 	}) // ajax
 }) // heart_click 이벤트
 
-$(document).on("click",".reply", function(){
-    var title = $(this).attr("id");
-    var id = $(this).attr("class");
-    id = id.substring(6);
-    console.log("log " + logID);
+/*  $('.sendR').on("click",function(){
+
+    var id = logID; 				//댓글을 입력하려는 본인 
+	var replyId =   				//피드의 주인
+	var title =  // 피드의 제목 
+	
     console.log(title);
     console.log(id);
     console.log(content);
@@ -300,7 +302,6 @@ $(document).on("click",".reply", function(){
 		data:{
 			id : id,
 			title : title,
-			content : content,
 			replyId : replyId
 		},
 		success: function(){
@@ -312,13 +313,6 @@ $(document).on("click",".reply", function(){
 	});
 }); // 댓글 */
 
-		}, // success
-		error:function(){
-			alert(rowcnt);
-			alert("좋아요 오류 발생\n 지금 row가 여러개인 타이틀 좋아요 오류 수정중")
-		}
-	}) // ajax
-}) // heart_click 이벤트
 }) // ready
 </script>
 </head>

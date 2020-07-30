@@ -98,10 +98,10 @@ public class SaveController {
 		SaveVO[] array = {}; 
 		List<SaveVO> list = service.blogTest();
 		array = list.toArray(new SaveVO[list.size()]);
+		System.out.println("blogTest : " + list);
 		for(int i=0; i<array.length; i++) {
 			vo.setId(array[i].getId());
 			vo.setTitle(array[i].getTitle());
-			
 			hvo.setId(array[i].getId());
 			System.out.println("** id :"+hvo.getId());
 			hvo.setTitle(array[i].getTitle());
@@ -113,6 +113,7 @@ public class SaveController {
 			mv.addObject(HTest, hvo.getHeart());
 			// id와 title 별로 저장된 heart 출력
 			List<SaveVO> test = service.findTest(vo);
+			System.out.println("findTest : " + test);
 			// myRoutine *, member.name, member.image 뽑아냄 
 			System.out.println("==============================");
 			String IDTest = "forName"+i;
