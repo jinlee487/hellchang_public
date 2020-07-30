@@ -5,6 +5,7 @@ public class ReplyVO {
 	private String title;		// content title
 	private String replyContent; // ´ñ±Û³»¿ë
 	private String replyId; // session id
+	private String date;
 
 	public String getId() {
 		return id;
@@ -14,6 +15,12 @@ public class ReplyVO {
 	}
 	public String getTitle() {
 		return title;
+	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
 	}
 	public void setTitle(String title) {
 		this.title = title;
@@ -33,6 +40,6 @@ public class ReplyVO {
 	@Override
 	public String toString() {
 		return "ReplyVO [id=" + id + ", title=" + title + ", replyContent=" + replyContent + ", replyId=" + replyId
-				+ "]";
+				+ ", date=" + date + "]";
 	}
 }

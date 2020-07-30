@@ -150,7 +150,6 @@ $(function(){
 			var nowID = "";
 			var nowTitle = "";
 			var num = data.num;
-			console.log(num);
 			/* 한페이지당 blog 개수 j  */
 			for(var j=0; j<5; j++){
 				var lastNum = 0;
@@ -180,18 +179,13 @@ $(function(){
 					nowID = jsonData[i].id;           /* 현재 출력하는 피드의 주인 */
 					replyTitle = jsonData[i].title ; 
 					
-					console.log("now Title ? :"+nowTitle);
-					console.log("replyTitle ? : " + replyTitle);
-					
 					var replyRow = jsonData[i].title;
 					rowcnt ++;
-					console.log("row count 어따씀 ? " + rowcnt);
 				} // for_iMb
 				appendT += "<tr><td colspan='5'><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span></td></tr>"
-				console.log("replyCnt : " + replyCnt);
 				appendT += "<tr><td style='text-align: left;' colspan='5'><span id = 'cnt"+nowTitle+"'>"+replyCnt+"</span > <span class = 'reply " + nowID +"' id = 'c"+replyTitle+"'><span></td></tr>"
 				
-				appendT += "<tr><td colspan='5'><textarea class='repl' name='replyContent' style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea>"
+				appendT += "<tr><td colspan='5'><textarea id='r"+nowTitle+"' name='replyContent' style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea>"
 				
 				appendT += "<input type='text' name='id' value='"+ nowID +"' hidden><input type='text' name='title' value='"+ nowTitle +"' hidden><input type='text' name='replyId' value='"+ logID +"' hidden>"
 				appendT += "<button type='submit' id='"+nowID+"' class='sendR "+nowTitle+"'>게시</button></form></td></tr></table>"
@@ -222,7 +216,6 @@ $(window).scroll(function(){
 			},
 			success:function(data){
 				var num = data.num;
-				console.log("내가 몇번째까지 출력함 ?"+num);
 				/* 한페이지당 blog 개수  */
 				for(var j=0; j<num; j++){
 					var lastNum = 0;
@@ -285,7 +278,9 @@ $(document).on("click",".heart", function(){
 		success:function(data){
 			var cnt = data.countHeartTest
 			$('#'+title).empty();
-			$('#cnt'+title).html("<img src = 'resources/image/heart.png'>"+cnt);
+			console.log(title);
+			$('#'+title).html("<img src = 'resources/image/heart.png'>"+cnt);
+			console.log('#cnt'+title);
 		}, // success
 		error:function(){
 			alert(rowcnt);
@@ -300,7 +295,7 @@ $(document).on("click",".sendR", function(){
    	var title = $(this).attr('class');				// 피드의 제목
     title = title.substring(6);		
     var replyId = logID;  							// session 아이디
-	var content = $('.repl').val();				// 댓글 내용
+	var content = $('#r'+title).val();				// 댓글 내용
 	
     console.log( 'title : 	 ' + title);
     console.log('id : ' +id);
@@ -320,6 +315,7 @@ $(document).on("click",".sendR", function(){
 			console.log("data.replyTest : " + data.replyTest);
 			console.log("1231313"+cnt);
 			$('#cnt' + title).empty();
+			$('#r'+title).val('');
 			$('#cnt'+title).css('font-weight', 'bold');
 			$('#cnt' + title).html(data.replyTest);
 			//$('#c'+ title).html(cnt.replyContent);

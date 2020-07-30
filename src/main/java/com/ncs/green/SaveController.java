@@ -114,15 +114,24 @@ public class SaveController {
 			
 			rvo.setId(array[i].getId());
 			rvo.setTitle(array[i].getTitle());
-			if( rvo.getReplyContent() != null) {
+			
+			System.out.println("before rvoe : " + rvo);
+			rvo = service.replyResult(rvo);
+			System.out.println("after rvo : "+ rvo);
+			if( rvo.getReplyContent() != null) {            //rvo.getReplyContent
+				System.out.println("여기로 안들어옴 ㅡㅡ");
 				System.out.println("check rvo  : "  + rvo);
-				rvo = service.replyResult(rvo);
+				
 				String RTest = "reply"+i;
-				System.out.println("check rvo  : "  + rvo);
+				System.out.println("after rvo  : "  + rvo);
 				mv.addObject(RTest, rvo.getReplyContent());
 			}
-			
-			
+//			else {
+//				rvo.setReplyContent("dfafdsaf");
+//				String RTest = "reply"+i;
+//				System.out.println("after rvo  : "  + rvo);
+//				mv.addObject(RTest, rvo.getReplyContent());
+//			}
 			
 			// id와 title 별로 저장된 heart 출력
 			List<SaveVO> test = service.findTest(vo);
@@ -183,6 +192,7 @@ public class SaveController {
 		System.out.println();
 		return mv;
 	}//
+	
 	
 	@RequestMapping(value = "/heartUp")
 	public ModelAndView heartUp(HttpServletRequest request, ModelAndView mv, SaveVO vo, HeartVO hvo){
