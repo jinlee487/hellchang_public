@@ -73,8 +73,6 @@
   </insert> 
   
   <select id="replyResult" resultType="vo.ReplyVO">
-  	select replyContent 
-  	from hellchang_schema_test.reply
-  	where id = #{id} and title = #{title}
+  	select replyContent from hellchang_schema_test.reply where id = #{id} and title = #{title}
   </select>
  </mapper>
