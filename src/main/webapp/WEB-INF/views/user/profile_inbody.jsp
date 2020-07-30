@@ -80,6 +80,10 @@ text-align: left;
     font-weight: bold;
     cursor: pointer;
 }
+.modal-body {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
   </style>
 </head>
 <body>
