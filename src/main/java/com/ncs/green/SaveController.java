@@ -98,10 +98,10 @@ public class SaveController {
 		SaveVO[] array = {}; 
 		List<SaveVO> list = service.blogTest();
 		array = list.toArray(new SaveVO[list.size()]);
+		System.out.println("blogTest : " + list);
 		for(int i=0; i<array.length; i++) {
 			vo.setId(array[i].getId());
 			vo.setTitle(array[i].getTitle());
-			
 			hvo.setId(array[i].getId());
 			System.out.println("** id :"+hvo.getId());
 			hvo.setTitle(array[i].getTitle());
@@ -112,6 +112,7 @@ public class SaveController {
 			String HTest = "heart"+i;
 			mv.addObject(HTest, hvo.getHeart());
 			List<SaveVO> test = service.findTest(vo);
+			System.out.println("findTest : " + test);
 			System.out.println("==============================");
 			String IDTest = "forName"+i;
 			mv.addObject(IDTest, test);

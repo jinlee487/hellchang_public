@@ -139,7 +139,6 @@ $(function(){
 				else if(cnt == 2){jsonData = data.forName2; heartCnt = data.heart2}
 				else if(cnt == 3){jsonData = data.forName3; heartCnt = data.heart3}
 				else if(cnt == 4){jsonData = data.forName4; heartCnt = data.heart4}
-				
 				lastNum = Object.keys(jsonData).length;
 				var appendT = "";
 				appendT += "<table class = 'table'>"
