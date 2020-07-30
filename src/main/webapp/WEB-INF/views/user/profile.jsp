@@ -14,10 +14,27 @@
   <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
-  <link rel="stylesheet" type="text/css" href="resources/jqLib/topBar.css">
+  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position.css">
+  
   
   <style>
+  #p_pos{
+  	margin-right: 80px;
+  }
+  		  
+  address {
+	color: white;
+	margin-bottom:0px;
+	}
+
+  
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+      background-color: #000000;
+    }
+
   @media (min-width: 768px){
 	.col-sm-4 {
 	  /* margin-left: 200px; */
@@ -76,7 +93,7 @@
     <div class="col-sm-3 well">
       <div class="well">
         <p><a href="myProfile">My Profile</a></p>
-        <img src="${profile_image}" class="img-circle" height="100" width="100" alt="Avatar">
+        <img src="resources/uploadImage/emptyImage.png" class="img-circle" height="100" width="100" alt="Avatar">
       </div>
 
 		<ul class="nav nav-pills nav-stacked">
@@ -86,7 +103,7 @@
 		  <li><a href="#">Diet</a></li>
 		  <li><a href="#">Social</a></li>    
 		  <li><a href="routine">Test</a></li>
-		  <li><a href="mdetail?code=U">Profile Update</a></li>
+		  <li><a href="mdetail?code=U">Setting</a></li>
 		  <li><a href="delete">Drop Out</a></li>
 		</ul>
     </div>
@@ -173,18 +190,6 @@
       </div>
     </div>
   </div>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
 </div>
 
 <div id="footer" role="contentinfo">
@@ -198,7 +203,5 @@
 			<span class="all_r footfont">All Rights Reserved.</span>
 		</address>
 </div>
-
-
 </body>
 </html>

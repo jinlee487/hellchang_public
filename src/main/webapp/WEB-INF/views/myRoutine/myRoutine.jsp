@@ -8,7 +8,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="resources/jqLib/noobCss.css">
   
-  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -16,24 +18,54 @@
   <link rel="stylesheet" type="text/css" href="resources/jqLib/topBar.css">
 
 <style type="text/css">
+
+	.material-icons{
+		font-size: 18px;
+	}
+	
+	/* modal 가운데 위치 (Css) */
+	.modal {
+        text-align: center;
+	}
+	@media screen and (min-width: 768px) { 
+        .modal:before {
+                display: inline-block;
+                vertical-align: middle;
+                content: " ";
+                height: 100%;
+        }
+	}
+	.modal-dialog {
+        display: inline-block;
+        text-align: left;
+	}
+	/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+
+	.modal-header{
+	}
 	.modal-content{
+		margin: 0 auto;
 		width: 300px;
-		text-align: left;
 	}
 	.modal-footer{
-		text-align: center;
+	
 	}
 	.buttonCss{
-		width: 315px;
+		width: 275px;
 		
 	}
 	button{
 		background-color: white;
 	}
+	
+	span:hover {
+		cursor: pointer;
+	}
 </style>
 
 <script>
 var logID = "${logID}";
+var lname;
 
 $(function(){
 	console.log("session : "+logID);
@@ -61,58 +93,8 @@ $(function(){
 		}	
 		}); // ajax
 	}); // alogin_click	
-	
 
-	
-	$('#addlist').hover(function(){
-		$(this).css("cursor", "pointer");
-	});
-	
-	$('#addlist').on("click",function(){
-		$('#addlist').css("display","none");
-		$('#linput').css("display","block");
-	});// ajax
-	
-	
-	var eqId = new Array();
-	var lname;
-	$("#listName").on("click", function(){
-		lname =  $('.lname').val();
-		
-		for(var i=0; i<eqId.length; i++){
-			if(lname == eqId[i]){
-				alert("중복된 list 이름입니다.");
-				$('.lname').val('');
-				return;
-			}		
-		}
-		
-		if(lname.length>0){
-			$('.modal-body').append('<input type="checkbox" onClick="inputList(''"'+lname+'")" id="'+lname+'" name="'+lname+'" value="'+lname+'"><label for="'+lname+'">&nbsp;&nbsp;'+ lname +' </label><br>');
-			$('.lname').val('');
-			
-			eqId.push($('#'+lname).val());	
-					
-			$('#addlist').css("display","block");
-			$('#linput').css("display","none");
-			/* eqId.length */
-			
-			console.log('ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ');
-		}
-	
-		if(lname.length<=0){
-			alert("list 이름을 적어주세요.");
-		}
-		for(var j in eqId){
-			console.log(eqId[j]);	
-		}
-		console.log("lname test =>" +lname);
-		console.log(lname);
-	});
-	
-	
-	/* $('#testT').click(function(){
-		console.log("ddddddddd");
+/* 	$('#testT').click(function(){
 		
 		var table = document.getElementById("my-tbody");
 		var rowsCount = table.rows.length;
@@ -123,8 +105,7 @@ $(function(){
 		var target =$('#target'+i).val();
 		var kg = $('#kg'+i).val();
 		var rep = $('#rep'+i).val();
-		var title = $('.title').val();
-		console.log(id+" ,"+name+" ,"+target+" ,"+kg+" ,"+rep+","+title)
+		console.log(id+" ,"+name+" ,"+target+" ,"+kg+" ,"+rep)
 		$.ajax({
 			type:'Get',
 			url:'myRoutine',
@@ -133,8 +114,7 @@ $(function(){
 				name : name,
 				target : target ,
 				kg : kg, 
-				rep : rep ,
-				title : title
+				rep : rep 
 				},
 			success:function(data){
 				console.log("저장중..");
@@ -146,52 +126,146 @@ $(function(){
 			}); // ajax
 		}
 	}); // Test */
+
 	
+	$('#addlist').hover(function(){
+		$(this).css("cursor", "pointer");
+	});
 	
-});
+	$('#addlist').on("click",function(){
+		$('#addlist').css("display","none");
+		$('#linput').css("display","block");
+	});// ajax
+	
+	$("#listName").on("click", function(){
+		oldTitle = document.querySelectorAll("input.oldTitle");
+		lname =  $('.lname').val();
+	
+	 	for(var i=0; i<oldTitle.length; i++){
+	 		if(lname == oldTitle[i].value){
+				alert("중복된 list 이름입니다.");
+				$('.lname').val('');
+				return;
+			}else{
+				
+		}		
+	} 
+		
+		if(lname.length>0){
+			if($('#Privacy').val() == 'true'){
+				$('.modal-body').append('<input type="checkbox" onclick="inputList(\''+lname+'\')" class="oldTitle" name="'+lname+'" value="'+lname+'"><label for="'+lname+'">&nbsp;&nbsp;'+ lname 
+				+' </label> <i style="vertical-align: sub;" class="material-icons">lock_open</i> <br>');
+			}else{
+				$('.modal-body').append('<input type="checkbox" onclick="inputList(\''+lname+'\')" class="oldTitle" name="'+lname+'" value="'+lname+'"><label for="'+lname+'">&nbsp;&nbsp;'+ lname 
+				+' </label> <i style="vertical-align: sub;" class="material-icons">lock_outline</i> <br>');
+				$('.modal-body').append()	
+			}
+			
+			
+			$('.lname').val('');
+			
+			$('#addlist').css("display","block");
+			$('#linput').css("display","none");
+		}
+		if(lname.length<=0){
+			alert("list 이름을 적어주세요.");
+		}
+	});
+}); // ready
 
 function inputList(data){
-
-	console.log("date => " + data);
-	
 	var table = document.getElementById("my-tbody");
 	var rowsCount = table.rows.length;
-	console.log(rowsCount);
-	for(var i =1 ; i<=rowsCount; i++){
-	var id = logID;
-	var name = $('#name'+i).val();
-	var target =$('#target'+i).val();
-	var kg = $('#kg'+i).val();
-	var rep = $('#rep'+i).val();
-	/* 해야될 부분~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-	var title = data;
-	var shared = false;
-	console.log(id+" ,"+name+" ,"+target+" ,"+kg+" ,"+rep+","+title+","+shared);
-	$.ajax({
-		type:'Get',
-		url:'myRoutine',
-		data:{
-			id : id,
-			name : name,
-			target : target ,
-			kg : kg, 
-			rep : rep ,
-			title : title,
-			shared : shared	
-			},
-		success:function(data){
-			console.log("저장중..");
-			$('#my-tbody').empty();
-			},
-		error:function(){
-			console.log("저장실패..")
-			}	
-		}); // ajax
-	}
-}
+	var shared = $('#Privacy').val();
 	
-
-
+	console.log(rowsCount);
+	
+	for(var i =1 ; i<=rowsCount; i++){
+		var id = logID;
+		var name = $('#name'+i).val();
+		var target =$('#target'+i).val();
+		var kg = $('#kg'+i).val();
+		var rep = $('#rep'+i).val();
+		var title = data;
+		var shared = shared;
+		console.log("data test = > 	 " + data);
+		console.log("title test = >  " + title);
+	
+		/* console.log("check box Test ~~~~~~~~~~~~~~ =>"+$("input:checkbox[id="+title+"]").is(":checked")); */
+		//if($("input:checkbox[id="+title+"]").is(":checked")==false){
+		if($("input:checkbox[class='oldTitle']").is(":checked")==false){
+			$.ajax({
+				type:'Get',
+				url:'myRoutineDel',
+				data:{
+					id : id,
+					name : name,
+					target : target ,
+					kg : kg, 
+					rep : rep ,
+					title : title,
+					shared : shared	
+					},
+				success:function(data){
+					console.log("저장 취소");
+					alert("저장 취소되었습니다.");
+					/* $('#my-tbody').empty(); */
+					},
+				error:function(){
+					console.log("저장 취소 실패..")
+					}	
+				}); // ajax
+			}
+		
+		if($("input:checkbox[class='oldTitle']").is(":checked")==true){
+				$.ajax({
+					type:'Get',
+					url:'myRoutine',
+					data:{
+						id : id,
+						name : name,
+						target : target ,
+						kg : kg, 
+						rep : rep ,
+						title : title,
+						shared : shared	
+						},
+					success:function(data){
+						console.log("저장중..");
+ 						alert("저장 완료되었습니다.");
+ 						self.close();
+						/* $('#my-tbody').empty(); */
+						},
+					error:function(){
+						console.log("저장실패..")
+						}	
+					}); // ajax	
+			}
+		
+		/* if($("input:checkbox[id=title]").is(":checked") == false){
+			$.ajax({
+				type:'Get',
+				url:'myRoutine',
+				data:{
+					id : id,
+					name : name,
+					target : target ,
+					kg : kg, 
+					rep : rep ,
+					title : title,
+					shared : shared	
+					},
+				success:function(data){
+					console.log("저장중..");
+					$('#my-tbody').empty();
+					},
+				error:function(){
+					console.log("저장실패..")
+					}	
+				}); // ajax
+		} */
+	}// for
+}
 </script>
 <script>
 $(function(){
@@ -297,9 +371,8 @@ function pull3(){
       <ul class="nav navbar-nav">
         <li><a href="noob">Noob</a></li>
         <li><a href="routine">Routine</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="inbodyf">Inbody</a></li>
-        <li><a href="one">1RM</a></li>
+        <li><a href="blog">Blog</a></li>
+        <li><a href="one">OneRM</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right" >
 		<c:if test="${logID==null }">
@@ -342,6 +415,8 @@ function pull3(){
       <img src = "resources/image/hwang.jpg" width="300" height="450" >
       </div>
     </div>
+    
+    
    <div align="center" class="DivShow" >
 
 	</div> 
@@ -355,8 +430,8 @@ function pull3(){
   	
     
    <br>	 
-<div align="center">
-<table id = "mytest" border="1">
+<div align="center" >
+<table id = "mytest" border="1" style="width: 739px; height: 56px;">
   <thead align="center">
     
 	<tr align="center">
@@ -366,43 +441,9 @@ function pull3(){
     <td width="175">REP</td></tr>
   </thead>
   <tbody id="my-tbody"></tbody>
-  
-  <button class="buttonCss" id ="testT" type="button" data-toggle="modal" data-target="#myModal">Save</button>
-<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ modal ver ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ --> 
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          
-          <h4 class="modal-title"> List 저장하기 </h4>
-        </div>
-        <div class="modal-body" >
-        </div>
-        <div class="modal-footer">
-          <span id="addlist" style="display: block;">리스트 추가하기</span>
-          <div id="linput" style="display: none;">
-          	<span>이름</span>
-          	<input type="text" class="lname" placeholder="list 이름 입력">
-          	<button id="listName">Add</button>
-          </div>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ modal ver ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
-  <!-- <button id = "testT">Save</button>&nbsp;&nbsp; -->
-   &nbsp;&nbsp;
-   <button class="buttonCss">Shared</button>
-   <div style="height: 10px;"></div>
-   
 </table>
 <br><br>
-
-<select id = "targetT">
+<select id = "targetT" style="width: 85px;">
      <option>-------------
      <option value = "chest" >Chest
      <option value = "back"  >Back
@@ -413,14 +454,16 @@ function pull3(){
      <option value = "abs" >abs
      <option value = "aerobic">aerobic
      <option value = "core">core
-     
-     
-     </select>
-     <select id="targetingT" name="targetingT">
-     <option>--------------------</option>
-     </select>
-     <button onclick="add_row()" style="width: 75px">+</button>
-   <button onclick="delete_row()" style="width: 75px">-</button>
+</select>
+<select id="targetingT" name="targetingT" style="width: 125px;">
+	<option>--------------------</option>
+</select>
+   
+<button onclick="add_row()" style="width: 122px">+</button>
+<button onclick="delete_row()" style="width: 122px">-</button>
+<button class="buttonCss" type="button" data-toggle="modal" data-target="#myModal">Save</button>
+
+<div style="height: 10px;"></div>
 <br>
 </div>
 <script>
@@ -467,12 +510,7 @@ function delete_row() {
 </div><br>
 
 <div class="container-fluid bg-3 text-center">    
-  <div class="row">
-  	
-  	
-  	
-  	
-  </div>
+  <div class="row"></div>
 </div><br><br>
 
 <div id="footer" role="contentinfo">
@@ -486,5 +524,46 @@ function delete_row() {
 			<span class="all_r footfont" >All Rights Reserved.</span>
 		</address>
 </div>
+<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ modal ver ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ --> 
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog ">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">List</h4>
+        </div>
+        <div class="modal-body" >
+        	<c:forEach var="list" items="${list}">
+        		<c:if test="${logID eq list.id}">
+        			<input type="checkbox" onclick="inputList('${list.title}')" class="oldTitle" name="${list.title}" value="${list.title}"><label for="${list.title}">&nbsp;&nbsp;${list.title}</label>
+        			<c:if test="${list.shared == false }">
+						<i style="vertical-align: sub;" class="material-icons">lock_outline</i>    				
+        			</c:if>
+        			<c:if test="${list.shared == true }">
+						<i style="vertical-align: sub;" class="material-icons">lock_open</i>        				
+        			</c:if>
+        			<br>
+        		</c:if>
+        	</c:forEach>
+        </div>
+        <div class="modal-footer">
+        	<span id="addlist" style="display: block;">리스트 추가하기</span>
+        	<div id="linput" style="display: none;">
+          		<span style="text-align: left">이름</span><br>
+          		<input type="text" style="width: 100%" class="lname" placeholder="list 이름 입력">
+          		<br><br>
+      			<span style="text-align: left">공개 범위 설정</span><br>
+          		<select id="Privacy" style="width: 100%">
+          			<option value="true">공개</option>
+          			<option value="false">비공개</option>
+          		</select>
+          	 	<span id="listName" style="text-align: center">Add</span>
+          	</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

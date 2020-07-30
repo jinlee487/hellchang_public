@@ -7,7 +7,7 @@
  
    <select id="selectList" resultType="vo.ExerciseVO" >
 	select * from `hellchang_schema_test`.`exercise` where target = #{target}
-  </select>	  
+   </select>	  
 	
 	<!-- memberDetail() -->
   <select id="selectOne" resultType="vo.ExerciseVO">
@@ -18,4 +18,5 @@
 	insert into `hellchang_schema_test`.`myRoutine` values 
 	 (#{id}, #{name}, #{target}, #{date}, #{title},#{shared})
   </insert>  
+
  </mapper>

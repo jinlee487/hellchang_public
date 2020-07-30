@@ -77,7 +77,7 @@ public class Test04_InbodyMapper {
 		
 	} // joinTest
 	
-
+	@Test	
 	public void insertInbody() {
 		int cnt=0;
 		String d;
@@ -86,12 +86,11 @@ public class Test04_InbodyMapper {
 			if (i<10) d = "2020" +"/0"+ i + "/" + "01/" +"17:30";
 			else d = "2020" +"/"+ i + "/" + "01 " +"17:30";
 						
-			//vo.setId("admin@gmail.com");
-			vo.setId("banana@naver.com");
+			vo.setId("admin@gmail.com");
+			//vo.setId("banana@naver.com");
 
 			vo.setDate_date(d);
-//			vo.setDate(d);
-			vo.setSeq(i);
+			vo.setDate_string(d);
 			vo.setWeight(85-i);
 			vo.setWeight_under(59.2);
 			vo.setWeight_over(80.2);
@@ -123,7 +122,7 @@ public class Test04_InbodyMapper {
 		else System.out.println("***** join 실패 *****");
 		
 	} // joinTest
-	@Test	
+	
 	public void listtest() {
 		InbodyPageVO pvo = new InbodyPageVO() ;
 		pvo.setId("admin@gmail.com");
