@@ -70,7 +70,7 @@ public class SaveDAO {
 		return sqlsession.insert(NS+"replyInsert", rvo);
 	} // saveMyRoutine
 	
-	public List<ReplyVO> replyResult(ReplyVO rvo) {
-		return sqlsession.selectList(NS+"replyResult", rvo);
+	public ReplyVO replyResult(ReplyVO rvo) {
+		return sqlsession.selectOne(NS+"replyResult", rvo);
 	} // selectList()
 } // class

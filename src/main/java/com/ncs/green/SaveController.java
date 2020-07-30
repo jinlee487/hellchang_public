@@ -93,7 +93,7 @@ public class SaveController {
 
 	// 처음 blog에서 출력되는  5개
 	@RequestMapping(value = "/blogTest")
-	public ModelAndView blogTest(HttpServletRequest request, ModelAndView mv, SaveVO vo, HeartVO hvo) {
+	public ModelAndView blogTest(HttpServletRequest request, ModelAndView mv, SaveVO vo, HeartVO hvo, ReplyVO rvo) {
 		int cnt = 0;
 		SaveVO[] array = {}; 
 		List<SaveVO> list = service.blogTest();
@@ -111,6 +111,19 @@ public class SaveController {
 			System.out.println(hvo.getHeart());
 			String HTest = "heart"+i;
 			mv.addObject(HTest, hvo.getHeart());
+			
+			rvo.setId(array[i].getId());
+			rvo.setTitle(array[i].getTitle());
+			if( rvo.getReplyContent() != null) {
+				System.out.println("check rvo  : "  + rvo);
+				rvo = service.replyResult(rvo);
+				String RTest = "reply"+i;
+				System.out.println("check rvo  : "  + rvo);
+				mv.addObject(RTest, rvo.getReplyContent());
+			}
+			
+			
+			
 			// id와 title 별로 저장된 heart 출력
 			List<SaveVO> test = service.findTest(vo);
 			// myRoutine *, member.name, member.image 뽑아냄 
@@ -195,6 +208,8 @@ public class SaveController {
 		String replyId = request.getParameter("replyId");
 		String replyContent = request.getParameter("content");
 		
+		ReplyVO array[] = {};
+		
 		rvo.setId(id);
 		rvo.setTitle(title);
 		rvo.setReplyId(replyId);
@@ -203,10 +218,10 @@ public class SaveController {
 		
 		if (service.replyInsert(rvo) > 0 ) {			
 			System.out.println("success rvo : " + rvo);
+			rvo = service.replyResult(rvo); 
+			System.out.println(rvo.getReplyContent());
 			
-			List<ReplyVO> list = service.replyResult(rvo); 
-			System.out.println(list);
-			mv.addObject("replyTest", list);
+			mv.addObject("replyTest", rvo.getReplyContent());
 		} 
 		mv.setViewName("jsonView");
 		return mv;
