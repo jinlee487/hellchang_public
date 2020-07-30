@@ -72,7 +72,7 @@ console.log("session : "+logID);
 <header>
 	<div style="display: inline-flex;">
 		<button class="imgb" title="프로필 사진 바꾸기">
-			<img class="img" alt="프로필 사진 바꾸기" src="resources/image/logo.jpg">
+			<img class="img" alt="프로필 사진 바꾸기" src="${profile_image}">
 		</button>
 	
 	<section>
@@ -136,7 +136,7 @@ console.log("session : "+logID);
 		<div>
 			<div style="flex-direction: column; padding-bottom: 0px; padding-top: 0px;">
 				<div style="display: inline-flex; width: 30%" >
-					<button id ="testT" type="button" data-toggle="modal" data-target="#myModa7">
+					<button id ="testT" type="button" data-toggle="modal" data-target="#myModal7">
 					<img src="resources/image/dBench.jpg" style="width: 100%; display: inline-flex;"></button>
 				</div>
 				<div style="display: inline-flex; width: 30%" >
@@ -175,11 +175,8 @@ console.log("session : "+logID);
 		  
 		   <div class="modal-body-text" style="width : 350px; margin-left: 50px; margin-top: 50px;">
 		    <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <img src="resources/image/kang.jpg" alt="강경원" width="30px" height="30px" class="myPhoto1" style="float: left; border-radius: 50%">
-          <table>
-					<tbody><tr><td style="font-size: 15px"><a>${logName}</a></td></tr>
-					<tr><td id="myTitle">분할 Title이름</td></tr>
-					</tbody></table><hr>
+          <div align="center" class="blogFormTT">
+          </div><br>
 		 
 		 
 		 
@@ -518,7 +515,7 @@ console.log("session : "+logID);
       
     </div> <!-- 모달종료 -->
     
-    	<div class="modal fade" id="myModal11" role="dialog">
+    	<div class="modal fade" id="myModal6" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->	
       <div class="modal-content">
@@ -532,7 +529,7 @@ console.log("session : "+logID);
         <!--   <h4 class="modal-title"> List 저장하기 </h4> -->
         </div>
         <div class="modal-body" style="display: inline-flex; ">
-       <div align="center" class = "blogForm"><br><br>
+       <div align="center" class = "blogForm11"><br><br>
 		</div>
 		  
 		   <div class="modal-body-text" style="width : 350px; margin-left: 50px; margin-top: 50px;">
@@ -590,7 +587,7 @@ console.log("session : "+logID);
       
     </div> <!-- 모달종료 -->
     
-    	<div class="modal fade" id="myModal13" role="dialog">
+    	<div class="modal fade" id="myModal7" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->	
       <div class="modal-content">
@@ -604,7 +601,7 @@ console.log("session : "+logID);
         <!--   <h4 class="modal-title"> List 저장하기 </h4> -->
         </div>
         <div class="modal-body" style="display: inline-flex; ">
-       <div align="center" class = "blogForm"><br><br>
+       <div align="center" class = "blogForm13"><br><br>
 		</div>
 		  
 		   <div class="modal-body-text" style="width : 350px; margin-left: 50px; margin-top: 50px;">
@@ -662,7 +659,7 @@ console.log("session : "+logID);
       
     </div> <!-- 모달종료 -->
     
-    	<div class="modal fade" id="myModal15" role="dialog">
+    	<div class="modal fade" id="myModal8" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->	
       <div class="modal-content">
@@ -676,7 +673,7 @@ console.log("session : "+logID);
         <!--   <h4 class="modal-title"> List 저장하기 </h4> -->
         </div>
         <div class="modal-body" style="display: inline-flex; ">
-       <div align="center" class = "blogForm"><br><br>
+       <div align="center" class = "blogForm15"><br><br>
 		</div>
 		  
 		   <div class="modal-body-text" style="width : 350px; margin-left: 50px; margin-top: 50px;">
@@ -734,7 +731,7 @@ console.log("session : "+logID);
       
     </div> <!-- 모달종료 -->
     
-    	<div class="modal fade" id="myModal17" role="dialog">
+    	<div class="modal fade" id="myModal9" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->	
       <div class="modal-content">
@@ -748,7 +745,7 @@ console.log("session : "+logID);
         <!--   <h4 class="modal-title"> List 저장하기 </h4> -->
         </div>
         <div class="modal-body" style="display: inline-flex; ">
-       <div align="center" class = "blogForm"><br><br>
+       <div align="center" class = "blogForm17"><br><br>
 		</div>
 		  
 		   <div class="modal-body-text" style="width : 350px; margin-left: 50px; margin-top: 50px;">
