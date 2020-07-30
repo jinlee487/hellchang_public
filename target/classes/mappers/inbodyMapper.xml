@@ -11,7 +11,7 @@
   
   <!-- date select -->
   <select id="selectPageList" resultType="vo.InbodyVO">
-    	select idx, date_date, date_string from hellchang_schema_test.inbody where id=#{id} and del=b'0'order by date_date
+    	select idx, date_date, date_string from hellchang_schema_test.inbody where id=#{id} and del=b'0' order by date_date
   </select>
   
   <!-- date select -->
