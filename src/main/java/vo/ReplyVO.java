@@ -1,10 +1,10 @@
 package vo;
 
 public class ReplyVO {
-	private String id;
-	private String title;
-	private String replyContent;
-	private String replyId;
+	private String id;			// 세션의 아이디
+	private String title;		// 게시글의 타이틀
+	private String replyContent; // 리플의 내용
+	private String replyId; // 게시글 주인의 아이디
 
 	public String getId() {
 		return id;

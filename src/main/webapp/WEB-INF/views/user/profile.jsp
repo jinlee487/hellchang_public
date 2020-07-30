@@ -310,7 +310,6 @@ $(function(){
 			}
 		});// ajax
 	}); // file del
-	
 	$('.can').on('click',function(){
 		$('#myModal').modal('hide');
 	});
