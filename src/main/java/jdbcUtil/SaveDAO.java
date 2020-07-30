@@ -40,11 +40,11 @@ public class SaveDAO {
 	
 	public List<SaveVO> blogTest() {
 		return sqlsession.selectList(NS+"blogTest") ;
-	} // blogTest() 泥섏쓬 珥덇린 5媛�
+	} // blogTest() 筌ｌ꼷�벉 �룯�뜃由� 5揶쏉옙
 	
 	public List<SaveVO> blogTestS(SaveVO svo) {
 		return sqlsession.selectList(NS+"blogTestS",svo) ;
-	} // �뒪�겕濡�()
+	} // 占쎈뮞占쎄쾿嚥∽옙()
 	
 	public int saveMyRoutine(SaveVO vo) { 
 		return sqlsession.insert(NS+"saveMyRoutine", vo);
