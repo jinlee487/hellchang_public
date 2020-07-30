@@ -35,5 +35,13 @@ public class ExerciseDAO {
 	public List<RmVO> RmList(RmVO rvo) {
 		return sqlsession.selectList(NS+"RmList",rvo) ;
 	} // selectList()
+	
+	public List<RmVO> RmListB(RmVO rvo) {
+		return sqlsession.selectList(NS+"RmListB",rvo) ;
+	} 
+	
+	public List<RmVO> RmListA(RmVO rvo) {
+		return sqlsession.selectList(NS+"RmListA",rvo) ;
+	} // selectList()
 
 } // class

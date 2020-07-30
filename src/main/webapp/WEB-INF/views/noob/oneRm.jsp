@@ -229,6 +229,8 @@ button:hover {
      <div style="display: inline-block; margin: 0; width: 100%" align="center">
       	<label for="gra" class="int">3대 중량 그래프</label>
 	   <div id="chart_div" style="width: 75%; height: 400px;"></div>
+	   <span class="glyphicon glyphicon-chevron-left" id = "afterData"></span>
+       <span class="glyphicon glyphicon-chevron-right" id = "beforeData"></span>
     </div>
 
     
@@ -238,6 +240,7 @@ button:hover {
 $(function(){
 	var logID = "<%=session.getAttribute("logID") %>"
 	console.log("session : "+logID);
+	var nowdate = "";
       $('#saveResult').click(function() {
     	  var bench = $('#Bench').val();
     	  var dead = $('#Dead').val();
@@ -268,11 +271,12 @@ $(function(){
       }) // click
       
       $('#showResult').click(function() {
-    	  var data = new Array();
+    	  var date = new Array();
     	  var bench = new Array();
     	  var dead = new Array();
     	  var squat = new Array();
     	  var total = new Array();
+    	  
     	  $.ajax({
       		type:'Post',
       		url : 'showMyRM',
@@ -288,6 +292,8 @@ $(function(){
       				dead[i] = jsonData[i].dead;
       				squat[i] = jsonData[i].squat;
       				total[i] = bench[i] + dead[i] + squat[i]
+      				lastdate = jsonData[2].date;
+      				nowdate = jsonData[0].date;
       			}
       			var arr = [
       				['date', 'bench', 'dead', 'squat', 'total'],
@@ -305,7 +311,7 @@ $(function(){
 
       		var objDiv = document.getElementById('chart_div');
       		var chart = new google.visualization.ColumnChart(objDiv);
-      		chart.draw(dataTable, options);
+      		chart.draw(dataTable, options);		
 				alert(jsonData[0].id+"님의 데이터");
       		}, // success
     		error:function(){
@@ -313,7 +319,102 @@ $(function(){
      		}
      		}) // ajax
       }) // click
+      $(document).on("click","#beforeData", function(){
+    	    console.log("t"+ nowdate);
+    	    var bench = new Array();
+      	    var dead = new Array();
+      	    var squat = new Array();
+      	    var total = new Array();
+    	    $.ajax({
+    			type:'Post',
+    			url : 'beforeData',
+    			data : {
+    				date : nowdate
+    			},
+    			success:function(data){
+    				jsonData = data.myList;
+    				console.log(jsonData);
+          			for(var i=0; i<Object.keys(jsonData).length; i++){
+          				date[i] = jsonData[i].date;
+          				bench[i] = jsonData[i].bench;
+          				dead[i] = jsonData[i].dead;
+          				squat[i] = jsonData[i].squat;
+          				total[i] = bench[i] + dead[i] + squat[i]
+          				nowdate = jsonData[0].date;
+          				lastdate = jsonData[2].date;
+          			}
+          			var arr = [
+          				['date', 'bench', 'dead', 'squat', 'total'],
+          				[date[0], bench[0], dead[0], squat[0], total[0]],
+          				[date[1], bench[1], dead[1], squat[1], total[1]],
+          				[date[2], bench[2], dead[2], squat[2], total[2]]
+          				];
+       			var dataTable = google.visualization.arrayToDataTable(arr);
+       			var options = {
+       		          title : '3대 1RM Total',
+       		          vAxis: {title: 'KG'},
+       		          hAxis: {title: 'Week'},
+       		          seriesType: 'bars',
+       		          series: {3: {type: 'line'}}        };
+
+          		var objDiv = document.getElementById('chart_div');
+          		var chart = new google.visualization.ColumnChart(objDiv);
+          		chart.draw(dataTable, options);
+    				
+    				
+    			}, // success
+    			error:function(){
+    				alert("f")
+    			}
+    		}) // ajax
+    	}) // >버튼 이벤트
+    	$(document).on("click","#afterData", function(){
+    	    var bench = new Array();
+      	    var dead = new Array();
+      	    var squat = new Array();
+      	    var total = new Array();
+    	    $.ajax({
+    			type:'Post',
+    			url : 'afterData',
+    			data : {
+    				date : lastdate
+    			},
+    			success:function(data){
+    				jsonData = data.myList;
+    				console.log(jsonData);
+          			for(var i=0; i<Object.keys(jsonData).length; i++){
+          				date[i] = jsonData[i].date;
+          				bench[i] = jsonData[i].bench;
+          				dead[i] = jsonData[i].dead;
+          				squat[i] = jsonData[i].squat;
+          				total[i] = bench[i] + dead[i] + squat[i]
+          				nowdate = jsonData[0].date;
+          				lastdate = jsonData[2].date;
+          			}
+          			var arr = [
+          				['date', 'bench', 'dead', 'squat', 'total'],
+          				[date[0], bench[0], dead[0], squat[0], total[0]],
+          				[date[1], bench[1], dead[1], squat[1], total[1]],
+          				[date[2], bench[2], dead[2], squat[2], total[2]]
+          				];
+       			var dataTable = google.visualization.arrayToDataTable(arr);
+       			var options = {
+       		          title : '3대 1RM Total',
+       		          vAxis: {title: 'KG'},
+       		          hAxis: {title: 'Week'},
+       		          seriesType: 'bars',
+       		          series: {3: {type: 'line'}}        };
+
+          		var objDiv = document.getElementById('chart_div');
+          		var chart = new google.visualization.ColumnChart(objDiv);
+          		chart.draw(dataTable, options);
+    			}, // success
+    			error:function(){
+    				alert("f")
+    			}
+    		}) // ajax
+    	}) // < 버튼 이벤트
 });
-    </script>
-    </body>
+</script>
+</body>
 </html>

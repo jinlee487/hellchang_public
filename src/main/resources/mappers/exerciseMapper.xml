@@ -27,4 +27,20 @@
    <select id="RmList" resultType="vo.RmVO" >
 	select * from `hellchang_schema_test`.`saveRM` where id = #{id} order by date desc limit 3;
    </select>
+   
+   <select id="RmListB" resultType="vo.RmVO" >
+   <![CDATA[
+	select * from `hellchang_schema_test`.`saveRM` where id = #{id} and date < #{date} 
+	order by date desc limit 3;
+   ]]>
+   </select>
+   
+   <select id="RmListA" resultType="vo.RmVO" >
+   <![CDATA[
+	select * from `hellchang_schema_test`.`saveRM` where id = #{id} and date > #{date} 
+	order by date desc limit 3;
+   ]]>
+   </select>
+   
  </mapper>
+ 

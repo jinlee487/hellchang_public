@@ -12,5 +12,7 @@ public interface EService {
 	int saveMyRoutine(ExerciseVO vo); // saveMyRoutine
 	int saveMyRM(RmVO rvo); // saveMyRoutine
 	List<RmVO> RmList(RmVO rvo);
+	List<RmVO> RmListB(RmVO rvo);
+	List<RmVO> RmListA(RmVO rvo);
 } // interface
 

@@ -81,4 +81,32 @@ public class WorkoutController {
 		mv.setViewName("jsonView");
 		return mv;
 	}
+	
+	@RequestMapping(value = "/beforeData")
+	public ModelAndView beforeData(HttpServletRequest request, ModelAndView mv, RmVO rvo) {
+		HttpSession session = request.getSession(false);
+		rvo.setId((String) session.getAttribute("logID"));
+		rvo.setDate(request.getParameter("date"));
+		List<RmVO> list = service.RmListB(rvo);
+		if(list!=null) {
+		System.out.println(list);
+		mv.addObject("myList",list);
+		}
+		mv.setViewName("jsonView");
+		return mv;
+	}
+	
+	@RequestMapping(value = "/afterData")
+	public ModelAndView afterData(HttpServletRequest request, ModelAndView mv, RmVO rvo) {
+		HttpSession session = request.getSession(false);
+		rvo.setId((String) session.getAttribute("logID"));
+		rvo.setDate(request.getParameter("date"));
+		List<RmVO> list = service.RmListA(rvo);
+		if(list!=null) {
+		System.out.println(list);
+		mv.addObject("myList",list);
+		}
+		mv.setViewName("jsonView");
+		return mv;
+	}
 }

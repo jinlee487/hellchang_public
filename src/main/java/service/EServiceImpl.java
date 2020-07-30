@@ -35,8 +35,19 @@ public class EServiceImpl implements EService {
 	public int saveMyRM(RmVO rvo) {  
 		return dao.saveMyRM(rvo);  // 泥섎━�맂 row 媛��닔 return	 
 	} // insert
+	
 	@Override
 	public List<RmVO> RmList(RmVO rvo) {
 		return dao.RmList(rvo) ;
+	}
+	
+	@Override
+	public List<RmVO> RmListB(RmVO rvo) {
+		return dao.RmListB(rvo) ;
+	}
+	
+	@Override
+	public List<RmVO> RmListA(RmVO rvo) {
+		return dao.RmListA(rvo) ;
 	}
 } // class
