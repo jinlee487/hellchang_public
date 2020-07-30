@@ -9,16 +9,64 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
+  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
-  <link rel="stylesheet" type="text/css" href="resources/jqLib/topBar.css">  
+  
   
   <style>
+  #p_pos{
+  	margin-right: 80px;
+  }
+  		  
+  address {
+	color: white;
+	margin-bottom:0px;
+	}
+  #footer{
+	clear: both;
+    margin: 0 auto;
+    padding: 30px 0 15px 0;
+    text-align: center;
+    margin: 0 auto;
+	height: 50px;
+    max-width: 100%;
+    min-width: 460px;
+    background-color: #3d3b3c;
+    bottom:0px;
+    
+	}
+  
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+      background-color: #000000;
+    }
+    
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #3d3b3c;
+      padding: 25px;
+    }
+    
+  .carousel-inner img {
+      width: 100%; /* Set width to 100% */
+      margin: auto;
+      min-height:200px;
+  }
+
+  /* Hide the carousel text when the screen is less than 600 pixels wide */
+  @media (max-width: 600px) {
+    .carousel-caption {
+      display: none; 
+      margin-left: 20	0px;
+    }
+  }
   @media (min-width: 768px){
 	.col-sm-4 {
 	  /* margin-left: 200px; */
@@ -115,8 +163,9 @@ button:hover {
 		  <li><a href="inbodyf">InBody</a></li>
 		  <li><a href="#">Diet</a></li>
 		  <li><a href="#">Social</a></li>  
-		  <li><a href="mdetail?code=U">Profile Update</a></li>  
-		  
+		  <li><a href="routine">Test</a></li>
+		  <li><a href="mdetail">Profile</a></li>  
+		  <li><a href="delete">Drop Out</a></li>
 		</ul>
     </div>
     <div class="col-sm-7 ">
@@ -126,7 +175,7 @@ button:hover {
           <div class="panel panel-default text-center">
           <div class="panel-heading"><label>Update</label></div>
             <div class="panel-body">
-				 <form action="mdetail" method="post" >
+				 <form action="mupdate" method="post" enctype="multipart/form-data">
   <div>
   
    <label for="name" class="int"><b>Email</b></label><br>
@@ -797,7 +846,7 @@ button:hover {
                                             홍콩 +852
                                         </option>
                         </select><br><br>
-    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="phoneNo"  id="phoneNo" placeholder="Ex 010-1234-5678" class="input" value="${myInfo.phoneNo }"><br>
+    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="phoneNo"  id="phoneNo" placeholder="Ex 010-1234-5678" class="input" value="${myInfo.phone}"><br>
        <a href="#phonenumber" data-toggle="collapse">
        <input type="reset" value="취소"></a>
        <input type="submit" value="전송">&nbsp;&nbsp;
@@ -806,15 +855,15 @@ button:hover {
 	
 	
 	<label for="location" class="int"><b>location</b></label><br>
-	 <p class="text-center">${myInfo.address }</p>
+	 <p class="text-center">${myInfo.address}</p>
       <a href="#location" data-toggle="collapse">
       <b>주소 수정하기</b>
       </a>
       <div id="location" class="collapse">
-       <input style="width: 20%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px; margin-right: 40%; cursor: pointer;" type="text" name="zipcode" id="zipcode" size="7" onClick="sample4_execDaumPostcode()" readonly placeholder="우편번호" value="${myInfo.zipcode }">
+       <input style="width: 20%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px; margin-right: 40%; cursor: pointer;" type="text" name="zipcode" id="zipcode" size="7" onClick="sample4_execDaumPostcode()" readonly placeholder="우편번호" value="${logzipcode }">
 	<br><br>
-    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="address1" id="address1" readonly placeholder="주소입력해주세요" value="${myInfo.address1}"><br><br>
-    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="address2" id="address2" placeholder="상세주소를 입력해주세요" value="${myInfo.address2 }"><br>
+    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="address1" id="address1" readonly placeholder="주소입력해주세요" value="${logaddress1}"><br><br>
+    <input  style="width: 60%; padding: 15px;  display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="text" name="address2" id="address2" placeholder="상세주소를 입력해주세요" value="${logaddress2}"><br>
        <a href="#location" data-toggle="collapse">
        <input type="reset" value="취소"></a>
        <input type="submit" value="전송">&nbsp;&nbsp;
@@ -829,9 +878,9 @@ button:hover {
       </a>
       <div id="password" class="collapse">
        <label for="psw" class="int"><b>Password</b></label><br> 
-    <input style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Enter Password"  name="password" class="input" value="" ><br>
+    <input style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Enter Password"  name="password" class="input" value="${myInfo.password}" ><br>
     <label for="psw-repeat" class="int"><b>Repeat Password</b></label><br>
-    <input  style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Repeat Password" name="psw-repeat" class="input" value=""><br>
+    <input  style="width: 60%; padding: 15px; display: inline-block; border: none; background: #f1f1f1; border-radius: 8px" type="password" placeholder="Repeat Password" name="psw-repeat" class="input" value="${myInfo.password}"><br>
        <a href="#password" data-toggle="collapse">
        <input type="reset" value="취소"></a>
        <input type="submit" value="전송">&nbsp;&nbsp;
@@ -848,34 +897,17 @@ button:hover {
    
   </div>
  </div> 
- <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
- 
 </div>
 <div id="footer" role="contentinfo">
-<!-- <hr style="width: 100%;">
-<hr style="width: 100%; border-color: black;"> -->
 		<address>
-			<em><a href="home" target="_blank" class="logo footfont"><span class="blind">HellChang</span></a></em>
-			<em class="copy footfont">Copyright</em>
-			<em class="u_cri footfont">©</em>
-			<a href="home" target="_blank" class="u_cra footfont">HellChang Corp.</a>
-			<span class="all_r footfont">All Rights Reserved.</span>
+			<em><a href="home" target="_blank" class="logo"><span class="blind">HellChang</span></a></em>
+			<em class="copy">Copyright</em>
+			<em class="u_cri">©</em>
+			<a href="home" target="_blank" class="u_cra">HellChang Corp.</a>
+			<span class="all_r">All Rights Reserved.</span>
 		</address>
-</div>
+	</div>
+
 <script>
 function check_form() {
 	var idval = document.joinForm.email.value;
@@ -906,7 +938,7 @@ function sample4_execDaumPostcode() {
    new daum.Postcode({
 	    oncomplete: function(data) {
 	    	 document.getElementById('zipcode').value = data.zonecode;
-	         document.getElementById("address").value = data.address;
+	         document.getElementById("address1").value = data.address;
 	    }
 	}).open();
 }

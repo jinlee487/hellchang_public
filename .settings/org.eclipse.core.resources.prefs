@@ -1,6 +1,7 @@
 eclipse.preferences.version=1
 encoding//src/main/java/com/ncs/green/HomeController.java=UTF-8
 encoding//src/main/java/com/ncs/green/MemberController.java=UTF-8
+encoding//src/main/java/com/ncs/green/SaveController.java=UTF-8
 encoding//src/main/java/com/ncs/green/boardController.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/aaaaa.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/home.jsp=UTF-8

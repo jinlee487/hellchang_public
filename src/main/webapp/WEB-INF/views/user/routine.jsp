@@ -188,10 +188,8 @@ $(function(){
 		  <li><a href="manageWorkout">Manage Workout</a></li>
 		  <li><a href="inbodyf">InBody</a></li>
 		  <li><a href="#">Diet</a></li>
-		  <li><a href="#">Social</a></li>    
-		  <li><a href="routine">Test</a></li>
-		  <li><a href="mdetail?code=U">Profile Update</a></li>
-		  <li><a href="delete">Drop Out</a></li>
+		  <li><a href="#">Social</a></li>  
+		  <li><a href="#">Setting</a></li>  
 		  
 		</ul>
     </div>

@@ -144,7 +144,7 @@
         <p><a href="myProfile">My Profile</a></p>
         <a type="button" data-toggle="modal" data-target="#myModal">
         <button class="bEffect" title="프로필 사진 바꾸기">
-        	<img src="${mem.image_path}" class="img-circle" height="100" width="100" alt="프로필 사진 바꾸기">
+        	<img id="aa" src="${mem.image_path}" class="img-circle" height="100" width="100" alt="프로필 사진 바꾸기">
         </button>
       </div>
 		<ul class="nav nav-pills nav-stacked">
@@ -281,7 +281,7 @@
       	<button class="imageChange del" tabindex="0">현재 사진 삭제</button>
         <button class="imageChange can" tabindex="0">취소</button>
         <form style="height: 0;" action="imgUpdate" name="chImg" method="POST" enctype="multipart/form-data">
-        	<input type="file" id="image_file" name="image_file" accept="image/jpeg,image/png">
+        	<input type="file" id="image_file" name="image_file">
         </form>
       </div>
     </div>
@@ -291,15 +291,29 @@
 $(function(){
 	$('.sel').on('click', function(){
 		$('input[type=file]').click();
-	});
+	}); // file select 
 	
 	$('input').change(function(){
 		var chImg = document.chImg;
 		chImg.submit();
-	});
+	}); // file submit 
 	
-});
-//ready
+	$('.del').on('click', function(){
+		$.ajax({
+			type: "post",
+			url: "imgUpdate",
+			data: {
+				code : 44
+			},
+			success: function(){
+				window.location.href="prof"
+			}
+		});// ajax
+	}); // file del
+	$('.can').on('click',function(){
+		$('#myModal').modal('hide');
+	});
+});//ready
 </script>
 </body>
 </html>

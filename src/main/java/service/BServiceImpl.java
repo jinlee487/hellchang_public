@@ -14,5 +14,8 @@ import vo.PageVO;
 public class BServiceImpl implements BService {
 	@Autowired
 	BoardDAO dao;
-
+	@Override
+	public BoardVO selectOne(BoardVO vo) {
+		return dao.selectOne(vo);
+	} // selectOne
 } // class
