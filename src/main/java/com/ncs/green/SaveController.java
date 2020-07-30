@@ -191,21 +191,23 @@ public class SaveController {
 	
 	@RequestMapping(value = "/replyInsert")
 	public ModelAndView replyInsert(HttpServletRequest request, ModelAndView mv, ReplyVO rvo){
-		System.out.println("tttt insert Test =>" + rvo);
-		rvo.setId(request.getParameter("id"));
-		System.out.println(request.getParameter("id"));
+		String id = request.getParameter("id"); //content id
+		String title = request.getParameter("title"); // content 
+		String replyId = request.getParameter("replyId");
+		String replyContent = request.getParameter("content");
 		
-		rvo.setReplyId(request.getParameter("replyId"));
-		rvo.setReplyContent(request.getParameter(rvo.getReplyContent()));
-		System.out.println("id Test => " + request.getParameter("id"));
-		System.out.println("title Test => " + request.getParameter("title"));
-		System.out.println("replyId Test => " + request.getParameter("replyId"));
-		System.out.println("content Test => " + request.getParameter("content"));
-		
-		System.out.println("rvo Test => " + rvo);
+		rvo.setId(id);
+		rvo.setTitle(title);
+		rvo.setReplyId(replyId);
+		rvo.setReplyContent(replyContent);
+		System.out.println("before rvo" +rvo);
 		
 		if (service.replyInsert(rvo) > 0 ) {			
-			System.out.println(rvo);
+			System.out.println("success rvo : " + rvo);
+			System.out.println(rvo.getId());
+			System.out.println(rvo.getTitle());
+			rvo.setId(rvo.getId());
+			rvo.setTitle(rvo.getTitle());
 			List<ReplyVO> list = service.replyResult(rvo); 
 			System.out.println(list);
 			mv.addObject("replyTest", list);

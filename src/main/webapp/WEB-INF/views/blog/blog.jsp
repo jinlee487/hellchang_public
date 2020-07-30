@@ -134,7 +134,7 @@ textarea{
 }
 </style>
 <script type="text/javascript">
-var logID = "<%=session.getAttribute("logID") %>"
+var logID = "<%=session.getAttribute("logID") %>";
 console.log("session : "+logID);
 $(function(){
 	var cnt = 0;
@@ -244,9 +244,9 @@ $(window).scroll(function(){
 					} // for_i
 					appendT += "<tr><td colspan='5'><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span>"
 					appendT += "<span id = 'cnt"+nowTitle+"'></span><br><span class = 'reply " + nowID +"' id = '"+replyTitle+"'></td></tr>"
-					appendT += "<tr><td colspan='5'><form action='replyInsert'><textarea style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea>"
+					appendT += "<tr><td colspan='5'><form action='replyInsert'><textarea class='repl' style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea>"
 					appendT += "<input type='text' value='"+ nowID +"' hidden><input type='text' value='"+ nowTitle +"' hidden>"
-					appendT += "<button type='submit' class='sendR'>게시</button></form></td></tr></table>"
+					appendT += "<button type='submit' id='"+nowID+"' class='sendR "+nowTitle+"'>게시</button></form></td></tr></table>"
 					$('.blogForm').append(appendT) 	
 					cnt ++;
 					console.log("row count 어따씀 ? " + rowcnt);
@@ -285,23 +285,25 @@ $(document).on("click",".heart", function(){
 	}) // ajax
 }) // heart_click 이벤트
 
-/*  $('.sendR').on("click",function(){
+$(document).on("click",".sendR", function(){
 
-    var id = logID; 				//댓글을 입력하려는 본인 
-	var replyId =   				//피드의 주인
-	var title =  // 피드의 제목 
+    var id = $(this).attr('id');  					// 피드의 주인 
+   	var title = $(this).attr('class');
+    title = title.substring(6);		
+    var replyId = logID;  							// session 아이디
+	var content = $('.repl').val();				// 댓글 내용
 	
     console.log(title);
     console.log(id);
     console.log(content);
     console.log(replyId); 
- 
-	$.ajax({
+    $.ajax({
 		type: "post",
 		url:"replyInsert",
 		data:{
 			id : id,
 			title : title,
+			content : content,
 			replyId : replyId
 		},
 		success: function(){
@@ -311,7 +313,8 @@ $(document).on("click",".heart", function(){
 			
 		}			
 	});
-}); // 댓글 */
+
+	}); // 댓글 */
 
 }) // ready
 </script>
