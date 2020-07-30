@@ -26,6 +26,49 @@ public class MemberController {
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
 	
+	@RequestMapping(value = "/imgUpdate")
+	public ModelAndView imgUpdate(MemberVO vo, HttpServletRequest request) throws IOException {
+		ModelAndView mv = new ModelAndView();
+		int code=0;
+		if(request.getParameter("code") != null) {
+			code = Integer.parseInt(request.getParameter("code"));
+		}
+	
+		MultipartFile image_file;
+		String file1, file2;
+		
+		image_file = vo.getImage_file();
+
+		String id = (String)request.getSession().getAttribute("logID");
+		vo.setId(id);
+		vo = service.selectOne(vo);
+		
+		System.out.println(code);
+		if(code == 44) {
+			System.out.println("들어옴!!!!!!!!!!!");
+			file2="resources/uploadImage/emptyImage.png";
+			vo.setImage_path(file2);
+		}else {
+			file1="D:/MTest/MyWork/hellchang/src/main/webapp/resources/uploadImage/"
+					+ image_file.getOriginalFilename();
+			image_file.transferTo(new File(file1));
+			file2="resources/uploadImage/"+image_file.getOriginalFilename();
+			vo.setImage_path(file2);
+		}
+		
+//		file1="D:/MTest/MyWork/Spring05/src/main/webapp/resources/uploadImage/"
+//				+ image_file.getOriginalFilename();
+//		file1="D:/workSpace/hellchang/src/main/webapp/resources/uploadImage/"
+//				+ image_file.getOriginalFilename();
+		service.update(vo);
+		
+		mv.addObject("mem", vo);
+		
+		mv.setViewName("user/profile");
+		
+		return mv;
+	}
+	
 	@RequestMapping(value = "/loginf")
 	public ModelAndView loginf(ModelAndView mv) {
 		mv.setViewName("login/loginForm");
@@ -43,7 +86,13 @@ public class MemberController {
 		return mv; 
 	} // 
 	@RequestMapping(value = "/prof")
-	public ModelAndView prof(ModelAndView mv) {
+	public ModelAndView prof(ModelAndView mv, HttpServletRequest request, MemberVO vo) {
+		String id = (String) request.getSession().getAttribute("logID");
+		vo.setId(id);
+		vo = service.selectOne(vo);
+		
+		mv.addObject("mem", vo);
+		
 		mv.setViewName("user/profile");
 		return mv; 
 	} // 
@@ -144,8 +193,13 @@ public class MemberController {
 				// 로그인 성공 -> login 정보 보관 (id, name을 session에) -> loginSuccess
 				request.getSession().setAttribute("logID", vo.getId());
 				request.getSession().setAttribute("logName", vo.getName());
-				request.getSession().setAttribute("image_ath", vo.getImage_path());
-
+				request.getSession().setAttribute("logPhone", vo.getPhone());
+				request.getSession().setAttribute("logaddress", vo.getAddress());
+				request.getSession().setAttribute("logaddress1", vo.getAddress1());
+				request.getSession().setAttribute("logaddress2", vo.getAddress2());
+				request.getSession().setAttribute("logzipcode", vo.getZipcode());
+				request.getSession().setAttribute("logpassword", vo.getPassword());
+				request.getSession().setAttribute("profile_image", vo.getImage_path());
 				mv.setViewName("home");
 			} else {
 				// Password 오류 -> 재로그인
@@ -189,6 +243,7 @@ public class MemberController {
 		mv.setViewName("user/profile_myProfile");
 		if ("U".equals(request.getParameter("code"))) {
 			// 내정보 수정화면으로
+			session.setAttribute("encodedPassword", vo.getPassword());
 			mv.setViewName("user/profile_Update");
 		} else if ("E".equals(request.getParameter("code"))) { // 내정보 수정에서 오류 상황
 			mv.addObject("message", "~~ 내정보 수정 오류  !!! 다시 하세요 ~~");
@@ -202,40 +257,19 @@ public class MemberController {
 	@RequestMapping(value = "/mupdate")
 	public ModelAndView update(HttpServletRequest request, ModelAndView mv, MemberVO vo)
 				throws IOException {
-		System.out.println("vo null Test=>"+vo);
-		String id = "";
-		HttpSession session = request.getSession(false);
-		if (session != null && session.getAttribute("logID") != null) {
-			id = (String) session.getAttribute("logID");
-		} else {
-			// login 하도록 유도 후에 메서드 return 으로 종료
-			mv.addObject("message", "~~ 로그인 후에 하세요 ~~");
-			mv.setViewName("login/loginForm");
-			return mv;
-		}
-		vo.setId(id);
-		vo = service.selectOne(vo);
-		mv.addObject("myInfo", vo);
-
-		
-		// password 입력값  확인 및 암호와 처리
 		if (vo.getPassword().length() > 3 && vo.getPassword()!=null) {
-				// new password 를 encode
-			vo.setPassword( passwordEncoder.encode(vo.getPassword()));
-		}else {	// session에 보관해 놓은 password 사용
-			vo.setPassword((String)request.getSession().getAttribute("encodedPassword"));
-		}
-		
-		if (service.update(vo) > 0) {
-			// 회원수정 성공 -> memberList 출력
-			// session 의 Attribute logName 도 변경
-			request.getSession().setAttribute("loginName", vo.getName());
-			mv.setViewName("redirect:mdetail");
-		} else {
-			// 회원수정 실패 -> 내정보 보기 화면으로
-			mv.setViewName("home");
-		} // if
-		return mv;
+			
+		vo.setPassword( passwordEncoder.encode(vo.getPassword()));
+	}else {
+		vo.setPassword((String)request.getSession().getAttribute("encodedPassword"));
+	}
+	if (service.update(vo) > 0) {
+		request.getSession().setAttribute("loginName", vo.getName());
+		mv.setViewName("redirect:home");
+	} else {
+		mv.setViewName("redirect:mdetail?code=E");
+	}
+	return mv;
 	}// mupdate
 	
 	@RequestMapping(value = "/delete")

@@ -783,7 +783,7 @@ function check_form() {
   		document.regform.psw.focus();
   		return;
 	}
-	if (document.joinForm.psw.value != document.regform.psw-repeat.value) {
+	if (document.joinForm.psw.value != document.joinForm.psw-repeat.value) {
  		alert("비밀번호가 일치하지 않습니다.");
   		document.regform.psw.focus();
   		return;
