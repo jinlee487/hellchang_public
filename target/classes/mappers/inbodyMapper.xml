@@ -6,28 +6,28 @@
 <mapper namespace="green.mappers.inbodyMapper">
 
   <select id="selectList" resultType="vo.InbodyVO">
-	select * from hellchang_schema_test.inbody where id=#{id} and del='0' order by date_date
+	select * from hellchang_schema_test.inbody where id=#{id} and del=b'0' order by date_date
   </select>
   
   <!-- date select -->
   <select id="selectPageList" resultType="vo.InbodyVO">
-    	select idx, date_date, date_string from hellchang_schema_test.inbody where id=#{id} and del='0'order by date_date
+    	select idx, date_date, date_string from hellchang_schema_test.inbody where id=#{id} and del=b'0'order by date_date
   </select>
   
   <!-- date select -->
   <select id="selectGraphList" resultType="vo.InbodyVO">
  		 select * from hellchang_schema_test.inbody
   		<if test="check.equals('false')">
-  		where id=#{id} and del='0' order by date_date
+  		where id=#{id} and del=b'0' order by date_date
 		</if>
 		<if test="check.equals('true')">
-		where id=#{id} and date_date between #{start_date} and #{end_date} and del='0' order by date_date
+		where id=#{id} and date_date between #{start_date} and #{end_date} and del=b'0' order by date_date
  		</if>
   </select>
   
   <!-- inbodyDetailAjax() -->
   <select id="selectOne" resultType="vo.InbodyVO">
-    	   select * from hellchang_schema_test.inbody where id=#{id} and idx=#{idx} and del=0
+    	   select * from hellchang_schema_test.inbody where id=#{id} and idx=#{idx} and del=b'0'
   </select>
 
   <insert id="insert">
@@ -48,7 +48,7 @@
   </update>
 
   <update id="delete">
-	update hellchang_schema_test.inbody set del=1 where id=#{id} and idx=#{idx}
+	update hellchang_schema_test.inbody set del=b'1' where id=#{id} and idx=#{idx}
   </update>
 
 </mapper>
