@@ -144,7 +144,7 @@
         <p><a href="myProfile">My Profile</a></p>
         <a type="button" data-toggle="modal" data-target="#myModal">
         <button class="bEffect" title="프로필 사진 바꾸기">
-        	<img src="${mem.image_path}" class="img-circle" height="100" width="100" alt="프로필 사진 바꾸기">
+        	<img id="aa" src="${mem.image_path}" class="img-circle" height="100" width="100" alt="프로필 사진 바꾸기">
         </button>
       </div>
 		<ul class="nav nav-pills nav-stacked">
@@ -304,13 +304,16 @@ $(function(){
 			type: "post",
 			url: "imgUpdate",
 			data: {
-				code : 44,
+				code : 44
 			},
-			success: {
-				
+			success: function(){
+				window.location.href="prof"
 			}
 		});// ajax
 	}); // file del
+	$('.can').on('click',function(){
+		$('#myModal').modal('hide');
+	});
 });//ready
 </script>
 </body>

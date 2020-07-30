@@ -91,7 +91,7 @@ public class SaveController {
 
 	
 
-	
+	// 처음 blog에서 출력되는  5개
 	@RequestMapping(value = "/blogTest")
 	public ModelAndView blogTest(HttpServletRequest request, ModelAndView mv, SaveVO vo, HeartVO hvo) {
 		int cnt = 0;
@@ -111,10 +111,16 @@ public class SaveController {
 			System.out.println(hvo.getHeart());
 			String HTest = "heart"+i;
 			mv.addObject(HTest, hvo.getHeart());
+			// id와 title 별로 저장된 heart 출력
 			List<SaveVO> test = service.findTest(vo);
+			// myRoutine *, member.name, member.image 뽑아냄 
 			System.out.println("==============================");
 			String IDTest = "forName"+i;
+			
 			mv.addObject(IDTest, test);
+			// find 리스트를 IDTest에 담아 보냄 IDTest라는 이름으로
+			// jsp에서 jsonData[i]로 사용됨 
+			
 			System.out.println("blogTest : "+IDTest+test);
 			rownum = array[i].getRownum();
 			cnt ++;
@@ -125,6 +131,7 @@ public class SaveController {
 		return mv;
 	}// blog泥ロ솕硫� �긽�쐞 5媛�
 	
+	// 스크롤할 때 마다 출력되는 blog
 	@RequestMapping(value = "/scrollP")
 	public ModelAndView scrollP(HttpServletRequest request, ModelAndView mv, SaveVO vo, SaveVO svo, HeartVO hvo) {
 		int row = Integer.parseInt(request.getParameter("rowcnt"));
@@ -132,8 +139,10 @@ public class SaveController {
 		System.out.println("scrollP : "+rownum);
 		SaveVO[] array = {}; 
 		rownum = rownum + row;
+		// rownum에 출력된 개수 누적 저장
 		svo.setRownum(rownum);
 		List<SaveVO> list = service.blogTestS(svo); 
+		// blogTests = 처음 5개 이후에 스크롤시 나머지 출력
 		System.out.println("scrollP : "+ list);
 		array = list.toArray(new SaveVO[list.size()]);
 		for(int i=0; i<array.length; i++) {
@@ -144,7 +153,9 @@ public class SaveController {
 			hvo = service.heartSelect(hvo);
 			String HTest = "heart"+i;
 			mv.addObject(HTest, hvo.getHeart());
+			// title 과 id 당 저장된 좋아요 개수 가져오기 
 			List<SaveVO> test = service.findTest(vo);
+			// myRoutine *와 member의 name, image 뽑아냄 
 			vo.setRownum(svo.getRownum());
 			System.out.println("==============================");
 			String IDTest = "forName"+i;
@@ -156,6 +167,7 @@ public class SaveController {
 			mv.setViewName("jsonView");
 		}
 		System.out.println("scrollP : "+rownum);
+		System.out.println();
 		return mv;
 	}//
 	
@@ -178,19 +190,25 @@ public class SaveController {
 	
 	@RequestMapping(value = "/replyInsert")
 	public ModelAndView replyInsert(HttpServletRequest request, ModelAndView mv, ReplyVO rvo){
-		System.out.println("insert Test =>" + rvo);
+		String id = request.getParameter("id"); //content id
+		String title = request.getParameter("title"); // content 
+		String replyId = request.getParameter("replyId");
+		String replyContent = request.getParameter("content");
+		
+		rvo.setId(id);
+		rvo.setTitle(title);
+		rvo.setReplyId(replyId);
+		rvo.setReplyContent(replyContent);
+		System.out.println(rvo);
+		
 		if (service.replyInsert(rvo) > 0 ) {			
-			System.out.println(rvo);
-			rvo.setId(request.getParameter("id"));
-			rvo.setTitle(request.getParameter("title"));
+			System.out.println("success rvo : " + rvo);
+			
 			List<ReplyVO> list = service.replyResult(rvo); 
 			System.out.println(list);
-			
 			mv.addObject("replyTest", list);
 		} 
-		
 		mv.setViewName("jsonView");
-
 		return mv;
 	}// reply
 	

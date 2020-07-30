@@ -73,8 +73,6 @@
   </insert> 
   
   <select id="replyResult" resultType="vo.ReplyVO">
-  	select r.replyContent, m.name as userName 
-  	from hellchang_schema_test.reply as r,  hellchang_schema_test.member as m 
-  	where r.id = #{id} and r.title = #{title} and r.replyContent = #{replyContent} and r.id = m.id;
+  	select replyContent from hellchang_schema_test.reply where id = #{id} and title = #{title}
   </select>
  </mapper>

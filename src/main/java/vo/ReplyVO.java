@@ -1,10 +1,10 @@
 package vo;
 
 public class ReplyVO {
-	private String id;
-	private String title;
-	private String replyContent;
-	private String replyId;
+	private String id;			// content id
+	private String title;		// content title
+	private String replyContent; // ´ñ±Û³»¿ë
+	private String replyId; // session id
 
 	public String getId() {
 		return id;
