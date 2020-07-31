@@ -146,10 +146,13 @@ public class SaveController {
 	public ModelAndView scrollP(HttpServletRequest request, ModelAndView mv, SaveVO vo, SaveVO svo, HeartVO hvo, ReplyVO rvo) {
 		int row = Integer.parseInt(request.getParameter("rowcnt"));
 		int cnt = 0;
-		System.out.println("scrollP : "+rownum);
+		System.out.println("rownum : "+rownum);
+		System.out.println("row : "+row);
 		SaveVO[] array = {}; 
-		rownum = rownum + row;
+		rownum = rownum + row+1;
 		// rownum에 출력된 개수 누적 저장
+		System.out.println("rownum : "+rownum);
+
 		svo.setRownum(rownum);
 		List<SaveVO> list = service.blogTestS(svo); 
 		// blogTests = 처음 5개 이후에 스크롤시 나머지 출력
