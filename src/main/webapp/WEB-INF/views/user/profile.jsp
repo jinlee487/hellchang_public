@@ -101,7 +101,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="home">
+      <a class="navbar-brand" href="homew">
       <img src = "resources/image/logo.jpg" width="80" height="25">
       </a>
     </div>
@@ -146,7 +146,7 @@
         <button class="bEffect" title="프로필 사진 바꾸기">
         	<img id="aa" src="${mem.image_path}" class="img-circle" height="100" width="100" alt="프로필 사진 바꾸기">
         </button>
-      </div>
+        </a></div>
 		<ul class="nav nav-pills nav-stacked">
 		  <li><a href="#">Start Workout</a></li>
 		  <li><a href="manageWorkout">Manage Workout</a></li>

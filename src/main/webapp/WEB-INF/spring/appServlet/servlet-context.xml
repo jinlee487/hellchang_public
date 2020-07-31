@@ -98,11 +98,27 @@
 				<exclude-mapping path="joinF"/>
 				-->
 				<mvc:mapping path="/routine"/>
+				<mvc:mapping path="/inbodyDetailAjax"/>
+				<mvc:mapping path="/inbodyListAjax"/>
+				<mvc:mapping path="/inbodyInsertf"/>
+				<mvc:mapping path="/inbodyDetail"/>
+				<mvc:mapping path="/inbodyInsert"/>
+				<mvc:mapping path="/inbodyUpdate"/>
+				<mvc:mapping path="/inbodyDelete"/> 
+				<mvc:mapping path="/inbodyf"/>
+				
 				<beans:ref bean="LoginInterceptor"/>
 			</mvc:interceptor>
 	</mvc:interceptors>	
 	
+	<!-- Exception 설정 -->
+	 <beans:bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<beans:property name="defaultErrorView"	value="exceptionpage/exceptionMessage"/>
+<!-- 		<beans:property name="defaultErrorView" value="exceptionpage/allException"></beans:property>				  -->
+	</beans:bean>
 </beans:beans>
+
+
 	
 	
 	<!-- <?xml version="1.0" encoding="UTF-8"?>

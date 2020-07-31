@@ -36,8 +36,13 @@ public class InbodyController {
 		String id = (String) session.getAttribute("logID");
 		vo.setId(id);
 		pvo.setId(id);
-		pvo = service.selectPageList(pvo);zz
-		System.out.println("how is this null vo => " + vo);
+		pvo = service.selectPageList(pvo);
+		if (pvo.getList().isEmpty()) {
+			mv.addObject("check", "no_history");
+			mv.setViewName("jsonView");
+			return mv;
+		}
+//		System.out.println("how is this null vo => " + vo);
 //		System.out.println("this is pvo =>\n"+pvo.getList().toString());
 		if (direction == null && vo.getidx() == 0) {
 			vo.setidx(pvo.getList().get((pvo.getList().size() - 1)).getidx());
@@ -103,8 +108,13 @@ public class InbodyController {
 		String id = (String) session.getAttribute("logID");
 //		System.out.println("how is this null vo => " + pvo);
 		pvo.setId(id);
-
 		pvo = service.selectGraphList(pvo);
+		if (pvo.getList().isEmpty()) {
+			mv.addObject("check", "no_history");
+			mv.setViewName("jsonView");
+			return mv;
+		}
+		
 		mv.addObject("InbodyVO_List", pvo.getList()); 
 		/*
 		 * for (InbodyVO a : pvo.getList()) { System.out.println("this is a => " + a);
