@@ -20,25 +20,25 @@ public class boardController {
 		mv.setViewName("blog/blog");
 		return mv; 
 	} // atestf
-	@RequestMapping(value = "/myblog")
-	public ModelAndView myblog(ModelAndView mv,HttpServletRequest request, MemberVO vo) {
-		// 1) login 여부 확인
-				String id = "";
-				HttpSession session = request.getSession(false);
-				if (session != null && session.getAttribute("logID") != null) {
-					id = (String) session.getAttribute("logID");
-				} else {
-					// login 하도록 유도 후에 메서드 return 으로 종료
-					mv.addObject("message", "~~ 로그인 후에 하세요 ~~");
-					mv.setViewName("login/loginForm");
-					return mv;
-				}
-				
+	
+	  @RequestMapping(value = "/myblog") 
+	  public ModelAndView myblog(ModelAndView mv, MemberVO vo,HttpServletRequest request) { 
+			String id = "";
+			HttpSession session = request.getSession(false);
+			if (session != null && session.getAttribute("logID") != null) {
+				id = (String) session.getAttribute("logID");
+			} else {
+				// login 하도록 유도 후에 메서드 return 으로 종료
+				mv.addObject("message", "~~ 로그인 후에 하세요 ~~");
+				mv.setViewName("login/loginForm");
+				return mv;
+			}
+			vo.setId(id);
+			
+		  
+		  
+		  mv.setViewName("blog/myblog"); return mv; 
 		
-		
-		
-		mv.setViewName("blog/myblog");
-		return mv; 
-	} // atestf
+	 } // atestf
 	
 }

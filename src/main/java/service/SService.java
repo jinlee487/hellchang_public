@@ -36,4 +36,3 @@ public interface SService {
 	
 	ReplyVO replyResult(ReplyVO rvo);
 } // interface
-

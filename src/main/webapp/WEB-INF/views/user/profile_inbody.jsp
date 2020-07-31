@@ -80,6 +80,10 @@ text-align: left;
     font-weight: bold;
     cursor: pointer;
 }
+.modal-body {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
   </style>
 </head>
 <body>
@@ -167,10 +171,11 @@ text-align: left;
 	        <div class="modal-body">
 	          <table class="columns" style="table-layout:fixed;word-break:break-all;width:100%;">
 	          <tr>
-	          <td><a href="inbodyInsertf"><span class="glyphicon glyphicon-pencil"></span></a></td>
-	          <td><a href="inbodyUpdatef"><span class="glyphicon glyphicon-edit"></span></a></td>   
-	          <td><a href="inbodyUpdatef"><span class="glyphicon glyphicon-share"></span></a></td>        
+	          <td><button type="button" class="btn btn-default io" id="ii"><span class="glyphicon glyphicon-pencil"></span></button></td>
+	          <td><button type="button" class="btn btn-default io" id="iu"><span class="glyphicon glyphicon-edit"></span></button></td>
+	          <td><button type="button" class="btn btn-default io" id="is"><span class="glyphicon glyphicon-share"></span></button></td>
 	          </tr>
+	          <tr><td>Insert</td><td>Edit</td><td>Share</td></tr>
 	          </table>
 	        </div>
 	      </div>
@@ -210,6 +215,7 @@ text-align: left;
 		          </ul>
 		        </h4>
 		      </div>
+		      <div style="display:none" id="id_div"></div>
 		      <div id="collapse1" class="panel-collapse collapse">
 		        <ul class="list-group" style="text-align: center;display:inline-block;padding: 5px 14px;
 		                               background-color: #fff;border: 1px solid #ddd;border-radius: 15px;" id="dddd">
@@ -219,7 +225,7 @@ text-align: left;
 		      </div>
 		    </div>	  
 
-            <div class="well well-sm analysis-title">MUSCLE-FAT ANALYSIS</div>   
+            <div class="well well-sm analysis-title">Muscle-Fat Analysis</div>   
             <table class="columns" style="table-layout:fixed;word-break:break-all;width:100%;">
 		      <tr>
 		        <td style="width:40%;">Weight<br><strong style="font-size: large;" id="wChartID2"></strong>kg</td>
@@ -386,22 +392,26 @@ text-align: left;
 			<span class="all_r footfont">All Rights Reserved.</span>
 		</address>
 </div>
-
-
+<div id="code_u" style="display:none">${code}</div>
+<div id="date_u" style="display:none">${date_date}</div>
+<div id="idx_u" style="display:none">${idx}</div>
 </body>
+
 <script> 
 	  
 $(document).ready(function(){
 	var data;
 	var data1;
-	callback(loadPage,function(){
-		document.getElementById("defaultOpen").click();	
-	})
 	
+	callback(loadPage,function(){
+		document.getElementById("defaultOpen").click();
+	})
+
 	$(window).resize(function(){callback(reloadPage,
 		function() { 
 		document.getElementsByClassName("tablink active")[0].click();})}
 	); 
+
 	
 	$('#resultsback').click(function(){
 		$('#collapse1').collapse("hide");
@@ -412,14 +422,16 @@ $(document).ready(function(){
 				url:"inbodyDetailAjax",
 				data:{
 					direction:"backward",
-					date_date:document.getElementById("results_date").innerHTML
+					date_date:document.getElementById("results_date").innerHTML,
+	 				idx:document.getElementById("id_div").innerHTML
 				},
 				success:function(jsondata){
 					data=jsondata.InbodyVO;
 				    console.log("first try inside success after ajax => \n" + data.date_date)
 
 	        	    document.getElementById("results_date").innerHTML = data.date_date;
-	        	    console.log("after ajax => " + document.getElementById("results_date").innerHTML)
+	        	    console.log("after ajax => " + document.getElementById("results_date").innerHTML);
+				    document.getElementById("id_div").innerHTML = data.idx;
 	        		inbodybarchart(data.weight,data.weight_under,data.weight_over-data.weight_under,'wChartID','wChartID2');
 	        		inbodybarchart(data.muscle_mass,data.muscle_mass_under,data.muscle_mass_over-data.muscle_mass_under,'mmChartID','mmChartID2');
 	        		inbodybarchart(data.fat_mass,data.fat_mass_under,data.fat_mass_over-data.fat_mass_under,'fmChartID','fmChartID2');
@@ -441,14 +453,16 @@ $(document).ready(function(){
 				url:"inbodyDetailAjax",
 				data:{
 					direction:"forward",
-					date_date:document.getElementById("results_date").innerHTML
+					date_date:document.getElementById("results_date").innerHTML,
+	 				idx:document.getElementById("id_div").innerHTML
 				},
 				success:function(jsondata){
 					data=jsondata.InbodyVO;
 				    console.log("first try inside success after ajax => \n" + data.date_date)
 
 	        	    document.getElementById("results_date").innerHTML = data.date_date;
-	        	    console.log("after ajax => " + document.getElementById("results_date").innerHTML)
+	        	    console.log("after ajax => " + document.getElementById("results_date").innerHTML);
+				    document.getElementById("id_div").innerHTML = data.idx;
 	        		inbodybarchart(data.weight,data.weight_under,data.weight_over-data.weight_under,'wChartID','wChartID2');
 	        		inbodybarchart(data.muscle_mass,data.muscle_mass_under,data.muscle_mass_over-data.muscle_mass_under,'mmChartID','mmChartID2');
 	        		inbodybarchart(data.fat_mass,data.fat_mass_under,data.fat_mass_over-data.fat_mass_under,'fmChartID','fmChartID2');
@@ -468,7 +482,7 @@ $(document).ready(function(){
 		$("#sel2").children().each(function(n, i) {
 			var id = this.id;
 		
-			console.log("this is the index => " + n);
+			console.log("this is the idx => " + n);
 			console.log("this is the id => " + id);
 			if (parseInt($("#sel1 :selected").attr("id").substr(1))<parseInt(id.substr(1))){
 				$('#'+id).prop('disabled', false).css("background-color", "white");
@@ -484,7 +498,7 @@ $(document).ready(function(){
 		$("#sel1").children().each(function(n, i) {
 			var id = this.id;
 		
-			console.log("this is the index => " + n);
+			console.log("this is the idx => " + n);
 			console.log("this is the id => " + id);
 			if (parseInt(id.substr(1))<parseInt($("#sel2 :selected").attr("id").substr(1))){
 				$('#'+id).prop('disabled', false).css("background-color", "white");
@@ -505,7 +519,7 @@ $(document).ready(function(){
 		$("#sel1").children().each(function(n, i) {
 			var id = this.id;
 		
-			console.log("this is the index => " + n);
+			console.log("this is the idx => " + n);
 			console.log("this is the id => " + id);
 			if (parseInt(id.substr(1))<parseInt($("#sel2 :selected").attr("id").substr(1))){
 				$('#'+id).prop('disabled', false).css("background-color", "white");
@@ -517,7 +531,7 @@ $(document).ready(function(){
 		$("#sel2").children().each(function(n, i) {
 			var id = this.id;
 		
-			console.log("this is the index => " + n);
+			console.log("this is the idx => " + n);
 			console.log("this is the id => " + id);
 			if (parseInt($("#sel1 :selected").attr("id").substr(1))<parseInt(id.substr(1))){
 				$('#'+id).prop('disabled', false).css("background-color", "white");
@@ -545,13 +559,29 @@ $(document).ready(function(){
 	$("#collapse2").on("show.bs.collapse", function(){
 		$("#hist_sign").removeClass('glyphicon-collapse-down').addClass('glyphicon-collapse-up');
 		});		
+
 	$(window).scroll(function () {
-		if ($(window).scrollTop() > 20 || $(window).scrollTop() > 20) {
-		    $('#inbodyBtn').css("display","block");
+		if ($(window).scrollTop() > 20 && $('.tablink:first').hasClass('active')) {
+		    $('#inbodyBtn').css({
+		    	"display":"block"
+		    	});
 		  } else {
 			$('#inbodyBtn').css("display","none");
 		  }
 	});
+	
+	$('.io').on("click",function(){
+		if($(this).attr("id")=='ii'){
+			location.href = "inbodyInsertf";  
+		}
+		else if($(this).attr("id")=='iu'){
+			location.href = "inbodyDetail?code=U&date_date="+$('#results_date').html()+"&idx="+$("#id_div").html();
+		}
+		else if($(this).attr("id")=='is'){
+			location.href = "inbodySharef";
+		}
+	});
+	
 });
 
 // When the user clicks on the button, scroll to the top of the document
@@ -561,15 +591,14 @@ function topFunction() {
 }
 
 
-function datePick(elmnt, callback){ 
-		console.log("elmnt inner html => " + elmnt.innerHTML);
+function datePick(elmnt, callback, idx){ 
 		document.getElementById("results_date").innerHTML=elmnt.innerHTML;
-		console.log("results_date inner html => " + document.getElementById("results_date").innerHTML);	  
-		callback(); 
+	    document.getElementById("id_div").innerHTML = idx;
+		callback(elmnt.innerHTML,idx); 
 	   } 
 
 function loadPage(){
-
+		console.log("this is load page !")
 		google.charts.load('current', {'packages':['gauge','table','line','corechart','bar']}); 
 		google.charts.setOnLoadCallback(InitialloadGraphs);
 		google.charts.setOnLoadCallback(InitialloadResults)
@@ -577,11 +606,13 @@ function loadPage(){
 
 }
 function reloadPage() {
-		reloadResults();
-
+		reloadResults(document.getElementById("results_date").innerHTML,document.getElementById("id_div").innerHTML);
 	 	reloadGraphs();
 }
-
+function updatePage() {
+	console.log('start updatepage');
+	reloadResults($('#date_u').html(),$('#idx_u').html());
+}
 function InitialloadGraphs() {
 	var data;
 
@@ -594,12 +625,10 @@ function InitialloadGraphs() {
                 var start = "";
                 var end = "";
                 $('#selected_date').html(data[0].date_date.slice(0, -3) + " ~ " + data[data.length-1].date_date.slice(0, -3));
-				console.log("this is length of data => " + data.length)
 				var r1 = [], r2 = [], r3 = [], r4 = [], r5 = [], r6 = [];
 				
                 var idx=0;
                 $.each(data, function (id, vo) {
-                    console.log("this is  id=>" +id+ "/ date => " + vo.date_date);
                     if (idx==0){                 
                     	start += '<option id="s' + idx + '" selected="selected">'+ vo.date_date.slice(0, -3) + '</option>';
 						end +=  '<option id="e' + idx + '">'+ vo.date_date.slice(0, -3) + '</option>'; 
@@ -664,16 +693,13 @@ function reloadGraphs(){
 		},
 		success:function(jsondata){
 			data=jsondata.InbodyVO_List;
-			console.log("this is data I wonder if this is working ??")
             var start = "";
             var end = "";
             $('#selected_date').html(data[0].date_date.slice(0, -3) + " ~ " + data[data.length-1].date_date.slice(0, -3));
-			console.log("this is length of data => " + data.length)
 			var r1 = [], r2 = [], r3 = [], r4 = [], r5 = [], r6 = [];
 			
             var idx=0;
             $.each(data, function (id, vo) {
-                console.log("this is  id=>" +id+ "/ date => " + vo.date_date);
 			  	r1.push([vo.date_date,vo.weight_under,vo.weight_over-vo.weight_under,vo.weight]);
 			  	r2.push([vo.date_date,vo.muscle_mass_under,vo.muscle_mass_over-vo.muscle_mass_under,vo.muscle_mass]);
 			  	r3.push([vo.date_date,vo.fat_mass_under,vo.fat_mass_over-vo.fat_mass_under,vo.fat_mass]);
@@ -719,10 +745,12 @@ function InitialloadResults() {
 			    console.log("first try inside success after ajax => \n" + data.date_date)
                 var result = "";
                 $.each(jsondata.dateList, function (id, pvo) {
-                    result += '<li class="list-group-item"><span onclick="datePick(this,reloadResults)">'+ pvo.date_date + '</span></li>';
+                    result += '<li class="list-group-item"><span id=idx'+pvo.idx+' onclick="datePick(this,reloadResults,'+pvo.idx+')">'+ pvo.date_date +
+                    '</span></li>';
                 });
         		$('#dddd').append(result);
         	    document.getElementById("results_date").innerHTML = data.date_date;
+        	    document.getElementById("id_div").innerHTML = data.idx;
         	    console.log("after ajax => " + document.getElementById("results_date").innerHTML)
         		inbodybarchart(data.weight,data.weight_under,data.weight_over-data.weight_under,'wChartID','wChartID2');
         		inbodybarchart(data.muscle_mass,data.muscle_mass_under,data.muscle_mass_over-data.muscle_mass_under,'mmChartID','mmChartID2');
@@ -731,11 +759,17 @@ function InitialloadResults() {
         		inbodybarchart(data.pbf,data.pbf_under,data.pbf_over-data.pbf_under,'pChartID','pChartID2');
         		inbodybarchart(data.vfl,data.vfl_under,data.vfl_over-data.vfl_under,'vChartID','vChartID2');
         		calcBMR(data.bmr,'bmiID');	 
+        		
+        		if($('#code_u').html()!=''){
+        			callback(updatePage,function(){
+        				document.getElementById("defaultOpen").click();			
+        			});
+        		}
 			}
 		})
 
  	}
-function reloadResults(){
+function reloadResults(date,idx){
 	$('#collapse1').collapse("hide");
 	var data; 
 	if(document.getElementById("results_date").innerHTML.length!=0){
@@ -744,12 +778,16 @@ function reloadResults(){
 		$.ajax({
 			type:"Post",
 			url:"inbodyDetailAjax",
- 			data:{date_date:document.getElementById("results_date").innerHTML},
+ 			data:{
+ 				date_date:date,
+ 				idx:idx
+ 				},
  			success:function(jsondata){
 				data=jsondata.InbodyVO;
 			    console.log(" second try inside success after ajax => \n" + data.date_date)
 			    document.getElementById("results_date").innerHTML = data.date_date;
 			    console.log("after ajax => " + document.getElementById("results_date").innerHTML)
+			    document.getElementById("id_div").innerHTML = data.idx;
 				inbodybarchart(data.weight,data.weight_under,data.weight_over-data.weight_under,'wChartID','wChartID2');
 				inbodybarchart(data.muscle_mass,data.muscle_mass_under,data.muscle_mass_over-data.muscle_mass_under,'mmChartID','mmChartID2');
 				inbodybarchart(data.fat_mass,data.fat_mass_under,data.fat_mass_over-data.fat_mass_under,'fmChartID','fmChartID2');
