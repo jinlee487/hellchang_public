@@ -36,7 +36,7 @@ public class InbodyController {
 		String id = (String) session.getAttribute("logID");
 		vo.setId(id);
 		pvo.setId(id);
-		pvo = service.selectPageList(pvo);zz
+		pvo = service.selectPageList(pvo);
 		System.out.println("how is this null vo => " + vo);
 //		System.out.println("this is pvo =>\n"+pvo.getList().toString());
 		if (direction == null && vo.getidx() == 0) {
@@ -130,7 +130,7 @@ public class InbodyController {
 		mv.addObject("inbodyVO", vo);
 		System.out.println("this is vo afte detail => \n" + vo);
 		if ("U".equals(request.getParameter("code"))) {
-			// 내정보 수정화면으로
+			// �궡�젙蹂� �닔�젙�솕硫댁쑝濡�
 			mv.setViewName("inbody/inbody_updateForm");
 		}
 		return mv;

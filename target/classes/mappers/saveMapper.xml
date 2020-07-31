@@ -12,8 +12,13 @@
   
   <!-- heartData 저장 -->
   <insert id="heartTest">
-    insert into `hellchang_schema_test`.`heart` values 
-	 (#{id}, #{title}, 0);
+	INSERT INTO  hellchang_schema_test.heart(id,title,heart) 
+	SELECT #{id}, #{title}, 0 
+	FROM DUAL 
+	WHERE NOT EXISTS (
+	SELECT *
+	FROM hellchang_schema_test.heart 
+	WHERE id = #{id} and title = #{title});
   </insert>
   
   <delete id="delMyRoutine">
@@ -49,8 +54,13 @@
   select * 
   from (select @rownum:=@rownum+1 as rownum, m.* from `hellchang_schema_test`.`myRoutine` as m, 
   (select @rownum :=0) R order by date desc)sub
+<<<<<<< HEAD
   where rownum >= #{rownum} and shared = 'true'
   group by id,title order by sub.rownum asc limit 9;
+=======
+  where rownum > #{rownum} and shared = 'true'
+  group by id,title order by sub.rownum asc limit 5;
+>>>>>>> refs/remotes/origin/sungho
 	]]>
   </select>
   
@@ -68,10 +78,19 @@
   </select>
   
   <insert id="replyInsert">
+<<<<<<< HEAD
     insert into `hellchang_schema_test`.`reply` values (#{id}, #{title}, #{replyContent}, #{replyId}, DEFAULT);
+=======
+    insert into `hellchang_schema_test`.`reply` values 
+	 (#{id}, #{title}, #{replyContent}, #{replyId}, sysdate());
+>>>>>>> refs/remotes/origin/sungho
   </insert> 
   
   <select id="replyResult" resultType="vo.ReplyVO">
+<<<<<<< HEAD
   	select * from hellchang_schema_test.reply where id = #{id} and title = #{title} order by date desc limit 1  
+=======
+  	select * from hellchang_schema_test.reply where id = #{id} and title = #{title} order by date desc limit 1;
+>>>>>>> refs/remotes/origin/sungho
   </select>
  </mapper>
