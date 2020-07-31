@@ -37,7 +37,12 @@ public class InbodyController {
 		vo.setId(id);
 		pvo.setId(id);
 		pvo = service.selectPageList(pvo);
-		System.out.println("how is this null vo => " + vo);
+		if (pvo.getList().isEmpty()) {
+			mv.addObject("check", "no_history");
+			mv.setViewName("jsonView");
+			return mv;
+		}
+//		System.out.println("how is this null vo => " + vo);
 //		System.out.println("this is pvo =>\n"+pvo.getList().toString());
 		if (direction == null && vo.getidx() == 0) {
 			vo.setidx(pvo.getList().get((pvo.getList().size() - 1)).getidx());
@@ -103,8 +108,13 @@ public class InbodyController {
 		String id = (String) session.getAttribute("logID");
 //		System.out.println("how is this null vo => " + pvo);
 		pvo.setId(id);
-
 		pvo = service.selectGraphList(pvo);
+		if (pvo.getList().isEmpty()) {
+			mv.addObject("check", "no_history");
+			mv.setViewName("jsonView");
+			return mv;
+		}
+		
 		mv.addObject("InbodyVO_List", pvo.getList()); 
 		/*
 		 * for (InbodyVO a : pvo.getList()) { System.out.println("this is a => " + a);
@@ -130,7 +140,7 @@ public class InbodyController {
 		mv.addObject("inbodyVO", vo);
 		System.out.println("this is vo afte detail => \n" + vo);
 		if ("U".equals(request.getParameter("code"))) {
-			// �궡�젙蹂� �닔�젙�솕硫댁쑝濡�
+			// 내정보 수정화면으로
 			mv.setViewName("inbody/inbody_updateForm");
 		}
 		return mv;
