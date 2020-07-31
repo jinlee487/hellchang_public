@@ -134,7 +134,7 @@ textarea{
 }
 </style>
 <script type="text/javascript">
-var logID = "<%=session.getAttribute("logID") %>"
+var logID = "<%=session.getAttribute("logID") %>";
 console.log("session : "+logID);
 $(function(){
 	var cnt = 0;
@@ -145,21 +145,21 @@ $(function(){
 		type:'Get',
 		dataType : "json",
 		url:'blogTest',
+		
 		success:function(data){
 			var nowID = "";
 			var nowTitle = "";
 			var num = data.num;
-			console.log(num);
 			/* 한페이지당 blog 개수 j  */
 			for(var j=0; j<5; j++){
 				var lastNum = 0;
-				if(cnt == 0){jsonData = data.forName0; heartCnt = data.heart0}
-				else if(cnt == 1){jsonData = data.forName1; heartCnt = data.heart1}
-				else if(cnt == 2){jsonData = data.forName2; heartCnt = data.heart2}
-				else if(cnt == 3){jsonData = data.forName3; heartCnt = data.heart3}
-				else if(cnt == 4){jsonData = data.forName4; heartCnt = data.heart4}
-				lastNum = Object.keys(jsonData).length;
+				if(cnt == 0){jsonData = data.forName0; heartCnt = data.heart0; replyCnt = data.reply0}
+				else if(cnt == 1){jsonData = data.forName1; heartCnt = data.heart1; replyCnt = data.reply1}
+				else if(cnt == 2){jsonData = data.forName2; heartCnt = data.heart2; replyCnt = data.reply2}
+				else if(cnt == 3){jsonData = data.forName3; heartCnt = data.heart3; replyCnt = data.reply3}
+				else if(cnt == 4){jsonData = data.forName4; heartCnt = data.heart4; replyCnt = data.reply4}
 				
+				lastNum = Object.keys(jsonData).length;  /* title 안에 있는 운동 종목의 개수  */
 				var appendT = "";
 				/* 본문 출력 i  */
 				appendT += "<table class = 'table'>"
@@ -178,15 +178,17 @@ $(function(){
 					nowTitle = jsonData[i].title ;     /* 현재 출력하는 피드의 이름 */
 					nowID = jsonData[i].id;           /* 현재 출력하는 피드의 주인 */
 					replyTitle = jsonData[i].title ; 
+					
 					var replyRow = jsonData[i].title;
 					rowcnt ++;
-					console.log("row count 어따씀 ? " + rowcnt);
 				} // for_iMb
-				appendT += "<tr><td colspan='5'><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span>"
-				appendT += "<span id = 'cnt"+nowTitle+"'></span><br><span class = 'reply " + nowID +"' id = '"+replyTitle+"'></td></tr>"
-				appendT += "<tr><td colspan='5'><form action='replyInsert'><textarea style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea>"
-				appendT += "<input type='text' name="+" value='"+ nowID +"' hidden><input type='text' value='"+ nowTitle +"' hidden>"
-				appendT += "<button type='submit' class='sendR'>게시</button></form></td></tr></table>"
+                appendT += "<tr><td colspan='5'><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span></td></tr>"
+				appendT += "<tr><td style='text-align: left;' colspan='5'><span id = 'cnt"+nowTitle+"'>"+replyCnt+"</span > <span class = 'reply " + nowID +"' id = 'c"+replyTitle+"'><span></td></tr>"
+				
+				appendT += "<tr><td colspan='5'><textarea id='r"+nowTitle+"' name='replyContent' style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea>"
+				
+				appendT += "<input type='text' name='id' value='"+ nowID +"' hidden><input type='text' name='title' value='"+ nowTitle +"' hidden><input type='text' name='replyId' value='"+ logID +"' hidden>"
+				appendT += "<button type='submit' id='"+nowID+"' class='sendR "+nowTitle+"'>게시</button></form></td></tr></table>"
 				$('.blogForm').append(appendT)
 				cnt ++;
 			} // for_j 
@@ -214,7 +216,6 @@ $(window).scroll(function(){
 			},
 			success:function(data){
 				var num = data.num;
-				console.log("내가 몇번째까지 출력함 ?"+num);
 				/* 한페이지당 blog 개수  */
 				for(var j=0; j<num; j++){
 					var lastNum = 0;
@@ -242,14 +243,15 @@ $(window).scroll(function(){
 						nowID = jsonData[i].id;
 						rowcnt ++;
 					} // for_i
-					appendT += "<tr><td colspan='5'><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span>"
-					appendT += "<span id = 'cnt"+nowTitle+"'></span><br><span class = 'reply " + nowID +"' id = '"+replyTitle+"'></td></tr>"
+					appendT += "<tr><td colspan='5'><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span></td></tr>"
+					
+					appendT += "<tr><td colspan='5'><span id = 'cnt"+nowTitle+"'></span><span class = 'reply " + nowID +"' id = '"+replyTitle+"'></td></tr>"
+					
 					appendT += "<tr><td colspan='5'><form action='replyInsert'><textarea class='repl' style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea>"
 					appendT += "<input type='text' value='"+ nowID +"' hidden><input type='text' value='"+ nowTitle +"' hidden>"
 					appendT += "<button type='submit' id='"+nowID+"' class='sendR "+nowTitle+"'>게시</button></form></td></tr></table>"
 					$('.blogForm').append(appendT) 	
 					cnt ++;
-					console.log("row count 어따씀 ? " + rowcnt);
 				} // for_j 
 			},
 			error:function(){
@@ -276,7 +278,9 @@ $(document).on("click",".heart", function(){
 		success:function(data){
 			var cnt = data.countHeartTest
 			$('#'+title).empty();
-			$('#cnt'+title).html("<img src = 'resources/image/heart.png'>"+cnt);
+			console.log(title);
+			$('#'+title).html("<img src = 'resources/image/heart.png'>"+cnt);
+			console.log('#cnt'+title);
 		}, // success
 		error:function(){
 			alert(rowcnt);
@@ -285,16 +289,18 @@ $(document).on("click",".heart", function(){
 	}) // ajax
 }) // heart_click 이벤트
 
-/*  $('.sendR').on("click",function(){
+$(document).on("click",".sendR", function(){
 
-    var id = logID; 				//댓글을 입력하려는 본인 
-	var replyId =   				//피드의 주인
-	var title =  // 피드의 제목 
+    var id = $(this).attr('id');  					// 피드의 주인 
+   	var title = $(this).attr('class');				// 피드의 제목
+    title = title.substring(6);		
+    var replyId = logID;  							// session 아이디
+	var content = $('#r'+title).val();				// 댓글 내용
 	
-    console.log(title);
-    console.log(id);
-    console.log(content);
-    console.log(replyId); 
+    console.log( 'title : 	 ' + title);
+    console.log('id : ' +id);
+    console.log('content : '+content);
+    console.log('replyId : 	'+replyId); 
  
 	$.ajax({
 		type: "post",
@@ -302,10 +308,17 @@ $(document).on("click",".heart", function(){
 		data:{
 			id : id,
 			title : title,
+			content : content,
 			replyId : replyId
 		},
-		success: function(){
-			
+		success: function(data){
+			console.log("data.replyTest : " + data.replyTest);
+			console.log("1231313"+cnt);
+			$('#cnt' + title).empty();
+			$('#r'+title).val('');
+			$('#cnt'+title).css('font-weight', 'bold');
+			$('#cnt' + title).html(data.replyTest);
+			//$('#c'+ title).html(cnt.replyContent);
 		},
 		error: function(){
 			

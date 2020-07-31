@@ -93,7 +93,7 @@ public class SaveController {
 
 	// 처음 blog에서 출력되는  5개
 	@RequestMapping(value = "/blogTest")
-	public ModelAndView blogTest(HttpServletRequest request, ModelAndView mv, SaveVO vo, HeartVO hvo) {
+	public ModelAndView blogTest(HttpServletRequest request, ModelAndView mv, SaveVO vo, HeartVO hvo, ReplyVO rvo) {
 		int cnt = 0;
 		SaveVO[] array = {}; 
 		List<SaveVO> list = service.blogTest();
@@ -111,6 +111,28 @@ public class SaveController {
 			System.out.println(hvo.getHeart());
 			String HTest = "heart"+i;
 			mv.addObject(HTest, hvo.getHeart());
+			
+			rvo.setId(array[i].getId());
+			rvo.setTitle(array[i].getTitle());
+			
+			System.out.println("before rvoe : " + rvo);
+			rvo = service.replyResult(rvo);
+			System.out.println("after rvo : "+ rvo);
+			if( rvo.getReplyContent() != null) {            //rvo.getReplyContent
+				System.out.println("여기로 안들어옴 ㅡㅡ");
+				System.out.println("check rvo  : "  + rvo);
+				
+				String RTest = "reply"+i;
+				System.out.println("after rvo  : "  + rvo);
+				mv.addObject(RTest, rvo.getReplyContent());
+			}
+//			else {
+//				rvo.setReplyContent("dfafdsaf");
+//				String RTest = "reply"+i;
+//				System.out.println("after rvo  : "  + rvo);
+//				mv.addObject(RTest, rvo.getReplyContent());
+//			}
+			
 			// id와 title 별로 저장된 heart 출력
 			List<SaveVO> test = service.findTest(vo);
 			System.out.println("findTest : " + test);
@@ -172,6 +194,7 @@ public class SaveController {
 		return mv;
 	}//
 	
+	
 	@RequestMapping(value = "/heartUp")
 	public ModelAndView heartUp(HttpServletRequest request, ModelAndView mv, SaveVO vo, HeartVO hvo){
 		hvo.setTitle(request.getParameter("title"));
@@ -196,6 +219,8 @@ public class SaveController {
 		String replyId = request.getParameter("replyId");
 		String replyContent = request.getParameter("content");
 		
+		ReplyVO array[] = {};
+		
 		rvo.setId(id);
 		rvo.setTitle(title);
 		rvo.setReplyId(replyId);
@@ -204,10 +229,10 @@ public class SaveController {
 		
 		if (service.replyInsert(rvo) > 0 ) {			
 			System.out.println("success rvo : " + rvo);
+			rvo = service.replyResult(rvo); 
+			System.out.println(rvo.getReplyContent());
 			
-			List<ReplyVO> list = service.replyResult(rvo); 
-			System.out.println(list);
-			mv.addObject("replyTest", list);
+			mv.addObject("replyTest", rvo.getReplyContent());
 		} 
 		mv.setViewName("jsonView");
 		return mv;
