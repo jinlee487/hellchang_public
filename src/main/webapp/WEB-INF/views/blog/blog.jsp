@@ -185,8 +185,6 @@ $(function(){
 				
 				var nowName = nowID.substring(0,nowID.lastIndexOf("@"));
 				var nowReplyT = nowName+nowTitle;
-				console.log(nowReply)
-				
 				
 				appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowTitle+"'></span></td>"
 				if(nowReply.replyId == null && nowReply.replyContent == null ){
@@ -257,8 +255,6 @@ $(window).scroll(function(){
 					
 					var nowName = nowID.substring(0,nowID.lastIndexOf("@"));
 					var nowReplyT = nowName+nowTitle;
-					console.log(nowReply)
-		
 					
 					appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowTitle+"'></span></td>"
 					if(nowReply.replyId == null && nowReply.replyContent == null ){
