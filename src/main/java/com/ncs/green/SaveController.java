@@ -118,10 +118,11 @@ public class SaveController {
 			System.out.println("before rvoe : " + rvo);
 			rvo = service.replyResult(rvo);
 			System.out.println("after rvo : "+ rvo);
-			if( rvo.getReplyContent() != null) {            //rvo.getReplyContent
+			
+			if( rvo != null) {            //rvo.getReplyContent
 				System.out.println("여기로 안들어옴 ㅡㅡ");
 				System.out.println("check rvo  : "  + rvo);
-				
+
 				String RTest = "reply"+i;
 				System.out.println("after rvo  : "  + rvo);
 				mv.addObject(RTest, rvo.getReplyContent());
