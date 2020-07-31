@@ -326,9 +326,9 @@ $(document).on("click",".sendR", function(){
 			var replyContent = data.replyContent;
 			var replyId = data.replyId;
 			var nowReplyT = td;
-			$('#cnt'+td).empty();
+// 			$('#cnt'+td).empty();
 			$('#'+td).html();
-			$('#cnt'+td).html("<td colspan='4' id = 'cnt"+nowReplyT+"'>"+replyId +" : "+ replyContent+"</td>")
+			$('#cnt'+td).html(replyId +" : "+ replyContent)
 		}, // success
 		error:function(){
 			
