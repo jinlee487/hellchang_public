@@ -47,6 +47,7 @@ public class MemberController {
 		System.out.println(code);
 		if(code == 44) {
 			System.out.println("들어옴!!!!!!!!!!!");
+			vo.setImage_file(image_file);
 			file2="resources/uploadImage/emptyImage.png";
 			vo.setImage_path(file2);
 		}else {

@@ -14,8 +14,8 @@
   <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
-  <link rel="stylesheet" type="text/css" href="resources/jqLib/topBar.css">
+  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position.css">
+  
   <style>
   	@media (min-width: 768px){
 	.col-sm-4 {
@@ -144,7 +144,7 @@
         <p><a href="myProfile">My Profile</a></p>
         <a type="button" data-toggle="modal" data-target="#myModal">
         <button class="bEffect" title="프로필 사진 바꾸기">
-        	<img src="${mem.image_path}" class="img-circle" height="100" width="100" alt="프로필 사진 바꾸기">
+        	<img id="aa" src="${mem.image_path}" class="img-circle" height="100" width="100" alt="프로필 사진 바꾸기">
         </button>
       </div>
 		<ul class="nav nav-pills nav-stacked">
@@ -266,6 +266,7 @@
 			<span class="all_r footfont">All Rights Reserved.</span>
 		</address>
 </div>
+
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ modal ver ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ --> 
   <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
@@ -303,13 +304,16 @@ $(function(){
 			type: "post",
 			url: "imgUpdate",
 			data: {
-				code : 44,
+				code : 44
 			},
-			success: {
-				
+			success: function(){
+				window.location.href="prof"
 			}
 		});// ajax
 	}); // file del
+	$('.can').on('click',function(){
+		$('#myModal').modal('hide');
+	});
 });//ready
 </script>
 </body>
