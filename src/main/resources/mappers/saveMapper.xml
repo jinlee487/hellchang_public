@@ -12,8 +12,13 @@
   
   <!-- heartData 저장 -->
   <insert id="heartTest">
-    insert into `hellchang_schema_test`.`heart` values 
-	 (#{id}, #{title}, 0);
+	INSERT INTO  hellchang_schema_test.heart(id,title,heart) 
+	SELECT #{id}, #{title}, 0 
+	FROM DUAL 
+	WHERE NOT EXISTS (
+	SELECT *
+	FROM hellchang_schema_test.heart 
+	WHERE id = #{id} and title = #{title});
   </insert>
   
   <delete id="delMyRoutine">
@@ -21,7 +26,7 @@
   </delete>  
   
   <select id="selectOne" resultType="vo.SaveVO">
-  	select * from `hellchang_schema_test`.`myRoutine` where id=#{id} and date = #{date}
+  	select * from `hellchang_schema_test`.`myRoutine` where id=#{id} and title=#{title}
   </select> 
   
   <select id="selectList" resultType="vo.SaveVO">

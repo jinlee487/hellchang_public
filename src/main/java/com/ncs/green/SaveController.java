@@ -204,10 +204,7 @@ public class SaveController {
 		
 		if (service.replyInsert(rvo) > 0 ) {			
 			System.out.println("success rvo : " + rvo);
-			System.out.println(rvo.getId());
-			System.out.println(rvo.getTitle());
-			rvo.setId(rvo.getId());
-			rvo.setTitle(rvo.getTitle());
+			
 			List<ReplyVO> list = service.replyResult(rvo); 
 			System.out.println(list);
 			mv.addObject("replyTest", list);
@@ -215,4 +212,5 @@ public class SaveController {
 		mv.setViewName("jsonView");
 		return mv;
 	}// reply
-}
+	
+}//class

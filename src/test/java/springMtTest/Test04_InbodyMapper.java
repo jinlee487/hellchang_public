@@ -91,7 +91,6 @@ public class Test04_InbodyMapper {
 
 			vo.setDate_date(d);
 			vo.setDate_string(d);
-			vo.setSeq(i);
 			vo.setWeight(85-i);
 			vo.setWeight_under(59.2);
 			vo.setWeight_over(80.2);

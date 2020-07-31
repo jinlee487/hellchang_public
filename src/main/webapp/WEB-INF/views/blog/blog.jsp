@@ -134,7 +134,7 @@ textarea{
 }
 </style>
 <script type="text/javascript">
-var logID = "<%=session.getAttribute("logID") %>";
+var logID = "<%=session.getAttribute("logID") %>"
 console.log("session : "+logID);
 $(function(){
 	var cnt = 0;
@@ -285,13 +285,11 @@ $(document).on("click",".heart", function(){
 	}) // ajax
 }) // heart_click 이벤트
 
-$(document).on("click",".sendR", function(){
+/*  $('.sendR').on("click",function(){
 
-    var id = $(this).attr('id');  					// 피드의 주인 
-   	var title = $(this).attr('class');
-    title = title.substring(6);		
-    var replyId = logID;  							// session 아이디
-	var content = $('.repl').val();				// 댓글 내용
+    var id = logID; 				//댓글을 입력하려는 본인 
+	var replyId =   				//피드의 주인
+	var title =  // 피드의 제목 
 	
     console.log(title);
     console.log(id);
@@ -303,7 +301,6 @@ $(document).on("click",".sendR", function(){
 		data:{
 			id : id,
 			title : title,
-			content : content,
 			replyId : replyId
 		},
 		success: function(){

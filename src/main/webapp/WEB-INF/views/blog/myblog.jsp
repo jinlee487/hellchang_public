@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,89 +17,11 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+  <script src="resources/jqLib/myblog.js"></script>
 <script type="text/javascript">
-$(function(){
-	var cnt = 0;
-	var last = 0;
-	var rowcnt = 0;
-	$.ajax({
-		type:'Get',
-		dataType : "json",
-		url:'blogTest',
-		
-		success:function(data){
-			var nowID = "";
-			var nowTitle = "";
-			var num = data.num;
-			console.log(num);
-			for(var j=0; j<5; j++){
-				var lastNum = 0;
-				if(cnt == 0){jsonData = data.forName0; heartCnt = data.heart0}
-				else if(cnt == 1){jsonData = data.forName1; heartCnt = data.heart1}
-				else if(cnt == 2){jsonData = data.forName2; heartCnt = data.heart2}
-				else if(cnt == 3){jsonData = data.forName3; heartCnt = data.heart3}
-				else if(cnt == 4){jsonData = data.forName4; heartCnt = data.heart4}
-				
-				lastNum = Object.keys(jsonData).length;
-				var appendT = "";
-				var appendH = "";
-				appendT += "<table class = 'table'>"
-				rowcnt = 0;
-				for(var i = 0; i<Object.keys(jsonData).length; i++){		
-					if(i==0){
-						appendT += '<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><img src="resources/image/lee.jpg" alt="이준호" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td><td colspan ="3"></td></tr>'
-						appendT += '<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>'
-						appendT += "<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>"							
-					}else if(i!=0 || i!=lastNum){
-						appendT += "<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>"
-					}else if(i==lastNum){
-						appendT += "<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>"
-						
-					}
-					
-					nowTitle = jsonData[i].title ;
-					nowID = jsonData[i].id;
-					rowcnt ++;
-					appendT += "</table>"
-					$('.blogForm').append(appendT)
-				} // for_i
-				appendH+="<table>"
-				appendH+= "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowTitle+"'></span></td></tr>"
-				appendH += "</table>"
-				$('.blogForm2').append(appendH)
-				cnt ++;
-			} // for_j 
-		},
-		error:function(){
-			
-		}
-	}); // ajax 
+var logID = "<%=session.getAttribute("logID") %>"
+console.log("session : "+logID);
 
-$(document).on("click",".heart", function(){
-    var title = $(this).attr("id");
-    var id = $(this).attr("class");
-    id = id.substring(6);
-    console.log(id);
-    $.ajax({
-		type:'Get',
-		url : "heartUp",
-		data:{
-			id : id,
-			title: title,
-		},
-		success:function(data){
-			var cnt = data.countHeartTest
-			$('#'+title).empty();
-			$('#cnt'+title).html("<img src = 'resources/image/heart.png'>"+cnt);
-		}, // success
-		error:function(){
-			alert(rowcnt);
-			alert("좋아요 오류 발생\n 지금 row가 여러개인 타이틀 좋아요 오류 수정중")
-		}
-	}) // ajax
-}) // click 이벤트
-}) // ready
 </script>
 </head>
 <body>
@@ -166,23 +89,6 @@ $(document).on("click",".heart", function(){
     </button>
     </div>
 		</div>
-		<ul class="ul">
-		<li class="li"  >
-		<span>
-			게시물&nbsp;<span>92</span>&nbsp;&nbsp;&nbsp;
-		</span>
-		</li>
-		<li class="li" >
-		<span>
-			팔로워&nbsp;<span>177</span>&nbsp;&nbsp;&nbsp;
-		</span>
-		</li>
-		<li class="li" >
-		<span>
-			팔로잉&nbsp;<span>322</span>&nbsp;&nbsp;&nbsp;
-		</span>
-		</li>
-		</ul>
 		<div>
 			<h1 class="h1">${logName}</h1><br>
 			<span>간단 소개</span>
@@ -248,79 +154,9 @@ $(document).on("click",".heart", function(){
 
 </div>
 </div>
-	<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-      <!-- Modal content-->	
-      <div class="modal-content">
-        <div class="modal-header">
-        <!--   <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <img src="resources/image/kang.jpg" alt="강경원" width="60px" height="60px" class="myPhoto" style="float: left; border-radius: 50%">
-          <table>
-					<tbody><tr><td style="font-size: 30px"><a>kang1234</a></td></tr>
-					<tr><td id="myTitle">분할 Title이름</td></tr>
-					</tbody></table> -->
-        <!--   <h4 class="modal-title"> List 저장하기 </h4> -->
-        </div>
-        <div class="modal-body" style="display: inline-flex; ">
-       <div align="left" class = "blogForm"><br><br>
-		</div> 
-		  
-		   <div class="modal-body-text" style="width : 350px; margin-left: 50px; margin-top: 50px;">
-		    <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <img src="resources/image/kang.jpg" alt="강경원" width="30px" height="30px" class="myPhoto1" style="float: left; border-radius: 50%">
-          <table>
-					<tbody><tr><td style="font-size: 15px"><a>${logName}</a></td></tr>
-					<tr><td id="myTitle">분할 Title이름</td></tr>
-					</tbody></table><hr>
-		 
-		 
-		 
-		  <div class="coment">
-		<img src="resources/image/lee.jpg" alt="lee" width="30px" height="30px" class="myPhoto1" style="float: left; border-radius: 50%">
-          <table>
-					<tbody><tr><td style="font-size: 15px"><a>lee</a></td></tr>
-					<tr><td id="myTitle">댓글 내용내용</td></tr>
-					</tbody></table><br>
-		 <img src="resources/image/kang.jpg" alt="강경원" width="30px" height="30px" class="myPhoto1" style="float: left; border-radius: 50%">
-          <table>
-					<tbody><tr><td style="font-size: 15px"><a>kang1234</a></td></tr>
-					<tr><td id="myTitle">댓글 내용내용</td></tr>
-					</tbody></table><br>
-		<img src="resources/image/hwang.jpg" alt="hwang" width="30px" height="30px" class="myPhoto1" style="float: left; border-radius: 50%">
-          <table>
-					<tbody><tr><td style="font-size: 15px"><a>hwang</a></td></tr>
-					<tr><td id="myTitle">댓글 내용내용</td></tr>
-					</tbody></table><br>		
-		  </div>
-		<div align="left" class="blogForm2"></div>
-          <section>
-          	<div class="">
-          		<form method="post">
-          			<textarea aria-label="댓글달기" placeholder="댓글달기"></textarea>
-          			<button disabled="disabled" type="submit">게시</button>
-          		</form>
-          	</div>
-          </section>
-          </div>
-          
-        </div>
-        
-        
-        <div class="modal-footer">
-        <address>
-			<em><a href="home" target="_blank" class="logo footfont"><span class="blind">HellChang</span></a></em>
-			<em class="copy footfont">Copyright</em>
-			<em class="u_cri footfont">©</em>
-			<a href="home" target="_blank" class="u_cra footfont">HellChang Corp.</a>
-			<span class="all_r footfont">All Rights Reserved.</span>
-		</address>
-          </div>
-        </div>
-      </div>
-      
-    </div> <!-- 모달종료 -->
-    
-    	<div class="modal fade" id="myModal2" role="dialog">
+
+<!-- 모달시작 -->
+<div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->	
       <div class="modal-content">
@@ -365,6 +201,80 @@ $(document).on("click",".heart", function(){
 					</tbody></table><br>		
 		  </div>
 		<div align="center" class="blogForm2"></div>
+          <section>
+          	<div class="">
+          		<form method="post">
+          			<textarea aria-label="댓글달기" placeholder="댓글달기"></textarea>
+          			<button disabled="disabled" type="submit">게시</button>
+          		</form>
+          	</div>
+          </section>
+          </div>
+          
+        </div>
+        
+        
+        <div class="modal-footer">
+        <address>
+			<em><a href="home" target="_blank" class="logo footfont"><span class="blind">HellChang</span></a></em>
+			<em class="copy footfont">Copyright</em>
+			<em class="u_cri footfont">©</em>
+			<a href="home" target="_blank" class="u_cra footfont">HellChang Corp.</a>
+			<span class="all_r footfont">All Rights Reserved.</span>
+		</address>
+          </div>
+        </div>
+      </div>
+      
+    </div> <!-- 모달종료 -->
+
+    
+    
+    	<div class="modal fade" id="myModal2" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->	
+      <div class="modal-content">
+        <div class="modal-header">
+        <!--   <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <img src="resources/image/kang.jpg" alt="강경원" width="60px" height="60px" class="myPhoto" style="float: left; border-radius: 50%">
+          <table>
+					<tbody><tr><td style="font-size: 30px"><a>kang1234</a></td></tr>
+					<tr><td id="myTitle">분할 Title이름</td></tr>
+					</tbody></table> -->
+        <!--   <h4 class="modal-title"> List 저장하기 </h4> -->
+        </div>
+        <div class="modal-body" style="display: inline-flex; ">
+       <div align="center" class = "blogForm3"><br><br>
+		</div>
+		  
+		   <div class="modal-body-text" style="width : 350px; margin-left: 50px; margin-top: 50px;">
+		    <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <img src="resources/image/kang.jpg" alt="강경원" width="30px" height="30px" class="myPhoto1" style="float: left; border-radius: 50%">
+          <table>
+					<tbody><tr><td style="font-size: 15px"><a>${logName}</a></td></tr>
+					<tr><td id="myTitle">분할 Title이름</td></tr>
+					</tbody></table><hr>
+		 
+		 
+		 
+		  <div class="coment">
+		<img src="resources/image/lee.jpg" alt="lee" width="30px" height="30px" class="myPhoto1" style="float: left; border-radius: 50%">
+          <table>
+					<tbody><tr><td style="font-size: 15px"><a>lee</a></td></tr>
+					<tr><td id="myTitle">댓글 내용내용내용</td></tr>
+					</tbody></table><br>
+		 <img src="resources/image/kang.jpg" alt="강경원" width="30px" height="30px" class="myPhoto1" style="float: left; border-radius: 50%">
+          <table>
+					<tbody><tr><td style="font-size: 15px"><a>kang1234</a></td></tr>
+					<tr><td id="myTitle">댓글 내용내용내용</td></tr>
+					</tbody></table><br>
+		<img src="resources/image/hwang.jpg" alt="hwang" width="30px" height="30px" class="myPhoto1" style="float: left; border-radius: 50%">
+          <table>
+					<tbody><tr><td style="font-size: 15px"><a>hwang</a></td></tr>
+					<tr><td id="myTitle">댓글 내용내용내용</td></tr>
+					</tbody></table><br>		
+		  </div>
+		<div align="center" class="blogForm4"></div>
           <section>
           	<div class="">
           		<form method="post">
@@ -406,7 +316,7 @@ $(document).on("click",".heart", function(){
         <!--   <h4 class="modal-title"> List 저장하기 </h4> -->
         </div>
         <div class="modal-body" style="display: inline-flex; ">
-       <div align="center" class = "blogForm"><br><br>
+       <div align="center" class = "blogForm5"><br><br>
 		</div>
 		  
 		   <div class="modal-body-text" style="width : 350px; margin-left: 50px; margin-top: 50px;">
@@ -436,7 +346,7 @@ $(document).on("click",".heart", function(){
 					<tr><td id="myTitle">댓글 내용내용내용</td></tr>
 					</tbody></table><br>		
 		  </div>
-		<div align="center" class="blogForm2"></div>
+		<div align="center" class="blogForm6"></div>
           <section>
           	<div class="">
           		<form method="post">
@@ -478,7 +388,7 @@ $(document).on("click",".heart", function(){
         <!--   <h4 class="modal-title"> List 저장하기 </h4> -->
         </div>
         <div class="modal-body" style="display: inline-flex; ">
-       <div align="center" class = "blogForm"><br><br>
+       <div align="center" class = "blogForm7"><br><br>
 		</div>
 		  
 		   <div class="modal-body-text" style="width : 350px; margin-left: 50px; margin-top: 50px;">
@@ -508,7 +418,7 @@ $(document).on("click",".heart", function(){
 					<tr><td id="myTitle">댓글 내용내용내용</td></tr>
 					</tbody></table><br>		
 		  </div>
-		<div align="center" class="blogForm2"></div>
+		<div align="center" class="blogForm8"></div>
           <section>
           	<div class="">
           		<form method="post">
@@ -550,7 +460,7 @@ $(document).on("click",".heart", function(){
         <!--   <h4 class="modal-title"> List 저장하기 </h4> -->
         </div>
         <div class="modal-body" style="display: inline-flex; ">
-       <div align="center" class = "blogForm"><br><br>
+       <div align="center" class = "blogForm9"><br><br>
 		</div>
 		  
 		   <div class="modal-body-text" style="width : 350px; margin-left: 50px; margin-top: 50px;">
@@ -580,7 +490,7 @@ $(document).on("click",".heart", function(){
 					<tr><td id="myTitle">댓글 내용내용내용</td></tr>
 					</tbody></table><br>		
 		  </div>
-		<div align="center" class="blogForm2"></div>
+		<div align="center" class="blogForm10"></div>
           <section>
           	<div class="">
           		<form method="post">
@@ -608,7 +518,7 @@ $(document).on("click",".heart", function(){
       
     </div> <!-- 모달종료 -->
     
-    	<div class="modal fade" id="myModal6" role="dialog">
+    	<div class="modal fade" id="myModal11" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->	
       <div class="modal-content">
@@ -652,7 +562,7 @@ $(document).on("click",".heart", function(){
 					<tr><td id="myTitle">댓글 내용내용내용</td></tr>
 					</tbody></table><br>		
 		  </div>
-		<div align="center" class="blogForm2"></div>
+		<div align="center" class="blogForm12"></div>
           <section>
           	<div class="">
           		<form method="post">
@@ -680,7 +590,7 @@ $(document).on("click",".heart", function(){
       
     </div> <!-- 모달종료 -->
     
-    	<div class="modal fade" id="myModal7" role="dialog">
+    	<div class="modal fade" id="myModal13" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->	
       <div class="modal-content">
@@ -724,7 +634,7 @@ $(document).on("click",".heart", function(){
 					<tr><td id="myTitle">댓글 내용내용내용</td></tr>
 					</tbody></table><br>		
 		  </div>
-		<div align="center" class="blogForm2"></div>
+		<div align="center" class="blogForm14"></div>
           <section>
           	<div class="">
           		<form method="post">
@@ -752,7 +662,7 @@ $(document).on("click",".heart", function(){
       
     </div> <!-- 모달종료 -->
     
-    	<div class="modal fade" id="myModal8" role="dialog">
+    	<div class="modal fade" id="myModal15" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->	
       <div class="modal-content">
@@ -796,7 +706,7 @@ $(document).on("click",".heart", function(){
 					<tr><td id="myTitle">댓글 내용내용내용</td></tr>
 					</tbody></table><br>		
 		  </div>
-		<div align="center" class="blogForm2"></div>
+		<div align="center" class="blogForm16"></div>
           <section>
           	<div class="">
           		<form method="post">
@@ -824,7 +734,7 @@ $(document).on("click",".heart", function(){
       
     </div> <!-- 모달종료 -->
     
-    	<div class="modal fade" id="myModal9" role="dialog">
+    	<div class="modal fade" id="myModal17" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->	
       <div class="modal-content">
@@ -868,7 +778,7 @@ $(document).on("click",".heart", function(){
 					<tr><td id="myTitle">댓글 내용내용내용</td></tr>
 					</tbody></table><br>		
 		  </div>
-		<div align="center" class="blogForm2"></div>
+		<div align="center" class="blogForm18"></div>
           <section>
           	<div class="">
           		<form method="post">
