@@ -1,7 +1,5 @@
 package com.ncs.green;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -12,12 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import service.SService;
 import vo.HeartVO;
-import vo.MemberVO;
 import vo.ReplyVO;
 import vo.SaveVO;
 
@@ -226,5 +222,53 @@ public class SaveController {
 		mv.setViewName("jsonView");
 		return mv;
 	}// reply
+	
+	@RequestMapping(value = "Detail")
+	public ModelAndView detail(HttpServletRequest request,ModelAndView mv, SaveVO vo, HeartVO hvo, ReplyVO rvo ) {
+		int cnt = 0;
+		SaveVO[] array = {};
+		List<SaveVO> list = service.selectTList();
+		array = list.toArray(new SaveVO[list.size()]);
+		for(int i=0; i<array.length; i++) {
+			vo.setId(array[i].getId());
+			vo.setTitle(array[i].getTitle());
+			hvo.setId(array[i].getId());
+			hvo.setTitle(array[i].getTitle());
+			hvo = service.heartSelect(hvo);
+			String HTest = "heart"+i;
+			mv.addObject(HTest,hvo.getHeart());
+			List<SaveVO> test = service.findTest(vo);
+			String IDTest = "forName"+i;
+			mv.addObject(IDTest, test);
+			String Reply = "Reply"+i;
+			rvo.setId(array[i].getId());
+			rvo.setTitle(array[i].getTitle());
+			if(service.replyResult(rvo) == null) {
+				mv.addObject(Reply, " ");
+				System.out.println("rvo T1 : " + rvo);
+			}else{
+				rvo = service.replyResult(rvo);
+				mv.addObject(Reply, rvo);
+				System.out.println("rvo T2 : " + rvo);
+			}
+			rownum = array[i].getRownum();
+			cnt ++;
+			mv.addObject("num", cnt);
+			mv.setViewName("jsonView");
+		}
+		return mv;
+	}
+	@RequestMapping(value="blist")
+	public ModelAndView blist(ModelAndView mv) {
+		List<SaveVO> list = service.selectTList();
+		
+		if(list !=null) {
+			mv.addObject("Banana",list);
+		}else {
+			mv.addObject("message","error");
+		}
+		mv.setViewName("blog/myblog");
+		return mv;
+	}
 	
 }//class

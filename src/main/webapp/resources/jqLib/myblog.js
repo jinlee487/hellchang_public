@@ -7,23 +7,22 @@ $(function(){
 		type:'Get',
 		dataType : "json",
 		url:'blogTest',
-		
 		success:function(data){
 			var nowID = "";
 			var nowTitle = "";
 			var num = data.num;
 			console.log(num);
+			/* 한페이지당 blog 개수 j  */
 			for(var j=0; j<1; j++){
 				var lastNum = 0;
-				if(j == 0){jsonData = data.forName0; heartCnt = data.heart0}
-			
-				
+				if(cnt == 0){jsonData = data.forName0; heartCnt = data.heart0; nowReply = data.Reply0}
 				lastNum = Object.keys(jsonData).length;
+				
 				var appendT = "";
-				var appendh="";
-				var appendTT="";
+				var appendh = "";
+				/* 본문 출력 i  */
 				appendT += "<table class = 'table'>"
-				rowcnt = 0;
+				rowcnt = 0;							     /* 중  */
 				for(var i = 0; i<Object.keys(jsonData).length; i++){		
 					if(i==0){
 						appendT += '<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><img src = "'+jsonData[i].userImage+'" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td><td colspan ="3"></td></tr>'
@@ -35,21 +34,33 @@ $(function(){
 						appendT += "<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>"
 						
 					}
-					nowTitle = jsonData[i].title ;
-					nowID = jsonData[i].id;
-					replyTitle = jsonData[i].title ;
-					var replyRow = jsonData[i].title;
+					nowTitle = jsonData[i].title ;     /* 현재 출력하는 피드의 이름 */
+					nowID = jsonData[i].id;           /* 현재 출력하는 피드의 주인 */
+					
 					rowcnt ++;
+					console.log("row count 어따씀 ? " + rowcnt);
 					$('.blogForm').append(appendT)
-				} // for_i
-				appendh += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowTitle+"'></span><br><span class = 'reply " + nowID +"' id = '"+replyTitle+"'><img src = 'resources/image/pencil.png'></span></td><td colspan = '4'></td></tr>"
+				} // for_iMb
 				
+				
+				var nowName = nowID.substring(0,nowID.lastIndexOf("@"));
+				var nowReplyT = nowName+nowTitle;
+				
+				appendh += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowTitle+"'></span></td>"
+				if(nowReply.replyId == null && nowReply.replyContent == null ){
+					appendh += "<td colspan='2'></td><td colspan ='2'>"+nowReply+"</td></tr>"
+				}else{
+					appendh += "<td colspan='4' id = 'cnt"+nowReplyT+"'>"+nowReply.replyId +" : "+ nowReply.replyContent+"</td></tr>";
+				}
+				appendh += "<tr><td colspan ='4'><form><textarea class = 'replyArea' id = '"+nowReplyT+"'  style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea>"
+				appendh += "<input type='text' name="+" value='"+ nowID +"' hidden><input type='text' value='"+ nowTitle +"' hidden></form></td>"
+				appendh += "<td><button class='sendR "+nowID+"' id ='"+nowTitle+"'>게시</button></td></tr></table>"
 				$('.blogForm2').append(appendh)
-				appendh += "</table>"
 				cnt ++;
-				
 			} // for_j 
-			for(var cnt=1; j<2; j++){
+			
+			
+			for(var j=1; j<2; j++){
 				var lastNum = 0;
 				if(j == 1){jsonData = data.forName1; heartCnt = data.heart1}
 			

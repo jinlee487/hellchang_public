@@ -31,7 +31,6 @@
   
   <select id="selectList" resultType="vo.SaveVO">
 	select id,name,target,kg,rep from `hellchang_schema_test`.`myRoutine` where id=#{id} and date like CONCAT('%',#{date},'%')
-
   </select>
   
   <select id="selectTList" resultType="vo.SaveVO">
