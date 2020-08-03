@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import service.MService;
 import vo.MemberVO;
+import vo.SaveVO;
 
 @Controller
 public class MemberController {
@@ -50,7 +51,7 @@ public class MemberController {
 			file2="resources/uploadImage/emptyImage.png";
 			vo.setImage_path(file2);
 		}else {
-			file1="D:/MTest/MyWork/hellchang/src/main/webapp/resources/uploadImage/"
+			file1="D:/GitHub/hellchang/src/main/webapp/resources/uploadImage"
 					+ image_file.getOriginalFilename();
 			image_file.transferTo(new File(file1));
 			file2="resources/uploadImage/"+image_file.getOriginalFilename();
@@ -178,7 +179,7 @@ public class MemberController {
 
 	
 	@RequestMapping(value = "/login")
-	public ModelAndView login(HttpServletRequest request, ModelAndView mv, MemberVO vo) {
+	public ModelAndView login(HttpServletRequest request, ModelAndView mv, MemberVO vo, SaveVO svo) {
 
 		String password = vo.getPassword();
 		System.out.println(vo);
@@ -201,6 +202,7 @@ public class MemberController {
 				request.getSession().setAttribute("logzipcode", vo.getZipcode());
 				request.getSession().setAttribute("logpassword", vo.getPassword());
 				request.getSession().setAttribute("profile_image", vo.getImage_path());
+				request.getSession().setAttribute("title", svo.getTitle());
 				mv.setViewName("home");
 			} else {
 				// Password 오류 -> 재로그인

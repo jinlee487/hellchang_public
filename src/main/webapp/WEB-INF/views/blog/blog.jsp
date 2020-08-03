@@ -152,7 +152,7 @@ $(function(){
 			console.log(num);
 			/* 한페이지당 blog 개수 j  */
 			for(var j=0; j<5; j++){
-				var lastNum = 0;
+				var lastNum = 0; 
 				if(cnt == 0){jsonData = data.forName0; heartCnt = data.heart0; nowReply = data.Reply0}
 				else if(cnt == 1){jsonData = data.forName1; heartCnt = data.heart1; nowReply = data.Reply1}
 				else if(cnt == 2){jsonData = data.forName2; heartCnt = data.heart2; nowReply = data.Reply2}
@@ -262,7 +262,7 @@ $(window).scroll(function(){
 					}else{
 						appendT += "<td colspan='4' id = 'cnt"+nowReplyT+"'>"+nowReply.replyId +" : "+ nowReply.replyContent+"</td></tr>";
 					}
-					appendT += "<tr><td colspan ='4'><form><textarea class = 'replyArea' id = '"+nowReplyT+"'  style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea>"
+					appendT += "<tr><td colspan ='4'><form><textarea class = 'replyArea"' id = '"+nowReplyT+"'  style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea>"
 					appendT += "<input type='text' name="+" value='"+ nowID +"' hidden><input type='text' value='"+ nowTitle +"' hidden></form></td>"
 					appendT += "<td><button class='sendR "+nowID+"' id ='"+nowTitle+"'>게시</button></td></tr></table>"
 					$('.blogForm').append(appendT)
@@ -275,6 +275,7 @@ $(window).scroll(function(){
 	}) // ajax
 	} // loadNext
 });
+
 
 $(document).on("click",".heart", function(){
     var title = $(this).attr("id");
