@@ -136,6 +136,7 @@ textarea{
 <script type="text/javascript">
 var logID = "<%=session.getAttribute("logID") %>"
 console.log("session : "+logID);
+
 $(function(){
 	var cnt = 0;
 	var last = 0;
@@ -179,22 +180,23 @@ $(function(){
 					nowID = jsonData[i].id;           /* 현재 출력하는 피드의 주인 */
 					
 					rowcnt ++;
-					console.log("row count 어따씀 ? " + rowcnt);
 				} // for_iMb
 				
 				
 				var nowName = nowID.substring(0,nowID.lastIndexOf("@"));
 				var nowReplyT = nowName+nowTitle;
 				
-				appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowTitle+"'></span></td>"
-				if(nowReply.replyId == null && nowReply.replyContent == null ){
-					appendT += "<td colspan='2'></td><td colspan ='2'>"+nowReply+"</td></tr>"
-				}else{
-					appendT += "<td colspan='4' id = 'cnt"+nowReplyT+"'>"+nowReply.replyId +" : "+ nowReply.replyContent+"</td></tr>";
+				if(logID != null){
+					appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowTitle+"'></span></td>"
+					if(nowReply.replyId == null && nowReply.replyContent == null ){
+						appendT += "<td colspan='2'></td><td colspan ='2'>"+nowReply+"</td></tr>"
+					}else{
+						appendT += "<td colspan='4' id = 'cnt"+nowReplyT+"'>"+nowReply.replyId +" : "+ nowReply.replyContent+"</td></tr>";
+					}
+					appendT += "<tr><td colspan ='4'><form><textarea class = 'replyArea' id = '"+nowReplyT+"'  style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea>"
+					appendT += "<input type='text' name="+" value='"+ nowID +"' hidden><input type='text' value='"+ nowTitle +"' hidden></form></td>"
+					appendT += "<td><button disabled class='sendR "+nowID+" "+nowName+"' id ='"+nowTitle+"'>게시</button></td></tr></table>"
 				}
-				appendT += "<tr><td colspan ='4'><form><textarea class = 'replyArea' id = '"+nowReplyT+"'  style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea>"
-				appendT += "<input type='text' name="+" value='"+ nowID +"' hidden><input type='text' value='"+ nowTitle +"' hidden></form></td>"
-				appendT += "<td><button class='sendR "+nowID+"' id ='"+nowTitle+"'>게시</button></td></tr></table>"
 				$('.blogForm').append(appendT)
 				cnt ++;
 			} // for_j 
@@ -250,21 +252,22 @@ $(window).scroll(function(){
 						nowTitle = jsonData[i].title ;     /* 현재 출력하는 피드의 이름 */
 						nowID = jsonData[i].id;           /* 현재 출력하는 피드의 주인 */
 						rowcnt ++;
-						console.log("row count 어따씀 ? " + rowcnt);
 					} // for_iMb
 					
 					var nowName = nowID.substring(0,nowID.lastIndexOf("@"));
 					var nowReplyT = nowName+nowTitle;
 					
-					appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowTitle+"'></span></td>"
-					if(nowReply.replyId == null && nowReply.replyContent == null ){
-						appendT += "<td colspan='2'></td><td colspan ='2'>"+nowReply+"</td></tr>"
-					}else{
-						appendT += "<td colspan='4' id = 'cnt"+nowReplyT+"'>"+nowReply.replyId +" : "+ nowReply.replyContent+"</td></tr>";
+					if(logID != null){
+						appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowTitle+"'></span></td>"
+						if(nowReply.replyId == null && nowReply.replyContent == null ){
+							appendT += "<td colspan='2'></td><td colspan ='2'>"+nowReply+"</td></tr>"
+						}else{
+							appendT += "<td colspan='4' id = 'cnt"+nowReplyT+"'>"+nowReply.replyId +" : "+ nowReply.replyContent+"</td></tr>";
+						}
+						appendT += "<tr><td colspan ='4'><form><textarea class = 'replyArea' id = '"+nowReplyT+"'  style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea>"
+						appendT += "<input type='text' name="+" value='"+ nowID +"' hidden><input type='text' value='"+ nowTitle +"' hidden></form></td>"
+						appendT += "<td><button class='sendR "+nowID+"' id ='"+nowTitle+"'>게시</button></td></tr></table>"
 					}
-					appendT += "<tr><td colspan ='4'><form><textarea class = 'replyArea' id = '"+nowReplyT+"'  style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea>"
-					appendT += "<input type='text' name="+" value='"+ nowID +"' hidden><input type='text' value='"+ nowTitle +"' hidden></form></td>"
-					appendT += "<td><button class='sendR "+nowID+"' id ='"+nowTitle+"'>게시</button></td></tr></table>"
 					$('.blogForm').append(appendT)
 					cnt ++;
 				} // for_j  
@@ -301,14 +304,18 @@ $(document).on("click",".heart", function(){
 		}
 	}) // ajax
 }) // heart_click 이벤트
+
 $(document).on("click",".sendR", function(){
 	var title = $(this).attr("id");
     var id = $(this).attr("class");
-    id = id.substring(6);
+    id = id.substring(id.indexOf(" ")+1, id.lastIndexOf(" "));
     var replyId = logID;
 	var name = id.substring(0,id.lastIndexOf("@"));
 	var content = $('#'+name+title).val();
 	var td = name+title;
+
+
+	
     $.ajax({
 		type:'Post',
 		url : "replyInsert",
@@ -322,16 +329,37 @@ $(document).on("click",".sendR", function(){
 			var replyContent = data.replyContent;
 			var replyId = data.replyId;
 			var nowReplyT = td;
-// 			$('#cnt'+td).empty();
+ 			//$('#cnt'+td).empty();
 			$('#'+td).html();
 			$('#cnt'+td).html(replyId +" : "+ replyContent)
+			$('#'+name+title).val(" ");
+			var send = $('.sendR').attr('class');
+			send = send.substring(send.lastIndexOf(" ")+1)
+			console.log("send :"+send);
+			$("."+send).attr('disabled', true);
 		}, // success
 		error:function(){
 			
 		}
-	}); // 댓글
-})
-}) // ready
+	});// ajax
+	
+	
+});// 댓글
+
+
+$(document).on('propertychange change keyup paste input','.replyArea', function(){
+	var send = $('.sendR').attr('class');
+	send = send.substring(send.lastIndexOf(" ")+1)
+	
+	console.log("send :"+send);
+	
+	$("."+send).attr('disabled', false);
+});
+
+
+	
+}); // ready
+		
 </script>
 </head>
 <body>
