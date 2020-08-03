@@ -6,7 +6,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-
 //로그인처리를 담당하는 인터셉터
 //HandlerInterceptorAdapter
 //=> HandlerInterceptor 인터페이스를 사용하기 편리하게 구현해 놓은 추상 클래스

@@ -137,22 +137,21 @@ text-align: left;
   <div class="row">
     <div class="col-sm-3 well">
       <div class="well">
-        <p><a href="#">My Profile</a></p>
-        <c:if test="${image_path==null}">
-			<img src="resources/uploadImage/emptyImage.png" class="img-circle" height="100" width="100" alt="Avatar">
-		</c:if>
-		<c:if test="${image_path!=null}">
-			<img src="${image_path}" class="img-circle" height="100" width="100" alt="Avatar">
-		</c:if>
-      </div>
-
+        <p><a href="myProfile">My Profile</a></p>
+        <a type="button" data-toggle="modal" data-target="#myModal">
+        <button class="bEffect" title="프로필 사진 바꾸기">
+        	<img id="aa" src="${mem.image_path}" class="img-circle" height="100" width="100" alt="프로필 사진 바꾸기">
+        </button>
+        </a></div>
 		<ul class="nav nav-pills nav-stacked">
 		  <li><a href="#">Start Workout</a></li>
-		  <li><a href="#">Manage Workout</a></li>
+		  <li><a href="manageWorkout">Manage Workout</a></li>
 		  <li><a href="inbodyf">InBody</a></li>
 		  <li><a href="#">Diet</a></li>
-		  <li><a href="#">Social</a></li>  
-		  <li><a href="#">Setting</a></li>  
+		  <li><a href="#">Social</a></li>    
+		  <li><a href="routine">Test</a></li>
+		  <li><a href="mdetail?code=U">Profile Update</a></li>
+		  <li><a href="delete">Drop Out</a></li>
 		</ul>
     </div>
     
@@ -575,7 +574,12 @@ $(document).ready(function(){
 			location.href = "inbodyInsertf";  
 		}
 		else if($(this).attr("id")=='iu'){
+			if($('#results_date').html()==''){
+				 alert('No data!');
+			}
+			else{
 			location.href = "inbodyDetail?code=U&date_date="+$('#results_date').html()+"&idx="+$("#id_div").html();
+			}
 		}
 		else if($(this).attr("id")=='is'){
 			location.href = "inbodySharef";
@@ -620,63 +624,67 @@ function InitialloadGraphs() {
 			type:"Post",
 			url:"inbodyListAjax",
 			success:function(jsondata){
-				data=jsondata.InbodyVO_List;
-				
-                var start = "";
-                var end = "";
-                $('#selected_date').html(data[0].date_date.slice(0, -3) + " ~ " + data[data.length-1].date_date.slice(0, -3));
-				var r1 = [], r2 = [], r3 = [], r4 = [], r5 = [], r6 = [];
-				
-                var idx=0;
-                $.each(data, function (id, vo) {
-                    if (idx==0){                 
-                    	start += '<option id="s' + idx + '" selected="selected">'+ vo.date_date.slice(0, -3) + '</option>';
-						end +=  '<option id="e' + idx + '">'+ vo.date_date.slice(0, -3) + '</option>'; 
-						}
-                    
+				if(jsondata.check!=null){
+				}
+				else{
+					data=jsondata.InbodyVO_List;
 					
-                    else if (idx==(data.length-1)){                 
-	                    	start += '<option id="s' + idx + '">'+ vo.date_date.slice(0, -3) + '</option>';
-							end +=  '<option id="e' + idx + '" selected="selected">'+ vo.date_date.slice(0, -3) + '</option>'; 
+	                var start = "";
+	                var end = "";
+	                $('#selected_date').html(data[0].date_date.slice(0, -3) + " ~ " + data[data.length-1].date_date.slice(0, -3));
+					var r1 = [], r2 = [], r3 = [], r4 = [], r5 = [], r6 = [];
+					
+	                var idx=0;
+	                $.each(data, function (id, vo) {
+	                    if (idx==0){                 
+	                    	start += '<option id="s' + idx + '" selected="selected">'+ vo.date_date.slice(0, -3) + '</option>';
+							end +=  '<option id="e' + idx + '">'+ vo.date_date.slice(0, -3) + '</option>'; 
 							}
-                    else {
-                    	start += '<option id="s' + idx + '">'+ vo.date_date.slice(0, -3) + '</option>';
-    					end +=  '<option id="e' + idx + '">'+ vo.date_date.slice(0, -3) + '</option>';
-                    }
-					idx++;
-
-				  	r1.push([vo.date_date,vo.weight_under,vo.weight_over-vo.weight_under,vo.weight]);
-				  	r2.push([vo.date_date,vo.muscle_mass_under,vo.muscle_mass_over-vo.muscle_mass_under,vo.muscle_mass]);
-				  	r3.push([vo.date_date,vo.fat_mass_under,vo.fat_mass_over-vo.fat_mass_under,vo.fat_mass]);
-				  	r4.push([vo.date_date,vo.bmi_under,vo.bmi_over-vo.bmi_under,vo.bmi]);
-				  	r5.push([vo.date_date,vo.pbf_under,vo.pbf_over-vo.pbf_under,vo.pbf]);
-				  	r6.push([vo.date_date,vo.vfl_under,vo.vfl_over-vo.vfl_under,vo.vfl]);
-
-                });
-                
-                inbodycombochart(r1,'wComboID');
-                inbodycombochart(r2,'mmComboID');
-                inbodycombochart(r3,'fmComboID');
-                inbodycombochart(r4,'bComboID');
-                inbodycombochart(r5,'pComboID');
-                inbodycombochart(r6,'vComboID');
-
-        		$('#sel1').append(start);
-        		$('#sel2').append(end);
-/* 				$('#s0').prop('selected', true);
-				$('#e' +(idx-1)).prop('selected', true);
-				console.log("this is #s0 selected => " + $("#sel1").val());
-				console.log("this is #e11 selected => " + $("#sel2").val());
-				
-			    $('#sel1 option').prop('selected', function() {
-			    	if (this.defaultSelected==true)
-			        console.log("#sel1 this.defaultSelected => "  + this.id);
-			        })
-		       	$('#sel2 option').prop('selected', function() {
-		       		if (this.defaultSelected==true)
-			        console.log("#sel2 default this.defaultSelected => "  + this.id);
-			        })	
-			         */
+	                    
+						
+	                    else if (idx==(data.length-1)){                 
+		                    	start += '<option id="s' + idx + '">'+ vo.date_date.slice(0, -3) + '</option>';
+								end +=  '<option id="e' + idx + '" selected="selected">'+ vo.date_date.slice(0, -3) + '</option>'; 
+								}
+	                    else {
+	                    	start += '<option id="s' + idx + '">'+ vo.date_date.slice(0, -3) + '</option>';
+	    					end +=  '<option id="e' + idx + '">'+ vo.date_date.slice(0, -3) + '</option>';
+	                    }
+						idx++;
+	
+					  	r1.push([vo.date_date,vo.weight_under,vo.weight_over-vo.weight_under,vo.weight]);
+					  	r2.push([vo.date_date,vo.muscle_mass_under,vo.muscle_mass_over-vo.muscle_mass_under,vo.muscle_mass]);
+					  	r3.push([vo.date_date,vo.fat_mass_under,vo.fat_mass_over-vo.fat_mass_under,vo.fat_mass]);
+					  	r4.push([vo.date_date,vo.bmi_under,vo.bmi_over-vo.bmi_under,vo.bmi]);
+					  	r5.push([vo.date_date,vo.pbf_under,vo.pbf_over-vo.pbf_under,vo.pbf]);
+					  	r6.push([vo.date_date,vo.vfl_under,vo.vfl_over-vo.vfl_under,vo.vfl]);
+	
+	                });
+	                
+	                inbodycombochart(r1,'wComboID');
+	                inbodycombochart(r2,'mmComboID');
+	                inbodycombochart(r3,'fmComboID');
+	                inbodycombochart(r4,'bComboID');
+	                inbodycombochart(r5,'pComboID');
+	                inbodycombochart(r6,'vComboID');
+	
+	        		$('#sel1').append(start);
+	        		$('#sel2').append(end);
+				}
+	/* 				$('#s0').prop('selected', true);
+					$('#e' +(idx-1)).prop('selected', true);
+					console.log("this is #s0 selected => " + $("#sel1").val());
+					console.log("this is #e11 selected => " + $("#sel2").val());
+					
+				    $('#sel1 option').prop('selected', function() {
+				    	if (this.defaultSelected==true)
+				        console.log("#sel1 this.defaultSelected => "  + this.id);
+				        })
+			       	$('#sel2 option').prop('selected', function() {
+			       		if (this.defaultSelected==true)
+				        console.log("#sel2 default this.defaultSelected => "  + this.id);
+				        })	
+				         */
 		}
 	});
 }
@@ -741,30 +749,34 @@ function InitialloadResults() {
 			type:"Post",
 			url:"inbodyDetailAjax",
 			success:function(jsondata){
-				data=jsondata.InbodyVO;
-			    console.log("first try inside success after ajax => \n" + data.date_date)
-                var result = "";
-                $.each(jsondata.dateList, function (id, pvo) {
-                    result += '<li class="list-group-item"><span id=idx'+pvo.idx+' onclick="datePick(this,reloadResults,'+pvo.idx+')">'+ pvo.date_date +
-                    '</span></li>';
-                });
-        		$('#dddd').append(result);
-        	    document.getElementById("results_date").innerHTML = data.date_date;
-        	    document.getElementById("id_div").innerHTML = data.idx;
-        	    console.log("after ajax => " + document.getElementById("results_date").innerHTML)
-        		inbodybarchart(data.weight,data.weight_under,data.weight_over-data.weight_under,'wChartID','wChartID2');
-        		inbodybarchart(data.muscle_mass,data.muscle_mass_under,data.muscle_mass_over-data.muscle_mass_under,'mmChartID','mmChartID2');
-        		inbodybarchart(data.fat_mass,data.fat_mass_under,data.fat_mass_over-data.fat_mass_under,'fmChartID','fmChartID2');
-        		inbodybarchart(data.bmi,data.bmi_under,data.bmi_over-data.bmi_under,'bChartID','bChartID2');
-        		inbodybarchart(data.pbf,data.pbf_under,data.pbf_over-data.pbf_under,'pChartID','pChartID2');
-        		inbodybarchart(data.vfl,data.vfl_under,data.vfl_over-data.vfl_under,'vChartID','vChartID2');
-        		calcBMR(data.bmr,'bmiID');	 
-        		
-        		if($('#code_u').html()!=''){
-        			callback(updatePage,function(){
-        				document.getElementById("defaultOpen").click();			
-        			});
-        		}
+				if(jsondata.check!=null){
+				}
+				else{
+					data=jsondata.InbodyVO;
+				    console.log("first try inside success after ajax => \n" + data.date_date)
+	                var result = "";
+	                $.each(jsondata.dateList, function (id, pvo) {
+	                    result += '<li class="list-group-item"><span id=idx'+pvo.idx+' onclick="datePick(this,reloadResults,'+pvo.idx+')">'+ pvo.date_date +
+	                    '</span></li>';
+	                });
+	        		$('#dddd').append(result);
+	        	    document.getElementById("results_date").innerHTML = data.date_date;
+	        	    document.getElementById("id_div").innerHTML = data.idx;
+	        	    console.log("after ajax => " + document.getElementById("results_date").innerHTML)
+	        		inbodybarchart(data.weight,data.weight_under,data.weight_over-data.weight_under,'wChartID','wChartID2');
+	        		inbodybarchart(data.muscle_mass,data.muscle_mass_under,data.muscle_mass_over-data.muscle_mass_under,'mmChartID','mmChartID2');
+	        		inbodybarchart(data.fat_mass,data.fat_mass_under,data.fat_mass_over-data.fat_mass_under,'fmChartID','fmChartID2');
+	        		inbodybarchart(data.bmi,data.bmi_under,data.bmi_over-data.bmi_under,'bChartID','bChartID2');
+	        		inbodybarchart(data.pbf,data.pbf_under,data.pbf_over-data.pbf_under,'pChartID','pChartID2');
+	        		inbodybarchart(data.vfl,data.vfl_under,data.vfl_over-data.vfl_under,'vChartID','vChartID2');
+	        		calcBMR(data.bmr,'bmiID');	 
+	        		
+	        		if($('#code_u').html()!=''){
+	        			callback(updatePage,function(){
+	        				document.getElementById("defaultOpen").click();			
+	        			});
+	        		}
+				}
 			}
 		})
 

@@ -58,7 +58,7 @@ public class SServiceImpl implements SService {
 	
 	@Override
 	public int saveMyRoutine(SaveVO vo) {  
-		return dao.saveMyRoutine(vo);  // 泥섎━�맂 row 媛��닔 return	 
+		return dao.saveMyRoutine(vo);  // 筌ｌ꼶�봺占쎈쭆 row 揶쏉옙占쎈땾 return	 
 	} // insert
 
 	@Override
@@ -67,8 +67,8 @@ public class SServiceImpl implements SService {
 	}
 	
 	@Override
-	public int heartUp(HeartVO hvo) { // row(vo) �쟾�떖 諛쏆븘 �닔�젙
-		return dao.heartUp(hvo);  // 泥섎━�맂 row 媛��닔 return
+	public int heartUp(HeartVO hvo) { // row(vo) 占쎌읈占쎈뼎 獄쏆룇釉� 占쎈땾占쎌젟
+		return dao.heartUp(hvo);  // 筌ｌ꼶�봺占쎈쭆 row 揶쏉옙占쎈땾 return
 	} // update
 	
 	@Override
@@ -78,16 +78,16 @@ public class SServiceImpl implements SService {
 	
 	@Override
 	public int heartTest(HeartVO hvo) {  
-		return dao.heartTest(hvo);  // 泥섎━�맂 row 媛��닔 return	 
+		return dao.heartTest(hvo);  // 筌ｌ꼶�봺占쎈쭆 row 揶쏉옙占쎈땾 return	 
 	} // insert
 	
 	@Override
 	public int replyInsert(ReplyVO rvo) {  
-		return dao.replyInsert(rvo);  // 泥섎━�맂 row 媛��닔 return	 
+		return dao.replyInsert(rvo);  // 筌ｌ꼶�봺占쎈쭆 row 揶쏉옙占쎈땾 return	 
 	} // insert
 	
 	@Override
-	public List<ReplyVO> replyResult(ReplyVO rvo) {
+	public ReplyVO replyResult(ReplyVO rvo) {
 		return dao.replyResult(rvo);
 	} // selectOne
 } // class

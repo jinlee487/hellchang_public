@@ -34,5 +34,5 @@ public interface SService {
 	
 	int replyInsert(ReplyVO rvo); // reply
 	
-	List<ReplyVO> replyResult(ReplyVO rvo);
+	ReplyVO replyResult(ReplyVO rvo);
 } // interface

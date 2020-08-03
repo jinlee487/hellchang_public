@@ -93,7 +93,7 @@ public class SaveController {
 
 	// 처음 blog에서 출력되는  5개
 	@RequestMapping(value = "/blogTest")
-	public ModelAndView blogTest(HttpServletRequest request, ModelAndView mv, SaveVO vo, HeartVO hvo) {
+	public ModelAndView blogTest(HttpServletRequest request, ModelAndView mv, SaveVO vo, HeartVO hvo, ReplyVO rvo) {
 		int cnt = 0;
 		SaveVO[] array = {}; 
 		List<SaveVO> list = service.blogTest();
@@ -117,12 +117,21 @@ public class SaveController {
 			// myRoutine *, member.name, member.image 뽑아냄 
 			System.out.println("==============================");
 			String IDTest = "forName"+i;
-			
 			mv.addObject(IDTest, test);
 			// find 리스트를 IDTest에 담아 보냄 IDTest라는 이름으로
 			// jsp에서 jsonData[i]로 사용됨 
-			
 			System.out.println("blogTest : "+IDTest+test);
+			String Reply = "Reply"+i;
+			rvo.setId(array[i].getId());
+			rvo.setTitle(array[i].getTitle());
+			if(service.replyResult(rvo) == null) {
+				mv.addObject(Reply, " ");
+				System.out.println("rvo T1 : " + rvo);
+			}else{
+				rvo = service.replyResult(rvo);
+				mv.addObject(Reply, rvo);
+				System.out.println("rvo T2 : " + rvo);
+			}
 			rownum = array[i].getRownum();
 			cnt ++;
 			mv.addObject("num", cnt);
@@ -134,13 +143,16 @@ public class SaveController {
 	
 	// 스크롤할 때 마다 출력되는 blog
 	@RequestMapping(value = "/scrollP")
-	public ModelAndView scrollP(HttpServletRequest request, ModelAndView mv, SaveVO vo, SaveVO svo, HeartVO hvo) {
+	public ModelAndView scrollP(HttpServletRequest request, ModelAndView mv, SaveVO vo, SaveVO svo, HeartVO hvo, ReplyVO rvo) {
 		int row = Integer.parseInt(request.getParameter("rowcnt"));
 		int cnt = 0;
-		System.out.println("scrollP : "+rownum);
+		System.out.println("rownum : "+rownum);
+		System.out.println("row : "+row);
 		SaveVO[] array = {}; 
-		rownum = rownum + row;
+		rownum = rownum + row+1;
 		// rownum에 출력된 개수 누적 저장
+		System.out.println("rownum : "+rownum);
+
 		svo.setRownum(rownum);
 		List<SaveVO> list = service.blogTestS(svo); 
 		// blogTests = 처음 5개 이후에 스크롤시 나머지 출력
@@ -162,6 +174,17 @@ public class SaveController {
 			String IDTest = "forName"+i;
 			mv.addObject(IDTest, test);
 			System.out.println("scrollP : "+IDTest+test);
+			String Reply = "Reply"+i;
+			rvo.setId(array[i].getId());
+			rvo.setTitle(array[i].getTitle());
+			if(service.replyResult(rvo) == null) {
+				mv.addObject(Reply, " ");
+				System.out.println("rvo T1 : " + rvo);
+			}else{
+				rvo = service.replyResult(rvo);
+				mv.addObject(Reply, rvo);
+				System.out.println("rvo T2 : " + rvo);
+			}
 			rownum = array[i].getRownum();
 			cnt ++;
 			mv.addObject("num", cnt);
@@ -191,24 +214,15 @@ public class SaveController {
 	
 	@RequestMapping(value = "/replyInsert")
 	public ModelAndView replyInsert(HttpServletRequest request, ModelAndView mv, ReplyVO rvo){
-		String id = request.getParameter("id"); //content id
-		String title = request.getParameter("title"); // content 
-		String replyId = request.getParameter("replyId");
-		String replyContent = request.getParameter("content");
-		
-		rvo.setId(id);
-		rvo.setTitle(title);
-		rvo.setReplyId(replyId);
-		rvo.setReplyContent(replyContent);
+		service.replyInsert(rvo);
 		System.out.println(rvo);
 		
-		if (service.replyInsert(rvo) > 0 ) {			
-			System.out.println("success rvo : " + rvo);
-			
-			List<ReplyVO> list = service.replyResult(rvo); 
-			System.out.println(list);
-			mv.addObject("replyTest", list);
-		} 
+		rvo = service.replyResult(rvo);
+		mv.addObject("replyContent", rvo.getReplyContent());
+		mv.addObject("replyId", rvo.getId());
+		System.out.println("rvo T2 : " + rvo);
+		
+		
 		mv.setViewName("jsonView");
 		return mv;
 	}// reply

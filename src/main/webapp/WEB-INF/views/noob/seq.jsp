@@ -17,17 +17,32 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
   <style>
-  	html{
+  	html, body{
   		width: 100%;	
-  		height: 100%;
+     	height:100%; overflow:hidden
   	}
   	#footer{
   		position: absolute;
   	}
+  	.parent {
+    display: flex;
+    height : 96%;
+}
+	.child {
+	margin-right : 5px;
+	margin-left : 5px;
+	width : 30%;
+    flex: 1;
+}
+.child1 {
+	margin-right : 5px;
+	margin-left : 5px;
+	width : 30%;
+    flex: 1;
+}
   </style>
 </head>
 
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50" style="background-color: #ffffff">
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50" style="background-color: white">
 
 <nav class="navbar navbar-inverse">
@@ -62,36 +77,130 @@
     </div>
   </div>
 </nav>
-  
-<div class="container-fluid text-center">    
-  <div class="row content">
-    <div class="col-sm-2 sidenav">
-      <p><h4>운동 목적</h4></p>
-      <p><a href="muscleUp">근성장</a></p>
-      <p><a href="diet">다이어트</a></p>
-      <p><a href="maintain">유지어트</a></p>
-    </div>
-    <div class="col-sm-8 text-center" >
-      <h2 align="center">운동을 해야 하는 진짜 이유는?</h2>
-      <iframe width="500" height="390"
-      src="https://www.youtube.com/embed/_WuS6IuIDGo" 
-      frameborder="0" allow="accelerometer; autoplay; 
-      encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen>
-      </iframe>
-    </div>
-    <div class="col-sm-2 sidenav">
-      <div class="well">
-        <p>여기에는 뭐 그냥</p>
+ <div class="parent" style="width: 100%; height: 95%; ">
+    <div class="child" align="center">
+		<h3>Diet</h3>
+		<div style="height: 40%;">
+		<iframe width="100%" height="100%" src="https://www.youtube.com/embed/ky_rALJjKAQ?list=PLA92lMlT0Ro_VmP98tB7Vpt3fvqh2sZu5" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  		</div>
+<div>
+    <div class="col-sm-4 child1">
+      <br><strong style="font-size:x-small;">전신</strong><br>
+      <a href="#demo" data-toggle="collapse">
+      <img src="resources/image/list.jpg" class="img-circle person" alt="무분할" width="30%" height="5">
+      </a>
+      <div id="demo" class="collapse">
+        <p><a href = "noSeq">무분할</a></p>
       </div>
-      <div class="well">
-        <p>저희 소개 적어도 될거같아요</p>
-        <p>저희 소개 적어도 될거같아요</p>
+    </div>
+    <div class="col-sm-4 child1">
+    <br><strong style="font-size:x-small;">밀기/당기기</strong><br>
+      <a href="#demo1" data-toggle="collapse">
+      <img src="resources/image/list.jpg" class="img-circle person" alt="2분할" width="30%" height="5">
+      </a>
+      <div id="demo1" class="collapse">
+        <p><a href = "muscleUpPushP">밀기</a></p>
+        <p><a href = "muscleUpPullP">당기기</a></p>
+      </div>
+    </div>
+	<div class="col-sm-4 child1">
+    <br><strong style="font-size:x-small;">가슴/등/하체</strong><br>
+      <a href="#demo2" data-toggle="collapse">
+      <img src="resources/image/list.jpg" class="img-circle person" alt="3분할" width="30%" height="5">
+      </a>
+      <div id="demo2" class="collapse">
+        <p><a href = "muscleChest">가슴</a></p>
+        <p><a href = "muscleBack">등</a></p>
+        <p><a href = "muscleLeg">하체</a></p>
+      </div>
+    </div>
+    
+  </div>
+</div>
+    <div class="child" align="center">
+		<h3>MuscleUp</h3>
+		<div style="height: 40%;">
+		<iframe width="100%" height="100%" src="https://www.youtube.com/embed/9t3v3SKCXkY?list=PLA92lMlT0Ro_VmP98tB7Vpt3fvqh2sZu5" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  		</div>
+  	<div class="row">
+	<div class="col-sm-4 child1">
+    <br><strong style="font-size:x-small;">밀기.당기기</strong><br>
+      <a href="#demo3" data-toggle="collapse">
+      <img src="resources/image/list.jpg" class="img-circle person" alt="2분할" width="30%" height="5">
+      </a>
+      <div id="demo3" class="collapse">
+        <p><a href = "muscleUpPushP">밀기</a></p>
+        <p><a href = "muscleUpPullP">당기기</a></p>
+      </div>
+    </div>
+    <div class="col-sm-4 child1">
+    <br><strong style="font-size:x-small;">가슴/등/하체</strong><br>
+      <a href="#demo4" data-toggle="collapse">
+      <img src="resources/image/list.jpg" class="img-circle person" alt="3분할" width="30%" height="5">
+      </a>
+      <div id="demo4" class="collapse">
+        <p><a href = "muscleChest">가슴</a></p>
+        <p><a href = "muscleBack">등</a></p>
+        <p><a href = "muscleLeg">하체</a></p>
+      </div>
+    </div>
+    <div class="col-sm-4 child1">
+    <br><strong style="font-size:x-small;">가슴/하체/등/어깨/팔</strong><br>
+      <a href="#demo5" data-toggle="collapse">
+      <img src="resources/image/list.jpg" class="img-circle person" alt="5분할" width="30%" height="5">
+      </a>
+      <div id="demo5" class="collapse">
+        <p><a href = "muscleChest5">가슴</a></p>
+        <p><a href = "muscleLeg5">하체</a></p>
+        <p><a href = "muscleBack5">등</a></p>
+        <p><a href = "muscleSholder5">어깨</a></p>
+        <p><a href = "muscleArm5">팔</a></p>
+      </div>
+    </div>
+    </div>
+    </div>
+    <div class="child" align="center">
+		<h3>Maintain</h3>
+		<div style="height: 40%;">
+		<iframe width="100%" height="100%" src="https://www.youtube.com/embed/apeFoDwsUWc?list=PLA92lMlT0Ro_VmP98tB7Vpt3fvqh2sZu5" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  		</div>
+  		 <div class="row">
+    <div class="col-sm-4">
+      <br><strong style="font-size:x-small;">밀기/당기기</strong><br>
+      <a href="#demo6" data-toggle="collapse">
+      <img src="resources/image/list.jpg" class="img-circle person" alt="2분할" width="30%" height="5">
+      </a>
+      <div id="demo6" class="collapse">
+        <p><a href = "muscleUpPushP">밀기</a></p>
+        <p><a href = "muscleUpPullP">당기기</a></p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+    <br><strong style="font-size:x-small;">가슴/등/하체</strong><br>
+      <a href="#demo7" data-toggle="collapse">
+      <img src="resources/image/list.jpg" class="img-circle person" alt="3분할" width="30%" height="5">
+      </a>
+      <div id="demo7" class="collapse">
+        <p><a href = "muscleChest">가슴</a></p>
+        <p><a href = "muscleBack">등</a></p>
+        <p><a href = "muscleLeg">하체</a></p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+    <br><strong style="font-size:x-small;">가슴/하체/등/어깨</strong><br>
+      <a href="#demo8" data-toggle="collapse">
+      <img src="resources/image/list.jpg" class="img-circle person" alt="4분할" width="30%" height="5">
+      </a>
+      <div id="demo8" class="collapse">
+        <p><a href = "muscleChest5">가슴</a></p>
+        <p><a href = "muscleLeg5">하체</a></p>
+        <p><a href = "muscleBack5">등</a></p>
+        <p><a href = "muscleSholder5">어깨</a></p>
       </div>
     </div>
   </div>
+    </div>
 </div>
-
 
 <div id="footer" role="contentinfo">
 		<address>

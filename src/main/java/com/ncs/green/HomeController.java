@@ -20,24 +20,7 @@ public class HomeController {
 		return mv; 
 	} // 珥덈낫�옄瑜� �쐞�븳 �럹�씠吏�
 	
-	@RequestMapping(value = "/muscleUp")
-	public ModelAndView muscleUp(ModelAndView mv) {
-		mv.setViewName("noob/muscleUp");
-		return mv; 
-	} // 洹쇱꽦�옣瑜� �쐞�븳 �럹�씠吏�
-	
-	@RequestMapping(value = "/diet")
-	public ModelAndView diet(ModelAndView mv) {
-		mv.setViewName("noob/diet");
-		return mv; 
-	} // �떎�씠�뼱�꽣瑜� �쐞�븳 �럹�씠吏�
-	
-	@RequestMapping(value = "/maintain")
-	public ModelAndView maintain(ModelAndView mv) {
-		mv.setViewName("noob/maintain");
-		return mv; 
-	} // �쑀吏��뼱�꽣瑜� �쐞�븳 �럹�씠吏�
-	
+		
 	// ------------- 臾대텇�븷 ----------------------
 	@RequestMapping(value = "/noSeq")
 	public ModelAndView noSeq(ModelAndView mv) {
