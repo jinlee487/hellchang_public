@@ -45,20 +45,8 @@ $(function(){
 				appendh += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowTitle+"'></span><br><span class = 'reply " + nowID +"' id = '"+replyTitle+"'><img src = 'resources/image/pencil.png'></span></td><td colspan = '4'></td></tr>"
 				
 				$('.blogForm2').append(appendh)
+				appendh += "</table>"
 				cnt ++;
-				for(var z=0; z<Object.keys(jsonData).length; z++){
-					if(z==0){
-						appendTT += '<tr style=" font-size: 15px; font-weight: bold;"><td><img src = "'+jsonData[z].userImage+'" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData[z].title+'<br>Name : '+jsonData[z].userName+'</td><td colspan ="3"></td></tr>'
-					}
-					nowTitle = jsonData[z].title ;
-					nowID = jsonData[z].id;
-					replyTitle = jsonData[z].title ;
-					var replyRow = jsonData[z].title;
-					$('.blogFormTT').append(appendTT)
-					appendTT += "</table>"
-				}
-				
-				
 				
 			} // for_j 
 			for(var cnt=1; j<2; j++){

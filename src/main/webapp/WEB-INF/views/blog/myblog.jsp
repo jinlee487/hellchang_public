@@ -169,14 +169,17 @@ console.log("session : "+logID);
 					</tbody></table> -->
         <!--   <h4 class="modal-title"> List 저장하기 </h4> -->
         </div>
-        <div class="modal-body" style="display: inline-flex; ">
+         <div class="modal-body" style="display: inline-flex; ">
        <div align="center" class = "blogForm"><br><br>
 		</div>
 		  
 		   <div class="modal-body-text" style="width : 350px; margin-left: 50px; margin-top: 50px;">
 		    <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <div align="center" class="blogFormTT">
-          </div><br>
+          <img src="${profile_image }" alt="강경원" width="30px" height="30px" class="myPhoto1" style="float: left; border-radius: 50%">
+          <table>
+					<tbody><tr><td style="font-size: 15px"><a>${logName}</a></td></tr>
+					<tr><td id="myTitle">분할 Title이름</td></tr>
+					</tbody></table><hr>
 		 
 		 
 		 
