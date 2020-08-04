@@ -186,7 +186,9 @@ $(function(){
 				var nowName = nowID.substring(0,nowID.lastIndexOf("@"));
 				var nowReplyT = nowName+nowTitle;
 				
-				if(logID != null){
+				console.log("logId :"+logID.length);
+				
+				if(logID.length != 4){
 					appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowTitle+"'></span></td>"
 					if(nowReply.replyId == null && nowReply.replyContent == null ){
 						appendT += "<td colspan='2'></td><td colspan ='2'>"+nowReply+"</td></tr>"
@@ -226,7 +228,7 @@ $(window).scroll(function(){
 				var num = data.num;
 				console.log("내가 몇번째까지 출력함 ?"+num);
 				/* 한페이지당 blog 개수  */
-				for(var j=0; j<5; j++){
+				for(var j=0; j<num; j++){
 					var lastNum = 0;
 					if(cnt == 0){jsonData = data.forName0; heartCnt = data.heart0; nowReply = data.Reply0}
 					else if(cnt == 1){jsonData = data.forName1; heartCnt = data.heart1; nowReply = data.Reply1}
@@ -257,20 +259,20 @@ $(window).scroll(function(){
 					var nowName = nowID.substring(0,nowID.lastIndexOf("@"));
 					var nowReplyT = nowName+nowTitle;
 					
-					if(logID != null){
+					if(logID.length != 4){
 						appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowTitle+"'></span></td>"
 						if(nowReply.replyId == null && nowReply.replyContent == null ){
 							appendT += "<td colspan='2'></td><td colspan ='2'>"+nowReply+"</td></tr>"
 						}else{
 							appendT += "<td colspan='4' id = 'cnt"+nowReplyT+"'>"+nowReply.replyId +" : "+ nowReply.replyContent+"</td></tr>";
 						}
-						appendT += "<tr><td colspan ='4'><form><textarea class = 'replyArea' id = '"+nowReplyT+"'  style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea>"
+						appendT += "<tr><td colspan ='4'><form><textarea class = 'replyArea' id = '"+nowName+"'  style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea>"
 						appendT += "<input type='text' name="+" value='"+ nowID +"' hidden><input type='text' value='"+ nowTitle +"' hidden></form></td>"
-						appendT += "<td><button class='sendR "+nowID+"' id ='"+nowTitle+"'>게시</button></td></tr></table>"
+						appendT += "<td><button disabled class='sendR "+nowID+" "+nowName+"' id ='"+nowTitle+"'>게시</button></td></tr></table>"
 					}
 					$('.blogForm').append(appendT)
 					cnt ++;
-				} // for_j  
+				} // for_j 
 			},
 			error:function(){
 				$('.blogForm').append("<h2>더이상 불러 올 데이터가 존재 하지 않습니다</h2>")
@@ -308,13 +310,12 @@ $(document).on("click",".heart", function(){
 $(document).on("click",".sendR", function(){
 	var title = $(this).attr("id");
     var id = $(this).attr("class");
-    id = id.substring(id.indexOf(" ")+1, id.lastIndexOf(" "));
+    id = id.substring(6, id.lastIndexOf(" "));
     var replyId = logID;
 	var name = id.substring(0,id.lastIndexOf("@"));
+	console.log(name);
 	var content = $('#'+name+title).val();
 	var td = name+title;
-
-
 	
     $.ajax({
 		type:'Post',
@@ -339,7 +340,7 @@ $(document).on("click",".sendR", function(){
 			$("."+send).attr('disabled', true);
 		}, // success
 		error:function(){
-			
+			console.log('fail');
 		}
 	});// ajax
 	
@@ -348,12 +349,15 @@ $(document).on("click",".sendR", function(){
 
 
 $(document).on('propertychange change keyup paste input','.replyArea', function(){
-	var send = $('.sendR').attr('class');
+	var send = $(this).attr('id');
+	console.log($('.sendR').attr('class'));
 	send = send.substring(send.lastIndexOf(" ")+1)
 	
-	console.log("send :"+send);
+	sendID = $('.'+send).attr('id');
+	console.log("sendId : " + sendID);
 	
-	$("."+send).attr('disabled', false);
+	$(".sendR "+send).attr('disabled', false);
+	
 });
 
 

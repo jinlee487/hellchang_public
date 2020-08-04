@@ -140,6 +140,7 @@ $(function(){
 	$("#listName").on("click", function(){
 		oldTitle = document.querySelectorAll("input.oldTitle");
 		lname =  $('.lname').val();
+		lname = lname.replace(/ /gi, "");
 	
 	 	for(var i=0; i<oldTitle.length; i++){
 	 		if(lname == oldTitle[i].value){
