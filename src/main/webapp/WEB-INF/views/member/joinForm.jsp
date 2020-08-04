@@ -17,12 +17,18 @@
 <script>
 $(document).ready(function(){
 	$('#signupbtn').on('click',function(){
-		console.log('this is email_loging value' + $('#email_login').val())
-		confirm("clicking signin")
-		
+
 		$('#email_login').attr('disabled',false);
 		$('#image_path').attr('disabled',false);
 		$('#gen').attr('disabled', false);
+		
+		$("form :input").each(function(){
+			 var input = $(this).val(); // This is the jquery object of the input, do what you will
+			 var name = $(this).attr("name");
+			 console.log("this is the "+name+" => " + input)
+			});
+		confirm("clicking signin")
+		
 	});
 	if($('#email_join_email_login').html()=="check"){
 		if($('#email_join_id').html()!=''){
@@ -87,12 +93,15 @@ $(document).ready(function(){
 	</c:if>
     <h1>Sign Up</h1>
    <p>Please fill in this form to create an account.</p>
+   
    	<div style="display:none" id="joincheck3">
 	<input type="text" id="image_path" name="image_path" class="input" disabled="disabled"><br>
 	<input type="text" id="email_login" name="email_login" class="input" disabled="disabled"><br>
 	</div>
+	
     <label for="email" class="int"><b>Email</b></label><br>
     <input type="text" id="id" placeholder="Enter Email" name="id" class="input" required><br>
+    
 	<div class="joincheck2">
     <label for="psw" class="int"><b>Password</b></label><br>
     <input type="password" id="password" placeholder="Enter Password"  name="password" class="input" required ><br>
@@ -101,6 +110,7 @@ $(document).ready(function(){
     <input type="password" placeholder="Repeat Password" id="rpsw" name="psw-repeat" class="input" required><br>
     <span  id="pMessage" class="eMessage"></span>
     </div>
+    
     <label for="name" class="int"><b>Name</b></label><br>
     
     <input type="text" id="name" placeholder="Name" name="name" class="input" required><br>
@@ -182,7 +192,7 @@ $(document).ready(function(){
                                         <option value="505">
                                             니카라과 +505
                                         </option>
-                                        <option value="82" selected="">
+                                        <option value="82" selected="selected">
                                             대한민국 +82
                                         </option>
                                         <option value="45">
@@ -815,8 +825,8 @@ $(document).ready(function(){
     </label>
 
     <div class="clearfix">
-      <input type="reset" class="cancelbtn" value="Cancel"/>
-      <input id="signupbtn" type="submit" class="signupbtn" value="Sign Up">
+      <button type="reset" class="cancelbtn">Cancel</button>
+      <button id="signupbtn" type="submit" class="signupbtn">Sign Up</button>
     </div>
   </div>
 </form>
