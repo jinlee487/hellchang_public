@@ -14,9 +14,62 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="resources/jqLib/CRUD_control.js"></script>
 <script src="resources/jqLib/joinCheck.js"></script>
+<script>
+$(document).ready(function(){
+	$('#signupbtn').on('click',function(){
+		$('#join_check').attr('disabled',false);
+		$('#image_path').attr('disabled',false);
+		$('#gen').attr('disabled', false);
+	});
+	if($('#email_join_join_check').html()=="check"){
+		if($('#email_join_id').html()!=''){
+			$('#id').val($('#email_join_id').html()).attr('readonly', true);
+		}
+		if($('#email_join_gender').html()!=''){
+			$('#gen').val($('#email_join_gender').html()).attr('disabled', true);
+		}
+		if($('email_join_image_path').html()!=''){
+			$('#image_path').val($('#email_join_image_path').html()).attr('readonly', true);
+		}
+		if($('email_join_name').html()!=''){
+			$('#name').val($('#email_join_name').html()).attr('readonly', true);
+		}
+		
+		$('#image_path').attr('disabled',false).val($('#email_join_image_path').html()).attr('disabled',true);
+		$('#join_check').attr('disabled',false).val($('#email_join_join_check').html()).attr('disabled',true);
+		$('#password').val($('#email_join_id').html()).attr('readonly', true);
+		$('#rpsw').val($('#email_join_id').html()).attr('readonly', true);
+		$('.joincheck2').css("display", "none");
+	}
+}) ;
+
+
+
+
+</script>
+
+
+
 
 </head>
+
+
+
+
+
 <body style="background-color: black;">
+
+<div class="joincheck" style="display:block">
+<div id="email_join_id">${id}</div>
+<div id="email_join_gender">${gender}</div>
+<div id="email_join_image_path">${image_path}</div>
+<div id="email_join_name">${name}</div>
+
+
+<div id="email_join_join_check">${join_check}</div>
+</div>
+
+
 <div id="header" class="joun_membership bounce-in-left" role="banner">
 <h1>
 	<a href="home" class="h_logo">
@@ -31,17 +84,20 @@
 	</c:if>
     <h1>Sign Up</h1>
    <p>Please fill in this form to create an account.</p>
-
+   	<div style="display:none" id="joincheck3">
+	<input type="text" id="image_path" name="image_path" class="input" disabled="disabled"><br>
+	<input type="text" id="join_check" name="join_check" class="input" disabled="disabled"><br>
+	</div>
     <label for="email" class="int"><b>Email</b></label><br>
     <input type="text" id="id" placeholder="Enter Email" name="id" class="input" required><br>
-
+	<div class="joincheck2">
     <label for="psw" class="int"><b>Password</b></label><br>
     <input type="password" id="password" placeholder="Enter Password"  name="password" class="input" required ><br>
 
     <label for="psw-repeat" class="int"><b>Repeat Password</b></label><br>
     <input type="password" placeholder="Repeat Password" id="rpsw" name="psw-repeat" class="input" required><br>
     <span  id="pMessage" class="eMessage"></span>
-    
+    </div>
     <label for="name" class="int"><b>Name</b></label><br>
     
     <input type="text" id="name" placeholder="Name" name="name" class="input" required><br>
@@ -757,7 +813,7 @@
 
     <div class="clearfix">
       <button type="reset" class="cancelbtn">Cancel</button>
-      <button type="submit" class="signupbtn">Sign Up</button>
+      <button id="signupbtn" type="submit" class="signupbtn">Sign Up</button>
     </div>
   </div>
 </form>
@@ -813,26 +869,19 @@ var pCheck=false;
 var rpCheck=false;
 
 $(function(){
-	$('#id').focus();
-	$('#id').focusout(function(){
-		iCheck=idCheck();
-	}); // id_focusout
+
 	
 	$('#psw').focusout(function(){
 		pCheck=pwCheck();
 	}); // password_focusout
-	
-	$('#rpsw').focusout(function(){
-		rpCheck=rpwCheck();
-	}); // name_focusout
+
 	
 
 }); // ready	
 
 
 function inCheck() {
-	if (iCheck==true && pCheck==true && rpCheck==true
-		 )	
+	if (pCheck==true)	
 		return true;  
 	else {
 		alert('입력 오류 확인을 하지 않은 항목이 있습니다. 확인 후 전송 하세요~~ '); 	

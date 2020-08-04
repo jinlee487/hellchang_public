@@ -113,9 +113,13 @@
 	
 	<!-- Exception 설정 -->
 	 <beans:bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-		<beans:property name="defaultErrorView"	value="exceptionpage/exceptionMessage"/>
-<!-- 		<beans:property name="defaultErrorView" value="exceptionpage/allException"></beans:property>				  -->
+<!-- 		<beans:property name="defaultErrorView"	value="exceptionpage/exceptionMessage"/>
+ --><!-- 		<beans:property name="defaultErrorView" value="exceptionpage/allException"></beans:property>				  -->
 	</beans:bean>
+	
+	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
+	<beans:bean id="naverLoginBO" class="com.ncs.green.NaverLoginBO" />
+
 </beans:beans>
 
 
