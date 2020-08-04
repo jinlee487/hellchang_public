@@ -171,12 +171,18 @@ console.log("session : "+logID);
         <!--   <h4 class="modal-title"> List 저장하기 </h4> -->
         </div>
          <div class="modal-body" style="display: inline-flex; ">
+         <form action="detail" method="get">
          <table class="tabale">
          <tr style="margin-left: 5px; font-size: medium; font-weight:bold;"><td><img src="${profile_image}" class="myphoto"></td><td colspan ="2"><br>
          Title : ${title}<br>Name : ${logName}<br>Date : ${Detail.date}</td><td colspan="3"></td></tr>
          <tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>
-         <tr><td>${logName}</td><td>${Detail.target}</td><td>${Detail.kg}</td><td>${Detail.req}</td><td>${Detail.title}</td></tr>
+         <tr><td>${logName}</td>
+         <td>${Detail.target}</td>
+         <td>${Detail.kg}</td>
+         <td>${Detail.req}</td>
+         <td>${Detail.title}</td></tr>
          </table>
+         </form>
 		</div>
 		  
 		   <div class="modal-body-text" style="width : 350px; margin-left: 50px; margin-top: 50px;">

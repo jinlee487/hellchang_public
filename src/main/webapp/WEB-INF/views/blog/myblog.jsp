@@ -179,27 +179,13 @@ console.log("session : "+logID);
           <img src="${profile_image }" alt="강경원" width="30px" height="30px" class="myPhoto1" style="float: left; border-radius: 50%">
           <table>
 					<tbody><tr><td style="font-size: 15px"><a>${logName}</a></td></tr>
-					<tr><td id="myTitle">분할 Title이름</td></tr>
+					<tr><td id="myTitle">seq</td></tr>
 					</tbody></table><hr>
 		 
 		 
 		 
 		  <div class="coment">
-		<img src="resources/image/lee.jpg" alt="lee" width="30px" height="30px" class="myPhoto1" style="float: left; border-radius: 50%">
-          <table>
-					<tbody><tr><td style="font-size: 15px"><a>lee</a></td></tr>
-					<tr><td id="myTitle">댓글 내용내용내용</td></tr>
-					</tbody></table><br>
-		 <img src="resources/image/kang.jpg" alt="강경원" width="30px" height="30px" class="myPhoto1" style="float: left; border-radius: 50%">
-          <table>
-					<tbody><tr><td style="font-size: 15px"><a>kang1234</a></td></tr>
-					<tr><td id="myTitle">댓글 내용내용내용</td></tr>
-					</tbody></table><br>
-		<img src="resources/image/hwang.jpg" alt="hwang" width="30px" height="30px" class="myPhoto1" style="float: left; border-radius: 50%">
-          <table>
-					<tbody><tr><td style="font-size: 15px"><a>hwang</a></td></tr>
-					<tr><td id="myTitle">댓글 내용내용내용</td></tr>
-					</tbody></table><br>		
+		<div class="comentForm" align="center"></div>		
 		  </div>
 		<div align="center" class="blogForm2"></div>
          

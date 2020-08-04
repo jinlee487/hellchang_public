@@ -209,13 +209,15 @@ public class SaveController {
 	}// heartUp
 	
 	@RequestMapping(value = "/replyInsert")
-	public ModelAndView replyInsert(HttpServletRequest request, ModelAndView mv, ReplyVO rvo){
+	public ModelAndView replyInsert(HttpServletRequest request, ModelAndView mv, ReplyVO rvo,SaveVO vo){
 		service.replyInsert(rvo);
 		System.out.println(rvo);
 		
 		rvo = service.replyResult(rvo);
 		mv.addObject("replyContent", rvo.getReplyContent());
 		mv.addObject("replyId", rvo.getId());
+		mv.addObject("replyImg",vo.getUserImage());
+		mv.addObject("replyName", vo.getName());
 		System.out.println("rvo T2 : " + rvo);
 		
 		
@@ -223,38 +225,19 @@ public class SaveController {
 		return mv;
 	}// reply
 	
-	@RequestMapping(value = "Detail")
+	@RequestMapping(value = "detail")
 	public ModelAndView detail(HttpServletRequest request,ModelAndView mv, SaveVO vo, HeartVO hvo, ReplyVO rvo ) {
-		int cnt = 0;
-		SaveVO[] array = {};
-		List<SaveVO> list = service.selectTList();
-		array = list.toArray(new SaveVO[list.size()]);
-		for(int i=0; i<array.length; i++) {
-			vo.setId(array[i].getId());
-			vo.setTitle(array[i].getTitle());
-			hvo.setId(array[i].getId());
-			hvo.setTitle(array[i].getTitle());
-			hvo = service.heartSelect(hvo);
-			String HTest = "heart"+i;
-			mv.addObject(HTest,hvo.getHeart());
-			List<SaveVO> test = service.findTest(vo);
-			String IDTest = "forName"+i;
-			mv.addObject(IDTest, test);
-			String Reply = "Reply"+i;
-			rvo.setId(array[i].getId());
-			rvo.setTitle(array[i].getTitle());
-			if(service.replyResult(rvo) == null) {
-				mv.addObject(Reply, " ");
-				System.out.println("rvo T1 : " + rvo);
-			}else{
-				rvo = service.replyResult(rvo);
-				mv.addObject(Reply, rvo);
-				System.out.println("rvo T2 : " + rvo);
-			}
-			rownum = array[i].getRownum();
-			cnt ++;
-			mv.addObject("num", cnt);
-			mv.setViewName("jsonView");
+		HttpSession session = request.getSession(false);
+		String logID="";
+		if(session != null && session.getAttribute("logID")!=null) {
+			logID= (String)session.getAttribute("logID");
+		}
+		
+		vo=service.selectOne(vo);
+		if(vo!=null) {
+			mv.addObject("Detail",vo);
+		}else {
+			mv.addObject("fCode","BN");
 		}
 		return mv;
 	}

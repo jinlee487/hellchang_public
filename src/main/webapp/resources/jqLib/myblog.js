@@ -20,6 +20,7 @@ $(function(){
 				
 				var appendT = "";
 				var appendh = "";
+				var appendC = "";
 				/* 본문 출력 i  */
 				appendT += "<table class = 'table'>"
 				rowcnt = 0;							     /* 중  */
@@ -39,6 +40,7 @@ $(function(){
 					
 					rowcnt ++;
 					console.log("row count 어따씀 ? " + rowcnt);
+					// .blogForm => appendT 에대한
 					$('.blogForm').append(appendT)
 				} // for_iMb
 				
@@ -48,14 +50,17 @@ $(function(){
 				
 				appendh += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowTitle+"'></span></td>"
 				if(nowReply.replyId == null && nowReply.replyContent == null ){
-					appendh += "<td colspan='2'></td><td colspan ='2'>"+nowReply+"</td></tr>"
+					appendC += "<td colspan='2'></td><td colspan ='2'>"+nowReply+"</td></tr>"
 				}else{
-					appendh += "<td colspan='4' id = 'cnt"+nowReplyT+"'>"+nowReply.replyId +" : "+ nowReply.replyContent+"</td></tr>";
+					appendC += "<td><img src='"+jsonData[0].userImage+" width='30px' height='30px' 'class='myPhoto' ></td><td colspan='4' id = 'cnt"+nowReplyT+"'>"+jsonData[0].userName +" : "+ nowReply.replyContent+"</td></tr>";
 				}
 				appendh += "<tr><td colspan ='4'><form><textarea class = 'replyArea' id = '"+nowReplyT+"'  style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea>"
 				appendh += "<input type='text' name="+" value='"+ nowID +"' hidden><input type='text' value='"+ nowTitle +"' hidden></form></td>"
 				appendh += "<td><button class='sendR "+nowID+"' id ='"+nowTitle+"'>게시</button></td></tr></table>"
+				// .
 				$('.blogForm2').append(appendh)
+				
+				$('.comentForm').append(appendC)
 				cnt ++;
 			} // for_j 
 			
