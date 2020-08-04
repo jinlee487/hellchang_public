@@ -214,9 +214,15 @@ public class SaveController {
 	
 	@RequestMapping(value = "/replyInsert")
 	public ModelAndView replyInsert(HttpServletRequest request, ModelAndView mv, ReplyVO rvo){
+		System.out.println("before rvo :" + rvo);
 		service.replyInsert(rvo);
-		System.out.println(rvo);
+		System.out.println("after rvo :" + rvo);
 		rvo = service.replyResult(rvo);
+		System.out.println("select after rvo :" + rvo);
+		
+		System.out.println("ReplyContent : " + rvo.getReplyContent());
+		System.out.println("ReplyIdt : " + rvo.getReplyId());
+		
 		mv.addObject("replyContent", rvo.getReplyContent());
 		mv.addObject("replyId", rvo.getId());
 		System.out.println("rvo T2 : " + rvo);
