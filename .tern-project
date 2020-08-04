@@ -9,10 +9,17 @@
     },
     "browser-extension": {
       
+    },
+    "jquery-ui1-12": {
+      
+    },
+    "jquery-extension": {
+      
     }
   },
   "libs": [
     "ecma5",
-    "browser"
+    "browser",
+    "jquery"
   ]
 }
