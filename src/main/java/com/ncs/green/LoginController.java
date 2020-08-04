@@ -83,15 +83,23 @@ public class LoginController {
         //response의 nickname값 파싱
         String id = response_obj.get("email").getAsString();
         String gender = response_obj.get("gender").getAsString();
-        String image_path= response_obj.get("profile_image").getAsString();;
-        String name= response_obj.get("name").getAsString();;
-
+        String image_path= response_obj.get("profile_image").getAsString();
+        String name= response_obj.get("name").getAsString();
+        vo.setId(id);
+        vo=service.selectOne(vo);
+        if(vo!=null) {
+			request.getSession().setAttribute("logID", vo.getId());
+			request.getSession().setAttribute("logName", vo.getName());
+			request.getSession().setAttribute("profile_image", vo.getImage_path());
+	        mv.setViewName("redirect:prof");
+	        return mv;
+        }
         mv.setViewName("member/joinForm");
         mv.addObject("id", id);
         mv.addObject("name", name);
         mv.addObject("gender", gender);
         mv.addObject("image_path", image_path);
-        mv.addObject("join_check", "check");
+        mv.addObject("email_login", "check");
         return mv;
     }
 

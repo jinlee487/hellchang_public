@@ -21,7 +21,14 @@ public class MemberVO {
 	private String level;	
 	private String image_path;        // db와 동일한 이름
 	private MultipartFile image_file; // form에서 저장하는 image 
+	private boolean email_login=false;
 
+	public boolean getEmail_login() {
+		return email_login;
+	}
+	public void setEmail_login(boolean email_login) {
+		this.email_login = email_login;
+	}
 	public String getId() {return id;}
 	public void setId(String id) {this.id = id;}
 	public String getPassword() {return password;}
@@ -69,8 +76,10 @@ public class MemberVO {
 		return "MemberVO [id=" + id + ", password=" + password + ", name=" + name + ", gender=" + gender + ", phone="
 				+ phone + ", nationNo=" + nationNo + ", phoneNo=" + phoneNo + ", address=" + address + ", zipcode="
 				+ zipcode + ", address1=" + address1 + ", address2=" + address2 + ", birthday=" + birthday + ", yy="
-				+ yy + ", mm=" + mm + ", dd=" + dd + ", level=" + level + ", image_path=" + image_path + "]";
+				+ yy + ", mm=" + mm + ", dd=" + dd + ", level=" + level + ", image_path=" + image_path + ", image_file="
+				+ image_file + ", email_login=" + email_login + "]";
 	}
+
 	
 
 	

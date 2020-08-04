@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="en"><head><meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1, minimum-scale=1, width=device-width">
-    <link rel="stylesheet" type="text/css" href="resources/jqLib/errorPageCss.css">
+  <link rel="stylesheet" type="text/css" href="resources/jqLib/errorPageCss.css">
   
   <title>Error404</title>
 

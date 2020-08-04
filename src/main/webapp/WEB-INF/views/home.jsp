@@ -53,20 +53,7 @@
     } 
     
     /* Add a gray background color and some padding to the footer */
-    
-  .carousel-inner img {
-      width: 1376px; /* Set width to 100% */
-      margin: auto;
-      min-height:200px;
-  }
 
-  /* Hide the carousel text when the screen is less than 600 pixels wide */
-  @media (max-width: 600px) {
-    .carousel-caption {
-      display: none; 
-      margin-left: 20	0px;
-    }
-  }
   @media (min-width: 768px){
 	.col-sm-4 {
 	  /* margin-left: 200px; */
@@ -149,7 +136,9 @@
 		</div>
 	  </div>  
 	  <hr>
-	
+	  <br>
+	  <br>
+      <br>
 	  <div class="bimo parent" style="width: 100%;">
 		  <div class = "child" style="width: 30%;" align="center">
 		  <h2>Front-End</h2>
@@ -160,7 +149,8 @@
 		  <img src = "resources/image/bootstrap_icon.png" width="100" height="100"> 
 		  <img src = "resources/image/jsp_icon.png" width="100" height="100">
 		  </div>
-	  </div>	  
+	  </div>
+	  
 	  <div class="bimo parent" style="width: 100%;">
 		  <div class = "child icon" style="width: 30%;" align="center">
 		  <h2>Back-End</h2>
@@ -172,6 +162,9 @@
 		  </div>
 	  </div>
 	  <hr>
+	  <br>
+	  <br>
+      <br>
 	
 	  <div class="bimo" style="width: 100%;">
 	  	  <h3>What We Do</h3><br>
@@ -184,7 +177,10 @@
 		    </div>  
 	  </div>
 	  <hr>
-	  
+	  <br>
+	  <br>
+      <br>
+      
 	  <div class="bimo" style="width: 100%;">
 	  	    <div style="width:65%; height:200px; display:inline-block;">
 		    	<h3>횟수와 무게에 따른 1rm 계산<br>
@@ -195,8 +191,10 @@
 		    </div>
 		  
 	  </div>
-	   <hr>
-	  
+	  <hr>
+	  <br>
+	  <br>
+      <br>
 	 <div class="bimo" style="width: 100%;">
 	  	  	<div style="display:inline-block; background-color: red; width: 25%; height: 200px;">
 		    	<p><img src = "resources/image/inbody_icon.png" width="100%"></p>
@@ -208,7 +206,9 @@
 	  </div>
 	  
 	  <hr>
-	  
+	  <br>
+	  <br>
+      <br>
 	 <div class="bimo" style="width: 100%;">
 	  	  <div style="width:65%; height:200px; display:inline-block;">
 		    	<h3>자신의 루틴 저장<br>
@@ -219,10 +219,21 @@
 		  </div>
 		  
 	  </div>
-	    
+	  <hr>
+	  <br>
+	  <br>
+      <br>  
 	  </div>
-	</div><br>
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 
 
 

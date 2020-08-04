@@ -75,9 +75,17 @@
 
   <!-- memberJoin() -->
   <insert id="insert">
+    INSERT INTO hellchang_schema_test.member values 
+  (#{id},#{password},#{name},#{gender},#{phone},#{address},#{birthday},#{level},#{image_path},#{email_login})
+  
+<!--   <if test="email_log.equals('false')">
   INSERT INTO hellchang_schema_test.member values 
-  (#{id},#{password},#{name},#{gender},#{phone},#{address},#{birthday},#{level},#{image_path})
-
+  (#{id},#{password},#{name},#{gender},#{phone},#{address},#{birthday},#{level},#{image_path},b'0')
+  </if>
+  <if test="email_log.equals('true')">
+    INSERT INTO hellchang_schema_test.member values 
+  (#{id},#{password},#{name},#{gender},#{phone},#{address},#{birthday},#{level},#{image_path},b'1')
+	</if> -->
   </insert>	
   
   <!-- memberUpdate() -->

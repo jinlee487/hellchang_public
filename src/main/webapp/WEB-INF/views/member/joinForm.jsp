@@ -17,11 +17,14 @@
 <script>
 $(document).ready(function(){
 	$('#signupbtn').on('click',function(){
-		$('#join_check').attr('disabled',false);
+		console.log('this is email_loging value' + $('#email_login').val())
+		confirm("clicking signin")
+		
+		$('#email_login').attr('disabled',false);
 		$('#image_path').attr('disabled',false);
 		$('#gen').attr('disabled', false);
 	});
-	if($('#email_join_join_check').html()=="check"){
+	if($('#email_join_email_login').html()=="check"){
 		if($('#email_join_id').html()!=''){
 			$('#id').val($('#email_join_id').html()).attr('readonly', true);
 		}
@@ -36,7 +39,7 @@ $(document).ready(function(){
 		}
 		
 		$('#image_path').attr('disabled',false).val($('#email_join_image_path').html()).attr('disabled',true);
-		$('#join_check').attr('disabled',false).val($('#email_join_join_check').html()).attr('disabled',true);
+		$('#email_login').attr('disabled',false).val($('#email_join_email_login').html()).attr('disabled',true);
 		$('#password').val($('#email_join_id').html()).attr('readonly', true);
 		$('#rpsw').val($('#email_join_id').html()).attr('readonly', true);
 		$('.joincheck2').css("display", "none");
@@ -66,7 +69,7 @@ $(document).ready(function(){
 <div id="email_join_name">${name}</div>
 
 
-<div id="email_join_join_check">${join_check}</div>
+<div id="email_join_email_login">${email_login}</div>
 </div>
 
 
@@ -86,7 +89,7 @@ $(document).ready(function(){
    <p>Please fill in this form to create an account.</p>
    	<div style="display:none" id="joincheck3">
 	<input type="text" id="image_path" name="image_path" class="input" disabled="disabled"><br>
-	<input type="text" id="join_check" name="join_check" class="input" disabled="disabled"><br>
+	<input type="text" id="email_login" name="email_login" class="input" disabled="disabled"><br>
 	</div>
     <label for="email" class="int"><b>Email</b></label><br>
     <input type="text" id="id" placeholder="Enter Email" name="id" class="input" required><br>
@@ -812,11 +815,17 @@ $(document).ready(function(){
     </label>
 
     <div class="clearfix">
-      <button type="reset" class="cancelbtn">Cancel</button>
-      <button id="signupbtn" type="submit" class="signupbtn">Sign Up</button>
+      <input type="reset" class="cancelbtn" value="Cancel"/>
+      <input id="signupbtn" type="submit" class="signupbtn" value="Sign Up">
     </div>
   </div>
 </form>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 	<div id="footer" role="contentinfo">
 		<address>
 			<em><a href="home" target="_blank" class="logo"><span class="blind">HellChang</span></a></em>
