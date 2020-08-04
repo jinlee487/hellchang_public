@@ -112,6 +112,7 @@ public class SaveController {
 			String HTest = "heart"+i;
 			mv.addObject(HTest, hvo.getHeart());
 			// id와 title 별로 저장된 heart 출력
+			
 			List<SaveVO> test = service.findTest(vo);
 			System.out.println("findTest : " + test);
 			// myRoutine *, member.name, member.image 뽑아냄 
@@ -121,12 +122,13 @@ public class SaveController {
 			// find 리스트를 IDTest에 담아 보냄 IDTest라는 이름으로
 			// jsp에서 jsonData[i]로 사용됨 
 			System.out.println("blogTest : "+IDTest+test);
+			
 			String Reply = "Reply"+i;
 			rvo.setId(array[i].getId());
 			rvo.setTitle(array[i].getTitle());
-			if(service.replyResult(rvo) == null) {
+			if(service.replyResult(rvo) == null) { 
 				mv.addObject(Reply, " ");
-				System.out.println("rvo T1 : " + rvo);
+				System.out.println("댓글 왜 안들어와 : " + rvo);
 			}else{
 				rvo = service.replyResult(rvo);
 				mv.addObject(Reply, rvo);

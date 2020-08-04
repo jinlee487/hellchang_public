@@ -73,11 +73,11 @@
   </select>
   
   <insert id="replyInsert">
-    insert into `hellchang_schema_test`.`reply` values 
+    insert into `hellchang_schema_test`.`reply` (id,title,replyContent,replyId,date) values 
 	 (#{id}, #{title}, #{replyContent}, #{replyId}, sysdate());
   </insert> 
   
   <select id="replyResult" resultType="vo.ReplyVO">
-  	select * from hellchang_schema_test.reply where id = #{id} and title = #{title} order by date desc limit 1;
+  	select id,title,replyContent,replyId,date from hellchang_schema_test.reply where id = #{id} and title = #{title} order by date desc limit 1;
   </select>
  </mapper>

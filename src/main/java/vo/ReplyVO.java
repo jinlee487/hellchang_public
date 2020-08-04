@@ -6,7 +6,8 @@ public class ReplyVO {
 	private String replyContent; // ´ñ±Û³»¿ë
 	private String replyId; // session id
 	private String date;
-
+	private int seq;
+	
 	public String getId() {
 		return id;
 	}
@@ -37,9 +38,13 @@ public class ReplyVO {
 	public void setReplyId(String replyId) {
 		this.replyId = replyId;
 	}
+	
+	public int getSeq() {
+		return seq;
+	}
 	@Override
 	public String toString() {
 		return "ReplyVO [id=" + id + ", title=" + title + ", replyContent=" + replyContent + ", replyId=" + replyId
-				+ ", date=" + date + "]";
+				+ ", date=" + date + ", seq=" + seq + "]";
 	}
 }

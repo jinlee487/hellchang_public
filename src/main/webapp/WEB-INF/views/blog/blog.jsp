@@ -170,9 +170,10 @@ $(function(){
 				if(logID.length != 4){
 					appendT += "<tr><td><span class = 'heart "+ nowID+" "+nowTitle+"' id ='heart"+nowSeq+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowSeq+"'></span></td>"
 					if(nowReply.replyId == null && nowReply.replyContent == null ){
-						appendT += "<td colspan='2'></td><td colspan ='2'>"+nowReply+"</td></tr>"
+						appendT += "<td colspan='4' id ='reply"+nowSeq+"'></td></tr>";
 					}else{
-						appendT += "<td colspan='4' id = 'reply"+nowSeq+"'>"+nowReply.replyId +" : "+ nowReply.replyContent+"</td></tr>";
+						console.log("nowReply" +nowReply);
+						appendT += "<td colspan='4' id ='reply"+nowSeq+"'>"+nowReply.replyId +" : "+ nowReply.replyContent+"</td></tr>";
 					}
 					appendT += "<tr><td colspan ='4'><form><textarea class = 'replyArea "+nowTitle+"' id ='text"+nowSeq+"'  style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea>"
 					appendT += "<td><button disabled class='sendR "+nowID+" "+nowName+" "+nowTitle+"' id ='button"+nowSeq+"'>게시</button></td></tr></table>"
@@ -237,9 +238,9 @@ $(window).scroll(function(){
 					if(logID.length != 4){
 						appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowSeq+"'></span></td>"
 						if(nowReply.replyId == null && nowReply.replyContent == null ){
-							appendT += "<td colspan='2'></td><td colspan ='2'>"+nowReply+"</td></tr>"
+							appendT += "<td colspan='4' id ='reply"+nowSeq+"'></td></tr>";
 						}else{
-							appendT += "<td colspan='4' id = 'reply"+nowSeq+"'>"+nowReply.replyId +" : "+ nowReply.replyContent+"</td></tr>";
+							appendT += "<td colspan='4' id ='reply"+nowSeq+"'>"+nowReply.replyId +" : "+ nowReply.replyContent+"</td></tr>";
 						}
 						appendT += "<tr><td colspan ='4'><form><textarea class = 'replyArea "+nowTitle+"' id ='text"+nowSeq+"'  style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea>"
 						appendT += "<td><button disabled class='sendR "+nowID+" "+nowName+" "+nowTitle+"' id ='button"+nowSeq+"'>게시</button></td></tr></table>"
@@ -288,10 +289,10 @@ $(document).on("click",".sendR", function(){
     var name = $(this).attr("class").split(" ")[2];
     var title = $(this).attr("class").split(" ")[3];
     var seq = $(this).attr("id").substring(6);
- 	
+   // id ='reply"+nowSeq+"'
 	
 	var content = $('#text'+seq).val();
-    
+   
 	$.ajax({
 		type:'Post',
 		url : "replyInsert",
@@ -302,10 +303,12 @@ $(document).on("click",".sendR", function(){
 			replyId : logID
 		},		
 		success:function(data){
+			console.log('change');
 			var replyContent = data.replyContent;
 			var replyId = data.replyId;
-			$('#reply'+seq).html(logID +" : "+ replyContent)
+			$('#reply'+seq).html(logID +" : "+ content);
 			$('#text'+seq).val(" "); 
+			//$('#replyShow'+seq).html()
 			$("#button"+seq).attr('disabled', true);
 		}, // success
 		error:function(){
