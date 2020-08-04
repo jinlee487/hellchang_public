@@ -1,7 +1,5 @@
 package com.ncs.green;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -12,12 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import service.SService;
 import vo.HeartVO;
-import vo.MemberVO;
 import vo.ReplyVO;
 import vo.SaveVO;
 
@@ -213,18 +209,49 @@ public class SaveController {
 	}// heartUp
 	
 	@RequestMapping(value = "/replyInsert")
-	public ModelAndView replyInsert(HttpServletRequest request, ModelAndView mv, ReplyVO rvo){
+	public ModelAndView replyInsert(HttpServletRequest request, ModelAndView mv, ReplyVO rvo,SaveVO vo){
 		service.replyInsert(rvo);
 		System.out.println(rvo);
 		
 		rvo = service.replyResult(rvo);
 		mv.addObject("replyContent", rvo.getReplyContent());
 		mv.addObject("replyId", rvo.getId());
+		mv.addObject("replyImg",vo.getUserImage());
+		mv.addObject("replyName", vo.getName());
 		System.out.println("rvo T2 : " + rvo);
 		
 		
 		mv.setViewName("jsonView");
 		return mv;
 	}// reply
+	
+	@RequestMapping(value = "detail")
+	public ModelAndView detail(HttpServletRequest request,ModelAndView mv, SaveVO vo, HeartVO hvo, ReplyVO rvo ) {
+		HttpSession session = request.getSession(false);
+		String logID="";
+		if(session != null && session.getAttribute("logID")!=null) {
+			logID= (String)session.getAttribute("logID");
+		}
+		
+		vo=service.selectOne(vo);
+		if(vo!=null) {
+			mv.addObject("Detail",vo);
+		}else {
+			mv.addObject("fCode","BN");
+		}
+		return mv;
+	}
+	@RequestMapping(value="blist")
+	public ModelAndView blist(ModelAndView mv) {
+		List<SaveVO> list = service.selectTList();
+		
+		if(list !=null) {
+			mv.addObject("Banana",list);
+		}else {
+			mv.addObject("message","error");
+		}
+		mv.setViewName("blog/myblog");
+		return mv;
+	}
 	
 }//class

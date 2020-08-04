@@ -889,6 +889,16 @@ function inCheck() {
 	} // else
 } // inCheck()
 
+function idDupCheck() {
+	if (iCheck==false) { iCheck=idCheck(); }
+	else {
+		// url 요청이 서버로 전달되고 그 결과가 아래 윈도우로 Open됨. 
+		var url="idDupCheck?id="+$('#id').val();
+		window.open(url,"_blank",
+			"toolbar=no,menubar=yes,scrollbars=yes,resizable=yes,width=500,height=400");
+	}
+} // idDupCheck()
+
 </script>
 </body>
 </html>
