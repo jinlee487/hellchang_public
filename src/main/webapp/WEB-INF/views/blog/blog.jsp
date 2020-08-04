@@ -15,7 +15,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
 <style type="text/css">
 	/* Remove the navbar's default margin-bottom and rounded borders */ 
      .navbar {
@@ -23,7 +22,6 @@
       border-radius: 0;
       background-color: #000000;
     }
-
     .gridA{ 
 		color: black; text-decoration: none;
 	}
@@ -36,27 +34,21 @@
 	.gridA:hover{ 
 		color: black; text-decoration: none;
 	}
-   	
    	#headerImg{
    		border-radius: 70%;
    		overflow: hidden;
    	}
-
-
 	.myPhoto{
 	width: 100px;
 	height: 100px;
     border-radius: 50%;
 	}
-    
 .table {
 	width : 600px;
      border-collapse: collapse;
      border-top: 3px solid #168;
      border-bottom: 3px solid #168;
 }
-  
-
 .table th {
      color: #168;
      background: #f0f6f9;
@@ -67,11 +59,9 @@
     background: #f0f6f9;
     text-align: center;
 }
-
 .table td:first-child{
 	width : 200px;
 	vertical-align: middle;
-	
 }
 .table tr:first-child{
 	border-right: 3px solid #168;
@@ -79,7 +69,6 @@
 .firsttr{
 	border-right: 3px solid #168;
 }
-
 .table th:first-child, .table td:first-child {
      border-left: 3px solid #168;
 }
@@ -88,7 +77,6 @@
 	width : 200px;
 	vertical-align: middle;
 }
-
 .table th:last-child, .table td:last-child {
 	border-right : 3px solid #168;
 }
@@ -117,7 +105,6 @@ textarea{
 	padding-bottom: 16px;
 	background-origin: padding-box;
 }
-   
 #footer{
 	position: fixed;
 	color: black;
@@ -136,12 +123,10 @@ textarea{
 <script type="text/javascript">
 var logID = "<%=session.getAttribute("logID") %>"
 console.log("session : "+logID);
-
 $(function(){
 	var cnt = 0;
 	var last = 0;
 	var rowcnt = 0;
-	
 	$.ajax({
 		type:'Get',
 		dataType : "json",
@@ -152,7 +137,7 @@ $(function(){
 			var num = data.num;
 			console.log(num);
 			/* 한페이지당 blog 개수 j  */
-			for(var j=0; j<5; j++){
+			for(var j=0; j<num; j++){
 				var lastNum = 0;
 				if(cnt == 0){jsonData = data.forName0; heartCnt = data.heart0; nowReply = data.Reply0}
 				else if(cnt == 1){jsonData = data.forName1; heartCnt = data.heart1; nowReply = data.Reply1}
@@ -160,7 +145,6 @@ $(function(){
 				else if(cnt == 3){jsonData = data.forName3; heartCnt = data.heart3; nowReply = data.Reply3}
 				else if(cnt == 4){jsonData = data.forName4; heartCnt = data.heart4; nowReply = data.Reply4}
 				lastNum = Object.keys(jsonData).length;
-				
 				var appendT = "";
 				/* 본문 출력 i  */
 				appendT += "<table class = 'table'>"
@@ -174,40 +158,32 @@ $(function(){
 						appendT += "<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>"
 					}else if(i==lastNum){
 						appendT += "<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>"
-						
 					}
 					nowTitle = jsonData[i].title ;     /* 현재 출력하는 피드의 이름 */
 					nowID = jsonData[i].id;           /* 현재 출력하는 피드의 주인 */
-					
+					nowSeq = jsonData[i].seq
 					rowcnt ++;
 				} // for_iMb
-				
-				
 				var nowName = nowID.substring(0,nowID.lastIndexOf("@"));
 				var nowReplyT = nowName+nowTitle;
-				
 				console.log("logId :"+logID.length);
-				
 				if(logID.length != 4){
-					appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowTitle+"'></span></td>"
+					appendT += "<tr><td><span class = 'heart "+ nowID+" "+nowTitle+"' id ='heart"+nowSeq+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowSeq+"'></span></td>"
 					if(nowReply.replyId == null && nowReply.replyContent == null ){
 						appendT += "<td colspan='2'></td><td colspan ='2'>"+nowReply+"</td></tr>"
 					}else{
-						appendT += "<td colspan='4' id = 'cnt"+nowReplyT+"'>"+nowReply.replyId +" : "+ nowReply.replyContent+"</td></tr>";
+						appendT += "<td colspan='4' id = 'reply"+nowSeq+"'>"+nowReply.replyId +" : "+ nowReply.replyContent+"</td></tr>";
 					}
-					appendT += "<tr><td colspan ='4'><form><textarea class = 'replyArea' id = '"+nowReplyT+"'  style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea>"
-					appendT += "<input type='text' name="+" value='"+ nowID +"' hidden><input type='text' value='"+ nowTitle +"' hidden></form></td>"
-					appendT += "<td><button disabled class='sendR "+nowID+" "+nowName+"' id ='"+nowTitle+"'>게시</button></td></tr></table>"
+					appendT += "<tr><td colspan ='4'><form><textarea class = 'replyArea "+nowTitle+"' id ='text"+nowSeq+"'  style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea>"
+					appendT += "<td><button disabled class='sendR "+nowID+" "+nowName+" "+nowTitle+"' id ='button"+nowSeq+"'>게시</button></td></tr></table>"
 				}
 				$('.blogForm').append(appendT)
 				cnt ++;
 			} // for_j 
 		},
 		error:function(){
-			
 		}
 	}); // ajax 
-
 $(window).scroll(function(){
 	if($(document).height() <= $(window).scrollTop() + $(window).height()){	
 	loadNext();
@@ -236,7 +212,6 @@ $(window).scroll(function(){
 					else if(cnt == 3){jsonData = data.forName3; heartCnt = data.heart3; nowReply = data.Reply3}
 					else if(cnt == 4){jsonData = data.forName4; heartCnt = data.heart4; nowReply = data.Reply4}
 					lastNum = Object.keys(jsonData).length;
-					
 					var appendT = "";
 					/* 본문 출력 i  */
 					appendT += "<table class = 'table'>"
@@ -253,22 +228,21 @@ $(window).scroll(function(){
 						}
 						nowTitle = jsonData[i].title ;     /* 현재 출력하는 피드의 이름 */
 						nowID = jsonData[i].id;           /* 현재 출력하는 피드의 주인 */
+						nowSeq = jsonData[i].seq
 						rowcnt ++;
 					} // for_iMb
-					
 					var nowName = nowID.substring(0,nowID.lastIndexOf("@"));
 					var nowReplyT = nowName+nowTitle;
-					
+					console.log("logId :"+logID.length);
 					if(logID.length != 4){
-						appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowTitle+"'></span></td>"
+						appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+heartCnt+"</span><span id = 'cnt"+nowSeq+"'></span></td>"
 						if(nowReply.replyId == null && nowReply.replyContent == null ){
 							appendT += "<td colspan='2'></td><td colspan ='2'>"+nowReply+"</td></tr>"
 						}else{
-							appendT += "<td colspan='4' id = 'cnt"+nowReplyT+"'>"+nowReply.replyId +" : "+ nowReply.replyContent+"</td></tr>";
+							appendT += "<td colspan='4' id = 'reply"+nowSeq+"'>"+nowReply.replyId +" : "+ nowReply.replyContent+"</td></tr>";
 						}
-						appendT += "<tr><td colspan ='4'><form><textarea class = 'replyArea' id = '"+nowName+"'  style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea>"
-						appendT += "<input type='text' name="+" value='"+ nowID +"' hidden><input type='text' value='"+ nowTitle +"' hidden></form></td>"
-						appendT += "<td><button disabled class='sendR "+nowID+" "+nowName+"' id ='"+nowTitle+"'>게시</button></td></tr></table>"
+						appendT += "<tr><td colspan ='4'><form><textarea class = 'replyArea "+nowTitle+"' id ='text"+nowSeq+"'  style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea>"
+						appendT += "<td><button disabled class='sendR "+nowID+" "+nowName+" "+nowTitle+"' id ='button"+nowSeq+"'>게시</button></td></tr></table>"
 					}
 					$('.blogForm').append(appendT)
 					cnt ++;
@@ -280,16 +254,19 @@ $(window).scroll(function(){
 	}) // ajax
 	} // loadNext
 });
+	
 
+	
+	
 $(document).on("click",".heart", function(){
-    var title = $(this).attr("id");
-    console.log($(this).attr("id"));
-    var id = $(this).attr("class");
-    console.log($(this).attr("class"));
-    id = id.substring(6);
-    console.log(id);
+    var id = $(this).attr("class").split(" ")[1];
+    var title = $(this).attr("class").split(" ")[2];
+    console.log("id " + id);
+    console.log("title " + title)
+    var seq = $(this).attr("id").substring(5);
+    console.log(seq);
     $.ajax({
-		type:'Get',
+		type:'Post',
 		url : "heartUp",
 		data:{
 			id : id,
@@ -297,8 +274,8 @@ $(document).on("click",".heart", function(){
 		},
 		success:function(data){
 			var cnt = data.countHeartTest
-			$('#'+title).empty();
-			$('#cnt'+title).html("<img src = 'resources/image/heart.png'>"+cnt);
+			$('#heart'+seq).empty();
+			$('#cnt'+seq).html("<img src = 'resources/image/heart.png'>"+cnt);
 		}, // success
 		error:function(){
 			alert(rowcnt);
@@ -306,64 +283,47 @@ $(document).on("click",".heart", function(){
 		}
 	}) // ajax
 }) // heart_click 이벤트
-
 $(document).on("click",".sendR", function(){
-	var title = $(this).attr("id");
-    var id = $(this).attr("class");
-    id = id.substring(6, id.lastIndexOf(" "));
-    var replyId = logID;
-	var name = id.substring(0,id.lastIndexOf("@"));
-	console.log(name);
-	var content = $('#'+name+title).val();
-	var td = name+title;
+    var id = $(this).attr("class").split(" ")[1];
+    var name = $(this).attr("class").split(" ")[2];
+    var title = $(this).attr("class").split(" ")[3];
+    var seq = $(this).attr("id").substring(6);
+ 	
 	
-    $.ajax({
+	var content = $('#text'+seq).val();
+    
+	$.ajax({
 		type:'Post',
 		url : "replyInsert",
 		data:{
 			id : id,
 			title: title,
 			replyContent : content,
-			replyId : replyId
-		},
+			replyId : logID
+		},		
 		success:function(data){
 			var replyContent = data.replyContent;
 			var replyId = data.replyId;
-			var nowReplyT = td;
- 			//$('#cnt'+td).empty();
-			$('#'+td).html();
-			$('#cnt'+td).html(replyId +" : "+ replyContent)
-			$('#'+name+title).val(" ");
-			var send = $('.sendR').attr('class');
-			send = send.substring(send.lastIndexOf(" ")+1)
-			console.log("send :"+send);
-			$("."+send).attr('disabled', true);
+			$('#reply'+seq).html(logID +" : "+ replyContent)
+			$('#text'+seq).val(" "); 
+			$("#button"+seq).attr('disabled', true);
 		}, // success
 		error:function(){
-			console.log('fail');
 		}
 	});// ajax
-	
-	
 });// 댓글
 
-
 $(document).on('propertychange change keyup paste input','.replyArea', function(){
-	var send = $(this).attr('id');
-	console.log($('.sendR').attr('class'));
-	send = send.substring(send.lastIndexOf(" ")+1)
+	var seq = $(this).attr("id").substring(4);
 	
-	sendID = $('.'+send).attr('id');
-	console.log("sendId : " + sendID);
-	
-	$(".sendR "+send).attr('disabled', false);
-	
+	if($("#text"+seq).val().trim().length <1 ){
+	$("#button"+seq).attr('disabled', true);
+	}
+	else {
+		$("#button"+seq).attr('disabled', false);
+	}
 });
-
-
-	
 }); // ready
-		
 </script>
 </head>
 <body>
@@ -399,12 +359,9 @@ $(document).on('propertychange change keyup paste input','.replyArea', function(
     </div>
   </div>
 </nav>
-
 <div align="center" class = "blogForm"><br><br>
 <a href="myblog">임시 my Blog</a>
 </div>
-
-
 <div id="footer" role="contentinfo">
 <hr style="width: 100%;">
 <hr style="width: 100%; border-color: black;">

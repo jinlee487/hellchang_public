@@ -14,6 +14,7 @@ public class SaveVO {
 	private int rownum;
 	private int heart;
 	private String userImage;
+	private int seq;
 	
 	public String getId() {
 		return id;
@@ -95,11 +96,16 @@ public class SaveVO {
 	public void setUserImage(String userImage) {
 		this.userImage = userImage;
 	}
+	
+	
+	public int getSeq() {
+		return seq;
+	}
 	@Override
 	public String toString() {
 		return "SaveVO [id=" + id + ", name=" + name + ", target=" + target + ", kg=" + kg + ", rep=" + rep + ", date="
 				+ date + ", title=" + title + ", shared=" + shared + ", userName=" + userName + ", rownum=" + rownum
-				+ ", heart=" + heart + ", userImage=" + userImage + "]";
+				+ ", heart=" + heart + ", userImage=" + userImage + ", seq=" + seq + "]";
 	}
 	
 

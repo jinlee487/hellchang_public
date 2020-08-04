@@ -6,7 +6,7 @@
 <mapper namespace="green.mappers.saveMapper">
  
    <insert id="saveMyRoutine">
-	insert into `hellchang_schema_test`.`myRoutine` values 
+	insert into `hellchang_schema_test`.`myRoutine` (id,name,target,kg,rep,date,title,shared)values 
 	 (#{id}, #{name}, #{target}, #{kg}, #{rep}, sysdate(), #{title}, #{shared});
   </insert>
   

@@ -262,7 +262,14 @@ $(document).on("click",".heart", function(){
         <!--   <h4 class="modal-title"> List 저장하기 </h4> -->
         </div>
         <div class="modal-body" style="display: inline-flex; ">
-       <div align="center" class = "blogForm"><br><br>
+       <table class='table'>
+       <tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><img src="${profile_image}" class="myPhoto"></td><td colspan ="2"><br>Title : sharedTrue<br>Name : ${logName} </td><td colspan="3"></td></tr>
+       <tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>
+       <c:if test="${title=='sharedTrue'}">
+       
+       
+       </c:if>
+       </table>
 		</div>
 		  
 		   <div class="modal-body-text" style="width : 350px; margin-left: 50px; margin-top: 50px;">
