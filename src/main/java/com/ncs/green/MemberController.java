@@ -51,7 +51,7 @@ public class MemberController {
 			file2="resources/uploadImage/emptyImage.png";
 			vo.setImage_path(file2);
 		}else {
-			file1="D:/GitHub/hellchang/src/main/webapp/resources/uploadImage"
+			file1="C:/MTest/123"
 					+ image_file.getOriginalFilename();
 			image_file.transferTo(new File(file1));
 			file2="resources/uploadImage/"+image_file.getOriginalFilename();
@@ -107,7 +107,7 @@ public class MemberController {
 	public ModelAndView inbodyf(ModelAndView mv) {
 		mv.setViewName("user/profile_inbody");
 		return mv; 
-	} // 
+	} //  
 	
 	@RequestMapping(value = "/myProfile")
 	public ModelAndView myProfile(ModelAndView mv) {
