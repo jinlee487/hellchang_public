@@ -107,7 +107,7 @@ public class MemberController {
 	public ModelAndView inbodyf(ModelAndView mv) {
 		mv.setViewName("user/profile_inbody");
 		return mv; 
-	} //  
+	} //     
 	
 	@RequestMapping(value = "/myProfile")
 	public ModelAndView myProfile(ModelAndView mv) {

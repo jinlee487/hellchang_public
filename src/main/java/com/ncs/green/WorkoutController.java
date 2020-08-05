@@ -60,11 +60,12 @@ public class WorkoutController {
 	
 	@RequestMapping(value = "/saveMyRM")
 	public ModelAndView saveMyRM(HttpServletRequest request, ModelAndView mv, RmVO rvo) {
-		System.out.println("RM insert =>" + rvo.getId());
 		if (service.saveMyRM(rvo) > 0 ) {			
 			System.out.println("저장완료");
+			System.out.println("1 " +rvo);
 		} else {
 			System.out.println("저장실패");
+			System.out.println("2 " +rvo);
 		}
 		mv.setViewName("jsonView");
 		return mv;

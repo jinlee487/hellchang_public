@@ -277,6 +277,8 @@ $(document).on("click",".heart", function(){
 			var cnt = data.countHeartTest
 			$('#heart'+seq).empty();
 			$('#cnt'+seq).html("<img src = 'resources/image/heart.png'>"+cnt);
+			alert("좋아요 성공 !\n좋아요 갯수 : " + cnt )
+
 		}, // success
 		error:function(){
 			alert(rowcnt);
@@ -310,6 +312,7 @@ $(document).on("click",".sendR", function(){
 			$('#text'+seq).val(" "); 
 			//$('#replyShow'+seq).html()
 			$("#button"+seq).attr('disabled', true);
+			alert("댓글 입력 성공 ! : ")
 		}, // success
 		error:function(){
 		}
@@ -363,7 +366,7 @@ $(document).on('propertychange change keyup paste input','.replyArea', function(
   </div>
 </nav>
 <div align="center" class = "blogForm"><br><br>
-<a href="myblog">임시 my Blog</a>
+<!-- <a href="myblog">임시 my Blog</a> -->
 </div>
 <div id="footer" role="contentinfo">
 <hr style="width: 100%;">

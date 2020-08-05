@@ -247,9 +247,8 @@ $(function(){
     	  var squat = $('#Sq').val();
     	  var date = $('#date').val();
     	  $.ajax({
-      		type:'Post',
+      		type:'get',
       		url : 'saveMyRM',
-      		dataType: "json",
       		data :{
       			bench : bench,
       			dead : dead,
@@ -265,7 +264,7 @@ $(function(){
       	    	 $('#date').val("");      			
       		}, // success
     		error:function(){
-     			alert("!")
+     			
      		}
      		}) // ajax
       }) // click
@@ -312,7 +311,6 @@ $(function(){
       		var objDiv = document.getElementById('chart_div');
       		var chart = new google.visualization.ColumnChart(objDiv);
       		chart.draw(dataTable, options);		
-				alert(jsonData[0].id+"님의 데이터");
       		}, // success
     		error:function(){
      			alert("!")
