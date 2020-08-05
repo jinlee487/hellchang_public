@@ -196,7 +196,7 @@ public class MemberController {
 		vo.setBirthday();
 		String file2="resources/uploadImage/emptyImage.png";
 		vo.setLevel("user");
-		if(vo.getImage_path()=="") {
+		if(vo.getImage_path()!=null) {
 			vo.setImage_path(file2);
 		}
 		if((request.getParameter("email_login").equals("check"))) {

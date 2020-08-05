@@ -23,7 +23,7 @@ $(document).ready(function(){
 		$('#gen').attr('disabled', false);
 		
 		$("form :input").each(function(){
-			 var input = $(this).val(); // This is the jquery object of the input, do what you will
+			 var input = $(this).val(); 
 			 var name = $(this).attr("name");
 			 console.log("this is the "+name+" => " + input)
 			});
@@ -908,15 +908,6 @@ function inCheck() {
 	} // else
 } // inCheck()
 
-function idDupCheck() {
-	if (iCheck==false) { iCheck=idCheck(); }
-	else {
-		// url 요청이 서버로 전달되고 그 결과가 아래 윈도우로 Open됨. 
-		var url="idDupCheck?id="+$('#id').val();
-		window.open(url,"_blank",
-			"toolbar=no,menubar=yes,scrollbars=yes,resizable=yes,width=500,height=400");
-	}
-} // idDupCheck()
 
 </script>
 </body>
