@@ -112,4 +112,8 @@ public class SaveDAO {
 	public ReplyVO replyResult(ReplyVO rvo) {
 		return sqlsession.selectOne(NS+"replyResult", rvo);
 	} // selectList()
+	
+	public List<SaveVO> myDetail(SaveVO vo) {
+		return sqlsession.selectList(NS+"myDetail", vo) ;
+	} // blogTest() 筌ｌ꼷�벉 �룯�뜃由� 5揶쏉옙
 } // class

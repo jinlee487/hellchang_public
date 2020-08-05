@@ -90,4 +90,9 @@ public class SServiceImpl implements SService {
 	public ReplyVO replyResult(ReplyVO rvo) {
 		return dao.replyResult(rvo);
 	} // selectOne
+	
+	@Override
+	public List<SaveVO> myDetail(SaveVO vo) {
+		return dao.myDetail(vo) ;
+	} // selectList()
 } // class

@@ -80,4 +80,10 @@
   <select id="replyResult" resultType="vo.ReplyVO">
   	select id,title,replyContent,replyId,date from hellchang_schema_test.reply where id = #{id} and title = #{title} order by date desc limit 1;
   </select>
+
+  <select id="myDetail" resultType="vo.SaveVO">
+  	select myRoutine.* , member.image_path as userImage from hellchang_schema_test.myRoutine , hellchang_schema_test.member
+	where  myRoutine.id = #{id} and myRoutine.id = member.id group by title
+  </select> 
+  
  </mapper>

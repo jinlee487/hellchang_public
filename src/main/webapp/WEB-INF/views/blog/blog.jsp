@@ -151,7 +151,7 @@ $(function(){
 				rowcnt = 0;							     /* 중  */
 				for(var i = 0; i<Object.keys(jsonData).length; i++){		
 					if(i==0){
-						appendT += '<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><img src = "'+jsonData[i].userImage+'" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td><td colspan ="3"></td></tr>'
+						appendT += '<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><a href = "detail?id='+jsonData[i].id+'"><img src = "'+jsonData[i].userImage+'" class = "myPhoto"></a></td><td colspan = "2"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td><td colspan ="3"></td></tr>'
 						appendT += '<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>'
 						appendT += "<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>"							
 					}else if(i!=0 || i!=lastNum){
@@ -185,11 +185,14 @@ $(function(){
 		error:function(){
 		}
 	}); // ajax 
-$(window).scroll(function(){
+$(window).scroll(function(){ 
+	console.log("$(document).height() "+ $(document).height())
+	console.log("$(window).scrollTop() + $(window).height() "+ $(window).scrollTop() + $(window).height())
 	if($(document).height() <= $(window).scrollTop() + $(window).height()){	
-	loadNext();
+			loadNext(); 
 	}
 	function loadNext(){
+		console.log("2")
 		/* cnt = 한 페이지에 출력되는 개수 확인하기 위해 사용 */
 		var cnt = 0;
 		var nowID = "";
@@ -219,7 +222,9 @@ $(window).scroll(function(){
 					rowcnt = 0;							     /* 중  */
 					for(var i = 0; i<Object.keys(jsonData).length; i++){		
 						if(i==0){
-							appendT += '<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><img src = "'+jsonData[i].userImage+'" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td><td colspan ="3"></td></tr>'
+							userID = jsonData[i].id;
+							console.log("id"+jsonData[i].id);
+							appendT += '<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><a href = "detail?id='+jsonData[i].id+'"><img src = "'+jsonData[i].userImage+'" class = "myPhoto"></a></td><td colspan = "2"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td><td colspan ="3"></td></tr>'
 							appendT += '<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>'
 							appendT += "<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>"							
 						}else if(i!=0 || i!=lastNum){
@@ -250,6 +255,7 @@ $(window).scroll(function(){
 				} // for_j 
 			},
 			error:function(){
+				alert("!23");
 				$('.blogForm').append("<h2>더이상 불러 올 데이터가 존재 하지 않습니다</h2>")
 			}
 	}) // ajax
@@ -285,6 +291,7 @@ $(document).on("click",".heart", function(){
 			alert("좋아요 오류 발생\n 지금 row가 여러개인 타이틀 좋아요 오류 수정중")
 		}
 	}) // ajax
+	
 }) // heart_click 이벤트
 $(document).on("click",".sendR", function(){
     var id = $(this).attr("class").split(" ")[1];
@@ -329,7 +336,7 @@ $(document).on('propertychange change keyup paste input','.replyArea', function(
 		$("#button"+seq).attr('disabled', false);
 	}
 });
-}); // ready
+});
 </script>
 </head>
 <body>
@@ -366,7 +373,6 @@ $(document).on('propertychange change keyup paste input','.replyArea', function(
   </div>
 </nav>
 <div align="center" class = "blogForm"><br><br>
-<!-- <a href="myblog">임시 my Blog</a> -->
 </div>
 <div id="footer" role="contentinfo">
 <hr style="width: 100%;">
