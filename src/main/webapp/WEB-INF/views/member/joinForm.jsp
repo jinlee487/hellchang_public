@@ -22,13 +22,11 @@ $(document).ready(function(){
 		$('#image_path').attr('disabled',false);
 		$('#gen').attr('disabled', false);
 		
-		$("form :input").each(function(){
+/* 		$("form :input").each(function(){
 			 var input = $(this).val(); 
 			 var name = $(this).attr("name");
 			 console.log("this is the "+name+" => " + input)
-			});
-		confirm("clicking signin")
-		
+			});		 */
 	});
 	if($('#email_join_email_login').html()=="check"){
 		if($('#email_join_id').html()!=''){
@@ -45,7 +43,7 @@ $(document).ready(function(){
 		}
 		
 		$('#image_path').attr('disabled',false).val($('#email_join_image_path').html()).attr('disabled',true);
-		$('#email_login').attr('disabled',false).val($('#email_join_email_login').html()).attr('disabled',true);
+		$('#email_login').attr('disabled',false).val('true').attr('disabled',true);
 		$('#password').val($('#email_join_id').html()).attr('readonly', true);
 		$('#rpsw').val($('#email_join_id').html()).attr('readonly', true);
 		$('.joincheck2').css("display", "none");

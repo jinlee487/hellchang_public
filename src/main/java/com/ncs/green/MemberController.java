@@ -190,7 +190,6 @@ public class MemberController {
 	
 	@RequestMapping(value = "/join")
 	public ModelAndView join(HttpServletRequest request, ModelAndView mv, MemberVO vo) {
-		System.out.println("we are in join");
 		vo.setPhone();
 		vo.setAddress();
 		vo.setBirthday();
@@ -199,15 +198,12 @@ public class MemberController {
 		if(vo.getImage_path()!=null) {
 			vo.setImage_path(file2);
 		}
-		if((request.getParameter("email_login").equals("check"))) {
-			vo.setEmail_login(true);
-		}
 		vo.setPassword(passwordEncoder.encode(vo.getPassword()));                        
 		System.out.println("this is vo => \n" + vo);
 		int cnt = service.insert(vo);
 		
 		if (cnt > 0) {
-			if((request.getParameter("email_login").equals("check"))) {
+			if(vo.getEmail_login()==true) {
 				request.getSession().setAttribute("logID", vo.getId());
 				request.getSession().setAttribute("logName", vo.getName());
 				request.getSession().setAttribute("profile_image", vo.getImage_path());
