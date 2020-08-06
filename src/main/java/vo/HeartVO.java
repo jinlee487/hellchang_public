@@ -4,6 +4,8 @@ public class HeartVO {
 	private String id;
 	private String title;
 	private int heart;
+	private int seq;
+	
 	public String getId() {
 		return id;
 	}
@@ -23,9 +25,12 @@ public class HeartVO {
 		this.heart = heart;
 	}
 	
+	public int getSeq() {
+		return seq;
+	}
 	@Override
 	public String toString() {
-		return "HeartVO [id=" + id + ", title=" + title + ", heart=" + heart + "]";
+		return "HeartVO [id=" + id + ", title=" + title + ", heart=" + heart + ", seq=" + seq + "]";
 	}
 	
 	

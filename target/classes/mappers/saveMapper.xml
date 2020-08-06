@@ -31,7 +31,6 @@
   
   <select id="selectList" resultType="vo.SaveVO">
 	select id,name,target,kg,rep from `hellchang_schema_test`.`myRoutine` where id=#{id} and date like CONCAT('%',#{date},'%')
-
   </select>
   
   <select id="selectTList" resultType="vo.SaveVO">
@@ -78,6 +77,6 @@
   </insert> 
   
   <select id="replyResult" resultType="vo.ReplyVO">
-  	select * from hellchang_schema_test.reply where id = #{id} and title = #{title} order by date desc limit 1;
+  	select id,title,replyContent,replyId,date from hellchang_schema_test.reply where id = #{id} and title = #{title} order by date desc limit 1;
   </select>
  </mapper>

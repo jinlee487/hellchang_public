@@ -1,7 +1,5 @@
 package com.ncs.green;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -12,12 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import service.SService;
 import vo.HeartVO;
-import vo.MemberVO;
 import vo.ReplyVO;
 import vo.SaveVO;
 
@@ -112,6 +108,7 @@ public class SaveController {
 			String HTest = "heart"+i;
 			mv.addObject(HTest, hvo.getHeart());
 			// id와 title 별로 저장된 heart 출력
+			
 			List<SaveVO> test = service.findTest(vo);
 			System.out.println("findTest : " + test);
 			// myRoutine *, member.name, member.image 뽑아냄 
@@ -121,12 +118,13 @@ public class SaveController {
 			// find 리스트를 IDTest에 담아 보냄 IDTest라는 이름으로
 			// jsp에서 jsonData[i]로 사용됨 
 			System.out.println("blogTest : "+IDTest+test);
+			
 			String Reply = "Reply"+i;
 			rvo.setId(array[i].getId());
 			rvo.setTitle(array[i].getTitle());
-			if(service.replyResult(rvo) == null) {
+			if(service.replyResult(rvo) == null) { 
 				mv.addObject(Reply, " ");
-				System.out.println("rvo T1 : " + rvo);
+				System.out.println("댓글 왜 안들어와 : " + rvo);
 			}else{
 				rvo = service.replyResult(rvo);
 				mv.addObject(Reply, rvo);
@@ -213,8 +211,12 @@ public class SaveController {
 	}// heartUp
 	
 	@RequestMapping(value = "/replyInsert")
+<<<<<<< HEAD
 	public ModelAndView replyInsert(HttpServletRequest request, ModelAndView mv, ReplyVO rvo){
 		System.out.println("before rvo :" + rvo);
+=======
+	public ModelAndView replyInsert(HttpServletRequest request, ModelAndView mv, ReplyVO rvo,SaveVO vo){
+>>>>>>> refs/remotes/origin/test_branch
 		service.replyInsert(rvo);
 		System.out.println("after rvo :" + rvo);
 		rvo = service.replyResult(rvo);
@@ -225,10 +227,41 @@ public class SaveController {
 		
 		mv.addObject("replyContent", rvo.getReplyContent());
 		mv.addObject("replyId", rvo.getId());
+		mv.addObject("replyImg",vo.getUserImage());
+		mv.addObject("replyName", vo.getName());
 		System.out.println("rvo T2 : " + rvo);
 		
 		mv.setViewName("jsonView");
 		return mv;
 	}// reply
+	
+	@RequestMapping(value = "detail")
+	public ModelAndView detail(HttpServletRequest request,ModelAndView mv, SaveVO vo, HeartVO hvo, ReplyVO rvo ) {
+		HttpSession session = request.getSession(false);
+		String logID="";
+		if(session != null && session.getAttribute("logID")!=null) {
+			logID= (String)session.getAttribute("logID");
+		}
+		
+		vo=service.selectOne(vo);
+		if(vo!=null) {
+			mv.addObject("Detail",vo);
+		}else {
+			mv.addObject("fCode","BN");
+		}
+		return mv;
+	}
+	@RequestMapping(value="blist")
+	public ModelAndView blist(ModelAndView mv) {
+		List<SaveVO> list = service.selectTList();
+		
+		if(list !=null) {
+			mv.addObject("Banana",list);
+		}else {
+			mv.addObject("message","error");
+		}
+		mv.setViewName("blog/myblog");
+		return mv;
+	}
 	
 }//class

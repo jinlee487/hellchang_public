@@ -26,6 +26,52 @@ public class MemberController {
 	MService service;
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
+    
+    
+	
+	@RequestMapping(value = "/login")
+	public ModelAndView login(HttpServletRequest request, ModelAndView mv, MemberVO vo, SaveVO svo) {
+
+		String password = vo.getPassword();
+		System.out.println(vo);
+		mv.setViewName("login/loginForm");
+
+		vo = service.selectOne(vo);
+		System.out.println(vo);
+		
+		if (vo != null) { // id 존재
+			System.out.println("vo null 통과" + vo.getPassword());
+			if (passwordEncoder.matches(password, vo.getPassword())){
+				System.out.println("match 통과");
+				// 로그인 성공 -> login 정보 보관 (id, name을 session에) -> loginSuccess
+				request.getSession().setAttribute("logID", vo.getId());
+				request.getSession().setAttribute("logName", vo.getName());
+				request.getSession().setAttribute("logPhone", vo.getPhone());
+				request.getSession().setAttribute("logaddress", vo.getAddress());
+				request.getSession().setAttribute("logaddress1", vo.getAddress1());
+				request.getSession().setAttribute("logaddress2", vo.getAddress2());
+				request.getSession().setAttribute("logzipcode", vo.getZipcode());
+				request.getSession().setAttribute("logpassword", vo.getPassword());
+				request.getSession().setAttribute("profile_image", vo.getImage_path());
+				request.getSession().setAttribute("title", svo.getTitle());
+				mv.setViewName("home");
+			} else {
+				// Password 오류 -> 재로그인
+				mv.addObject("message", "비밀번호가 틀렸습니다.");
+			}
+		} else { // ID 오류 -> 재로그인
+			mv.addObject("message", "없는 ID입니다.");
+		}
+		return mv;
+	} // login
+
+	@RequestMapping(value = "/logout")
+	public ModelAndView logout(HttpServletRequest request, ModelAndView mv) {
+		request.getSession().invalidate();
+		mv.setViewName("redirect:home"); 
+		mv.setViewName("home");
+		return mv;
+	} // login
 	
 	@RequestMapping(value = "/imgUpdate")
 	public ModelAndView imgUpdate(MemberVO vo, HttpServletRequest request) throws IOException {
@@ -70,12 +116,6 @@ public class MemberController {
 		
 		return mv;
 	}
-	
-	@RequestMapping(value = "/loginf")
-	public ModelAndView loginf(ModelAndView mv) {
-		mv.setViewName("login/loginForm");
-		return mv; 
-	} // atestf
 	
 	@RequestMapping(value = "/joinf")
 	public ModelAndView joinf(ModelAndView mv) {
@@ -149,19 +189,28 @@ public class MemberController {
 	}// bcrypt
 	
 	@RequestMapping(value = "/join")
-	public ModelAndView join(ModelAndView mv, MemberVO vo) {
-
+	public ModelAndView join(HttpServletRequest request, ModelAndView mv, MemberVO vo) {
 		vo.setPhone();
 		vo.setAddress();
 		vo.setBirthday();
 		String file2="resources/uploadImage/emptyImage.png";
 		vo.setLevel("user");
-		vo.setImage_path(file2);
+		if(vo.getImage_path()!=null) {
+			vo.setImage_path(file2);
+		}
 		vo.setPassword(passwordEncoder.encode(vo.getPassword()));                        
-
+		System.out.println("this is vo => \n" + vo);
 		int cnt = service.insert(vo);
 		
 		if (cnt > 0) {
+			if(vo.getEmail_login()==true) {
+				request.getSession().setAttribute("logID", vo.getId());
+				request.getSession().setAttribute("logName", vo.getName());
+				request.getSession().setAttribute("profile_image", vo.getImage_path());
+				mv.setViewName("redirect:prof");
+				return mv;
+			}
+			
 			// Join 성공
 			mv.addObject("joinID", vo.getId());
 			mv.addObject("fCode", "JS");
@@ -175,52 +224,6 @@ public class MemberController {
 		}
 		return mv;
 	}// join
-	
-
-	
-	@RequestMapping(value = "/login")
-	public ModelAndView login(HttpServletRequest request, ModelAndView mv, MemberVO vo, SaveVO svo) {
-
-		String password = vo.getPassword();
-		System.out.println(vo);
-		mv.setViewName("login/loginForm");
-
-		vo = service.selectOne(vo);
-		System.out.println(vo);
-		
-		if (vo != null) { // id 존재
-			System.out.println("vo null 통과" + vo.getPassword());
-			if (passwordEncoder.matches(password, vo.getPassword())){
-				System.out.println("match 통과");
-				// 로그인 성공 -> login 정보 보관 (id, name을 session에) -> loginSuccess
-				request.getSession().setAttribute("logID", vo.getId());
-				request.getSession().setAttribute("logName", vo.getName());
-				request.getSession().setAttribute("logPhone", vo.getPhone());
-				request.getSession().setAttribute("logaddress", vo.getAddress());
-				request.getSession().setAttribute("logaddress1", vo.getAddress1());
-				request.getSession().setAttribute("logaddress2", vo.getAddress2());
-				request.getSession().setAttribute("logzipcode", vo.getZipcode());
-				request.getSession().setAttribute("logpassword", vo.getPassword());
-				request.getSession().setAttribute("profile_image", vo.getImage_path());
-				request.getSession().setAttribute("title", svo.getTitle());
-				mv.setViewName("home");
-			} else {
-				// Password 오류 -> 재로그인
-				mv.addObject("message", "비밀번호가 틀렸습니다.");
-			}
-		} else { // ID 오류 -> 재로그인
-			mv.addObject("message", "없는 ID입니다.");
-		}
-		return mv;
-	} // login
-
-	@RequestMapping(value = "/logout")
-	public ModelAndView logout(HttpServletRequest request, ModelAndView mv) {
-		request.getSession().invalidate();
-		mv.setViewName("redirect:home"); 
-		mv.setViewName("home");
-		return mv;
-	} // login
 	
 
 	@RequestMapping(value = "/mdetail")
@@ -288,5 +291,47 @@ public class MemberController {
 		
 		return mv;
 	} // login
-
+	
+//	// 네이버 로그인 & 회원정보(이름) 가져오기
+//	@RequestMapping(value = "/naverlogin.do", produces = "application/json;charset=utf-8", method = { RequestMethod.GET,
+//			RequestMethod.POST })
+//	public ModelAndView naverLogin(@RequestParam String code, @RequestParam String state, HttpSession session)
+//			throws IOException {
+//		ModelAndView mav = new ModelAndView();
+//		OAuth2AccessToken oauthToken;
+//		oauthToken = naverLoginDTO.getAccessToken(session, code, state);
+//
+//		// 로그인한 사용자의 모든 정보가 JSON타입으로 저장되어 있음
+//		apiResult = naverLoginDTO.getUserProfile(oauthToken);
+//
+//		// 내가 원하는 정보 (이름)만 JSON타입에서 String타입으로 바꿔 가져오기 위한 작업
+//		JSONParser parser = new JSONParser();
+//		Object obj = null;
+//		try {
+//			obj = parser.parse(apiResult);
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
+//		JSONObject jsonobj = (JSONObject) obj;
+//		JSONObject response = (JSONObject) jsonobj.get("response");
+//		String nname = (String) response.get("name");
+//		String nemail = (String) response.get("email");
+//		String ngender = (String) response.get("gender");
+//		String nbirthday = (String) response.get("birthday");
+//		String nage = (String) response.get("age");
+//		String nimage = (String) response.get("profile_image");
+//
+//		// 로그인&아웃 하기위한 세션값 주기
+//		session.setAttribute("nname", nname);
+//		session.setAttribute("nemail", nemail);
+//		session.setAttribute("ngender", ngender);
+//		session.setAttribute("nbirthday", nbirthday);
+//		session.setAttribute("nage", nage);
+//		session.setAttribute("nimage", nimage);
+//
+//		// 네이버 로그인 성공 페이지 View 호출
+//		mav.setViewName("main");
+//		return mav;
+//	}// end naverLogin()
+//	 
 }

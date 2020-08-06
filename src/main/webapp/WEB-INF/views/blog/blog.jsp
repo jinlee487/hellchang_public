@@ -151,7 +151,7 @@ $(function(){
 				rowcnt = 0;							     /* 중  */
 				for(var i = 0; i<Object.keys(jsonData).length; i++){		
 					if(i==0){
-						appendT += '<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><a href="mDetail?"id="'+jsonData[i].id+'"><img src = "'+jsonData[i].userImage+'" class = "myPhoto"></a></td><td colspan = "2"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td><td colspan ="3"></td></tr>'
+						appendT += '<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><img src = "'+jsonData[i].userImage+'" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td><td colspan ="3"></td></tr>'
 						appendT += '<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>'
 						appendT += "<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>"							
 					}else if(i!=0 || i!=lastNum){
@@ -172,6 +172,7 @@ $(function(){
 					if(nowReply.replyId == null && nowReply.replyContent == null ){
 						appendT += "<td colspan='4' id ='reply"+nowSeq+"'></td></tr>";
 					}else{
+						console.log("nowReply" +nowReply);
 						appendT += "<td colspan='4' id ='reply"+nowSeq+"'>"+nowReply.replyId +" : "+ nowReply.replyContent+"</td></tr>";
 					}
 					appendT += "<tr><td colspan ='4'><form><textarea class = 'replyArea "+nowTitle+"' id ='text"+nowSeq+"'  style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea>"
@@ -288,15 +289,10 @@ $(document).on("click",".sendR", function(){
     var name = $(this).attr("class").split(" ")[2];
     var title = $(this).attr("class").split(" ")[3];
     var seq = $(this).attr("id").substring(6);
-	var content = $('#text'+seq).val();
-
-	console.log('id : ' + id);
-	console.log('name : ' + name);
-	console.log('title : ' + title);
-	console.log('seq : ' + seq);
-	console.log('content : ' + content);
-	console.log('logID : ' + logID);
+   // id ='reply"+nowSeq+"'
 	
+	var content = $('#text'+seq).val();
+   
 	$.ajax({
 		type:'Post',
 		url : "replyInsert",
@@ -324,7 +320,7 @@ $(document).on('propertychange change keyup paste input','.replyArea', function(
 	var seq = $(this).attr("id").substring(4);
 	
 	if($("#text"+seq).val().trim().length <1 ){
-		$("#button"+seq).attr('disabled', true);
+	$("#button"+seq).attr('disabled', true);
 	}
 	else {
 		$("#button"+seq).attr('disabled', false);
