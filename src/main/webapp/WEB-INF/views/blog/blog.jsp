@@ -151,7 +151,7 @@ $(function(){
 				rowcnt = 0;							     /* 중  */
 				for(var i = 0; i<Object.keys(jsonData).length; i++){		
 					if(i==0){
-						appendT += '<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><img src = "'+jsonData[i].userImage+'" class = "myPhoto"></td><td colspan = "2"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td><td colspan ="3"></td></tr>'
+						appendT += '<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><a href="mDetail?"id="'+jsonData[i].id+'"><img src = "'+jsonData[i].userImage+'" class = "myPhoto"></a></td><td colspan = "2"><br>Title : '+jsonData[i].title+'<br>Name : '+jsonData[i].userName+'<br>Date : '+jsonData[i].date+'</td><td colspan ="3"></td></tr>'
 						appendT += '<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>'
 						appendT += "<tr><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].kg +"</td><td>"+jsonData[i].rep +"</td><td>"+jsonData[i].title +"</td></tr>"							
 					}else if(i!=0 || i!=lastNum){
