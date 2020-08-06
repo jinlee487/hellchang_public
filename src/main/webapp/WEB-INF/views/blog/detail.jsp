@@ -177,7 +177,12 @@ textarea{
 	position:relative;
 	top:1px;
 }
-
+#replyContent{
+	vertical-align: middle;
+}
+.reply{
+	vertical-align: middle;
+}
 </style>
 <script type="text/javascript">
 var logID = "<%=session.getAttribute("logID") %>"
@@ -222,11 +227,14 @@ console.log("session : "+logID);
 <table>
 <tr align="left" style="vertical-align: middle;" height="200px">
 <td colspan="1"  align="center">
-<img class="myPhoto" alt="프로필 사진 바꾸기" src="${myImage }" width="100px" height="100px">
+<img class="myPhoto" alt="프로필 사진 바꾸기" src="${myImage }" width="150px" height="150px">
 </td>
 <td colspan="2" align="left">
-&nbsp;&nbsp;${myId}&nbsp;&nbsp;&nbsp;<a href ="updatef" class ="profile">update</a><br>
-&nbsp;&nbsp;게시글 : ${countRoutine}<br>
+&nbsp;&nbsp;${myName}&nbsp;&nbsp;&nbsp;
+<c:if test="${logID eq myId }">
+<a href ="updatef" class ="profile">update</a>
+</c:if>
+<br>&nbsp;&nbsp;게시글 : ${countRoutine}<br>
 </td>
 </tr>
 <c:forEach items="${myInfo}" var="titleList" varStatus="status">
@@ -265,16 +273,19 @@ function showModal(id,title) {
 				modalT += "<tr align = 'center'><td>"+arrayModal[i].name+"</td><td>"+arrayModal[i].target+"</td><td>"+arrayModal[i].kg+"</td><td>"+arrayModal[i].rep+"</td><td>"+arrayModal[i].title+"</td></tr>"
 			}
 			
-			var modalSide = "ID : "+arrayModal[0].name+"<br>Title : "+Usertitle +"<hr>";
-			modalSide += "<span class = 'heart'><img src = 'resources/image/heart.png'>"+data.heartCnt+"</span><br><hr>";
+			var modalSideTitle = "<img src = "+arrayModal[0].userImage +" class = 'myPhoto' width='80px' height='80px' > "+arrayModal[0].userName+"<hr>";
+			var modalSide = "<span class = 'heart'><img src = 'resources/image/heart.png'>"+data.heartCnt+"</span><br><hr>";
+			modalSide += "<div style='overflow: auto; height:200px;'><span class = 'newReply'></span>"
 			for(var i = 0; i<data.replyCnt; i++){
 				modalSide += "<img src = "+ arrayReply[i].userImage+" class = 'myPhoto' width =25px height = 25px >"  + arrayReply[i].userName + " : " + arrayReply[i].replyContent+"<br>"
 			}
-			modalSide += "<textarea style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea>"
+			modalSide += "</div><textarea id = 'replyContent' style='vertical-align: middle; width: 75%;' rows='1' placeholder='댓글달기...'></textarea>"
+			modalSide += "<button disabled class = 'reply' width = 25% style='vertical-align: middle;'>게시</button>"
 			modalT += "</table>";
 			modalT += "</div>"
 			$('#content').html(modalT);
 			$('#modalSide').html(modalSide);
+			$('#modalSideTitle').html(modalSideTitle);
 			$("#myModal").modal('show');
 		},
 		error:function(){
@@ -283,6 +294,7 @@ function showModal(id,title) {
 }
 
 $(document).on("click",".heart", function(){
+	
     console.log(Userid);
     console.log(Usertitle);
     $.ajax({
@@ -298,13 +310,46 @@ $(document).on("click",".heart", function(){
 			$('.heart').html("<img src = 'resources/image/heart.png'>"+data.countHeartTest)
 		}, // success
 		error:function(){
+		}
+	}) // ajax	
+}) // heart_click 이벤트
+
+$(document).on("click",".reply", function(){
+	var logID = "<%=session.getAttribute("logID") %>"
+    var replyContent = $('#replyContent').val();
+    console.log(replyContent);
+    $.ajax({
+		type:'get',
+		url : "replyInsert",
+		data:{
+			id : Userid,
+			title: Usertitle,
+			replyContent : replyContent,
+			replyId : logID
+		},
+		success:function(data){
+			replyResult = data.replyResult
+			$('.newReply').html("<img src = "+ replyResult.userImage+" class = 'myPhoto' width =25px height = 25px >"  + replyResult.userName + " : " + replyResult.replyContent+"<br>");
+			$('#replyContent').val("");
+			$('.reply').attr('disabled', true);
+		}, // success
+		error:function(){
 			alert("Error")
 		}
-	}) // ajax
-	
-}) // heart_click 이벤트
-</script>
+	}) // ajax	
+}) // reply_click 이벤트
 
+$(document).on('propertychange change keyup paste input','#replyContent', function(){
+	
+	if($("#replyContent").val().trim().length <1 ){
+	$(".reply").attr('disabled', true);
+	}
+	else {
+		$(".reply").attr('disabled', false);
+	}
+});
+</script>
+<span></span>
 <!-- Modal 시험중  -->
 <div class="container">
   <!-- Modal -->
@@ -319,10 +364,12 @@ $(document).on("click",".heart", function(){
         <div class="modal-body child" style="width: 75%">
           <p id="content"></p>
         </div>
-        <div class="modal-body child" style="width: 25%">
-          <p id="modalSide"></p>
+        <div class="modal-body child" style="width: 25%" >
+            <p id="modalSideTitle"></p>
+          <c:if test="${logID != null}">
+          <div style='height:200px;'><p id="modalSide"></p></div>
+		  </c:if>
           <div style="position: absolute; right: 5px; bottom: 5px;" >
-          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 		  </div>
         </div>
       </div>

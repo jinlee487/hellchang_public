@@ -218,12 +218,12 @@ public class SaveController {
 		service.replyInsert(rvo);
 		System.out.println(rvo);
 		rvo = service.replyResult(rvo);
-		mv.addObject("replyContent", rvo.getReplyContent());
-		mv.addObject("replyId", rvo.getId());
+		mv.addObject("replyResult", rvo);
 		System.out.println("rvo T2 : " + rvo);
 		
 		mv.setViewName("jsonView");
 		return mv;
 	}// reply
+	
 	
 }//class

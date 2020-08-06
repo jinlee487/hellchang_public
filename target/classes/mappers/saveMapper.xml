@@ -78,7 +78,9 @@
   </insert> 
   
   <select id="replyResult" resultType="vo.ReplyVO">
-  	select id,title,replyContent,replyId,date from hellchang_schema_test.reply where id = #{id} and title = #{title} order by date desc limit 1;
+  	select reply.* ,member.name as userName, member.image_path as userImage  
+  	from hellchang_schema_test.reply , hellchang_schema_test.member
+  	where reply.id = #{id} and reply.title = #{title} and reply.id = member.id order by date desc limit 1;
   </select>
 
   <select id="myDetail" resultType="vo.SaveVO">
@@ -88,7 +90,9 @@
   
   
   <select id="routineModal" resultType="vo.SaveVO"> 
-	select * from hellchang_schema_test.myRoutine where  id = #{id} and title = #{title}
+	select myRoutine.* ,member.name as userName, member.image_path as userImage 
+	from hellchang_schema_test.myRoutine , hellchang_schema_test.member
+	where  myRoutine.id = #{id} and myRoutine.title = #{title} and myRoutine.id = member.id
   </select>
   
   <select id="showReply" resultType="vo.ReplyVO">

@@ -56,9 +56,12 @@ public class boardController {
 		System.out.println(clickID);
 		List<SaveVO> list = service.myDetail(vo);
 		array = list.toArray(new SaveVO[list.size()]);
+		System.out.println("Array.length : " + array.length);
+		System.out.println("list.size() : " + list.size());
 		mv.addObject("myInfo", array);
-		mv.addObject("myImage", array[0].getUserImage());
-		mv.addObject("myId", array[0].getUserName());
+		mv.addObject("myImage", array[list.size()-1].getUserImage());
+		mv.addObject("myName", array[list.size()-1].getUserName());
+		mv.addObject("myId", array[list.size()-1].getId());
 		mv.addObject("countRoutine", list.size());
 		mv.setViewName("blog/detail");
 		return mv;
