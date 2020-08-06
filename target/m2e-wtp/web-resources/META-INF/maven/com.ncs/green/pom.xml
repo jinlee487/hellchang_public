@@ -246,7 +246,6 @@
             <version>1.0.0.RELEASE</version>
     	</dependency>
 
-			
 		<dependency> 
 			<groupId>com.github.scribejava</groupId> 
 			<artifactId>scribejava-core</artifactId> 
@@ -254,9 +253,9 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>org.springframework.social</groupId>
-			<artifactId>spring-social-google</artifactId>
-			<version>1.0.0.RELEASE</version>
+		  <groupId>org.apache.httpcomponents</groupId>
+		  <artifactId>httpclient</artifactId>
+		  <version>4.5.3</version>
 		</dependency>
 		
 		<dependency>
@@ -264,6 +263,13 @@
 		    <artifactId>gson</artifactId>
 		    <version>2.8.5</version>
 		</dependency>
+		
+ 		<dependency>
+            <groupId>org.springframework.social</groupId>
+            <artifactId>spring-social-facebook</artifactId>
+            <version>2.0.3.RELEASE</version>
+        </dependency> 
+ 
 
 	</dependencies>
 	
