@@ -115,5 +115,14 @@ public class SaveDAO {
 	
 	public List<SaveVO> myDetail(SaveVO vo) {
 		return sqlsession.selectList(NS+"myDetail", vo) ;
-	} // blogTest() 筌ｌ꼷�벉 �룯�뜃由� 5揶쏉옙
+	} 
+	
+	public List<SaveVO> routineModal(SaveVO vo) {
+		return sqlsession.selectList(NS+"routineModal", vo);
+	}
+	
+	public List<ReplyVO> showReply(ReplyVO rvo) {
+		return sqlsession.selectList(NS+"showReply", rvo) ;
+	} // 
+	
 } // class

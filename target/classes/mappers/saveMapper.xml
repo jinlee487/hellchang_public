@@ -82,8 +82,19 @@
   </select>
 
   <select id="myDetail" resultType="vo.SaveVO">
-  	select myRoutine.* , member.image_path as userImage from hellchang_schema_test.myRoutine , hellchang_schema_test.member
+  	select myRoutine.* ,member.name as userName, member.image_path as userImage from hellchang_schema_test.myRoutine , hellchang_schema_test.member
 	where  myRoutine.id = #{id} and myRoutine.id = member.id group by title
+  </select>
+  
+  
+  <select id="routineModal" resultType="vo.SaveVO"> 
+	select * from hellchang_schema_test.myRoutine where  id = #{id} and title = #{title}
+  </select>
+  
+  <select id="showReply" resultType="vo.ReplyVO">
+  select reply.* ,member.name as userName, member.image_path as userImage 
+  from hellchang_schema_test.reply , hellchang_schema_test.member
+  where  reply.id = #{id} and reply.title = #{title} and  reply.id = member.id order by date desc;
   </select> 
   
  </mapper>

@@ -177,6 +177,8 @@ $(function(){
 					}
 					appendT += "<tr><td colspan ='4'><form><textarea class = 'replyArea "+nowTitle+"' id ='text"+nowSeq+"'  style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea>"
 					appendT += "<td><button disabled class='sendR "+nowID+" "+nowName+" "+nowTitle+"' id ='button"+nowSeq+"'>게시</button></td></tr></table>"
+				}else{
+					console.log(j + ' ???')
 				}
 				$('.blogForm').append(appendT)
 				cnt ++;

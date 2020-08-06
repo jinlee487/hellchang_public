@@ -13,14 +13,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import service.SService;
+import vo.HeartVO;
 import vo.MemberVO;
+import vo.ReplyVO;
 import vo.SaveVO;
 
 @Controller
 public class boardController {
 	@Autowired
 	SService service;
-
+	
 	private static final Logger logger = LoggerFactory.getLogger(boardController.class);
 
 	@RequestMapping(value = "/blog")
@@ -56,7 +58,44 @@ public class boardController {
 		array = list.toArray(new SaveVO[list.size()]);
 		mv.addObject("myInfo", array);
 		mv.addObject("myImage", array[0].getUserImage());
+		mv.addObject("myId", array[0].getUserName());
+		mv.addObject("countRoutine", list.size());
 		mv.setViewName("blog/detail");
 		return mv;
 	} // detail
+	
+	@RequestMapping(value = "/routineDetail")
+	public ModelAndView routineDetail(HttpServletRequest request, ModelAndView mv, SaveVO vo, HeartVO hvo, ReplyVO rvo) {
+		SaveVO[] array = {};
+		ReplyVO[] replyArray = {};
+		List<SaveVO> list = service.routineModal(vo);
+		SaveVO[] newModal = new SaveVO[list.size()];
+		array = list.toArray(new SaveVO[list.size()]);
+		for(int i=0; i<array.length; i++) {
+			newModal[i] = array[i];
+		}
+		hvo.setId(array[0].getId());
+		hvo.setTitle(array[0].getTitle());
+		hvo = service.heartSelect(hvo);
+
+		rvo.setId(array[0].getId());
+		rvo.setTitle(array[0].getTitle());
+		List<ReplyVO> replyList = service.showReply(rvo);
+		System.out.println(replyList);
+		replyArray = replyList.toArray(new ReplyVO[replyList.size()]);
+		for(int i=0; i<replyArray.length; i++) {
+			replyArray[i] = replyArray[i];
+		}
+		
+		
+		mv.addObject("heartCnt",hvo.getHeart());
+		mv.addObject("arrayModal",newModal);
+		mv.addObject("arrayReply",replyArray);
+		mv.addObject("num", list.size());
+		mv.addObject("replyCnt", replyList.size());
+		mv.setViewName("jsonView");
+		return mv;
+	} // routineDetail
+	
+	
 }

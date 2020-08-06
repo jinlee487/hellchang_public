@@ -95,4 +95,15 @@ public class SServiceImpl implements SService {
 	public List<SaveVO> myDetail(SaveVO vo) {
 		return dao.myDetail(vo) ;
 	} // selectList()
+	
+	@Override
+	public List<SaveVO> routineModal(SaveVO vo) {
+		return dao.routineModal(vo) ;
+	} // selectList()
+	
+	
+	@Override
+	public List<ReplyVO> showReply(ReplyVO rvo) {
+		return dao.showReply(rvo) ;
+	} // selectList()
 } // class

@@ -198,14 +198,13 @@ public class SaveController {
 	}//
 	
 	@RequestMapping(value = "/heartUp")
-	public ModelAndView heartUp(HttpServletRequest request, ModelAndView mv, SaveVO vo, HeartVO hvo){
-		hvo.setTitle(request.getParameter("title"));
+	public ModelAndView heartUp(HttpServletRequest request, ModelAndView mv, HeartVO hvo){
 		hvo.setId(request.getParameter("id"));
+		hvo.setTitle(request.getParameter("title"));
 		service.heartUp(hvo);
-		System.out.println("now Test : "+hvo);
-		
+		System.out.println("heartUp : "+hvo);
 		hvo = service.heartSelect(hvo); 
-		System.out.println(hvo);
+		System.out.println("heartSelect : " +hvo);
 		
 		mv.addObject("countHeartTest", hvo.getHeart());
 		

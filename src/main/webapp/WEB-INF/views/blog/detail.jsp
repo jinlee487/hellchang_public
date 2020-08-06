@@ -16,6 +16,10 @@
   <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style type="text/css">
+html, body {
+height: 100%;
+margin: 0px;
+}
 	/* Remove the navbar's default margin-bottom and rounded borders */ 
      .navbar {
       margin-bottom: 0;
@@ -38,11 +42,6 @@
    		border-radius: 70%;
    		overflow: hidden;
    	}
-	.myPhoto{
-	width: 100px;
-	height: 100px;
-    border-radius: 50%;
-	}
 .table {
 	width : 600px;
      border-collapse: collapse;
@@ -66,6 +65,7 @@
 .table tr:first-child{
 	border-right: 3px solid #168;
 }
+
 .firsttr{
 	border-right: 3px solid #168;
 }
@@ -130,20 +130,59 @@ textarea{
     flex: 1;
     vertical-align: middle;
 }
-.img{
-    	width: 50%;
-    	margin: 0;
-    padding: 0;
-    border: 0;
-    font: inherit;
-    vertical-align: baseline;
-    border-radius: 50%;
-    
-    }
+.myPhoto{
+	border-radius: 50%;
+}
+
+.myButton {
+	background-color:#e7f5e9;
+	width : 100%;
+	border-radius:36px;
+	border:1px solid #f0f0f0;
+	display:inline-block;
+	cursor:pointer;
+	color:#5e545e;
+	font-family:Verdana;
+	font-size:16px;
+	font-style:italic;
+	padding:32px 76px;
+	text-decoration:none;
+	text-shadow:3px 2px 4px #929492;
+	margin-right: 3px;
+}
+.myButton:hover {
+	background-color:#ffffff;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+.profile {
+	background-color:#000000;
+	border-radius:12px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:3px 8px;
+	text-decoration:none;
+	text-shadow:0px 0px 0px #2f6627;
+}
+.profile:hover {
+	background-color:#000000;
+}
+.profile:active {
+	position:relative;
+	top:1px;
+}
+
 </style>
 <script type="text/javascript">
 var logID = "<%=session.getAttribute("logID") %>"
 console.log("session : "+logID);
+
 </script>
 </head>
 <body>
@@ -179,16 +218,20 @@ console.log("session : "+logID);
     </div>
   </div>
 </nav>
-<div align="center" style="width: 100%">
-<table border = '0'>
-<tr align="left" style="vertical-align: middle;">
-<td colspan="3" >
-<img class="img" alt="프로필 사진 바꾸기" src="${myImage }" width="25%" height="100%">
-123</td>
+<div class = "form" align="center" style="width: 100%; vertical-align: middle;">
+<table>
+<tr align="left" style="vertical-align: middle;" height="200px">
+<td colspan="1"  align="center">
+<img class="myPhoto" alt="프로필 사진 바꾸기" src="${myImage }" width="100px" height="100px">
+</td>
+<td colspan="2" align="left">
+&nbsp;&nbsp;${myId}&nbsp;&nbsp;&nbsp;<a href ="updatef" class ="profile">update</a><br>
+&nbsp;&nbsp;게시글 : ${countRoutine}<br>
+</td>
 </tr>
 <c:forEach items="${myInfo}" var="titleList" varStatus="status">
    <td width="200" height="150" align="center" style="font-size: large;">
-   <a href = #>${titleList.title }</a>
+   <button class = "myButton" data-toggle="modal" id = "${titleList.title }" onclick="showModal('${titleList.id}', '${titleList.title }')">${titleList.title }</button> 
    <c:if test="${status.count % 3 ==0}">
    </tr>
    </c:if>
@@ -196,17 +239,95 @@ console.log("session : "+logID);
 </c:forEach>
 </table>
 </div>
-</div>
-<div id="footer" role="contentinfo">
-<hr style="width: 100%;">
-<hr style="width: 100%; border-color: black;">
-	<address>
-		<em><a href="home" target="_blank" class="logo footfont"><span class="blind">HellChang</span></a></em>
-		<em class="copy footfont">Copyright</em>
-		<em class="u_cri footfont">©</em>
-		<a href="home" target="_blank" class="u_cra footfont">HellChang Corp.</a>
-		<span class="all_r footfont">All Rights Reserved.</span>
-	</address>
+<script>
+var Userid = "";
+var Usertitle = "";
+function showModal(id,title) {
+	$.ajax({
+		type:'Get',
+		dataType : "json",
+		url:'routineDetail',
+		data : {
+			id : id,
+			title : title
+		},
+		success:function(data){
+			arrayReply = data.arrayReply
+			arrayModal = data.arrayModal;
+			Userid = arrayModal[0].id;
+			Usertitle = arrayModal[0].title;
+			var modalT = "";
+			modalT += "<div  style='overflow: auto; width:105%; height:400px;'>"
+			modalT += "<table class = 'table' border = '0' width = '100%'";
+			modalT += "<tr align = 'center'><th>Name</th><th>Target</th><th>Kg</th><th>Rep</th><th>Title</th></tr>"
+			
+			for(var i = 0; i<data.num; i++){
+				modalT += "<tr align = 'center'><td>"+arrayModal[i].name+"</td><td>"+arrayModal[i].target+"</td><td>"+arrayModal[i].kg+"</td><td>"+arrayModal[i].rep+"</td><td>"+arrayModal[i].title+"</td></tr>"
+			}
+			
+			var modalSide = "ID : "+arrayModal[0].name+"<br>Title : "+Usertitle +"<hr>";
+			modalSide += "<span class = 'heart'><img src = 'resources/image/heart.png'>"+data.heartCnt+"</span><br><hr>";
+			for(var i = 0; i<data.replyCnt; i++){
+				modalSide += "<img src = "+ arrayReply[i].userImage+" class = 'myPhoto' width =25px height = 25px >"  + arrayReply[i].userName + " : " + arrayReply[i].replyContent+"<br>"
+			}
+			modalSide += "<textarea style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea>"
+			modalT += "</table>";
+			modalT += "</div>"
+			$('#content').html(modalT);
+			$('#modalSide').html(modalSide);
+			$("#myModal").modal('show');
+		},
+		error:function(){
+		}
+	}); // ajax 
+}
+
+$(document).on("click",".heart", function(){
+    console.log(Userid);
+    console.log(Usertitle);
+    $.ajax({
+		type:'get',
+		url : "heartUp",
+		data:{
+			id : Userid,
+			title: Usertitle
+		},
+		success:function(data){
+			data.countHeartTest;
+			console.log(data.countHeartTest)
+			$('.heart').html("<img src = 'resources/image/heart.png'>"+data.countHeartTest)
+		}, // success
+		error:function(){
+			alert("Error")
+		}
+	}) // ajax
+	
+}) // heart_click 이벤트
+</script>
+
+<!-- Modal 시험중  -->
+<div class="container">
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog" style="min-width: 75%; height: 500px;"  >
+      <!-- Modal content-->
+      <div class="modal-content parent"  style="width: 100%">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" id="title"></h4>
+        </div>
+        <div class="modal-body child" style="width: 75%">
+          <p id="content"></p>
+        </div>
+        <div class="modal-body child" style="width: 25%">
+          <p id="modalSide"></p>
+          <div style="position: absolute; right: 5px; bottom: 5px;" >
+          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+		  </div>
+        </div>
+      </div>
+    </div>
+  </div>  
 </div>
 </body>
 </html>
