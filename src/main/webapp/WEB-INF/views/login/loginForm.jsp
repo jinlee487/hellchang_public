@@ -48,16 +48,16 @@ function inCheck() {
 	}else return false;
 	
 } //inCheck  
-
-
-
-
 </script>
-
+<style type="text/css">
+body{
+	margin-top: 20%;
+}
+</style>
 
 </head>
 <body>
-<div class="container-fluid rotate-in-center" style="background-color:#fff">
+<!-- <div class="container-fluid " style="background-color: black;"> -->
 		<a href="home" ><img src="resources/image/logo.jpg" style="width: 10%;"></a>
 		
 		<c:if test="${fCode=='JS'}">
@@ -65,34 +65,29 @@ function inCheck() {
 		</c:if>
 	<br>
 	<br>
-	<br>	
+<!-- 	<br>	 -->
 	<div class="login_input_wrap">
 		<div class="login-form">
 			<form action="login" method=post>
 				<div class="id-input-box focus">
-					<input  type="text" name="id" id="id" value="test1004@naver.com" placeholder=example@xxxxx.com><br> 
+					<input  type="text" name="id" id="id" value="test1004@naver.com" placeholder=example@xxxxx.com style="background-color: white;"><br> 
 					<span id="iMessage" class="eMessage"></span>
 				</div>
 				<div class="pw-input-box">
-					<input  type="password" name="password" id="password" value="123!" placeholder="비밀번호"><br>
+					<input  type="password" name="password" id="password" value="123!" placeholder="비밀번호" style="background-color: white;"><br>
 					<span id="pMessage" class="eMessage"></span>
 				</div>
 				<button type="submit" class="btn-login">로그인</button>
 			</form>
 		</div>
+		<!-- rotate-in-center -->
 		<br>
-
-
-			
-	
 		<ul class="social_login">
 			<li><a href="${naver_url}" class="sl_naver">네이버 로그인</a></li>
 			<li><a href="${url}" class="sl_facebook">페이스북 로그인</a></li>
 			<li><a href="${url}" class="sl_kakao">카카오 로그인</a></li>
 			<li><a href="${url}" class="sl_google">구글 로그인</a></li>
 		</ul>
-		
-		
 <%-- 		<ul class="social_login">
 			<li><a href="${naver_url}" target="_blank" onclick="window.open(this.href, '_blank', 'width=480,height=640'); return false;" class="sl_naver">네이버 로그인</a></li>
 			<li><a href="${url}" target="_blank" onclick="window.open(this.href, '_blank', 'width=480,height=640'); return false;" class="sl_facebook">페이스북 로그인</a></li>
@@ -101,6 +96,6 @@ function inCheck() {
 		</ul> --%>
 		
 	</div>
-</div>
+<!-- </div> -->
 </body>
 </html>

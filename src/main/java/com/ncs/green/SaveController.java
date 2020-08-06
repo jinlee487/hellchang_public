@@ -211,12 +211,7 @@ public class SaveController {
 	}// heartUp
 	
 	@RequestMapping(value = "/replyInsert")
-<<<<<<< HEAD
-	public ModelAndView replyInsert(HttpServletRequest request, ModelAndView mv, ReplyVO rvo){
-		System.out.println("before rvo :" + rvo);
-=======
 	public ModelAndView replyInsert(HttpServletRequest request, ModelAndView mv, ReplyVO rvo,SaveVO vo){
->>>>>>> refs/remotes/origin/test_branch
 		service.replyInsert(rvo);
 		System.out.println("after rvo :" + rvo);
 		rvo = service.replyResult(rvo);
