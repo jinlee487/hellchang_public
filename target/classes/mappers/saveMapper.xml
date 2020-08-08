@@ -42,7 +42,7 @@
 	select id,name,target,kg,rep,title,date from `hellchang_schema_test`.`myRoutine` where title = #{title}
   </select> 
    
-  <select id="blogTest" resultType="vo.SaveVO"> 
+   <select id="blogTest" resultType="vo.SaveVO"> 
   select * 
   from (select @rownum:=@rownum+1 as rownum, m.* from `hellchang_schema_test`.`myRoutine` as m, 
   (select @rownum :=0) R order by date desc)sub 
@@ -61,7 +61,7 @@
   
   <select id="findTest" resultType="vo.SaveVO"> 
 	select myRoutine.* ,member.name as userName, member.image_path as userImage from hellchang_schema_test.myRoutine , hellchang_schema_test.member
-	where  myRoutine.id = #{id} and myRoutine.title = #{title} and myRoutine.id = member.id
+	where  myRoutine.id = #{id} and myRoutine.title = #{title} and myRoutine.id = member.id order by seq asc;
   </select>
    
   <update id="heartUp">
