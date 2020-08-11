@@ -120,6 +120,8 @@
 	<!-- Social Login 에 대한 Bean설정 추가 -->
 	<beans:bean id="naverLoginBO" class="com.ncs.green.NaverLoginBO" />
 	<beans:bean id="kakaoLoginBO" class="com.ncs.green.KakaoLoginBO" />
+	<beans:bean id="googleLoginBO" class="com.ncs.green.GoogleLoginBO" />
+	
 	
     <beans:bean id="facebookConnectionFactory"
         class="org.springframework.social.facebook.connect.FacebookConnectionFactory">
@@ -140,7 +142,7 @@
 	</beans:bean>
 
 	<beans:bean id="googleOAuth2Parameters" class="org.springframework.social.oauth2.OAuth2Parameters">
-		<beans:property name="scope" value="https://www.googleapis.com/auth/plus.login" />
+		<beans:property name="scope" value="profile email" />
 		<beans:property name="redirectUri" value="http://localhost:8080/green/google_callback" />
 	</beans:bean> 
 	

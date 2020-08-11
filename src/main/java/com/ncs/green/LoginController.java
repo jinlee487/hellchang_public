@@ -1,6 +1,12 @@
 package com.ncs.green;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.Charset;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,11 +32,21 @@ import org.springframework.social.oauth2.GrantType;
 import org.springframework.social.oauth2.OAuth2Operations;
 import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.model.OAuth2AccessToken;
+import com.github.scribejava.core.model.OAuthRequest;
+import com.github.scribejava.core.model.Response;
+import com.github.scribejava.core.model.Verb;
+import com.github.scribejava.core.oauth.OAuth20Service;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -63,8 +79,14 @@ public class LoginController {
 	/* NaverLoginBO */
 	private KakaoLoginBO kakaoLoginBO;
 	private NaverLoginBO naverLoginBO;
+	private GoogleLoginBO googleLoginBO;
 	private String apiResult = null;
 
+	@Autowired
+	private void setGoogleLoginBO(GoogleLoginBO googleLoginBO) {
+		this.googleLoginBO = googleLoginBO;
+	}
+	
 	@Autowired
 	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
 		this.naverLoginBO = naverLoginBO;
@@ -102,123 +124,96 @@ public class LoginController {
 
 		return mv;
 	}
-	@RequestMapping(value = "/google_callback", method = { RequestMethod.GET,RequestMethod.POST })  
-	public ModelAndView google_callback(ModelAndView mv, @RequestParam String code, 
-			HttpSession session, HttpServletRequest request, MemberVO vo) throws IOException { 
-		
-		System.out.println("여기는 google_callback"); 
-		try { 
-			String redirectUri = googleOAuth2Parameters.getRedirectUri();
-			System.out.println("Redirect URI : " + redirectUri);
-			System.out.println("Code : " + code);
-			OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations(); 
-			AccessGrant accessGrant = oauthOperations.exchangeForAccess(code, redirectUri, null); 
-			String accessToken = accessGrant.getAccessToken();
-			System.out.println("AccessToken: " + accessToken);
-			Long expireTime = accessGrant.getExpireTime();
-			
-			if (expireTime != null && expireTime < System.currentTimeMillis()) { 
-				accessToken = accessGrant.getRefreshToken();
-				System.out.println("accessToken is expired. refresh token = {}" + accessToken); 
-				};
-				
-			Connection<Google> connection = googleConnectionFactory.createConnection(accessGrant); 
-			Google google = connection == null ? new GoogleTemplate(accessToken) : connection.getApi();
-			
-			try { 
-				Person userProfile = google.plusOperations().getGoogleProfile();
-				System.out.println("about me : " + userProfile.getAboutMe());
-				System.out.println("email : " + userProfile.getAccountEmail());
-				System.out.println("name : " + userProfile.getDisplayName());
-				System.out.println("gender : " + userProfile.getGender());
-				System.out.println("toString : " + userProfile.toString());
-				System.out.println("image : " + userProfile.getImageUrl());
-				System.out.println("bday : " + userProfile.getBirthday());
-				System.out.println(userProfile);
-				String id="", name=""; id = userProfile.getAccountEmail(); 
-				name = userProfile.getDisplayName();
-				vo.setId(id); vo=service.selectOne(vo);
-				if(vo!=null) {
-					request.getSession().setAttribute("logID", vo.getId());
-					request.getSession().setAttribute("logName", vo.getName());
-					request.getSession().setAttribute("profile_image", vo.getImage_path());
-					mv.setViewName("redirect:prof"); 
-					return mv; 
-					}
-				mv.setViewName("member/joinForm"); 
-				mv.addObject("id", id);
-				mv.addObject("name", name);
-				mv.addObject("email_login", "check");
-				return mv;
-				} catch (MissingAuthorizationException e) { 
-				
-					e.printStackTrace(); 
-					} 
-			} catch (Exception e) { 
-				System.out.println("this is an error!");
-				mv.setViewName("home"); 
-
-				e.printStackTrace(); 
-				}
-		return mv;
-		}
+ 
+  @RequestMapping(value = "/facebook_callback", method = { RequestMethod.GET, RequestMethod.POST })
+  public ModelAndView facebook_callback(ModelAndView mv, @RequestParam String code, 
+		  HttpSession session, HttpServletRequest request, MemberVO vo) throws IOException {
 	  
-	  
-	  @RequestMapping(value = "/facebook_callback", method = { RequestMethod.GET, RequestMethod.POST })
-	  public ModelAndView facebook_callback(ModelAndView mv, @RequestParam String code, 
-			  HttpSession session, HttpServletRequest request, MemberVO vo) throws IOException {
-		  
-		  System.out.println("여기는 facebook_callback"); 
+	  System.out.println("여기는 facebook_callback"); 
+	  try { 
+		  String redirectUri = facebookOAuth2Parameters.getRedirectUri();
+		  System.out.println("Redirect URI : " + redirectUri);
+		  System.out.println("Code : " + code);
+		  OAuth2Operations oauthOperations =  facebookConnectionFactory.getOAuthOperations();
+		  AccessGrant accessGrant = oauthOperations.exchangeForAccess(code, redirectUri, null); 
+		  String accessToken = accessGrant.getAccessToken(); 
+		  System.out.println("AccessToken: " + accessToken); 
+		  Long expireTime = accessGrant.getExpireTime();
+		  if (expireTime != null && expireTime < System.currentTimeMillis()) {
+			  accessToken = accessGrant.getRefreshToken();
+			  System.out.println("accessToken is expired. refresh token = {}" + accessToken); 
+			  };
+		  Connection<Facebook> connection = facebookConnectionFactory.createConnection(accessGrant); 
+		  Facebook facebook = connection == null ? new FacebookTemplate(accessToken) : connection.getApi();
+		  //UserOperations userOperations = facebook.userOperations();
+  
 		  try { 
-			  String redirectUri = facebookOAuth2Parameters.getRedirectUri();
-			  System.out.println("Redirect URI : " + redirectUri);
-			  System.out.println("Code : " + code);
-			  OAuth2Operations oauthOperations =  facebookConnectionFactory.getOAuthOperations();
-			  AccessGrant accessGrant = oauthOperations.exchangeForAccess(code, redirectUri, null); 
-			  String accessToken = accessGrant.getAccessToken(); 
-			  System.out.println("AccessToken: " + accessToken); 
-			  Long expireTime = accessGrant.getExpireTime();
-			  if (expireTime != null && expireTime < System.currentTimeMillis()) {
-				  accessToken = accessGrant.getRefreshToken();
-				  System.out.println("accessToken is expired. refresh token = {}" + accessToken); 
-				  };
-			  Connection<Facebook> connection = facebookConnectionFactory.createConnection(accessGrant); 
-			  Facebook facebook = connection == null ? new FacebookTemplate(accessToken) : connection.getApi();
-			  //UserOperations userOperations = facebook.userOperations();
-	  
-			  try { 
-				  String [] fields = { "id", "email", "name"};
-				  User userProfile = facebook.fetchObject("me", User.class, fields);
-				  System.out.println("유저이메일 : " + userProfile.getEmail());
-				  System.out.println("유저 id : " + userProfile.getId()); 
-				  System.out.println("유저 name : " + userProfile.getName()); 
-				  System.out.println(userProfile);
-				  String id="", name="";
-				  id = userProfile.getEmail();
-				  name = userProfile.getName();
-				  vo.setId(id); 
-				  vo=service.selectOne(vo);
-				  if(vo!=null) { 
-					  request.getSession().setAttribute("logID", vo.getId());
-					  request.getSession().setAttribute("logName", vo.getName());
-					  request.getSession().setAttribute("profile_image", vo.getImage_path());
-					  mv.setViewName("redirect:prof");
-					  return mv;
-					  }
-				  mv.setViewName("member/joinForm");
-				  mv.addObject("id", id);
-				  mv.addObject("name", name); 
-				  mv.addObject("email_login", "check");
+			  String [] fields = { "id", "email", "name"};
+			  User userProfile = facebook.fetchObject("me", User.class, fields);
+			  System.out.println("유저이메일 : " + userProfile.getEmail());
+			  System.out.println("유저 id : " + userProfile.getId()); 
+			  System.out.println("유저 name : " + userProfile.getName()); 
+			  System.out.println(userProfile);
+			  String id="", name="";
+			  id = userProfile.getEmail();
+			  name = userProfile.getName();
+			  vo.setId(id); 
+			  vo=service.selectOne(vo);
+			  if(vo!=null) { 
+				  request.getSession().setAttribute("logID", vo.getId());
+				  request.getSession().setAttribute("logName", vo.getName());
+				  request.getSession().setAttribute("profile_image", vo.getImage_path());
+				  mv.setViewName("redirect:prof");
 				  return mv;
-				  } catch (MissingAuthorizationException e) { 
-					  e.printStackTrace(); 
-					  }
-			  } catch (Exception e) { 
-				  e.printStackTrace();
 				  }
-		  return mv;
-		  }
+			  mv.setViewName("member/joinForm");
+			  mv.addObject("id", id);
+			  mv.addObject("name", name); 
+			  mv.addObject("email_login", "check");
+			  return mv;
+			  } catch (MissingAuthorizationException e) { 
+				  e.printStackTrace(); 
+				  }
+		  } catch (Exception e) { 
+			  e.printStackTrace();
+			  }
+	  return mv;
+	  }
 
+
+	// 네이버 로그인 성공시 callback호출 메소드
+	@RequestMapping(value = "/google_callback", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView google_callback(ModelAndView mv, @RequestParam String code,
+			HttpSession session, HttpServletRequest request, MemberVO vo) throws IOException {
+		System.out.println("여기는 google callback");
+		String body = googleLoginBO.getUserProfile(code); 
+		System.out.println("this is the body => \n" + body + "\n");
+
+        mv.setViewName("member/joinForm");
+		// 2. String형식인 apiResult를 json형태로 바꿈
+		JsonObject jsonObj = new JsonParser().parse(body).getAsJsonObject();
+		System.out.println(jsonObj);
+		// 3. 데이터 파싱
+		String id = jsonObj.get("email").getAsString();
+		String image_path = jsonObj.get("picture").getAsString();
+		String name = jsonObj.get("name").getAsString();
+		vo.setId(id);
+		vo = service.selectOne(vo);
+		if (vo != null) {
+			request.getSession().setAttribute("logID", vo.getId());
+			request.getSession().setAttribute("logName", vo.getName());
+			request.getSession().setAttribute("profile_image", vo.getImage_path());
+			mv.setViewName("redirect:prof");
+			return mv;
+		}
+		mv.setViewName("member/joinForm");
+		mv.addObject("id", id);
+		mv.addObject("name", name);
+		mv.addObject("image_path", image_path);
+		mv.addObject("email_login", "check");
+		return mv;
+	}	  
+	  
 	// 네이버 로그인 성공시 callback호출 메소드
 	@RequestMapping(value = "/naver_callback", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView naver_callback(ModelAndView mv, @RequestParam String code, @RequestParam String state,

@@ -4,8 +4,9 @@
   display: none; /* Hidden by default */
   position: fixed; /* Fixed/sticky position */
   bottom: 100px; /* Place the button at the bottom of the page */
-  right: 25%; /* Place the button 30px from the right */
-  z-index: 99; /* Make sure it does not overlap */
+  margin:0 auto;
+/*   right: 25%; Place the button 30px from the right*/
+   z-index: 99; /* Make sure it does not overlap */
   border: none; /* Remove borders */
   outline: none; /* Remove outline */
   background-color: black; /* Set a background color */
@@ -18,4 +19,11 @@
 
 #inbodyBtn:hover {
   background-color: #555; /* Add a dark-grey background on hover */
+}
+
+.btn-xl {
+    padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 10px;
+    width:30%;   
 }

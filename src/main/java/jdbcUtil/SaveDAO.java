@@ -33,13 +33,19 @@ public class SaveDAO {
 	} // selectList()
 	
 	public List<SaveVO> selectList(SaveVO vo) {
-		return sqlsession.selectList(NS+"selectList" , vo) ;
+		return sqlsession.selectList(NS+"selectList", vo) ;
 	} // selectList()
 	
 	public List<SaveVO> selectTList() {
 		return sqlsession.selectList(NS+"selectTList") ;
 	} // selectList()
 	
+	public List<SaveVO> selectTListbyID(SaveVO vo) {
+		return sqlsession.selectList(NS+"selectTListbyID",vo) ;
+	} // selectList()
+	public List<SaveVO> selectListbyID(SaveVO vo) {
+		return sqlsession.selectList(NS+"selectListbyID",vo) ;
+	} // selectList()
 	public List<SaveVO> allList(SaveVO vo) {
 		return sqlsession.selectList(NS+"allList", vo) ;
 	} // allList()

@@ -46,14 +46,7 @@ public class MemberController {
 				// 로그인 성공 -> login 정보 보관 (id, name을 session에) -> loginSuccess
 				request.getSession().setAttribute("logID", vo.getId());
 				request.getSession().setAttribute("logName", vo.getName());
-				request.getSession().setAttribute("logPhone", vo.getPhone());
-				request.getSession().setAttribute("logaddress", vo.getAddress());
-				request.getSession().setAttribute("logaddress1", vo.getAddress1());
-				request.getSession().setAttribute("logaddress2", vo.getAddress2());
-				request.getSession().setAttribute("logzipcode", vo.getZipcode());
-				request.getSession().setAttribute("logpassword", vo.getPassword());
 				request.getSession().setAttribute("profile_image", vo.getImage_path());
-				request.getSession().setAttribute("title", svo.getTitle());
 				mv.setViewName("home");
 			} else {
 				// Password 오류 -> 재로그인
@@ -97,7 +90,7 @@ public class MemberController {
 			file2="resources/uploadImage/emptyImage.png";
 			vo.setImage_path(file2);
 		}else {
-			file1="D:/GitHub/hellchang/src/main/webapp/resources/uploadImage"
+			file1="D:/GitHub/hellchang/src/main/webapp/resources/uploadImage/"
 					+ image_file.getOriginalFilename();
 			image_file.transferTo(new File(file1));
 			file2="resources/uploadImage/"+image_file.getOriginalFilename();
@@ -113,7 +106,8 @@ public class MemberController {
 		mv.addObject("mem", vo);
 		
 		mv.setViewName("user/profile");
-		
+		request.getSession().setAttribute("profile_image", vo.getImage_path());
+
 		return mv;
 	}
 	
@@ -148,6 +142,17 @@ public class MemberController {
 		mv.setViewName("user/profile_inbody");
 		return mv; 
 	} // 
+	@RequestMapping(value = "/dietf")
+	public ModelAndView dietf(ModelAndView mv) {
+		mv.setViewName("user/profile_diet");
+		return mv; 
+	} // 
+	@RequestMapping(value = "/socialf")
+	public ModelAndView socialf(ModelAndView mv) {
+		mv.setViewName("user/profile_social");
+		return mv; 
+	} // 
+	
 	
 	@RequestMapping(value = "/myProfile")
 	public ModelAndView myProfile(ModelAndView mv) {
