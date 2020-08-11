@@ -20,7 +20,7 @@
   </insert>  
   
   <insert id="saveMyRM">
-	insert into `hellchang_schema_test`.`saveRM` values 
+	insert into `hellchang_schema_test`.`saveRM`(id,bench,dead,squat,date) values 
 	 (#{id}, #{bench}, #{dead}, #{squat}, #{date})
   </insert>  
 

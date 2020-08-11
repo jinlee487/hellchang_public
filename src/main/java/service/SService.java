@@ -37,4 +37,10 @@ public interface SService {
 	int replyInsert(ReplyVO rvo); // reply
 	
 	ReplyVO replyResult(ReplyVO rvo);
+	
+	List<SaveVO> myDetail(SaveVO vo);
+	
+	List<SaveVO> routineModal(SaveVO vo);
+
+	List<ReplyVO> showReply(ReplyVO rvo);
 } // interface

@@ -118,4 +118,17 @@ public class SaveDAO {
 	public ReplyVO replyResult(ReplyVO rvo) {
 		return sqlsession.selectOne(NS+"replyResult", rvo);
 	} // selectList()
+	
+	public List<SaveVO> myDetail(SaveVO vo) {
+		return sqlsession.selectList(NS+"myDetail", vo) ;
+	} 
+	
+	public List<SaveVO> routineModal(SaveVO vo) {
+		return sqlsession.selectList(NS+"routineModal", vo);
+	}
+	
+	public List<ReplyVO> showReply(ReplyVO rvo) {
+		return sqlsession.selectList(NS+"showReply", rvo) ;
+	} // 
+	
 } // class
