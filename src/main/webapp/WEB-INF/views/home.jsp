@@ -4,19 +4,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>hellchang_project</title>
-  <link rel="icon" href="resources/image/logo.jpg">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
-  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
-  <link rel="stylesheet" type="text/css" href="resources/jqLib/topBar.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position.css">
+<title>hellchang_project</title>
+<link rel="icon" href="resources/image/logo.jpg">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="resources/jqLib/jquery-3.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position.css">
+<link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
+<link rel="stylesheet" type="text/css" href="resources/jqLib/topBar.css">
   <style>
   	.parent {
     display: flex;
@@ -63,11 +61,9 @@
 </head>
 <body>
 <div style="width: 100%;">
-	<div >
-		<img src = "resources/image/arnold_crop.jpg"  width="100%" style="position:relative;object-fit:cover;">
-		<div style="position:absolute; left: 0px; top: 500px; width: 100%;">
-			<img class="fe-pulse " src = "resources/image/dd.png" width="100px" style="display: block; margin: 0px auto;">
-		</div>
+	<div style="position:relative;">
+		<img src = "resources/image/arnold_crop.jpg"  width="100%" style="object-fit:cover;">
+		<img class="fe-pulse " src = "resources/image/dd.png" width="100px" style="position:absolute; z-index:99; bottom:0; left:47%; display: block; margin: 0px auto;">
 	</div>
 	<div style="text-align: center;">
 		<nav class="navbar navbar-inverse"  id="topmenu">
