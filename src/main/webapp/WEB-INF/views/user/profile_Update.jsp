@@ -4,102 +4,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>hellchang_project</title>
-  <link rel="icon" href="resources/image/logo.jpg">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
-  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-  
+<title>hellchang_project</title>
+<link rel="icon" href="resources/image/logo.jpg">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="resources/jqLib/jquery-3.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position.css">
+<link rel="stylesheet" type="text/css" href="resources/jqLib/topBar.css">
+<link rel="stylesheet" type="text/css" href="resources/jqLib/profile_image.css">
+<script src="resources/jqLib/profile_image_script.js"></script>
+
   
   <style>
-  #p_pos{
-  	margin-right: 80px;
-  }
-  		  
-  address {
-	color: white;
-	margin-bottom:0px;
-	}
-  #footer{
-	clear: both;
-    margin: 0 auto;
-    padding: 30px 0 15px 0;
-    text-align: center;
-    margin: 0 auto;
-	height: 50px;
-    max-width: 100%;
-    min-width: 460px;
-    background-color: #3d3b3c;
-    bottom:0px;
-    
-	}
-  
-    /* Remove the navbar's default margin-bottom and rounded borders */ 
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-      background-color: #000000;
-    }
-    
-    /* Add a gray background color and some padding to the footer */
-    footer {
-      background-color: #3d3b3c;
-      padding: 25px;
-    }
-    
-  .carousel-inner img {
-      width: 100%; /* Set width to 100% */
-      margin: auto;
-      min-height:200px;
-  }
-
-  /* Hide the carousel text when the screen is less than 600 pixels wide */
-  @media (max-width: 600px) {
-    .carousel-caption {
-      display: none; 
-      margin-left: 20	0px;
-    }
-  }
   @media (min-width: 768px){
 	.col-sm-4 {
 	  /* margin-left: 200px; */
 	  text-align: center;
 	}
-button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
-}
 
-button:hover {
-  opacity:1;
-}
-.cancelbtn {
-  padding: 14px 20px;
-  background-color: #f44336;
-  text-align: center;
-  border-radius: 8px
-}
-
-/* Float cancel and signup buttons and add an equal width */
-.cancelbtn, .signupbtn {
-  float: center;
-  width: 30%;
-  text-align: center;
-  border-radius: 8px
-}
   </style>
 </head>
 <body >
@@ -153,19 +81,18 @@ button:hover {
   <div class="row">
     <div class="col-sm-3 well">
       <div class="well">
-        <p><a href="myProfile">My Profile</a></p>
-        <img src="resources/uploadImage/emptyImage.png" class="img-circle" height="100" width="100" alt="Avatar">
-      </div>
-
+        <a href="javascript::" type="button" data-toggle="modal" data-target="#myModal">
+        	<span>Edit profile image</span><br>                             
+	        <button class="bEffect" title="프로필 사진 바꾸기">
+	        	<img id="aa" src="${profile_image}" class="img-circle" height="100" width="100" alt="프로필 사진 바꾸기">       	
+	        </button>
+        </a></div>
 		<ul class="nav nav-pills nav-stacked">
-		  <li><a href="#">Start Workout</a></li>
+		  <li><a href="prof">Start Workout</a></li>
 		  <li><a href="manageWorkout">Manage Workout</a></li>
 		  <li><a href="inbodyf">InBody</a></li>
-		  <li><a href="#">Diet</a></li>
-		  <li><a href="#">Social</a></li>  
-		  <li><a href="routine">Test</a></li>
-		  <li><a href="mdetail">Profile</a></li>  
-		  <li><a href="delete">Drop Out</a></li>
+		  <li><a href="dietf">Diet</a></li>
+		  <li><a href="socialf">Social</a></li>   
 		</ul>
     </div>
     <div class="col-sm-7 ">
@@ -885,9 +812,10 @@ button:hover {
        <input type="reset" value="취소"></a>
        <input type="submit" value="전송">&nbsp;&nbsp;
       </div><br>
-	
   </div>
-</form>
+</form><hr>
+		  <a href="delete">회원 탈퇴</a>
+
          </div>
 
           </div>
@@ -896,7 +824,32 @@ button:hover {
       
    
   </div>
- </div> 
+     <div class="col-sm-2 well" style="margin-top: 100px">
+      <div class="thumbnail">
+        <p><strong>Map Your Runs</strong></p>
+        <img src="resources/image/runapp.JPG" width="400" height="300">
+        <p>Coming Soon!</p>
+      </div>      
+      <div class="well">
+        <p>ADS</p>
+      </div>
+      <div class="well">
+        <p>ADS</p>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 </div>
 <div id="footer" role="contentinfo">
 		<address>
@@ -907,7 +860,27 @@ button:hover {
 			<span class="all_r">All Rights Reserved.</span>
 		</address>
 	</div>
-
+<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ modal ver ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ --> 
+  <!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog ">
+      <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h3 class="modal-title">프로필 사진 바꾸기</h3>
+      </div>
+      <div class="modal-body" >	
+      	<button class="imageChange sel"  tabindex="0">사진업로드</button>
+      	<button class="imageChange del" tabindex="0">현재 사진 삭제</button>
+        <button class="imageChange can" tabindex="0">취소</button>
+        <form style="height: 0;" action="imgUpdate" name="chImg" method="POST" enctype="multipart/form-data">
+        	<input type="file" id="image_file" name="image_file">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 <script>
 function check_form() {
 	var idval = document.joinForm.email.value;

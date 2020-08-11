@@ -84,9 +84,9 @@ body{
 		<br>
 		<ul class="social_login">
 			<li><a href="${naver_url}" class="sl_naver">네이버 로그인</a></li>
-			<li><a href="${url}" class="sl_facebook">페이스북 로그인</a></li>
-			<li><a href="${url}" class="sl_kakao">카카오 로그인</a></li>
-			<li><a href="${url}" class="sl_google">구글 로그인</a></li>
+			<li><a href="${facebook_url}" class="sl_facebook">페이스북 로그인</a></li>
+			<li><a href="${kakao_url}" class="sl_kakao">카카오 로그인</a></li>
+			<li><a href="${google_url}" class="sl_google">구글 로그인</a></li>
 		</ul>
 <%-- 		<ul class="social_login">
 			<li><a href="${naver_url}" target="_blank" onclick="window.open(this.href, '_blank', 'width=480,height=640'); return false;" class="sl_naver">네이버 로그인</a></li>

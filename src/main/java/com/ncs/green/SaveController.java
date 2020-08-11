@@ -27,6 +27,42 @@ public class SaveController {
 	Date date = new Date();
 	int rownum = 0;
 	
+	@RequestMapping(value = "/myRoutineListAjax", method = RequestMethod.POST)
+	public ModelAndView myRoutineListAjax(HttpServletRequest request, ModelAndView mv, SaveVO vo) {
+		HttpSession session = request.getSession(false);
+		String id = (String) session.getAttribute("logID");
+		vo.setId(id);
+		System.out.println("this is vo => " + vo.getId());
+
+		List<SaveVO> list_vo = service.selectTListbyID(vo);
+		for(SaveVO a:list_vo) {
+			System.out.println(a);
+		}
+		mv.addObject("list", list_vo); 
+		mv.setViewName("jsonView");
+
+		return mv;
+	}// saveMyRoutine
+	
+	@RequestMapping(value = "/myRoutineDetailAjax", method = RequestMethod.POST)
+	public ModelAndView myRoutineDetailAjax(HttpServletRequest request, ModelAndView mv, SaveVO vo) {
+		HttpSession session = request.getSession(false);
+		String id = (String) session.getAttribute("logID");
+		vo.setId(id);
+		System.out.println("this is vo => " + vo.getId());
+		System.out.println("this is vo => " + vo.getTitle());
+
+		List<SaveVO> list_vo = service.selectListbyID(vo);
+		for(SaveVO a:list_vo) {
+			System.out.println(a);
+		}
+		mv.addObject("list", list_vo); 
+		mv.setViewName("jsonView");
+
+		return mv;
+	}// saveMyRoutine
+	 	
+	
 	 
 	@RequestMapping(value = "/myRoutineDel", method = RequestMethod.GET)
 	public ModelAndView myRoutineDel(HttpServletRequest request, ModelAndView mv, SaveVO vo) {

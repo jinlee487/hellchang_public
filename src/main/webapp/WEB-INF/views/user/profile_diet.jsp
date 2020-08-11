@@ -12,7 +12,7 @@
    <div class="container-fluid center">
   <a href="home"><img src = "resources/image/logo.jpg" width="80" height="25"></a>
   <p><b>This page is not yet completed!</b><br>
-  <ins>We are working to provide you the Social Page as soon as possible! </ins>
+  <ins>We are working to provide you the nutrition tracking tool as soon as possible! </ins>
   </p>
 <img src = "resources/image/rustybrick_b.jpg" width="200" height="200">
 </div>

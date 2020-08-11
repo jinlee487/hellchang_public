@@ -11,7 +11,9 @@ public interface SService {
 	List<SaveVO> selectList(SaveVO vo); // selectList()
 	
 	List<SaveVO> selectTList(); // selectList()
-	
+	List<SaveVO> selectTListbyID(SaveVO vo); // selectList()
+	List<SaveVO> selectListbyID(SaveVO vo); // selectList()
+
 	int saveMyRoutine(SaveVO vo); // saveMyRoutine
 	
 	int delMyRoutine(SaveVO vo); // delMyRoutine

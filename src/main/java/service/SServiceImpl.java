@@ -23,7 +23,15 @@ public class SServiceImpl implements SService {
 	public List<SaveVO> selectTList() {
 		return dao.selectTList() ;
 	} // selectList()
-
+	
+	@Override
+	public List<SaveVO> selectTListbyID(SaveVO vo) {
+		return dao.selectTListbyID(vo) ;
+	} // selectList()
+	@Override
+	public List<SaveVO> selectListbyID(SaveVO vo) {
+		return dao.selectListbyID(vo) ;
+	} // selectList()
 	@Override
 	public List<SaveVO> findTest(SaveVO vo) {
 		return dao.findTest(vo) ;

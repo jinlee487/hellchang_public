@@ -4,20 +4,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>hellchang_project</title>
-  <link rel="icon" href="resources/image/logo.jpg">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  
-  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position.css">
-  <link rel="stylesheet" type="text/css" href="resources/jqLib/topBar.css">
-  <link rel="stylesheet" type="text/css" href="resources/jqLib/inbodyButton.css">
-  
+<title>hellchang_project</title>
+<link rel="icon" href="resources/image/logo.jpg">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="resources/jqLib/jquery-3.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position.css">
+<link rel="stylesheet" type="text/css" href="resources/jqLib/topBar.css">
+<link rel="stylesheet" type="text/css" href="resources/jqLib/profile_image.css">
   <script>
 
  </script>
@@ -90,22 +88,17 @@
   <div class="row">
     <div class="col-sm-3 well">
       <div class="well">
-        <p><a href="#">My Profile</a></p>
-        <c:if test="${image_path==null}">
-			<img src="resources/uploadImage/emptyImage.png" class="img-circle" height="100" width="100" alt="Avatar">
-		</c:if>
-		<c:if test="${image_path!=null}">
-			<img src="${image_path}" class="img-circle" height="100" width="100" alt="Avatar">
-		</c:if>
-      </div>
-
+        <a href="mdetail?code=U"><span>My Profile</span><br>
+        <button class="bEffect" title="프로필 사진 바꾸기">
+        	<img id="aa" src="${profile_image}" class="img-circle" height="100" width="100" alt="프로필 사진 바꾸기">
+        </button></a>
+        </div>
 		<ul class="nav nav-pills nav-stacked">
-		  <li><a href="#">Start Workout</a></li>
-		  <li><a href="#">Manage Workout</a></li>
+		  <li><a href="prof">Start Workout</a></li>
+		  <li><a href="manageWorkout">Manage Workout</a></li>
 		  <li><a href="inbodyf">InBody</a></li>
-		  <li><a href="#">Diet</a></li>
-		  <li><a href="#">Social</a></li>  
-		  <li><a href="#">Setting</a></li>  
+		  <li><a href="dietf">Diet</a></li>
+		  <li><a href="socialf">Social</a></li>    
 		</ul>
     </div>
     
