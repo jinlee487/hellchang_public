@@ -70,11 +70,11 @@ body{
 		<div class="login-form">
 			<form action="login" method=post>
 				<div class="id-input-box focus">
-					<input  type="text" name="id" id="id" value="test1004@naver.com" placeholder=example@xxxxx.com style="background-color: white;"><br> 
+					<input  type="text" name="id" id="id" value="" placeholder=example@xxxxx.com style="background-color: white;"><br> 
 					<span id="iMessage" class="eMessage"></span>
 				</div>
 				<div class="pw-input-box">
-					<input  type="password" name="password" id="password" value="123!" placeholder="비밀번호" style="background-color: white;"><br>
+					<input  type="password" name="password" id="password" value="" placeholder="비밀번호" style="background-color: white;"><br>
 					<span id="pMessage" class="eMessage"></span>
 				</div>
 				<button type="submit" class="btn-login">로그인</button>

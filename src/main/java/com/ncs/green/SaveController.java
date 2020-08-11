@@ -1,7 +1,5 @@
 package com.ncs.green;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import service.SService;
 import vo.HeartVO;
-import vo.MemberVO;
 import vo.ReplyVO;
 import vo.SaveVO;
 
@@ -251,33 +248,5 @@ public class SaveController {
 		return mv;
 	}// reply
 	
-	@RequestMapping(value = "detail")
-	public ModelAndView detail(HttpServletRequest request,ModelAndView mv, SaveVO vo, HeartVO hvo, ReplyVO rvo ) {
-		HttpSession session = request.getSession(false);
-		String logID="";
-		if(session != null && session.getAttribute("logID")!=null) {
-			logID= (String)session.getAttribute("logID");
-		}
-		
-		vo=service.selectOne(vo);
-		if(vo!=null) {
-			mv.addObject("Detail",vo);
-		}else {
-			mv.addObject("fCode","BN");
-		}
-		return mv;
-	}
-	@RequestMapping(value="blist")
-	public ModelAndView blist(ModelAndView mv) {
-		List<SaveVO> list = service.selectTList();
-		
-		if(list !=null) {
-			mv.addObject("Banana",list);
-		}else {
-			mv.addObject("message","error");
-		}
-		mv.setViewName("blog/myblog");
-		return mv;
-	}
 	
 }//class

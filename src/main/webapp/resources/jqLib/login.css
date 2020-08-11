@@ -23,7 +23,7 @@ body {
     padding:0;
 }
 .login_input_wrap .social_login li {
-	position:relative;float:left; display:block;zoom:1;width:45%;height:38px;background-color:#fff;box-sizing:border-box;margin-bottom:6px;}
+	position:relative;float:left; display:block;zoom:1;width:45%;height:38px;background-color:black;box-sizing:border-box;margin-bottom:6px;}
 .login_input_wrap .social_login a {display:block;zoom:1;height:38px;border:1px solid #dddddd;font-family:"맑은 고딕", sans-serif;font-size:12px;color:#666;letter-spacing:-1px;line-height:34px;*line-height:36px;box-sizing: border-box;text-decoration:none;}
 .login_input_wrap .social_login .sl_naver{background:url(//www.saraminimage.co.kr/ui/social_login/icon_sns_naver_m.png) 20px 12px no-repeat;margin-right:3px;background-color:#fff;}
 .login_input_wrap .social_login .sl_facebook{background:url(//www.saraminimage.co.kr/ui/social_login/icon_sns_facebook_m.png) 22px 9px no-repeat;margin-left:3px;background-color:#fff;}
