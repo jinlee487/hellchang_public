@@ -11,7 +11,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
 <link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
-<link rel="stylesheet" type="text/css" href="resources/jqLib/login.css?ver=<%= System.currentTimeMillis()%>">
+<link rel="stylesheet" type="text/css" href="resources/jqLib/login.css">
 <script src="resources/jqLib/memberCheck.js"></script>
 <script>
 // ** Login시 id, password 입력자료의 무결성 점검
@@ -55,8 +55,8 @@ body{
 }
    .center {
   margin: auto;
-  width: 50%;
-  height:50vh; 
+  width: 100vh;
+  height:75vh; 
   border: 3px solid gray;
   padding: 10px;
   text-align: center;
@@ -71,7 +71,7 @@ body{
 <div class="container-fluid center">
 
 <!-- <div class="container-fluid " style="background-color: black;"> -->
-<a href="home" ><img src="resources/image/logo.jpg" style="width: 30%;"></a>
+<a href="home" ><img src="resources/image/logo.jpg" style="width: 186px;"></a>
 
 <c:if test="${fCode=='JS'}">
 	<h3>${joinID} 님 회원 가입 되었습니다~~</h3>

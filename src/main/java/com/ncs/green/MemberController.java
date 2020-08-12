@@ -204,6 +204,7 @@ public class MemberController {
 		vo.concatPhone();
 		vo.concatAddress();
 		vo.concatBirthday();
+		System.out.println("this is join vo => \n" + vo);
 		String file2="resources/uploadImage/emptyImage.png";
 		vo.setLevel("user");
 		if(vo.getImage_path()!=null) {

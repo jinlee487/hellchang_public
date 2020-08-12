@@ -168,10 +168,11 @@ $(function(){
 		}
 	}); // ajax 
 $(window).scroll(function(){ 
-	console.log("$(document).height() "+ $(document).height())
-	console.log("$(window).scrollTop() + $(window).height() "+ $(window).scrollTop() + $(window).height())
-	if($(document).height() <= $(window).scrollTop() + $(window).height()){	
+	console.log("$(document).height() => "+ $(document).height())
+	console.log("$(window).scrollTop() + $(window).height() =>"+ ($(window).scrollTop() + $(window).height()))
+	if($(document).height() <= ($(window).scrollTop() + $(window).height()+10)){	
 			loadNext(); 
+			console.log("load next loading");
 	}
 	function loadNext(){
 		$.ajax({
@@ -200,7 +201,7 @@ $(window).scroll(function(){
 					var nowReplyT = nowName+nowTitle;
 					if(logID.length != 4){
 						appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img class='heart_hover' src = 'resources/image/heart.png'>"+data.harray[i]+"</span><span id = 'cnt"+nowSeq+"'></span></td>"
-						if(data.rarray[i].replyId == null && data.rarray[i].replyContent == null ){
+						if(data.rarray[i].replyId.length==0 && data.rarray[i].replyContent.length==0 ){
 							appendT += "<td colspan='4' id ='reply"+nowSeq+"'></td></tr>";
 						}else{
 							appendT += "<td colspan='4' id ='reply"+nowSeq+"'>"+data.rarray[i].replyId +" : "+ data.rarray[i].replyContent+"</td></tr>";

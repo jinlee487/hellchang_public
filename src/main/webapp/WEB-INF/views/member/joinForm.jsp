@@ -21,12 +21,13 @@ $(document).ready(function(){
 		$('#email_login').attr('disabled',false);
 		$('#image_path').attr('disabled',false);
 		$('#gen').attr('disabled', false);
-		
-/* 		$("form :input").each(function(){
+		$("form :input").each(function(){
 			 var input = $(this).val(); 
 			 var name = $(this).attr("name");
 			 console.log("this is the "+name+" => " + input)
-			});		 */
+			});		 
+		alert("going into submit");
+
 	});
 	if($('#email_join_email_login').html()=="check"){
 		if($('#email_join_id').html()!=''){
@@ -47,6 +48,9 @@ $(document).ready(function(){
 		$('#password').val($('#email_join_id').html()).attr('readonly', true);
 		$('#rpsw').val($('#email_join_id').html()).attr('readonly', true);
 		$('.joincheck2').css("display", "none");
+	}
+	else{
+		$('#email_login').attr('disabled',false).val('false').attr('disabled',true);
 	}
 }) ;
 
@@ -819,7 +823,7 @@ $(document).ready(function(){
     <input type="text" name="address2" id="address1" placeholder="상세주소를 입력해주세요" required>
     <br>
     <label class="int">
-      <input type="checkbox" checked="checked" name="remember" class="input" style="margin-bottom:15px"> Remember me
+      <input type="checkbox" checked="checked" class="input" style="margin-bottom:15px"> Remember me
     </label>
 
     <div class="clearfix">
