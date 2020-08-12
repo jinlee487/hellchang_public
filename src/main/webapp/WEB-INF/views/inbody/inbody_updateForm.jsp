@@ -171,20 +171,20 @@
 		
 	<br><br><br><br><br><br><br><br><br><br>  
      </div>
-     
     <div class="col-sm-2 well" style="margin-top: 100px">
       <div class="thumbnail">
-        <p>Upcoming Events:</p>
-        <img src="paris.jpg" alt="Paris" width="400" height="300">
-        <p><strong>Paris</strong></p>
-        <p>Fri. 27 November 2015</p>
-        <button class="btn btn-primary">Info</button>
+        <p><strong>Map Your Runs</strong></p>
+        <img src="resources/image/runapp.JPG" width="400" height="300">
+        <p>Coming Soon!</p>
       </div>      
       <div class="well">
-        <p>ADS</p>
+       <p><strong>Learn new work out tips at the Noob menu!</strong></p>
       </div>
       <div class="well">
-        <p>ADS</p>
+        <p><strong>Create new playlists in Routine menu!</strong></p>
+      </div>
+      <div class="well">
+        <p><strong>Insert inbody Data in InBody menu!</strong></p>
       </div>
     </div>
   </div>

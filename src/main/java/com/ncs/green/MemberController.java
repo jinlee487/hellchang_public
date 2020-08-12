@@ -90,10 +90,18 @@ public class MemberController {
 			file2="resources/uploadImage/emptyImage.png";
 			vo.setImage_path(file2);
 		}else {
-			file1="D:/GitHub/hellchang/src/main/webapp/resources/uploadImage/"
-					+ image_file.getOriginalFilename();
+			
+			String realPath = request.getRealPath("/");
+			System.out.println("** RealPath 1 =>" + realPath);
+			if (realPath.contains(".eclipse.")) 
+				 realPath="D:/GitHub/hellchang/src/main/webapp/resources/uploadImage/";
+			else realPath += "resources\\uploadImage\\";
+			
+			System.out.println("** RealPath 2 =>" + realPath);
+			
+			file1 = realPath + image_file.getOriginalFilename();
 			image_file.transferTo(new File(file1));
-			file2="resources/uploadImage/"+image_file.getOriginalFilename();
+			file2 = "resources/uploadImage/"+image_file.getOriginalFilename();
 			vo.setImage_path(file2);
 		}
 		
@@ -105,9 +113,7 @@ public class MemberController {
 		
 		mv.addObject("mem", vo);
 		
-		mv.setViewName("user/profile");
-		request.getSession().setAttribute("profile_image", vo.getImage_path());
-
+		mv.setViewName("redirect:mdetail?code=U");
 		return mv;
 	}
 	
@@ -133,7 +139,7 @@ public class MemberController {
 		return mv; 
 	} // 
 	@RequestMapping(value = "/updatef")
-	public ModelAndView updatef(ModelAndView mv) {
+	public ModelAndView updatef(HttpServletRequest request, ModelAndView mv, MemberVO vo) {
 		mv.setViewName("user/profile_Update");
 		return mv; 
 	} // 
@@ -195,9 +201,9 @@ public class MemberController {
 	
 	@RequestMapping(value = "/join")
 	public ModelAndView join(HttpServletRequest request, ModelAndView mv, MemberVO vo) {
-		vo.setPhone();
-		vo.setAddress();
-		vo.setBirthday();
+		vo.concatPhone();
+		vo.concatAddress();
+		vo.concatBirthday();
 		String file2="resources/uploadImage/emptyImage.png";
 		vo.setLevel("user");
 		if(vo.getImage_path()!=null) {
@@ -238,25 +244,26 @@ public class MemberController {
 		HttpSession session = request.getSession(false);
 		if (session != null && session.getAttribute("logID") != null) {
 			id = (String) session.getAttribute("logID");
-		} else {
-			// login 하도록 유도 후에 메서드 return 으로 종료
-			mv.addObject("message", "~~ 로그인 후에 하세요 ~~");
-			mv.setViewName("login/loginForm");
-			return mv;
-		}
+		} 
 		vo.setId(id);
 		vo = service.selectOne(vo);
-		mv.addObject("myInfo", vo);
+		
+		mv.addObject("myInfo_phone", vo.getPhone());
+		mv.addObject("myInfo_address", vo.getAddress());
 
+		System.out.println("this is mdetail vo => \n" + vo);
 		// 4) 결과 ( Detail or Update 인지 )
 		// => request.getParameter("code") 가 U 인지 확인
-		mv.setViewName("user/profile_myProfile");
 		if ("U".equals(request.getParameter("code"))) {
+			request.getSession().setAttribute("logID", vo.getId());
+			request.getSession().setAttribute("logName", vo.getName());
+			request.getSession().setAttribute("profile_image", vo.getImage_path());
 			// 내정보 수정화면으로
-			session.setAttribute("encodedPassword", vo.getPassword());
 			mv.setViewName("user/profile_Update");
 		} else if ("E".equals(request.getParameter("code"))) { // 내정보 수정에서 오류 상황
 			mv.addObject("message", "~~ 내정보 수정 오류  !!! 다시 하세요 ~~");
+			mv.setViewName("user/profile_Update");
+
 		}
 		
 		
@@ -265,18 +272,24 @@ public class MemberController {
 	}// mdetail
 	
 	@RequestMapping(value = "/mupdate")
-	public ModelAndView update(HttpServletRequest request, ModelAndView mv, MemberVO vo)
+	public ModelAndView update(HttpServletRequest request, ModelAndView mv, MemberVO vo, MemberVO vo2)
 				throws IOException {
-		if (vo.getPassword().length() > 3 && vo.getPassword()!=null) {
+
+	System.out.println(" this is update vo =>  + \n" + vo);	
+	if (vo.getPassword().length() > 3 && vo.getPassword()!=null) {
 			
 		vo.setPassword( passwordEncoder.encode(vo.getPassword()));
 	}else {
-		vo.setPassword((String)request.getSession().getAttribute("encodedPassword"));
+		vo2=service.selectOne(vo);
+		vo.setPassword(vo2.getPassword());	
 	}
+	System.out.println("this is mupdate vo => \n" + vo);
 	if (service.update(vo) > 0) {
-		request.getSession().setAttribute("loginName", vo.getName());
-		mv.setViewName("redirect:home");
+		System.out.println("update complete");
+		mv.setViewName("redirect:mdetail?code=U");
 	} else {
+		System.out.println("update incomplete");
+
 		mv.setViewName("redirect:mdetail?code=E");
 	}
 	return mv;
@@ -290,7 +303,7 @@ public class MemberController {
 		service.delete(vo);
 		request.getSession().invalidate();
 		
-		mv.setViewName("home");
+		mv.setViewName("jsonView");
 		//service.delete();
 		
 		return mv;

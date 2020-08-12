@@ -148,15 +148,15 @@ address {
   border-radius: 8px;
 }
 #zipcode{
-  width: 6%;
+  width: 30%;
   padding: 15px;
   margin: 5px 0 22px 0;
   display: inline-block;
   border: none;
   background: #f1f1f1;
+  background-color: #ddd;
+  outline: none;
   border-radius: 8px;
-  margin-right: 24%;
-  cursor: pointer;
 }
 
 #address1{

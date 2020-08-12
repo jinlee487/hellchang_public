@@ -51,20 +51,34 @@ function inCheck() {
 </script>
 <style type="text/css">
 body{
-	margin-top: 20%;
+	margin-top: 5%;
 }
+   .center {
+  margin: auto;
+  width: 50%;
+  height:50vh; 
+  border: 3px solid gray;
+  padding: 10px;
+  text-align: center;
+  border: 3px solid gray;
+	}
+
 </style>
 
 </head>
 <body>
+
+<div class="container-fluid center">
+
 <!-- <div class="container-fluid " style="background-color: black;"> -->
-		<a href="home" ><img src="resources/image/logo.jpg" style="width: 10%;"></a>
-		
-		<c:if test="${fCode=='JS'}">
-			<h3>${joinID} 님 회원 가입 되었습니다~~</h3>
-		</c:if>
-	<br>
-	<br>
+<a href="home" ><img src="resources/image/logo.jpg" style="width: 30%;"></a>
+
+<c:if test="${fCode=='JS'}">
+	<h3>${joinID} 님 회원 가입 되었습니다~~</h3>
+</c:if>
+<br>
+<br>
+	
 <!-- 	<br>	 -->
 	<div class="login_input_wrap">
 		<div class="login-form">
@@ -97,5 +111,6 @@ body{
 		
 	</div>
 <!-- </div> -->
+</div>
 </body>
 </html>

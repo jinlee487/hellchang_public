@@ -10,7 +10,7 @@
 
   </head><body>
    <div class="container-fluid center">
-  <a href="home"><img src = "resources/image/logo.jpg" width="80" height="25"></a>
+  <a href="home"><img src = "resources/image/logo.jpg" style="width: 30%;"></a>
   <p><b>404</b> <ins>That’s an error.</ins>
   </p><p><ins>That’s all we know.</ins>
 </p>

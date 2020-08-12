@@ -106,7 +106,15 @@
 				<mvc:mapping path="/inbodyUpdate"/>
 				<mvc:mapping path="/inbodyDelete"/> 
 				<mvc:mapping path="/inbodyf"/>
-				
+				<mvc:mapping path="/dietf"/>
+				<mvc:mapping path="/socialf"/>
+				<mvc:mapping path="/prof"/>
+				<mvc:mapping path="/updatef"/>
+				<mvc:mapping path="/manageWorkout"/>
+				<mvc:mapping path="/myRoutineListAjax"/>
+				<mvc:mapping path="/myRoutineDetailAjax"/>
+				<mvc:mapping path="/mdetail"/>
+			
 				<beans:ref bean="LoginInterceptor"/>
 			</mvc:interceptor>
 	</mvc:interceptors>	

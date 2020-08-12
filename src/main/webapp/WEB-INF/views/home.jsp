@@ -74,7 +74,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>                        
 			  </button>
-			  <a class="navbar-brand" href="#">
+			  <a class="navbar-brand" href="home">
 			  <img src = "resources/image/logo.jpg" width="80" height="25">
 			  </a>
 			</div>

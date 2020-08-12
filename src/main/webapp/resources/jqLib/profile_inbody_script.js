@@ -183,7 +183,7 @@ $(document).ready(function(){
 			}
 		}
 		else if($(this).attr("id")=='is'){
-			location.href = "inbodySharef";
+//			location.href = "inbodySharef";
 		}
 	});
 	
@@ -357,6 +357,9 @@ function InitialloadResults() {
  				},
 			success:function(jsondata){
 				if(jsondata.check=="list is null"){
+	
+					alert("No Inbody Data !");
+
 				}
 				else{
 					data=jsondata.InbodyVO;

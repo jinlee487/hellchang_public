@@ -183,6 +183,9 @@ textarea{
 .reply{
 	vertical-align: middle;
 }
+.heart_hover:hover{
+	cursor: pointer;
+}
 </style>
 <script type="text/javascript">
 var logID = "<%=session.getAttribute("logID") %>"
@@ -274,7 +277,7 @@ function showModal(id,title) {
 			}
 			
 			var modalSideTitle = "<img src = "+arrayModal[0].userImage +" class = 'myPhoto' width='80px' height='80px' > "+arrayModal[0].userName+"<hr>";
-			var modalSide = "<span class = 'heart'><img src = 'resources/image/heart.png'>"+data.heartCnt+"</span><br><hr>";
+			var modalSide = "<span class = 'heart'><img class='heart_hover' src = 'resources/image/heart.png'>"+data.heartCnt+"</span><br><hr>";
 			modalSide += "<div style='overflow: auto; height:200px;'><span class = 'newReply'></span>"
 			for(var i = 0; i<data.replyCnt; i++){
 				modalSide += "<img src = "+ arrayReply[i].userImage+" class = 'myPhoto' width =25px height = 25px >"  + arrayReply[i].userName + " : " + arrayReply[i].replyContent+"<br>"

@@ -233,7 +233,8 @@ function inputList(data){
 						},
 					success:function(data){
 						console.log("저장중..");
- 						alert("저장 완료되었습니다.");
+  						alert("저장 완료되었습니다."); 
+					
  						self.close();
 						/* $('#my-tbody').empty(); */
 						},

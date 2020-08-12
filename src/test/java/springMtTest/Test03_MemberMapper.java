@@ -57,9 +57,9 @@ public class Test03_MemberMapper {
 			vo.setYy("2000");
 			vo.setMm("01");
 			vo.setDd("01");
-			vo.setPhone();
-			vo.setAddress();
-			vo.setBirthday();
+			vo.concatPhone();
+			vo.concatAddress();
+			vo.concatBirthday();
 			vo.setLevel("user");
 			vo.setImage_path("resources/uploadImage/emptyImage.png");
 			System.out.println("for i => " +i + "\nthis is vo => " + vo);

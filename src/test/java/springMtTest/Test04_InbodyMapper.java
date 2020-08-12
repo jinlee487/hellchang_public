@@ -61,9 +61,9 @@ public class Test04_InbodyMapper {
 			vo.setYy("2000");
 			vo.setMm("01");
 			vo.setDd("01");
-			vo.setPhone();
-			vo.setAddress();
-			vo.setBirthday();
+			vo.concatPhone();
+			vo.concatAddress();
+			vo.concatBirthday();
 			vo.setLevel("user");
 			vo.setImage_path("resources/uploadImage/emptyImage.png");
 			System.out.println("for i => " +i + "\nthis is vo => " + vo);
@@ -86,7 +86,7 @@ public class Test04_InbodyMapper {
 			if (i<10) d = "2020" +"/0"+ i + "/" + "01/" +"17:30";
 			else d = "2020" +"/"+ i + "/" + "01 " +"17:30";
 						
-			vo.setId("admin@gmail.com");
+			vo.setId("hcdummytest@gmail.com");
 			//vo.setId("banana@naver.com");
 
 			vo.setDate_date(d);

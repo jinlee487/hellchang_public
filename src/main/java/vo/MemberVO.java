@@ -39,14 +39,18 @@ public class MemberVO {
 	public void setGender(String gender) {this.gender = gender;}
 	
 	public String getPhone() {return phone;}
-	public void setPhone() {this.phone = (getNationNo() +"-"+getPhoneNo());}
+	public void setPhone(String phone) {this.phone = phone;}
+	public void concatPhone() {this.phone = (getNationNo() +"-"+getPhoneNo());}
+
 	public String getNationNo() {return nationNo;}
 	public void setNationNo(String nationNo) {this.nationNo = nationNo;}
 	public String getPhoneNo() {return phoneNo;}
 	public void setPhoneNo(String phoneNo) {this.phoneNo = phoneNo;}
 	
 	public String getAddress() {return address;}	
-	public void setAddress() {this.address = (getAddress1()+" "+getAddress2()+" "+getZipcode());}
+	public void setAddress(String address) {this.address = address;}
+	public void concatAddress() {this.address = (getAddress1()+" "+getAddress2()+" "+getZipcode());}
+
 	public String getZipcode() {return zipcode;}
 	public void setZipcode(String zipcode) {this.zipcode = zipcode;}
 	public String getAddress1() {return address1;}
@@ -55,7 +59,9 @@ public class MemberVO {
 	public void setAddress2(String address2) {this.address2 = address2;}
 	
 	public String getBirthday() {return birthday;}
-	public void setBirthday() {this.birthday = getYy()+"/"+getMm()+"/"+getDd();}
+	public void setBirthday(String birthday) {this.birthday = birthday;}
+	public void concatBirthday() {this.birthday = getYy()+"/"+getMm()+"/"+getDd();}
+
 	public String getYy() {	return yy;}
 	public void setYy(String yy) {this.yy = yy;}
 	public String getMm() {return mm;}
@@ -70,7 +76,6 @@ public class MemberVO {
 	public void setImage_path(String image_path) { this.image_path = image_path; }
 	public MultipartFile getImage_file() {return image_file;}
 	public void setImage_file(MultipartFile image_file) {this.image_file = image_file;}
-	
 	@Override
 	public String toString() {
 		return "MemberVO [id=" + id + ", password=" + password + ", name=" + name + ", gender=" + gender + ", phone="
@@ -79,6 +84,7 @@ public class MemberVO {
 				+ yy + ", mm=" + mm + ", dd=" + dd + ", level=" + level + ", image_path=" + image_path + ", image_file="
 				+ image_file + ", email_login=" + email_login + "]";
 	}
+	
 
 	
 

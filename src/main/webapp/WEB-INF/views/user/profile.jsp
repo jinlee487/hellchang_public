@@ -17,6 +17,8 @@
 <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position.css">
 <link rel="stylesheet" type="text/css" href="resources/jqLib/topBar.css">
 <link rel="stylesheet" type="text/css" href="resources/jqLib/profile_image.css">
+<script src="resources/jqLib/profile_profile_script.js"></script>
+
 
 <style>
 @media (min-width: 768px){
@@ -45,7 +47,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="homew">
+      <a class="navbar-brand" href="home">
       <img src = "resources/image/logo.jpg" width="80" height="25">
       </a>
     </div>
@@ -135,10 +137,13 @@
         <p>Coming Soon!</p>
       </div>      
       <div class="well">
-        <p>ADS</p>
+       <p><strong>Learn new work out tips at the Noob menu!</strong></p>
       </div>
       <div class="well">
-        <p>ADS</p>
+        <p><strong>Create new playlists in Routine menu!</strong></p>
+      </div>
+      <div class="well">
+        <p><strong>Insert inbody Data in InBody menu!</strong></p>
       </div>
     </div>
   </div>
@@ -169,80 +174,6 @@
 </div>
 
 <script type="text/javascript">
-$(document).ready(function(){
-	Initialize();	
-});
-
-function Initialize() {
-	var data;
-
-		$.ajax({
-			type:"Post",
-			url:"myRoutineListAjax",
-			success:function(jsondata){
-				
-				
-				
-				if(jsondata.list==null){
-					result += '<li class="list-group-item"><span>No playlist found!</span></li>';
-                }
-				else{
-					var result = "";
-	                $.each(jsondata.list, function (id, svo) {
-	                	if(id==0){
-	    	        	    document.getElementById("list_title").innerHTML = svo.title;
-
-	                		$.ajax({
-	                			type:"Post",
-	                			url:"myRoutineDetailAjax",
-	                			data:{
-	                				title:$("#list_title").html(),
-	                			},
-	                			success:function(jsondata2){
-	        	                $.each(jsondata2.list, function (id, savevoList) {
-	        	                	$('#table_row').append(
-	        	                			'<tr><td style="word-wrap:break-word;">'+savevoList.name+'</td><td>'+savevoList.target+'</td><td>'+savevoList.kg+'</td><td>'+savevoList.rep+'</td><td><input type="checkbox"></td></tr>');
-	            	           	});
-	                		}
-	                			
-	                	})}
-	                	result += '<li class="list-group-item"><span id=seq'+svo.seq+' onclick="titlePick(this,reloadList)">'+ svo.title +
-	                    '</span></li>';
-	                });
-	        		$('#dddd').append(result);	        		
-				}
-			}
-		})
-
- 	}
- 	
-function reloadList(title){
-  		$.ajax({
- 			type:"Post",
- 			url:"myRoutineDetailAjax",
- 			data:{
- 				title:$("#list_title").html(),
- 			},
- 			success:function(jsondata2){
-          		$.each(jsondata2.list, function (id, savevoList) {
-          			$('#table_row').append(
-          					'<tr><td>'+savevoList.name+'</td><td>'+savevoList.target+'</td><td>'+savevoList.kg+'</td><td>'+savevoList.rep+'</td><td><input type="checkbox"></td></tr>');
-         		});				
-
- 		}
-	})
-
-}
-function titlePick(elmnt, callback){ 
-	$('#collapse1').collapse("hide");
-	document.getElementById("list_title").innerHTML=elmnt.innerHTML;
-	$("#table_row").empty();
-	callback(elmnt.innerHTML); 
-   }  	
-function callback(a,b){
-	a();
-	b();
-}
 </script>
 </body>
 </html>

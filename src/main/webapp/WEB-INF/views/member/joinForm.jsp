@@ -813,7 +813,7 @@ $(document).ready(function(){
 	</select><br>
 	
 	<label for="location" class="int"><b>location</b></label><br>
-	<input type="text" name="zipcode" id="zipcode" size="7" onClick="sample4_execDaumPostcode()" readonly placeholder="우편번호 검색" required>
+	<input type="text" name="zipcode" id="zipcode" onClick="sample4_execDaumPostcode()" readonly placeholder="우편번호 검색" required>
 	<br>
     <input type="text" name="address1" id="address" readonly placeholder="주소입력해주세요" required><br>
     <input type="text" name="address2" id="address1" placeholder="상세주소를 입력해주세요" required>
@@ -844,7 +844,7 @@ $(document).ready(function(){
 		</address>
 	</div>
 <script>
-function check_form() {
+/* function check_form() {
 	var idval = document.joinForm.email.value;
 	if (idval.charAt(0) < 'A' || idval.charAt(0) > 'z' ) {
  		alert("아이디의 첫글자는 영문자입니다.");
@@ -864,11 +864,7 @@ function check_form() {
 	
 	document.joinForm.submit();
 }
-	
-
-</script>
-
-<script>
+ */
 function sample4_execDaumPostcode() {
    new daum.Postcode({
 	    oncomplete: function(data) {
@@ -877,8 +873,7 @@ function sample4_execDaumPostcode() {
 	    }
 	}).open();
 }
-</script>
-<script>
+
 //** 1. 입력 오류 확인 ( inCheck )
 //1.1) 개별적 오류 확인을 위한 switch 변수 정의
 var iCheck=false;

@@ -119,6 +119,9 @@ textarea{
     bottom: 0px;
     margin-bottom:0px;
 }
+.heart_hover:hover{
+	cursor: pointer;
+}
 </style>
 <script type="text/javascript">
 var logID = "<%=session.getAttribute("logID") %>"
@@ -149,7 +152,7 @@ $(function(){
 				var nowName = array2[i][0].userName
 				var nowReplyT = nowName+nowTitle;
 				if(logID.length != 4){
-					appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+data.harray[i]+"</span><span id = 'cnt"+nowSeq+"'></span></td>"
+					appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img  src = 'resources/image/heart.png' class='heart_hover'>"+data.harray[i]+"</span><span id = 'cnt"+nowSeq+"'></span></td>"
 					if(data.rarray[i].replyId == null && data.rarray[i].replyContent == null ){
 						appendT += "<td colspan='4' id ='reply"+nowSeq+"'></td></tr>";
 					}else{
@@ -196,7 +199,7 @@ $(window).scroll(function(){
 					var nowName = array2[i][0].userName
 					var nowReplyT = nowName+nowTitle;
 					if(logID.length != 4){
-						appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img src = 'resources/image/heart.png'>"+data.harray[i]+"</span><span id = 'cnt"+nowSeq+"'></span></td>"
+						appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img class='heart_hover' src = 'resources/image/heart.png'>"+data.harray[i]+"</span><span id = 'cnt"+nowSeq+"'></span></td>"
 						if(data.rarray[i].replyId == null && data.rarray[i].replyContent == null ){
 							appendT += "<td colspan='4' id ='reply"+nowSeq+"'></td></tr>";
 						}else{
@@ -233,7 +236,7 @@ $(document).on("click",".heart", function(){
 		},
 		success:function(data){
 			var cnt = data.countHeartTest;
-			$('#'+title).html("<img src = 'resources/image/heart.png'>"+cnt+"</span><span id = 'cnt"+nowSeq+"'></span>")
+			$('#'+title).html("<img class='heart_hover' src = 'resources/image/heart.png'>"+cnt+"</span><span id = 'cnt"+nowSeq+"'></span>")
 		}, // success
 		error:function(){
 		}

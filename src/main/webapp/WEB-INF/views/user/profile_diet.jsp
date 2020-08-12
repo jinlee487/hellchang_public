@@ -10,7 +10,7 @@
 
   </head><body>
    <div class="container-fluid center">
-  <a href="home"><img src = "resources/image/logo.jpg" width="80" height="25"></a>
+  <a href="home"><img src = "resources/image/logo.jpg" style="width: 30%;"></a>
   <p><b>This page is not yet completed!</b><br>
   <ins>We are working to provide you the nutrition tracking tool as soon as possible! </ins>
   </p>

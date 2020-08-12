@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-   <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
+   <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -36,46 +36,7 @@
 	}	 
   </script>
   <style>
-
-  #p_pos{
-  	margin-right: 80px;
-  }
-  
-  #top_na{
-  	position: fixed;
-  	z-index: 100;
-  	width: 100%;
-  }
-		  
-  address {
-	color: white;
-	margin-bottom:0px;
-	}
-  	
-  	element.style{
-  		bottom : 0px;
-  	}
-  	
-    /* Remove the navbar's default margin-bottom and rounded borders */ 
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-      background-color: #3d3b3c;
-    }
     
-  .carousel-inner img {
-      width: 100%; /* Set width to 100% */
-      margin: auto;
-      min-height:200px;
-  }
-
-  /* Hide the carousel text when the screen is less than 600 pixels wide */
-  @media (max-width: 600px) {
-    .carousel-caption {
-      display: none; 
-      margin-left: 20	0px;
-    }
-  }
   @media (min-width: 768px){
 	.col-sm-4 {
 	  /* margin-left: 200px; */
@@ -130,8 +91,8 @@ button:hover {
 </head>
 <body>
 
-<nav  class="navbar navbar-inverse" id="top_na">
-  <div class="container-fluid" style="background-color: black;">
+<nav  class="navbar navbar-inverse" >
+  <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
@@ -142,14 +103,16 @@ button:hover {
       <img src = "resources/image/logo.jpg" width="80" height="25">
       </a>
     </div>
+    
     <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-      	    <li><a href="noob">Noob</a></li>
-			<li><a href="routine">Routine</a></li>
-			<li><a href="blog">Blog</a></li>
-			<li><a href="one">OneRM</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right" >
+			  <ul class="nav navbar-nav">
+				<li><a href="noob">Noob</a></li>
+				<li><a href="routine">Routine</a></li>
+				<li><a href="blog">Blog</a></li>
+				<li><a href="one">OneRM</a></li>
+				
+			  </ul>
+			  <ul class="nav navbar-nav navbar-right" >
 			  <c:if test="${logID != null }">
 			  	<li><a style="color: white;">${logName}님</a></li>
 			  	<li><a href="prof">MyProfile</a></li>
@@ -168,7 +131,7 @@ button:hover {
 					</c:if>
 				</li>
 			  </ul>
-    </div>
+			</div>
   </div>
 </nav>
 
@@ -291,7 +254,7 @@ $(function(){
       				dead[i] = jsonData[i].dead;
       				squat[i] = jsonData[i].squat;
       				total[i] = bench[i] + dead[i] + squat[i]
-      				lastdate = jsonData[2].date;
+      				lastdate = jsonData[Object.keys(jsonData).length-1].date;
       				nowdate = jsonData[0].date;
       			}
       			var arr = [

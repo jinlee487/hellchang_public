@@ -3,7 +3,7 @@ $(document).ready(function(){
 		$('input[type=file]').click();
 	}); // file select 
 	
-	$('input').change(function(){
+	$('#image_file').change(function(){
 		var chImg = document.chImg;
 		chImg.submit();
 	}); // file submit 

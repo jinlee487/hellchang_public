@@ -203,6 +203,7 @@ public class LoginController {
 			request.getSession().setAttribute("logID", vo.getId());
 			request.getSession().setAttribute("logName", vo.getName());
 			request.getSession().setAttribute("profile_image", vo.getImage_path());
+			System.out.println("this is google callback vo = > + \n" + vo);
 			mv.setViewName("redirect:prof");
 			return mv;
 		}

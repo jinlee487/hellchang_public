@@ -15,7 +15,7 @@
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
+  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position.css">
   <style>
   	html, body{
   		width: 100%;	
@@ -45,7 +45,7 @@
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50" style="background-color: white">
 
-<nav class="navbar navbar-inverse">
+<nav  class="navbar navbar-inverse" >
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -53,28 +53,39 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="home"> 
+      <a class="navbar-brand" href="home">
       <img src = "resources/image/logo.jpg" width="80" height="25">
       </a>
     </div>
+    
     <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li><a href="noob">Noob</a></li>
-        <li><a href="routine">Routine</a></li>
-        <li><a href="blog">Blog</a></li>
-        <li><a href="one">OneRM</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right" >
-		<c:if test="${logID==null }">
-			<li><a href="loginf"><span class="glyphicon glyphicon-log-in"></span> Login</a><li>
-		</c:if>
-		<c:if test="${logID!=null }">
-			<li><a style="color: white;">${logName}님</a></li>
-			<li><a href="prof">MyProfile</a></li>
-			<li><a href="logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-		</c:if>
-	  </ul>
-    </div>
+			  <ul class="nav navbar-nav">
+				<li><a href="noob">Noob</a></li>
+				<li><a href="routine">Routine</a></li>
+				<li><a href="blog">Blog</a></li>
+				<li><a href="one">OneRM</a></li>
+				
+			  </ul>
+			  <ul class="nav navbar-nav navbar-right" >
+			  <c:if test="${logID != null }">
+			  	<li><a style="color: white;">${logName}님</a></li>
+			  	<li><a href="prof">MyProfile</a></li>
+			  </c:if>
+				<li>
+					<c:if test="${logID==null }">
+						<a href="joinf">회원가입</a>
+					</c:if>	
+				</li>
+				<li>
+					<c:if test="${logID==null }">
+						<a href="loginf"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+					</c:if>
+					<c:if test="${logID!=null }">
+						<a href="logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
+					</c:if>
+				</li>
+			  </ul>
+			</div>
   </div>
 </nav>
  <div class="parent" style="width: 100%; height: 95%; ">
