@@ -16,7 +16,7 @@ $(document).ready(function(){
 				code : 44
 			},
 			success: function(){
-				$("aa").load(location.href+" #aa");
+				location.href="mdetail?code=U"
 			}
 		});// ajax
 	}); // file del
