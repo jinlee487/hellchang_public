@@ -92,7 +92,7 @@ public class MemberController {
 			System.out.println("** RealPath 2 =>" + realPath);
 			
 			file1 = realPath + image_file.getOriginalFilename();
-			image_file.transferTo(new File(file1));
+//			image_file.transferTo(new File(file1));
 			file2 = "resources/uploadImage/"+image_file.getOriginalFilename();
 			vo.setImage_path(file2);
 		}
