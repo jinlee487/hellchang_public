@@ -150,8 +150,8 @@
 	</beans:bean>
 
 	<beans:bean id="googleOAuth2Parameters" class="org.springframework.social.oauth2.OAuth2Parameters">
-		<beans:property name="scope" value="profile email" />
-		<beans:property name="redirectUri" value="http://localhost:8080/hellchang/google_callback" />
+		<beans:property name="scope" value="profile email"/>
+		<beans:property name="redirectUri" value="http://localhost:8080/green/google_callback" />
 	</beans:bean> 
 	
 </beans:beans>

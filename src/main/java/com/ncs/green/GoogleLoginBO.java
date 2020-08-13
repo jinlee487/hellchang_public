@@ -18,7 +18,7 @@ public class GoogleLoginBO {
 	
     private final static String CLIENT_ID = "470518751593-6f1947bb9kh11gf4tmvpg0q5shksdosu.apps.googleusercontent.com";
     private final static String CLIENT_SECRET = "zTHmP-T-9W0t58PKvtZekC42";
-    private final static String REDIRECT_URI = "http://localhost:8080/hellchang/google_callback";
+    private final static String REDIRECT_URI = "http://localhost:8080/green/google_callback";
 	
 	public String getUserProfile(String code) throws IOException{
         System.out.println("in get user");
