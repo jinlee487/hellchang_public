@@ -1,6 +1,5 @@
 package vo;
 
-import java.sql.Date;
 
 public class SaveVO {
 	private String id;
@@ -9,9 +8,13 @@ public class SaveVO {
 	private int kg;
 	private int rep;
 	private String date;
-	
 	private String title;
 	private String shared;
+	private String userName;
+	private int rownum;
+	private int heart;
+	private String userImage;
+	private int seq;
 	
 	public String getId() {
 		return id;
@@ -50,7 +53,6 @@ public class SaveVO {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	
 	public String getTitle() {
 		return title;
 	}
@@ -64,10 +66,49 @@ public class SaveVO {
 		this.shared = shared;
 	}
 	
+	
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+		
+	public int getRownum() {
+		return rownum;
+	}
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
+	}
+	
+	
+	public int getHeart() {
+		return heart;
+	}
+	public void setHeart(int heart) {
+		this.heart = heart;
+	}
+	
+	
+	public String getUserImage() {
+		return userImage;
+	}
+	public void setUserImage(String userImage) {
+		this.userImage = userImage;
+	}
+	
+	
+	public int getSeq() {
+		return seq;
+	}
+	public void setSeq(int seq) {
+		this.seq = seq;
+	}
 	@Override
 	public String toString() {
 		return "SaveVO [id=" + id + ", name=" + name + ", target=" + target + ", kg=" + kg + ", rep=" + rep + ", date="
-				+ date + ", title=" + title + ", shared=" + shared + "]";
+				+ date + ", title=" + title + ", shared=" + shared + ", userName=" + userName + ", rownum=" + rownum
+				+ ", heart=" + heart + ", userImage=" + userImage + ", seq=" + seq + "]";
 	}
 	
 

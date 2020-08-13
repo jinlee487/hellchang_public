@@ -4,10 +4,10 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class InbodyVO {
+	private int idx;
 	private String id;
 	private String date_date;
 	private String date_string;
-	private double seq;
 	private double weight;
 	private double weight_under;
 	private double weight_over;
@@ -29,14 +29,14 @@ public class InbodyVO {
 	private double bmr;
 	
 
+	public int getIdx() {return idx;}
+	public void setIdx(int idx) {this.idx = idx;}
 	public String getId() {return id;}
 	public void setId(String id) {this.id = id;}
 	public String getDate_date() {return date_date;}
 	public void setDate_date(String date_date) {this.date_date = date_date;}
 	public String getDate_string() {return date_string;}
 	public void setDate_string(String date_string) {this.date_string = date_string;}
-	public double getSeq() {return seq;}
-	public void setSeq(double seq) {this.seq = seq;}
 	public double getWeight() {return weight;}
 	public void setWeight(double weight) {this.weight = weight;}
 	public double getWeight_under() {return weight_under;}
@@ -79,13 +79,14 @@ public class InbodyVO {
 		setBmr(bd.doubleValue());}
 	@Override
 	public String toString() {
-		return "InbodyVO [id=" + id + ", date_date=" + date_date + ", date_string=" + date_string + ", seq=" + seq + ", weight="
-				+ weight + ", weight_under=" + weight_under + ", weight_over=" + weight_over + ", muscle_mass="
-				+ muscle_mass + ", muscle_mass_under=" + muscle_mass_under + ", muscle_mass_over=" + muscle_mass_over
-				+ ", fat_mass=" + fat_mass + ", fat_mass_under=" + fat_mass_under + ", fat_mass_over=" + fat_mass_over
-				+ ", bmi=" + bmi + ", bmi_under=" + bmi_under + ", bmi_over=" + bmi_over + ", pbf=" + pbf
-				+ ", pbf_under=" + pbf_under + ", pbf_over=" + pbf_over + ", vfl=" + vfl + ", vfl_under=" + vfl_under
-				+ ", vfl_over=" + vfl_over + ", bmr=" + bmr + "]";
+		return "InbodyVO [idx=" + idx + ", id=" + id + ", date_date=" + date_date + ", date_string=" + date_string
+				+ ", weight=" + weight + ", weight_under=" + weight_under + ", weight_over=" + weight_over
+				+ ", muscle_mass=" + muscle_mass + ", muscle_mass_under=" + muscle_mass_under + ", muscle_mass_over="
+				+ muscle_mass_over + ", fat_mass=" + fat_mass + ", fat_mass_under=" + fat_mass_under
+				+ ", fat_mass_over=" + fat_mass_over + ", bmi=" + bmi + ", bmi_under=" + bmi_under + ", bmi_over="
+				+ bmi_over + ", pbf=" + pbf + ", pbf_under=" + pbf_under + ", pbf_over=" + pbf_over + ", vfl=" + vfl
+				+ ", vfl_under=" + vfl_under + ", vfl_over=" + vfl_over + ", bmr=" + bmr + "]";
 	}
+
 	
 }

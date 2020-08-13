@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,14 +9,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
-  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
   <link rel="stylesheet" type="text/css" href="resources/jqLib/topBar.css">
+  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
 <style type="text/css">
 	/* Remove the navbar's default margin-bottom and rounded borders */ 
      .navbar {
@@ -35,92 +34,259 @@
 	.gridA:hover{ 
 		color: black; text-decoration: none;
 	}
-   	
    	#headerImg{
    		border-radius: 70%;
    		overflow: hidden;
    	}
-
-
 	.myPhoto{
 	width: 100px;
 	height: 100px;
     border-radius: 50%;
 	}
- .table {
+.table {
+	width : 600px;
      border-collapse: collapse;
      border-top: 3px solid #168;
-}  
+     border-bottom: 3px solid #168;
+}
 .table th {
      color: #168;
      background: #f0f6f9;
      text-align: center;
 }
-.table th, .table td {
-     padding: 10px;
-     border: 1px solid #ddd;
+.allth{
+	color: #168;
+    background: #f0f6f9;
+    text-align: center;
+}
+.table td:first-child{
+	width : 200px;
+	vertical-align: middle;
+}
+.table tr:first-child{
+	border-right: 3px solid #168;
+}
+.firsttr{
+	border-right: 3px solid #168;
 }
 .table th:first-child, .table td:first-child {
-     border-left: 0;
+     border-left: 3px solid #168;
+}
+.firsttd{
+	border-left: 3px solid #168;
+	width : 200px;
+	vertical-align: middle;
 }
 .table th:last-child, .table td:last-child {
-     border-right: 0;
+	border-right : 3px solid #168;
 }
-.table tr td:first-child{
-     text-align: center;
+.lasttd {
+	border-right : 3px solid #168;
 }
-.table caption{caption-side: bottom; display: none;}   
-    /* a:link { color: black; text-decoration: none;}
- 	a:visited { color: black; text-decoration: none;}
-	a:hover {text-decoration: none;} */
-
+.table td{
+	text-align: center;
+}
+.sendR{
+	color: rgb(0, 149, 246);
+	font-weight: bold;
+	background-color: white;
+	border: 0;
+	padding-top: 16px;
+	padding-bottom: 16px;
+	vertical-align: middle;
+}
+textarea{
+	border : 0px;
+	outline: none;
+	resize: none;
+	min-height: 18px;
+	max-height: 72px;
+	padding-top: 16px;
+	padding-bottom: 16px;
+	background-origin: padding-box;
+}
+#footer{
+	position: fixed;
+	color: black;
+	clear: both;
+    padding: 30px 0 15px 0;
+    text-align: center;
+	height: 50px;
+    max-width: 100%;
+    min-width: 460px;
+    background-color: white;    
+    width:100%;
+    bottom: 0px;
+    margin-bottom:0px;
+}
+.heart_hover:hover{
+	cursor: pointer;
+}
 </style>
 <script type="text/javascript">
+var logID = "<%=session.getAttribute("logID") %>"
+console.log("session : "+logID);
 $(function(){
-	console.log($('#test').css('height'));
-	var height = parseInt($('#test').css('height'));
+	var nowSeq = "";
+	var rowcnt = 0;
+	$.ajax({
+		type:'Get',
+		dataType : "json",
+		url:'blogTest',
+		success:function(data){
+			var appendT = "";
+			array2 = data.array2
+			for(var i = 0; i<data.listSize; i++){
+				appendT += "<table class = 'table'>"
+				appendT += '<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><a href = "detail?id='+array2[i][0].id+'"><img src = "'+array2[i][0].userImage+'" class = "myPhoto"></a></td><td colspan = "2"><br>Title : '+array2[i][0].title+'<br>Name : '+array2[i][0].userName+'<br>Date : '+array2[i][0].date+'</td><td colspan ="3"></td></tr>'
+				appendT += '<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>'
+				
+				rowcnt = 0;
+				for(var j = 0; j<array2[i].length; j++){
+					appendT += "<tr><td>"+array2[i][j].name +"</td><td>"+ array2[i][j].target +"</td><td>"+array2[i][j].kg +"</td><td>"+array2[i][j].rep +"</td><td>"+array2[i][j].title +"</td></tr>"
+					nowTitle = array2[i][j].title ;     /* 현재 출력하는 피드의 타이틀 */
+					nowID = array2[i][j].id;           /* 현재 출력하는 피드의 주인 */
+					nowSeq = array2[i][j].seq;
+					rowcnt ++;
+				}
+				var nowName = array2[i][0].userName
+				var nowReplyT = nowName+nowTitle;
+				if(logID.length != 4){
+					appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img  src = 'resources/image/heart.png' class='heart_hover'>"+data.harray[i]+"</span><span id = 'cnt"+nowSeq+"'></span></td>"
+					if(data.rarray[i].replyId == null && data.rarray[i].replyContent == null ){
+						appendT += "<td colspan='4' id ='reply"+nowSeq+"'></td></tr>";
+					}else{
+						appendT += "<td colspan='4' id ='reply"+nowSeq+"'>"+data.rarray[i].replyId +" : "+ data.rarray[i].replyContent+"</td></tr>";
+					}
+					appendT += "<tr><td colspan ='4'><form><textarea class = 'replyArea "+nowTitle+"' id ='text"+nowSeq+"'  style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea>"
+					appendT += "<td><button disabled class='sendR "+nowID+" "+nowName+" "+nowTitle+"' id ='button"+nowSeq+"'>게시</button></td></tr></table>"
+				}
+			}			
+		$('.blogForm').append(appendT)
+		},
+		error:function(){
+		}
+	}); // ajax 
+$(window).scroll(function(){ 
+	console.log("$(document).height() => "+ $(document).height())
+	console.log("$(window).scrollTop() + $(window).height() =>"+ ($(window).scrollTop() + $(window).height()))
+	if($(document).height() <= ($(window).scrollTop() + $(window).height()+10)){	
+			loadNext(); 
+			console.log("load next loading");
+	}
+	function loadNext(){
+		$.ajax({
+			type:'Get',
+			url : "scrollP",
+			data : {
+				rowcnt : rowcnt
+			},
+			success:function(data){
+				var appendT = "";
+				array2 = data.array2
+				for(var i = 0; i<data.listSize; i++){
+					appendT += "<table class = 'table'>"
+					appendT += '<tr style="margin-left: 5px; font-size: medium; font-weight: bold;"><td><a href = "detail?id='+array2[i][0].id+'"><img src = "'+array2[i][0].userImage+'" class = "myPhoto"></a></td><td colspan = "2"><br>Title : '+array2[i][0].title+'<br>Name : '+array2[i][0].userName+'<br>Date : '+array2[i][0].date+'</td><td colspan ="3"></td></tr>'
+					appendT += '<tr><th>Name</th><th>Target</th><th>KG</th><th>Rep</th><th>Title</th></tr>'
+					
+					rowcnt = 0;
+					for(var j = 0; j<array2[i].length; j++){
+						appendT += "<tr><td>"+array2[i][j].name +"</td><td>"+ array2[i][j].target +"</td><td>"+array2[i][j].kg +"</td><td>"+array2[i][j].rep +"</td><td>"+array2[i][j].title +"</td></tr>"
+						nowTitle = array2[i][j].title ;     /* 현재 출력하는 피드의 타이틀 */
+						nowID = array2[i][j].id;           /* 현재 출력하는 피드의 주인 */
+						nowSeq = array2[i][j].seq;
+						rowcnt ++;
+					}
+					var nowName = array2[i][0].userName
+					var nowReplyT = nowName+nowTitle;
+					if(logID.length != 4){
+						appendT += "<tr><td><span class = 'heart "+ nowID+"' id ='"+nowTitle+"'><img class='heart_hover' src = 'resources/image/heart.png'>"+data.harray[i]+"</span><span id = 'cnt"+nowSeq+"'></span></td>"
+						if(data.rarray[i].replyId.length==0 && data.rarray[i].replyContent.length==0 ){
+							appendT += "<td colspan='4' id ='reply"+nowSeq+"'></td></tr>";
+						}else{
+							appendT += "<td colspan='4' id ='reply"+nowSeq+"'>"+data.rarray[i].replyId +" : "+ data.rarray[i].replyContent+"</td></tr>";
+						}
+						appendT += "<tr><td colspan ='4'><form><textarea class = 'replyArea "+nowTitle+"' id ='text"+nowSeq+"'  style='vertical-align: bottom; width: 90%;' rows='1' placeholder='댓글달기...'></textarea>"
+						appendT += "<td><button disabled class='sendR "+nowID+" "+nowName+" "+nowTitle+"' id ='button"+nowSeq+"'>게시</button></td></tr></table>"
+					}
+				}			
+			$('.blogForm').append(appendT)
+			},
+			error:function(){
+				$('.blogForm').append("<h2>더이상 불러 올 데이터가 존재 하지 않습니다</h2>")
+			}
+	}) // ajax
+	} // loadNext
+});
 	
-	if(height > 20){
-		$('header').css('padding-top', '9px');
-		$('header').css('padding-bottom', '9px');
-	}else{
-		$('#test').css('margin-top', '5px');
-		$('#test').css('margin-bottom', '5px');
+
+	
+	
+$(document).on("click",".heart", function(){
+    var id = $(this).attr("class").split(" ")[1];
+    var nowSeq = $(this).attr("class").split(" ")[2];
+    var title = $(this).attr("id");
+    console.log("id " + id);
+    console.log("title " + title)
+    $.ajax({
+		type:'Post',
+		url : "heartUp",
+		data:{
+			id : id,
+			title: title,
+		},
+		success:function(data){
+			var cnt = data.countHeartTest;
+			$('#'+title).html("<img class='heart_hover' src = 'resources/image/heart.png'>"+cnt+"</span><span id = 'cnt"+nowSeq+"'></span>")
+		}, // success
+		error:function(){
+		}
+	}) // ajax
+	
+}) // heart_click 이벤트
+$(document).on("click",".sendR", function(){
+    var id = $(this).attr("class").split(" ")[1];
+    var name = $(this).attr("class").split(" ")[2];
+    var title = $(this).attr("class").split(" ")[3];
+    var seq = $(this).attr("id").substring(6);
+   // id ='reply"+nowSeq+"'
+	
+	var content = $('#text'+seq).val();
+   
+	$.ajax({
+		type:'Post',
+		url : "replyInsert",
+		data:{
+			id : id,
+			title: title,
+			replyContent : content,
+			replyId : logID
+		},		
+		success:function(data){
+			console.log('change');
+			var replyContent = data.replyContent;
+			var replyId = data.replyId;
+			$('#reply'+seq).html(logID +" : "+ content);
+			$('#text'+seq).val(" "); 
+			//$('#replyShow'+seq).html()
+			$("#button"+seq).attr('disabled', true);
+		}, // success
+		error:function(){
+		}
+	});// ajax
+});// 댓글
+
+$(document).on('propertychange change keyup paste input','.replyArea', function(){
+	var seq = $(this).attr("id").substring(4);
+	
+	if($("#text"+seq).val().trim().length <1 ){
+	$("#button"+seq).attr('disabled', true);
+	}
+	else {
+		$("#button"+seq).attr('disabled', false);
 	}
 });
-
-$(function(){
-	console.log('test');
-	$.ajax({
-	type:'Get',
-	url:'blogTest',
-	success:function(data){
-		var nowID = "";
-		var nowTitle = "";
-		jsonData = data.Banana;
-		console.log(jsonData)
-		for(var i = 0; i<Object.keys(jsonData).length; i++){
-			console.log(i + " :"+"nowID : " + nowID + ", jsonID : " +jsonData[i].id)
-			if(i == 0 || nowID != jsonData[i].id){
-				$('#thead').append('<tr><th>ID</th><th>Name</th><th>Target</th><th>Title</th><th>date</th></tr>')
-			}
-			if(i == 0 || nowTitle == jsonData[i].title){
-				console.log("IF Title : "+nowTitle)
-				$('#tbody').append("<tr><td>"+jsonData[i].id +"</td><td>"+jsonData[i].name +"</td><td>"+ jsonData[i].target +"</td><td>"+jsonData[i].title +"</td><td>"+jsonData[i].date+"</td></tr>")
-				
-					
-			}else{
-			}
-			nowID = jsonData[i].id;
-			nowTitle = jsonData[i].title;
-		 } // for 
-		
-		},
-	error:function(){
-		alert("실패")
-		}
-		}); // ajax
-}); 
+});
 </script>
 </head>
 <body>
@@ -139,90 +305,28 @@ $(function(){
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="noob">Noob</a></li>
-		<li><a href="routine">Routine</a></li>
-		<li><a href="myblog">Blog</a></li>
-		<li><a href="one">OneRM</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-      <li><a href="prof">UserTest</a></li>
-      	<li><a href="joinf">회원가입</a></li>
-        <li><a href="loginf"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
+        <li><a href="routine">Routine</a></li>
+        <li><a href="blog">Blog</a></li>
+        <li><a href="one">OneRM</a></li>
+      </ul> 
+      <ul class="nav navbar-nav navbar-right" >
+		<c:if test="${logID==null }">
+			<li><a href="loginf"><span class="glyphicon glyphicon-log-in"></span> Login</a><li>
+		</c:if>
+		<c:if test="${logID!=null }">
+			<li><a style="color: white;">${logName}님</a></li>
+			<li><a href="prof">MyProfile</a></li>
+			<li><a href="logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+		</c:if>
+	  </ul>
     </div>
   </div>
 </nav>
-
-<!-- <div style="height: 100px;"></div> -->
-
-<div style=" width: 614px; padding-top: 50px; margin: 0 auto;">
-	<div style=" width: 614px; align-content: flex-start;">
-		<article style="width: 614px;">
-			<header style="width: 614px; height: 120px; padding: 16px; border: 1px solid;">
-				<div class = "blogForm" style="display:inline-flex;">
-				<table>
-				<thead id ="thead"></thead>
-				<tbody id ="tbody"></tbody>
-				</table>
-				
-				</div>
-				</header>
-			<div style="width: 614px; height: 800px; border: 1px solid;">
-			</div>
-			<div style="width: 614px; height: 60px;">
-				<section style="width: 614px; ">좋아요  댓글(클릭시 화면 전환) 공유버튼  저장버튼</section>
-				<section style="width: 614px; ">좋아요 몇개인지 출력</section>
-				<div style="width: 614px; "> 본문 및 최근 댓글 출력</div>
-				<div style="width: 614px; ">routine upload 시간</div>
-				<section style="width: 614px; border: 1px solid;" >
-					<form>
-						<textarea rows="" cols="" placeholder="댓글달기.." style="height: 18px;"></textarea>
-						<button type="submit" disabled>게시</button>
-					</form>
-				</section>
-			</div>
-		</article>
-	</div>
+<div align="center" class = "blogForm"><br><br>
 </div>
-
-<!-- jihwan's version
- <div style="position: relative; width: 614px; margin: 0 auto; margin-top: 50px; border: 1px solid; overflow: visible;">
-	<div style=" width: 614px;">
-		<article style="width: 614px;">
-			<header style="width: 614px; height: 60px; padding: 16px; border-bottom: 1px solid">
-				<div style="display:inline-flex;">
-					<img id="headerImg" src="resources/image/kang.jpg" alt="강경원" width="32px" height="32px">
-				</div>
-				<div style="margin-left: 10px; display: inline-block; width: 522px;" id=test>
-					<div>
-						<a class="gridA">kang1234</a>
-					</div>
- 					<div>
-						<a class="gridA">분할</a>
-					</div>
-				</div>
-			</header>
-			<div style="width: 614px; height: 614px; border-bottom: 1px solid;">
-				<p>루틴 출력 칸</p>
-			</div>
-			<div style="width: 614px;">
-				<section style="width: 614px; ">좋아요  댓글(클릭시 화면 전환) 공유버튼  저장버튼</section>
-				<section style="width: 614px; ">좋아요 몇개인지 출력</section>
-				<div style="width: 614px; "> 본문 및 최근 댓글 출력</div>
-				<div style="width: 614px; ">routine upload 시간</div>
-				<section style="width: 614px; border-top: 1px solid; padding: 0px 16px;" >
-					<form>
-						<textarea rows="1" cols="" placeholder="댓글달기.." style="width: 80%; background-color: rgba(0,0,0,0.2); border: none; outline: none; resize: none; margin: 10px 0px;"></textarea>
-						<button type="submit"  disabled>게시</button>
-					</form>
-				</section>
-			</div>
-		</article>
-	</div>
-</div>-->
-
 <div id="footer" role="contentinfo">
-<!-- <hr style="width: 100%;">
-<hr style="width: 100%; border-color: black;"> -->
+<hr style="width: 100%;">
+<hr style="width: 100%; border-color: black;">
 	<address>
 		<em><a href="home" target="_blank" class="logo footfont"><span class="blind">HellChang</span></a></em>
 		<em class="copy footfont">Copyright</em>

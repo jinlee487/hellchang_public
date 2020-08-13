@@ -87,7 +87,76 @@
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
 	</aop:config>
 	
+		<!-- 인터셉터 객체 생성 -->
+	<beans:bean id="LoginInterceptor" class="com.ncs.green.LoginInterceptor" />
 	
+	<!-- 인터셉터 설정 -->
+	<mvc:interceptors>
+			<mvc:interceptor>
+				<!-- <mapping path="/**"/>  전체경로 지정-->
+				<!-- 제외시킬 파일 경로 
+				<exclude-mapping path="joinF"/>
+				-->
+				<mvc:mapping path="/routine"/>
+				<mvc:mapping path="/inbodyDetailAjax"/>
+				<mvc:mapping path="/inbodyListAjax"/>
+				<mvc:mapping path="/inbodyInsertf"/>
+				<mvc:mapping path="/inbodyDetail"/>
+				<mvc:mapping path="/inbodyInsert"/>
+				<mvc:mapping path="/inbodyUpdate"/>
+				<mvc:mapping path="/inbodyDelete"/> 
+				<mvc:mapping path="/inbodyf"/>
+				<mvc:mapping path="/dietf"/>
+				<mvc:mapping path="/socialf"/>
+				<mvc:mapping path="/prof"/>
+				<mvc:mapping path="/updatef"/>
+				<mvc:mapping path="/manageWorkout"/>
+				<mvc:mapping path="/myRoutineListAjax"/>
+				<mvc:mapping path="/myRoutineDetailAjax"/>
+				<mvc:mapping path="/mdetail"/>
+			
+				<beans:ref bean="LoginInterceptor"/>
+			</mvc:interceptor>
+	</mvc:interceptors>	
+	
+	<!-- Exception 설정 -->
+<!-- 	 <beans:bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+  		<beans:property name="defaultErrorView"	value="exceptionpage/exceptionMessage"/>
+		<beans:property name="defaultErrorView" value="exceptionpage/allException"></beans:property>				 
+	</beans:bean> -->
+	
+	<!-- Social Login 에 대한 Bean설정 추가 -->
+	<beans:bean id="naverLoginBO" class="com.ncs.green.NaverLoginBO" />
+	<beans:bean id="kakaoLoginBO" class="com.ncs.green.KakaoLoginBO" />
+	<beans:bean id="googleLoginBO" class="com.ncs.green.GoogleLoginBO" />
+	
+	
+    <beans:bean id="facebookConnectionFactory"
+        class="org.springframework.social.facebook.connect.FacebookConnectionFactory">
+        <beans:constructor-arg value="343236546688686" />
+        <beans:constructor-arg value="5068bd9adb80516cd3b1fd7793efcad2" />
+    </beans:bean>
+ 
+    <beans:bean id="facebookOAuth2Parameters"
+        class="org.springframework.social.oauth2.OAuth2Parameters">
+        <beans:property name="scope" value="email" />
+        <beans:property name="redirectUri" value="http://localhost:8080/green/facebook_callback" />
+    </beans:bean>
+	
+	<beans:bean id="googleConnectionFactory"
+		class="org.springframework.social.google.connect.GoogleConnectionFactory">
+		<beans:constructor-arg value="470518751593-6f1947bb9kh11gf4tmvpg0q5shksdosu.apps.googleusercontent.com" />
+		<beans:constructor-arg value="zTHmP-T-9W0t58PKvtZekC42" />
+	</beans:bean>
+
+	<beans:bean id="googleOAuth2Parameters" class="org.springframework.social.oauth2.OAuth2Parameters">
+		<beans:property name="scope" value="profile email"/>
+		<beans:property name="redirectUri" value="http://localhost:8080/green/google_callback" />
+	</beans:bean> 
+	
+</beans:beans>
+
+
 	
 	
 	<!-- <?xml version="1.0" encoding="UTF-8"?>
@@ -114,4 +183,4 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
 </beans:beans>
 
  -->
-</beans:beans>
+

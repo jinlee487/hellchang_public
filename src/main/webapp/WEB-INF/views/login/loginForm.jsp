@@ -1,16 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>HellChang : 로그인</title>
+<script src="resources/jqLib/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
 <link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
 <link rel="stylesheet" type="text/css" href="resources/jqLib/login.css">
-<script src="resources/jqLib/jquery-3.2.1.min.js"></script>
 <script src="resources/jqLib/memberCheck.js"></script>
-<script src="resources/jqLib/axTest01.js"></script>
 <script>
 // ** Login시 id, password 입력자료의 무결성 점검
 // => jQuery 의 focusout , submit
@@ -46,37 +48,69 @@ function inCheck() {
 	}else return false;
 	
 } //inCheck  
-
 </script>
+<style type="text/css">
+body{
+	margin-top: 5%;
+}
+   .center {
+  margin: auto;
+  width: 100vh;
+  height:75vh; 
+  border: 3px solid gray;
+  padding: 10px;
+  text-align: center;
+  border: 3px solid gray;
+	}
 
+</style>
 
 </head>
 <body>
-<div class="container-fluid rotate-in-center" id="cen">
-<a href="home" ><img src="resources/image/logo.jpg" style="width: 10%;"></a>
 
-<form action="login" method=post id="f_size" >
-<h2>
+<div class="container-fluid center">
+
+<!-- <div class="container-fluid " style="background-color: black;"> -->
+<a href="home" ><img src="resources/image/logo.jpg" style="width: 186px;"></a>
+
 <c:if test="${fCode=='JS'}">
 	<h3>${joinID} 님 회원 가입 되었습니다~~</h3>
 </c:if>
-	<table>
-	<tr><td></td>
-	    <td><input  type="text" name="id" id="id" value="admin@gmail.com" placeholder=example@xxxxx.com><br> 
-	    	<span id="iMessage" class="eMessage"></span></td>
-	</tr>
-	<tr><td></td>
-	    <td><input  type="password" name="password" id="password" value="123!" placeholder="비밀번호"><br>
-	    <span id="pMessage" class="eMessage"></span></td>
-	</tr>
-	<tr><td></td>
-	    <td><input type="submit" value="Login" onclick="return inCheck()" id="l_sub">
-	    </td>
-	</tr>
-	</table></h2></form>
-	<c:if test="${message != null}">
-		<a style="color: white; size: 5px;">${message}</a>
-	</c:if>
+<br>
+<br>
+	
+<!-- 	<br>	 -->
+	<div class="login_input_wrap">
+		<div class="login-form">
+			<form action="login" method=post>
+				<div class="id-input-box focus">
+					<input  type="text" name="id" id="id" value="" placeholder=example@xxxxx.com style="background-color: white;"><br> 
+					<span id="iMessage" class="eMessage"></span>
+				</div>
+				<div class="pw-input-box">
+					<input  type="password" name="password" id="password" value="" placeholder="비밀번호" style="background-color: white;"><br>
+					<span id="pMessage" class="eMessage"></span>
+				</div>
+				<button type="submit" class="btn-login">로그인</button>
+			</form>
+		</div>
+		<!-- rotate-in-center -->
+		<br>
+		<ul class="social_login">
+			<li><a href="${naver_url}" class="sl_naver">네이버 로그인</a></li>
+			<li><a href="${facebook_url}" class="sl_facebook">페이스북 로그인</a></li>
+			<li><a href="${kakao_url}" class="sl_kakao">카카오 로그인</a></li>
+			<li><a href="${google_url}" class="sl_google">구글 로그인</a></li>
+		</ul>
+<%-- 		<ul class="social_login">
+			<li><a href="${naver_url}" target="_blank" onclick="window.open(this.href, '_blank', 'width=480,height=640'); return false;" class="sl_naver">네이버 로그인</a></li>
+			<li><a href="${url}" target="_blank" onclick="window.open(this.href, '_blank', 'width=480,height=640'); return false;" class="sl_facebook">페이스북 로그인</a></li>
+			<li><a href="${url}" target="_blank" onclick="window.open(this.href, '_blank', 'width=480,height=640'); return false;" class="sl_kakao">카카오 로그인</a></li>
+			<li><a href="${url}" target="_blank" onclick="window.open(this.href, '_blank', 'width=480,height=640'); return false;" class="sl_google">구글 로그인</a></li>
+		</ul> --%>
+		
+	</div>
+<!-- </div> -->
 </div>
 </body>
 </html>

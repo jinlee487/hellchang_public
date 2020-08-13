@@ -4,21 +4,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>hellchang_project</title>
-  <link rel="icon" href="resources/image/logo.jpg">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
-  <link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position2.css">
-  <link rel="stylesheet" type="text/css" href="resources/jqLib/topBar.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+<title>hellchang_project</title>
+<link rel="icon" href="resources/image/logo.jpg">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="resources/jqLib/jquery-3.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position.css">
+<link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
+<link rel="stylesheet" type="text/css" href="resources/jqLib/topBar.css">
   <style>
-
+  	.parent {
+    display: flex;
+    height : 96%;
+}
+	.child {
+	margin-right : 5px;
+	margin-left : 5px;
+	width : 30%;
+    flex: 1;
+}
 	#bar_top{
 		overflow: hidden;
 	}
@@ -27,7 +34,6 @@
 	-webkit-animation: fade-in-bottom 2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 	        animation: fade-in-bottom 2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
-  
   .sticky {
 	  position: fixed;
 	  top: 0;
@@ -45,20 +51,7 @@
     } 
     
     /* Add a gray background color and some padding to the footer */
-    
-  .carousel-inner img {
-      width: 1376px; /* Set width to 100% */
-      margin: auto;
-      min-height:200px;
-  }
 
-  /* Hide the carousel text when the screen is less than 600 pixels wide */
-  @media (max-width: 600px) {
-    .carousel-caption {
-      display: none; 
-      margin-left: 20	0px;
-    }
-  }
   @media (min-width: 768px){
 	.col-sm-4 {
 	  /* margin-left: 200px; */
@@ -68,11 +61,9 @@
 </head>
 <body>
 <div style="width: 100%;">
-	<div >
-		<img src = "resources/image/arnold.jpg"  width="100%" height="917" style="position: relative;">
-		<div style="position:absolute; top: 0px; left: 0px; top: 790px; width: 100%;">
-			<img class="fe-pulse " src = "resources/image/dd.png" width="100px" style="display: block; margin: 0px auto;">
-		</div>
+	<div style="position:relative;">
+		<img src = "resources/image/arnold_crop.jpg"  width="100%" style="object-fit:cover;">
+		<img class="fe-pulse " src = "resources/image/dd.png" width="100px" style="position:absolute; z-index:99; bottom:0; left:47%; display: block; margin: 0px auto;">
 	</div>
 	<div style="text-align: center;">
 		<nav class="navbar navbar-inverse"  id="topmenu">
@@ -83,7 +74,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>                        
 			  </button>
-			  <a class="navbar-brand" href="#">
+			  <a class="navbar-brand" href="home">
 			  <img src = "resources/image/logo.jpg" width="80" height="25">
 			  </a>
 			</div>
@@ -124,92 +115,121 @@
 	
 	
 	<div class="container text-center">    
-	  <div class="bimo" style="width: 100%;">
-		<h3>What We Do</h3><br>
-		<div style="width:250px; height: 400px; background-color: blue; display: inline-block; margin: 10px;"></div>
-		<div style="width:250px; height: 400px; background-color: red ; display: inline-block; margin: 10px;"></div>
-		<div style="width:250px; height: 400px; background-color: yellow; display: inline-block;margin: 10px;"></div>
-		<div style="width:250px; height: 400px; background-color: black; display: inline-block;margin: 10px;"></div>
-	  </div>
-	  <div>
-	  	<div>
-	  		<p>text</p>
-	  	</div>
-	  	<div>
-	  		<p>text</p>
-	  	</div>
-	  	<div>
-	  		<p>text</p>
-	  	</div>
-	  	<div>
-	  		<p>text</p>
-	  	</div>
-	  		
+	<h2>HellChang</h2>
+	  <div class="bimo parent" style="width: 100%;">
+		<br>
+		<div class = "child" style="width: 20%" >
+		<embed style="width : 100%; height : 480px"  src="https://instagram.com/p/B_wYlARAlVA/embed" frameborder="0" scrolling="no" allowtransparency="true"></embed>
+		</div>
+		<div class = "child" style="width: 20%">
+		<embed style="width : 100%; height : 480px"  src="https://instagram.com/p/CDL6eLBFrV5/embed" frameborder="0" scrolling="no" allowtransparency="true"></embed>
+		</div>
+		<div class = "child" style="width: 20%">
+		<embed style="width : 100%; height : 480px"  src="https://instagram.com/p/B8Nj1MxnNRk/embed" frameborder="0" scrolling="no" allowtransparency="true"></embed>
+		</div>
+		<div class = "child" style="width: 20%">
+		<embed style="width : 100%; height : 480px"  src="https://instagram.com/p/BdoL7wLBcP0/embed" frameborder="0" scrolling="no" allowtransparency="true"></embed>
+		</div>
+	  </div>  
+	  <hr>
+	  <br>
+	  <br>
+      <br>
+	  <div class="bimo parent" style="width: 100%;">
+		  <div class = "child" style="width: 30%;" align="center">
+		  <h2>Front-End</h2>
+		  </div>
+		  <div class = "child icon" style="width: 70%;" align="left">
+		  <img src = "resources/image/jquery_icon.png" width="100" height="100"> 
+		  <img src = "resources/image/javascript_icon.png" width="100" height="100"> 
+		  <img src = "resources/image/bootstrap_icon.png" width="100" height="100"> 
+		  <img src = "resources/image/jsp_icon.png" width="100" height="100">
+		  </div>
 	  </div>
 	  
+	  <div class="bimo parent" style="width: 100%;">
+		  <div class = "child icon" style="width: 30%;" align="center">
+		  <h2>Back-End</h2>
+		  </div>
+		  <div class = "child" style="width: 70%;" align="left">
+		  <img src = "resources/image/spring_icon.png" width="100" height="100">	
+		  <img src = "resources/image/mybatis_icon.png" width="100" height="100">
+		  <img src = "resources/image/mysql_icon.png" width="100" height="100">
+		  </div>
+	  </div>
 	  <hr>
+	  <br>
+	  <br>
+      <br>
 	
 	  <div class="bimo" style="width: 100%;">
 	  	  <h3>What We Do</h3><br>
-		  <div style="width: 100%;">
-		  	<div style="display:inline-block; background-color: red; width: 25%; height: 200px;">
-		    	<p>some text</p>
+		  	<div style="display:inline-block; width: 25%; height: 200px;">
+		    	<p><img src = "resources/image/blog_icon.png" width="100%"></p>
 		    </div>
-		    <div style="width:65%; height:200px; display:inline-block; background-color: yellow;">
-		    	<p>right some text</p>
+		    <div style="width:65%; height:200px; display:inline-block;">
+		    	<h3>자신의 운동 루틴 공유<br>
+		    	좋아요 기능 구현 및 댓글 기능 구현<br></h3>
 		    </div>  
-		  </div>
 	  </div>
-	  
 	  <hr>
-	  
+	  <br>
+	  <br>
+      <br>
+      
 	  <div class="bimo" style="width: 100%;">
-	  	  <h3>What We Do</h3><br>
-		  <div style="width: 100%;">
-		  <div style="width:65%; height:200px; display:inline-block; background-color: yellow;">
-		    	<p>right some text</p>
+	  	    <div style="width:65%; height:200px; display:inline-block;">
+		    	<h3>횟수와 무게에 따른 1rm 계산<br>
+		    	저장된 자신의 3대 무게의 변화 그래프 시각화<br></h3>
+		    </div>
+		    <div style="display:inline-block; width: 25%; height: 200px;">
+		    	<p><img src = "resources/image/1rm_icon.png" width="100%"></p>
 		    </div>
 		  
-		  	<div style="display:inline-block; background-color: red; width: 25%; height: 200px;">
-		    	<p>some text</p>
-		    </div>
-		      
-		  </div>
 	  </div>
-	  
-	   <hr>
-	  
+	  <hr>
+	  <br>
+	  <br>
+      <br>
 	 <div class="bimo" style="width: 100%;">
-	  	  <h3>What We Do</h3><br>
-		  <div style="width: 100%;">
-		  	<div style="display:inline-block; background-color: red; width: 25%; height: 200px;">
-		    	<p>some text</p>
+	  	  	<div style="display:inline-block; background-color: red; width: 25%; height: 200px;">
+		    	<p><img src = "resources/image/inbody_icon.png" width="100%"></p>
 		    </div>
-		    <div style="width:65%; height:200px; display:inline-block; background-color: yellow;">
-		    	<p>right some text</p>
+		    <div style="width:65%; height:200px; display:inline-block;">
+		    	<h3>자신의 인바디 결과 저장<br>
+		    	저장된 자신의 인바디 변화율 시각화<br></h3>
 		    </div>  
-		  </div>
 	  </div>
 	  
 	  <hr>
-	  
+	  <br>
+	  <br>
+      <br>
 	 <div class="bimo" style="width: 100%;">
-	  	  <h3>What We Do</h3><br>
-		  <div style="width: 100%;">
-		  <div style="width:65%; height:200px; display:inline-block; background-color: yellow;">
-		    	<p>right some text</p>
-		    </div>
-		  
-		  	<div style="display:inline-block; background-color: red; width: 25%; height: 200px;">
-		    	<p>some text</p>
-		    </div>
-		      
+	  	  <div style="width:65%; height:200px; display:inline-block;">
+		    	<h3>자신의 루틴 저장<br>
+		    	공유 true/false를 통한 공개/비공개<br></h3>
 		  </div>
+		  <div style="display:inline-block; width: 25%; height: 200px;">
+		    	<p><img src = "resources/image/routine.png" width="100%"></p>
+		  </div>
+		  
 	  </div>
-	    
+	  <hr>
+	  <br>
+	  <br>
+      <br>  
 	  </div>
-	</div><br>
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 
 
 

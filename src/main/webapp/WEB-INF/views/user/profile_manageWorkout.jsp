@@ -4,19 +4,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>hellchang_project</title>
-  <link rel="icon" href="resources/image/logo.jpg">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
-  <link rel="stylesheet" type="text/css" href="resources/jqLib/button.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">  
+<title>hellchang_project</title>
+<link rel="icon" href="resources/image/logo.jpg">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="resources/jqLib/animation.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="resources/jqLib/jquery-3.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">  
+<link rel="stylesheet" type="text/css" href="resources/jqLib/footer_position.css">
+<link rel="stylesheet" type="text/css" href="resources/jqLib/topBar.css">
+<link rel="stylesheet" type="text/css" href="resources/jqLib/profile_image.css">
 <script>
 var logID = "<%=session.getAttribute("logID") %>"
 console.log("session : "+logID);
@@ -51,90 +53,12 @@ $(function(){
 
 
 <style>
-  
-  #p_pos{
-  	margin-right: 80px;
-  }
-  		  
-  address {
-	color: white;
-	margin-bottom:0px;
-	}
-  #footer{
-	clear: both;
-    margin: 0 auto;
-    padding: 30px 0 15px 0;
-    text-align: center;
-    margin: 0 auto;
-	height: 50px;
-    max-width: 100%;
-    min-width: 460px;
-    background-color: #3d3b3c;
-    bottom:0px;
-    
-	}
-  
-    /* Remove the navbar's default margin-bottom and rounded borders */ 
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-      background-color: #000000;
-    }
-    
-    /* Add a gray background color and some padding to the footer */
-    footer {
-      background-color: #3d3b3c;
-      padding: 25px;
-    }
-    
-  .carousel-inner img {
-      width: 100%; /* Set width to 100% */
-      margin: auto;
-      min-height:200px;
-  }
 
-  /* Hide the carousel text when the screen is less than 600 pixels wide */
-  @media (max-width: 600px) {
-    .carousel-caption {
-      display: none; 
-      margin-left: 20	0px;
-    }
-  }
   @media (min-width: 768px){
 	.col-sm-4 {
 	  /* margin-left: 200px; */
 	  text-align: center;
 	}
-.ul-weekday {list-style-type: none;}
-
-.weekday {
-  padding: 70px 25px;
-  width: 100%;
-  background: #1abc9c;
-  text-align: center;
-}
-
-.weekday ul {
-  margin: 0;
-  padding: 0;
-}
-
-.weekday ul li {
-  color: white;
-  font-size: 20px;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-}
-
-.weekday .prev {
-  float: left;
-  padding-top: 10px;
-}
-
-.weekday .next {
-  float: right;
-  padding-top: 10px;
-}
 .analysis-title{
 text-align: left;
 }
@@ -215,41 +139,31 @@ text-align: left;
   <div class="row">
     <div class="col-sm-3 well">
       <div class="well">
-        <p><a href="myProfile">My Profile</a></p>
-        <img src="resources/uploadImage/emptyImage.png" class="img-circle" height="100" width="100" alt="Avatar">
-      </div>
-
+        <a href="mdetail?code=U"><span>My Profile</span><br>
+        <button class="bEffect" title="프로필 사진 바꾸기">
+        	<img id="aa" src="${profile_image}" class="img-circle" height="100" width="100" alt="프로필 사진 바꾸기">
+        </button></a>
+        </div>
 		<ul class="nav nav-pills nav-stacked">
-		  <li><a href="#">Start Workout</a></li>
+		  <li><a href="prof">Start Workout</a></li>
 		  <li><a href="manageWorkout">Manage Workout</a></li>
 		  <li><a href="inbodyf">InBody</a></li>
-		  <li><a href="#">Diet</a></li>
-		  <li><a href="#">Social</a></li>  
-		  <li><a href="#">Setting</a></li>  
-		  
+		  <li><a href="dietf">Diet</a></li>
+		  <li><a href="socialf">Social</a></li>    
 		</ul>
     </div>
     <div class="col-sm-7 ">
       <div class="row">
-        <div class="col-sm-12">
-			<div class="weekday">      
-			  <ul style="list-style-type: none;">
-			    
-			    <li class="test"></li>
-			    <li class="prev">&#10094;</li>
-			    <li class="next">&#10095;</li>		
-			  </ul>
-			</div>  
-        </div>
-      </div>
-      <div class="row">
         <div class="col-sm-12" align="center">
-           <div class="well well-sm analysis-title" align="center"> 
-		   <input type ="date" id = "dateInfo">
-           </div>   
-        </div>        
-      </div>
-      <div class="row">
+           <div class="panel-group">
+		    <div class="panel panel-default">
+		    	<div class="panel-heading">
+			        <h4 class="panel-title analysis-title" align="center">
+			        	<input type ="date" id = "dateInfo">
+          			</h4>
+       			</div>
+   			</div>        
+     	 </div>
         <div class = "showMyinfo" align="center">
 		   <table class="table">
 		   <thead>
@@ -264,23 +178,48 @@ text-align: left;
  
       </div>
      </div>
-     
-    <div class="col-sm-2 well" style="margin-top: 100px">
+    </div> 
+   <div class="col-sm-2 well" style="margin-top: 100px">
       <div class="thumbnail">
-        <p>Upcoming Events:</p>
-        <img src="paris.jpg" alt="Paris" width="400" height="300">
-        <p><strong>Paris</strong></p>
-        <p>Fri. 27 November 2015</p>
-        <button class="btn btn-primary">Info</button>
+        <p><strong>Map Your Runs</strong></p>
+        <img src="resources/image/runapp.JPG" width="400" height="300">
+        <p>Coming Soon!</p>
       </div>      
       <div class="well">
-        <p>ADS</p>
+       <p><strong>Learn new work out tips at the Noob menu!</strong></p>
       </div>
       <div class="well">
-        <p>ADS</p>
+        <p><strong>Create new playlists in Routine menu!</strong></p>
+      </div>
+      <div class="well">
+        <p><strong>Insert inbody Data in InBody menu!</strong></p>
       </div>
     </div>
   </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 </div>
 
 <div id="footer" role="contentinfo">

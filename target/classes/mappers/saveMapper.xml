@@ -6,24 +6,105 @@
 <mapper namespace="green.mappers.saveMapper">
  
    <insert id="saveMyRoutine">
-	insert into `hellchang_schema_test`.`myRoutine` values 
-	 (#{id}, #{name}, #{target}, #{kg}, #{rep}, sysdate())
-  </insert>  
+	insert into `hellchang_schema_test`.`myRoutine` (id,name,target,kg,rep,date,title,shared)values 
+	 (#{id}, #{name}, #{target}, #{kg}, #{rep}, sysdate(), #{title}, #{shared});
+  </insert>
+  
+  <!-- heartData 저장 -->
+  <insert id="heartTest">
+	INSERT INTO  hellchang_schema_test.heart(id,title,heart) 
+	SELECT #{id}, #{title}, 0 
+	FROM DUAL 
+	WHERE NOT EXISTS (
+	SELECT *
+	FROM hellchang_schema_test.heart 
+	WHERE id = #{id} and title = #{title});
+  </insert>
+  
+  <delete id="delMyRoutine">
+  	delete from `hellchang_schema_test`.`myRoutine` where id=#{id} and title=#{title} and target=#{target}
+  </delete>  
   
   <select id="selectOne" resultType="vo.SaveVO">
-  	select * from `hellchang_schema_test`.`myRoutine` where id=#{id} and date = #{date}
+  	select * from `hellchang_schema_test`.`myRoutine` where id=#{id} and title=#{title}
+  </select> 
+
+  <select id="selectList" resultType="vo.SaveVO">
+	select id,name,target,kg,rep from `hellchang_schema_test`.`myRoutine` where id=#{id} and date like CONCAT('%',#{date},'%')
+  </select>
+  
+  <select id="selectTList" resultType="vo.SaveVO">
+	select id,title,shared from `hellchang_schema_test`.`myRoutine` group by title
   </select> 
   
-  <select id="selectList" resultType="vo.SaveVO">
-	select id,name,target,kg,rep from `hellchang_schema_test`.`myRoutine` where id=#{id} and date = #{date}
+  <select id="selectTListbyID" resultType="vo.SaveVO">
+  	select title from `hellchang_schema_test`.`myRoutine` where id=#{id} group by title
+  </select> 
+  <select id="selectListbyID" resultType="vo.SaveVO">
+  	select * from `hellchang_schema_test`.`myRoutine` where id=#{id} and title=#{title}
   </select> 
   
   <select id="allList" resultType="vo.SaveVO">
 	select id,name,target,kg,rep,title,date from `hellchang_schema_test`.`myRoutine` where title = #{title}
   </select> 
    
-  <select id="blogTest" resultType="vo.SaveVO"> 
-	select * from `hellchang_schema_test`.`myRoutine` order by id,title 
+   <select id="blogTest" resultType="vo.SaveVO"> 
+  select * 
+  from (select @rownum:=@rownum+1 as rownum, m.* from `hellchang_schema_test`.`myRoutine` as m, 
+  (select @rownum :=0) R order by date desc)sub 
+  where shared = 'true' group by id,title order by sub.rownum asc limit 5;
   </select>
+  
+  <select id="blogTestS" resultType="vo.SaveVO"> 
+	<![CDATA[
+  select * 
+  from (select @rownum:=@rownum+1 as rownum, m.* from `hellchang_schema_test`.`myRoutine` as m, 
+  (select @rownum :=0) R order by date desc)sub
+  where rownum > #{rownum} and shared = 'true'
+  group by id,title order by sub.rownum asc limit 5;
+	]]>
+  </select>
+  
+  <select id="findTest" resultType="vo.SaveVO"> 
+	select myRoutine.* ,member.name as userName, member.image_path as userImage from hellchang_schema_test.myRoutine , hellchang_schema_test.member
+	where  myRoutine.id = #{id} and myRoutine.title = #{title} and myRoutine.id = member.id order by seq asc;
+  </select>
+   
+  <update id="heartUp">
+	update hellchang_schema_test.heart set heart = heart + 1 where id=#{id} and title = #{title}
+  </update>
+  
+  <select id="heartSelect" resultType="vo.HeartVO">
+  	select * from `hellchang_schema_test`.`heart` where id=#{id} and title = #{title}
+  </select>
+  
+  <insert id="replyInsert">
+    insert into `hellchang_schema_test`.`reply` (id,title,replyContent,replyId,date) values 
+	 (#{id}, #{title}, #{replyContent}, #{replyId}, sysdate());
+  </insert> 
+  
+  <select id="replyResult" resultType="vo.ReplyVO">
+  	select reply.* ,member.name as userName, member.image_path as userImage  
+  	from hellchang_schema_test.reply , hellchang_schema_test.member
+  	where reply.id = #{id} and reply.title = #{title} and reply.id = member.id order by date desc limit 1;
+  </select>
+
+  <select id="myDetail" resultType="vo.SaveVO">
+  	select myRoutine.* ,member.name as userName, member.image_path as userImage from hellchang_schema_test.myRoutine , hellchang_schema_test.member
+	where  myRoutine.id = #{id} and myRoutine.id = member.id group by title
+  </select>
+  
+  
+  <select id="routineModal" resultType="vo.SaveVO"> 
+	select myRoutine.* ,member.name as userName, member.image_path as userImage 
+	from hellchang_schema_test.myRoutine , hellchang_schema_test.member
+	where  myRoutine.id = #{id} and myRoutine.title = #{title} and myRoutine.id = member.id
+  </select>
+  
+  <select id="showReply" resultType="vo.ReplyVO">
+  select reply.* ,member.name as userName, member.image_path as userImage 
+  from hellchang_schema_test.reply , hellchang_schema_test.member
+  where  reply.id = #{id} and reply.title = #{title} and  reply.id = member.id order by date desc;
+  </select> 
   
  </mapper>

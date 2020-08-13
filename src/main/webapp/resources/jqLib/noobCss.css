@@ -94,3 +94,10 @@
   .jumbotron{
   	background-color: #ffffff;
   }
+  .col-sm-3 a:hover{
+    cursor: pointer;
+  }
+  
+  p a:hover{
+    cursor: pointer;
+  }

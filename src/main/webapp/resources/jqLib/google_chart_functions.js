@@ -98,11 +98,6 @@ function inbodybarchart(value,low,high,ID,ID2) {
 	        };
 
 function inbodycombochart(r,ID) {
-	console.log("this is last r date => " + r[r.length-1][0]);
-	console.log("this is r[0][0] = > " + r[0][0]);
-	console.log("this is ID => " + ID );
-	console.log("this is r[i][3] = > " + r[0][3]);
-
     var data = new google.visualization.DataTable();
     data.addColumn('string','Date');
     data.addColumn('number','Low');

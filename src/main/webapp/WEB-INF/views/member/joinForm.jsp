@@ -14,9 +14,73 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="resources/jqLib/CRUD_control.js"></script>
 <script src="resources/jqLib/joinCheck.js"></script>
+<script>
+$(document).ready(function(){
+	$('#signupbtn').on('click',function(){
+
+		$('#email_login').attr('disabled',false);
+		$('#image_path').attr('disabled',false);
+		$('#gen').attr('disabled', false);
+		$("form :input").each(function(){
+			 var input = $(this).val(); 
+			 var name = $(this).attr("name");
+			 console.log("this is the "+name+" => " + input)
+			});		 
+		alert("going into submit");
+
+	});
+	if($('#email_join_email_login').html()=="check"){
+		if($('#email_join_id').html()!=''){
+			$('#id').val($('#email_join_id').html()).attr('readonly', true);
+		}
+		if($('#email_join_gender').html()!=''){
+			$('#gen').val($('#email_join_gender').html()).attr('disabled', true);
+		}
+		if($('email_join_image_path').html()!=''){
+			$('#image_path').val($('#email_join_image_path').html()).attr('readonly', true);
+		}
+		if($('email_join_name').html()!=''){
+			$('#name').val($('#email_join_name').html()).attr('readonly', true);
+		}
+		
+		$('#image_path').attr('disabled',false).val($('#email_join_image_path').html()).attr('disabled',true);
+		$('#email_login').attr('disabled',false).val('true').attr('disabled',true);
+		$('#password').val($('#email_join_id').html()).attr('readonly', true);
+		$('#rpsw').val($('#email_join_id').html()).attr('readonly', true);
+		$('.joincheck2').css("display", "none");
+	}
+	else{
+		$('#email_login').attr('disabled',false).val('false').attr('disabled',true);
+	}
+}) ;
+
+
+
+
+</script>
+
+
+
 
 </head>
+
+
+
+
+
 <body style="background-color: black;">
+
+<div class="joincheck" style="display:block">
+<div id="email_join_id">${id}</div>
+<div id="email_join_gender">${gender}</div>
+<div id="email_join_image_path">${image_path}</div>
+<div id="email_join_name">${name}</div>
+
+
+<div id="email_join_email_login">${email_login}</div>
+</div>
+
+
 <div id="header" class="joun_membership bounce-in-left" role="banner">
 <h1>
 	<a href="home" class="h_logo">
@@ -31,16 +95,23 @@
 	</c:if>
     <h1>Sign Up</h1>
    <p>Please fill in this form to create an account.</p>
-
+   
+   	<div style="display:none" id="joincheck3">
+	<input type="text" id="image_path" name="image_path" class="input" disabled="disabled"><br>
+	<input type="text" id="email_login" name="email_login" class="input" disabled="disabled"><br>
+	</div>
+	
     <label for="email" class="int"><b>Email</b></label><br>
     <input type="text" id="id" placeholder="Enter Email" name="id" class="input" required><br>
-
+    
+	<div class="joincheck2">
     <label for="psw" class="int"><b>Password</b></label><br>
     <input type="password" id="password" placeholder="Enter Password"  name="password" class="input" required ><br>
 
     <label for="psw-repeat" class="int"><b>Repeat Password</b></label><br>
     <input type="password" placeholder="Repeat Password" id="rpsw" name="psw-repeat" class="input" required><br>
     <span  id="pMessage" class="eMessage"></span>
+    </div>
     
     <label for="name" class="int"><b>Name</b></label><br>
     
@@ -123,7 +194,7 @@
                                         <option value="505">
                                             니카라과 +505
                                         </option>
-                                        <option value="82" selected="">
+                                        <option value="82" selected="selected">
                                             대한민국 +82
                                         </option>
                                         <option value="45">
@@ -746,21 +817,27 @@
 	</select><br>
 	
 	<label for="location" class="int"><b>location</b></label><br>
-	<input type="text" name="zipcode" id="zipcode" size="7" onClick="sample4_execDaumPostcode()" readonly placeholder="우편번호 검색" required>
+	<input type="text" name="zipcode" id="zipcode" onClick="sample4_execDaumPostcode()" readonly placeholder="우편번호 검색" required>
 	<br>
     <input type="text" name="address1" id="address" readonly placeholder="주소입력해주세요" required><br>
     <input type="text" name="address2" id="address1" placeholder="상세주소를 입력해주세요" required>
     <br>
     <label class="int">
-      <input type="checkbox" checked="checked" name="remember" class="input" style="margin-bottom:15px"> Remember me
+      <input type="checkbox" checked="checked" class="input" style="margin-bottom:15px"> Remember me
     </label>
 
     <div class="clearfix">
       <button type="reset" class="cancelbtn">Cancel</button>
-      <button type="submit" class="signupbtn">Sign Up</button>
+      <button id="signupbtn" type="submit" class="signupbtn">Sign Up</button>
     </div>
   </div>
 </form>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 	<div id="footer" role="contentinfo">
 		<address>
 			<em><a href="home" target="_blank" class="logo"><span class="blind">HellChang</span></a></em>
@@ -771,7 +848,7 @@
 		</address>
 	</div>
 <script>
-function check_form() {
+/* function check_form() {
 	var idval = document.joinForm.email.value;
 	if (idval.charAt(0) < 'A' || idval.charAt(0) > 'z' ) {
  		alert("아이디의 첫글자는 영문자입니다.");
@@ -783,7 +860,7 @@ function check_form() {
   		document.regform.psw.focus();
   		return;
 	}
-	if (document.joinForm.psw.value != document.regform.psw-repeat.value) {
+	if (document.joinForm.psw.value != document.joinForm.psw-repeat.value) {
  		alert("비밀번호가 일치하지 않습니다.");
   		document.regform.psw.focus();
   		return;
@@ -791,11 +868,7 @@ function check_form() {
 	
 	document.joinForm.submit();
 }
-	
-
-</script>
-
-<script>
+ */
 function sample4_execDaumPostcode() {
    new daum.Postcode({
 	    oncomplete: function(data) {
@@ -804,8 +877,7 @@ function sample4_execDaumPostcode() {
 	    }
 	}).open();
 }
-</script>
-<script>
+
 //** 1. 입력 오류 확인 ( inCheck )
 //1.1) 개별적 오류 확인을 위한 switch 변수 정의
 var iCheck=false;
@@ -813,32 +885,26 @@ var pCheck=false;
 var rpCheck=false;
 
 $(function(){
-	$('#id').focus();
-	$('#id').focusout(function(){
-		iCheck=idCheck();
-	}); // id_focusout
+
 	
 	$('#psw').focusout(function(){
 		pCheck=pwCheck();
 	}); // password_focusout
-	
-	$('#rpsw').focusout(function(){
-		rpCheck=rpwCheck();
-	}); // name_focusout
+
 	
 
 }); // ready	
 
 
 function inCheck() {
-	if (iCheck==true && pCheck==true && rpCheck==true
-		 )	
+	if (pCheck==true)	
 		return true;  
 	else {
 		alert('입력 오류 확인을 하지 않은 항목이 있습니다. 확인 후 전송 하세요~~ '); 	
 		return false;
 	} // else
 } // inCheck()
+
 
 </script>
 </body>

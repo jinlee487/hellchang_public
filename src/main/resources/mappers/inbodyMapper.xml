@@ -4,115 +4,51 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="green.mappers.inbodyMapper">
-<!-- namespace : 자바클래스에서 maper 를 찾는 경로
-				  다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
-				  
-  <!-- ** SearchCriteria -->
-  <sql id="search">
-  	<choose>
-  		<when test="searchType=='i'.toString()">
-  			and id like CONCAT(CONCAT('%',#{keyword}),'%'))
-  		</when>
-  		<when test="searchType=='n'.toString()">
-  			and name like CONCAT(CONCAT('%',#{keyword}),'%'))
-  		</when>
-  		<when test="searchType=='r'.toString()">
-  			and rid like CONCAT(CONCAT('%',#{keyword}),'%'))
-  		</when>
-  		<when test="searchType=='in'.toString()">
-  			and id like CONCAT(CONCAT('%',#{keyword}),'%') 
-  			or name like CONCAT(CONCAT('%',#{keyword}),'%'))
-  		</when>
-  		<when test="searchType=='ir'.toString()">
-  			and id like CONCAT(CONCAT('%',#{keyword}),'%') 
-  			or rid like CONCAT(CONCAT('%',#{keyword}),'%'))
-  		</when>
-  		<when test="searchType=='inr'.toString()">
-  			and id like CONCAT(CONCAT('%',#{keyword}),'%') 
-  			or name like CONCAT(CONCAT('%',#{keyword}),'%') 
-  			or rid like CONCAT(CONCAT('%',#{keyword}),'%'))
-  		</when>
-  		<otherwise> ) </otherwise>
-  	</choose>
-  </sql>
-  
-  <select id="searchRowCount" resultType="int">
-  	select count(*) from member where ( 1=1 
-	<include refid="search"></include>
-  </select>		  
-				
-  <select id="searchList" resultType="vo.MemberVO">
-   	select id,password,name, DECODE(lev,'A','관리자','B','나무','C', '잎새', '새싹') lev,
-	point,weight,birthd,rid from  
-	  (select m.* , ROW_NUMBER() OVER(order by id asc) rnum 
-	  from member m where 1=1 
-	  <include refid="search"></include>
-	  where rnum between #{sno} and #{eno}
-  </select>			  
-				  
-  <!-- Member pagingList() -->				  
-  <select id="totalRowCount" resultType="int">
-	select count(*) from member
-  </select>
 
-  <select id="pageList" resultType="vo.MemberVO">
-	select * from 
-	  (select m.* , ROW_NUMBER() OVER(order by id asc) rnum from member m) 
-	  where rnum between #{sno} and #{eno}
-  </select>				  
-
-  <!-- memberList()   DECODE(lev,'A','관리자','B','나무','C', '잎새', '새싹') 
-  	select * from member order by id -->
   <select id="selectList" resultType="vo.InbodyVO">
-	select * from hellchang_schema_test.inbody where id=#{id}
+	select * from hellchang_schema_test.inbody where id=#{id} and del=b'0' order by date_date
   </select>
   
   <!-- date select -->
   <select id="selectPageList" resultType="vo.InbodyVO">
-    	select date_date, date_string from hellchang_schema_test.inbody where id=#{id}
+    	select idx, date_date, date_string from hellchang_schema_test.inbody where id=#{id} and del=b'0' order by date_date
   </select>
   
   <!-- date select -->
   <select id="selectGraphList" resultType="vo.InbodyVO">
  		 select * from hellchang_schema_test.inbody
   		<if test="check.equals('false')">
-  		where id=#{id}
+  		where id=#{id} and del=b'0' order by date_date
 		</if>
 		<if test="check.equals('true')">
-		where id=#{id} and date_date between #{start_date} and #{end_date}
+		where id=#{id} and date_date between #{start_date} and #{end_date} and del=b'0' order by date_date
  		</if>
   </select>
   
   <!-- inbodyDetailAjax() -->
   <select id="selectOne" resultType="vo.InbodyVO">
-    	   select * from hellchang_schema_test.inbody where id=#{id} and date_date=#{date_date}
+    	   select * from hellchang_schema_test.inbody where id=#{id} and idx=#{idx} and del=b'0'
   </select>
 
   <insert id="insert">
-	INSERT INTO hellchang_schema_test.inbody VALUES (#{id},#{date_date},#{date},#{seq},
+	INSERT INTO hellchang_schema_test.inbody(id,date_date,date_string,
+	weight,weight_under,weight_over,muscle_mass,muscle_mass_under,muscle_mass_over,fat_mass,fat_mass_under,fat_mass_over,
+	bmi,bmi_under,bmi_over,pbf,pbf_under,pbf_over,vfl,vfl_under,vfl_over,bmr)
+	 VALUES (#{id},#{date_date},#{date_string},
 	#{weight},#{weight_under},#{weight_over},#{muscle_mass},#{muscle_mass_under},#{muscle_mass_over},#{fat_mass},#{fat_mass_under},#{fat_mass_over},
 	#{bmi},#{bmi_under},#{bmi_over},#{pbf},#{pbf_under},#{pbf_over},#{vfl},#{vfl_under},#{vfl_over},#{bmr})
   </insert>	
   
-  <!-- memberUpdate() -->
   <update id="update">
-	update member set password=#{password},name=#{name},lev=#{lev},birthd=#{birthd}
-	,point=#{point},weight=#{weight},rid=#{rid},uploadfile=#{uploadfile} where id=#{id}
+	update hellchang_schema_test.inbody set id=#{id},date_date=#{date_date},date_string=#{date_string},
+	weight=#{weight},weight_under=#{weight_under},weight_over=#{weight_over},muscle_mass=#{muscle_mass},muscle_mass_under=#{muscle_mass_under},
+	muscle_mass_over=#{muscle_mass_over},fat_mass=#{fat_mass},fat_mass_under=#{fat_mass_under},fat_mass_over=#{fat_mass_over},
+	bmi=#{bmi},bmi_under=#{bmi_under},bmi_over=#{bmi_over},pbf=#{pbf},pbf_under=#{pbf_under},pbf_over=#{pbf_over},
+	vfl=#{vfl},vfl_under=#{vfl_under},vfl_over=#{vfl_over},bmr=#{bmr} where id=#{id} and idx=#{idx}
   </update>
 
-  <!-- memberDelete() -->
-  <delete id="delete">
-	delete from member where id=#{id}
-  </delete>
+  <update id="delete">
+	update hellchang_schema_test.inbody set del=b'1' where id=#{id} and idx=#{idx}
+  </update>
 
 </mapper>
-
-<!-- #{id}
- => getID() or setID("..") 
- => 해당되는 값
- => Map 타입의 경우 키값이 id 인 값을 찾음  -->
-<!-- 
-  <select id="getTime" resultType="string">
-  select now()
-  </select>
--->

@@ -19,9 +19,16 @@ public class MemberVO {
 	private String mm;
 	private String dd;
 	private String level;	
-	private String image_path; 
-	private MultipartFile image_file; 
+	private String image_path;        // db와 동일한 이름
+	private MultipartFile image_file; // form에서 저장하는 image 
+	private boolean email_login=false;
 
+	public boolean getEmail_login() {
+		return email_login;
+	}
+	public void setEmail_login(boolean email_login) {
+		this.email_login = email_login;
+	}
 	public String getId() {return id;}
 	public void setId(String id) {this.id = id;}
 	public String getPassword() {return password;}
@@ -32,14 +39,18 @@ public class MemberVO {
 	public void setGender(String gender) {this.gender = gender;}
 	
 	public String getPhone() {return phone;}
-	public void setPhone() {this.phone = (getNationNo() +"-"+getPhoneNo());}
+	public void setPhone(String phone) {this.phone = phone;}
+	public void concatPhone() {this.phone = (getNationNo() +"-"+getPhoneNo());}
+
 	public String getNationNo() {return nationNo;}
 	public void setNationNo(String nationNo) {this.nationNo = nationNo;}
 	public String getPhoneNo() {return phoneNo;}
 	public void setPhoneNo(String phoneNo) {this.phoneNo = phoneNo;}
 	
 	public String getAddress() {return address;}	
-	public void setAddress() {this.address = (getAddress1()+" "+getAddress2()+" "+getZipcode());}
+	public void setAddress(String address) {this.address = address;}
+	public void concatAddress() {this.address = (getAddress1()+" "+getAddress2()+" "+getZipcode());}
+
 	public String getZipcode() {return zipcode;}
 	public void setZipcode(String zipcode) {this.zipcode = zipcode;}
 	public String getAddress1() {return address1;}
@@ -48,7 +59,9 @@ public class MemberVO {
 	public void setAddress2(String address2) {this.address2 = address2;}
 	
 	public String getBirthday() {return birthday;}
-	public void setBirthday() {this.birthday = getYy()+"/"+getMm()+"/"+getDd();}
+	public void setBirthday(String birthday) {this.birthday = birthday;}
+	public void concatBirthday() {this.birthday = getYy()+"/"+getMm()+"/"+getDd();}
+
 	public String getYy() {	return yy;}
 	public void setYy(String yy) {this.yy = yy;}
 	public String getMm() {return mm;}
@@ -63,14 +76,16 @@ public class MemberVO {
 	public void setImage_path(String image_path) { this.image_path = image_path; }
 	public MultipartFile getImage_file() {return image_file;}
 	public void setImage_file(MultipartFile image_file) {this.image_file = image_file;}
-	
 	@Override
 	public String toString() {
 		return "MemberVO [id=" + id + ", password=" + password + ", name=" + name + ", gender=" + gender + ", phone="
 				+ phone + ", nationNo=" + nationNo + ", phoneNo=" + phoneNo + ", address=" + address + ", zipcode="
 				+ zipcode + ", address1=" + address1 + ", address2=" + address2 + ", birthday=" + birthday + ", yy="
-				+ yy + ", mm=" + mm + ", dd=" + dd + ", level=" + level + ", image_path=" + image_path + "]";
+				+ yy + ", mm=" + mm + ", dd=" + dd + ", level=" + level + ", image_path=" + image_path + ", image_file="
+				+ image_file + ", email_login=" + email_login + "]";
 	}
+	
+
 	
 
 	
