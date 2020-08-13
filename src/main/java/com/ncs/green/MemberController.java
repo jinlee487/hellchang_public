@@ -61,7 +61,6 @@ public class MemberController {
 	public ModelAndView logout(HttpServletRequest request, ModelAndView mv) {
 		request.getSession().invalidate();
 		mv.setViewName("redirect:home"); 
-		mv.setViewName("home");
 		return mv;
 	} // login
 	
