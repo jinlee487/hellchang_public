@@ -34,7 +34,6 @@ public class MemberController {
 
 		String password = vo.getPassword();
 		System.out.println(vo);
-		mv.setViewName("login/loginForm");
 
 		vo = service.selectOne(vo);
 		System.out.println(vo);
@@ -50,10 +49,10 @@ public class MemberController {
 				mv.setViewName("home");
 			} else {
 				// Password 오류 -> 재로그인
-				mv.addObject("message", "비밀번호가 틀렸습니다.");
+				mv.setViewName("redirect:loginf?message=p");
 			}
 		} else { // ID 오류 -> 재로그인
-			mv.addObject("message", "없는 ID입니다.");
+			mv.setViewName("redirect:loginf?message=i");
 		}
 		return mv;
 	} // login
