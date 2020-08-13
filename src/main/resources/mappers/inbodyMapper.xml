@@ -6,17 +6,17 @@
 <mapper namespace="green.mappers.inbodyMapper">
 
   <select id="selectList" resultType="vo.InbodyVO">
-	select * from hellchang_schema.inbody where id=#{id} and del=b'0' order by date_date
+	select * from hellchang_schema_test.inbody where id=#{id} and del=b'0' order by date_date
   </select>
   
   <!-- date select -->
   <select id="selectPageList" resultType="vo.InbodyVO">
-    	select idx, date_date, date_string from hellchang_schema.inbody where id=#{id} and del=b'0' order by date_date
+    	select idx, date_date, date_string from hellchang_schema_test.inbody where id=#{id} and del=b'0' order by date_date
   </select>
   
   <!-- date select -->
   <select id="selectGraphList" resultType="vo.InbodyVO">
- 		 select * from hellchang_schema.inbody
+ 		 select * from hellchang_schema_test.inbody
   		<if test="check.equals('false')">
   		where id=#{id} and del=b'0' order by date_date
 		</if>
@@ -27,11 +27,11 @@
   
   <!-- inbodyDetailAjax() -->
   <select id="selectOne" resultType="vo.InbodyVO">
-    	   select * from hellchang_schema.inbody where id=#{id} and idx=#{idx} and del=b'0'
+    	   select * from hellchang_schema_test.inbody where id=#{id} and idx=#{idx} and del=b'0'
   </select>
 
   <insert id="insert">
-	INSERT INTO hellchang_schema.inbody(id,date_date,date_string,
+	INSERT INTO hellchang_schema_test.inbody(id,date_date,date_string,
 	weight,weight_under,weight_over,muscle_mass,muscle_mass_under,muscle_mass_over,fat_mass,fat_mass_under,fat_mass_over,
 	bmi,bmi_under,bmi_over,pbf,pbf_under,pbf_over,vfl,vfl_under,vfl_over,bmr)
 	 VALUES (#{id},#{date_date},#{date_string},
@@ -40,7 +40,7 @@
   </insert>	
   
   <update id="update">
-	update hellchang_schema.inbody set id=#{id},date_date=#{date_date},date_string=#{date_string},
+	update hellchang_schema_test.inbody set id=#{id},date_date=#{date_date},date_string=#{date_string},
 	weight=#{weight},weight_under=#{weight_under},weight_over=#{weight_over},muscle_mass=#{muscle_mass},muscle_mass_under=#{muscle_mass_under},
 	muscle_mass_over=#{muscle_mass_over},fat_mass=#{fat_mass},fat_mass_under=#{fat_mass_under},fat_mass_over=#{fat_mass_over},
 	bmi=#{bmi},bmi_under=#{bmi_under},bmi_over=#{bmi_over},pbf=#{pbf},pbf_under=#{pbf_under},pbf_over=#{pbf_over},
@@ -48,7 +48,7 @@
   </update>
 
   <update id="delete">
-	update hellchang_schema.inbody set del=b'1' where id=#{id} and idx=#{idx}
+	update hellchang_schema_test.inbody set del=b'1' where id=#{id} and idx=#{idx}
   </update>
 
 </mapper>
