@@ -76,6 +76,7 @@ body{
 <c:if test="${fCode=='JS'}">
 	<h3>${joinID} 님 회원 가입 되었습니다~~</h3>
 </c:if>
+	<h3 style="color:white">${message}</h3>
 <br>
 <br>
 	
@@ -85,11 +86,11 @@ body{
 			<form action="login" method=post>
 				<div class="id-input-box focus">
 					<input  type="text" name="id" id="id" value="" placeholder=example@xxxxx.com style="background-color: white;"><br> 
-					<span id="iMessage" class="eMessage"></span>
+					<span id="iMessage" class="eMessage" style="color:white"></span>
 				</div>
 				<div class="pw-input-box">
 					<input  type="password" name="password" id="password" value="" placeholder="비밀번호" style="background-color: white;"><br>
-					<span id="pMessage" class="eMessage"></span>
+					<span id="pMessage" class="eMessage" style="color:white"></span>
 				</div>
 				<button type="submit" class="btn-login">로그인</button>
 			</form>

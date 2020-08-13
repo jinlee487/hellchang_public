@@ -98,7 +98,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/loginf")
-	public ModelAndView loginf(HttpSession session, ModelAndView mv) {
+	public ModelAndView loginf(String message, HttpSession session, ModelAndView mv) {
 		mv.setViewName("login/loginForm");
 
 		OAuth2Operations oauthOperations = facebookConnectionFactory.getOAuthOperations();
@@ -112,7 +112,15 @@ public class LoginController {
 		System.out.println("카카오:" + kakaoAuthUrl);
 		System.out.println("페이스북:" + facebook_url);
 		System.out.println("구글:" + google_url);
-
+		// Password 오류 -> 재로그인
+		if(message!=null&&message.equals("p")) {
+			mv.addObject("message", "비밀번호가 틀렸습니다.");
+			System.out.println("this is message => " + message );
+		}
+		if(message!=null&&message.equals("i")) {
+			mv.addObject("message", "없는 ID입니다.");
+			System.out.println("this is message => " + message );
+		}
 		// 네이버 로그인
 		mv.addObject("naver_url", naverAuthUrl);
 		// 카카오 로그인
