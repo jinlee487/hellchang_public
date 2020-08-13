@@ -46,7 +46,7 @@ public class MemberController {
 				request.getSession().setAttribute("logID", vo.getId());
 				request.getSession().setAttribute("logName", vo.getName());
 				request.getSession().setAttribute("profile_image", vo.getImage_path());
-				mv.setViewName("home");
+				mv.setViewName("redirect:home");
 			} else {
 				// Password 오류 -> 재로그인
 				mv.setViewName("redirect:loginf?message=p");
