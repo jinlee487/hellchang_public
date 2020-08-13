@@ -216,7 +216,6 @@ public class MemberController {
 			}
 			
 			// Join 성공
-			mv.addObject("joinID", vo.getId());
 			mv.addObject("fCode", "JS");
 			mv.setViewName("redirect:loginf?message=s&joinID=" + vo.getId());
 
