@@ -65,12 +65,8 @@ public class MemberController {
 	} // login
 	
 	@RequestMapping(value = "/imgUpdate")
-	public ModelAndView imgUpdate(MemberVO vo, HttpServletRequest request) throws IOException {
+	public ModelAndView imgUpdate(MemberVO vo, HttpServletRequest request, String code) throws IOException {
 		ModelAndView mv = new ModelAndView();
-		int code=0;
-		if(request.getParameter("code") != null) {
-			code = Integer.parseInt(request.getParameter("code"));
-		}
 	
 		MultipartFile image_file;
 		String file1, file2;
@@ -81,10 +77,8 @@ public class MemberController {
 		vo.setId(id);
 		vo = service.selectOne(vo);
 		
-		System.out.println(code);
-		if(code == 44) {
+		if(code!=null&&code.equals("44")) {
 			System.out.println("들어옴!!!!!!!!!!!");
-			vo.setImage_file(image_file);
 			file2="resources/uploadImage/emptyImage.png";
 			vo.setImage_path(file2);
 		}else {
