@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-pushing to master hopefully will rebase ... test test
+pushing to master hopefully will rebase ...
 </body>
 </html>
