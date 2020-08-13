@@ -25,7 +25,7 @@ public class KakaoLoginBO {
 
     private final static String CLIENT_ID = "e07576fc5decf062218482ef277d55f7";
     private final static String CLIENT_SECRET = "AdE2D2TRlmbuy5dnaajmOUyRvIOlpirX";
-    private final static String REDIRECT_URI = "http://localhost:8080/green/kakao_callback";
+    private final static String REDIRECT_URI = "http://localhost:8080/hellchang/kakao_callback";
     private final static String SESSION_STATE = "oauth_state";
     /* 프로필 조회 API URL */
 
