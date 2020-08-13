@@ -246,7 +246,7 @@
 </div>
 <script>
 $(document).ready(function(){
-	location.href('#topmenu');
+	location.href ='#topmenu';
 })
 
 window.onscroll = function() {
