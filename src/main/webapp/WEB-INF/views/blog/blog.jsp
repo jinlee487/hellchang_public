@@ -168,9 +168,10 @@ $(function(){
 		}
 	}); // ajax 
 $(window).scroll(function(){ 
-	console.log("$(document).height() => "+ $(document).height())
-	console.log("$(window).scrollTop() + $(window).height() =>"+ ($(window).scrollTop() + $(window).height()))
+
 	if($(document).height() <= ($(window).scrollTop() + $(window).height()+10)){	
+			console.log("$(document).height() => "+ $(document).height())
+			console.log("$(window).scrollTop() + $(window).height() =>"+ ($(window).scrollTop() + $(window).height()))
 			loadNext(); 
 			console.log("load next loading");
 	}

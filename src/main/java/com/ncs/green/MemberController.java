@@ -224,7 +224,7 @@ public class MemberController {
 			// Join 성공
 			mv.addObject("joinID", vo.getId());
 			mv.addObject("fCode", "JS");
-			mv.setViewName("login/loginForm");
+			mv.setViewName("redirect:loginf?message=s&joinID=" + vo.getId());
 
 		} else {
 			// Join 실패
