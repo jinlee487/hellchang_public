@@ -235,7 +235,7 @@ console.log("session : "+logID);
 <td colspan="2" align="left">
 &nbsp;&nbsp;${myName}&nbsp;&nbsp;&nbsp;
 <c:if test="${logID eq myId }">
-<a href ="updatef" class ="profile">update</a>
+<a href ="mdetail?code=U" class ="profile">update</a>
 </c:if>
 <br>&nbsp;&nbsp;게시글 : ${countRoutine}<br>
 </td>

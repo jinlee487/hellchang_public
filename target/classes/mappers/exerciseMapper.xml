@@ -6,38 +6,38 @@
 <mapper namespace="green.mappers.exerciseMapper">
  
    <select id="selectList" resultType="vo.ExerciseVO" >
-	select * from `hellchang_schema`.`exercise` where target = #{target}
+	select * from `hellchang_schema_test`.`exercise` where target = #{target}
    </select>	  
 	
 	<!-- memberDetail() -->
   <select id="selectOne" resultType="vo.ExerciseVO">
-  	select * from `hellchang_schema`.`exercise` where target=#{target}
+  	select * from `hellchang_schema_test`.`exercise` where target=#{target}
   </select>		
   
    <insert id="saveMyRoutine">
-	insert into `hellchang_schema`.`myRoutine` values 
+	insert into `hellchang_schema_test`.`myRoutine` values 
 	 (#{id}, #{name}, #{target}, #{date}, #{title},#{shared})
   </insert>  
   
   <insert id="saveMyRM">
-	insert into `hellchang_schema`.`saveRM`(id,bench,dead,squat,date) values 
+	insert into `hellchang_schema_test`.`saveRM`(id,bench,dead,squat,date) values 
 	 (#{id}, #{bench}, #{dead}, #{squat}, #{date})
   </insert>  
 
    <select id="RmList" resultType="vo.RmVO" >
-	select * from `hellchang_schema`.`saveRM` where id = #{id} order by date desc limit 3;
+	select * from `hellchang_schema_test`.`saveRM` where id = #{id} order by date desc limit 3;
    </select>
    
    <select id="RmListB" resultType="vo.RmVO" >
    <![CDATA[
-	select * from `hellchang_schema`.`saveRM` where id = #{id} and date < #{date} 
+	select * from `hellchang_schema_test`.`saveRM` where id = #{id} and date < #{date} 
 	order by date desc limit 3;
    ]]>
    </select>
    
    <select id="RmListA" resultType="vo.RmVO" >
    <![CDATA[
-	select * from `hellchang_schema`.`saveRM` where id = #{id} and date > #{date} 
+	select * from `hellchang_schema_test`.`saveRM` where id = #{id} and date > #{date} 
 	order by date desc limit 3;
    ]]>
    </select>
