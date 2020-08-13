@@ -245,6 +245,9 @@
 		</address>
 </div>
 <script>
+$(document).ready(function(){
+	location.href('#topmenu');
+})
 
 window.onscroll = function() {
 	myFunction();
