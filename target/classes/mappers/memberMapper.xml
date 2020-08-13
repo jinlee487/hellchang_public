@@ -8,31 +8,31 @@
 
   <!-- memberDetail() -->
   <select id="selectOne" resultType="vo.MemberVO">
-  	select * from hellchang_schema_test.member where id=#{id}
+  	select * from hellchang_schema.member where id=#{id}
   	
   </select>
 
   <!-- memberJoin() -->
   <insert id="insert">
-    INSERT INTO hellchang_schema_test.member values 
+    INSERT INTO hellchang_schema.member values 
   (#{id},#{password},#{name},#{gender},#{phone},#{address},#{birthday},#{level},#{image_path},#{email_login})
 
   </insert>	
   
   <!-- memberUpdate() -->
   <update id="update">
-	update hellchang_schema_test.member set password=#{password},name=#{name},
+	update hellchang_schema.member set password=#{password},name=#{name},
 	address=#{address},phone=#{phone},image_path=#{image_path} where id=#{id}
   </update>
   
     <!-- memberUpdate() -->
   <update id="imgUpdate">
-	update hellchang_schema_test.member set image_path=#{image_path} where id=#{id}
+	update hellchang_schema.member set image_path=#{image_path} where id=#{id}
   </update>
 
   <!-- memberDelete() -->
   <delete id="delete">
-	delete from `hellchang_schema_test`.`member` where id=#{id}
+	delete from `hellchang_schema`.`member` where id=#{id}
   </delete>
 
 </mapper>

@@ -21,13 +21,13 @@ $(document).ready(function(){
 		$('#email_login').attr('disabled',false);
 		$('#image_path').attr('disabled',false);
 		$('#gen').attr('disabled', false);
-		$("form :input").each(function(){
+/* 		$("form :input").each(function(){
 			 var input = $(this).val(); 
 			 var name = $(this).attr("name");
 			 console.log("this is the "+name+" => " + input)
 			});		 
 		alert("going into submit");
-
+ */
 	});
 	if($('#email_join_email_login').html()=="check"){
 		if($('#email_join_id').html()!=''){
