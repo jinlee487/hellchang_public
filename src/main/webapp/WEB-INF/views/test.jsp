@@ -7,6 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<<<<<<< HEAD
 pushing to master hopefully will rebase ... test test
+=======
+pushing to master hopefully will rebase ... test
+>>>>>>> refs/remotes/origin/test_branch_aws
 </body>
 </html>

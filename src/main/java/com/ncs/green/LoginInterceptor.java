@@ -33,7 +33,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			// 2.1) redirect 하는 경우 
 			// => login 후 removeAttribute("Fail")  하는것이 안전. 
 			//session.setAttribute("Fail", "needLogin");
-			response.sendRedirect("/green/loginf");
+			response.sendRedirect("http://hellchang-env.eba-vupqzpdc.ap-northeast-2.elasticbeanstalk.com/loginf");
 			
 			// 2.2) forward 하는 경우
 			//request.setAttribute("message", "Login이 필요한 요청입니다~ 로그인 후 이용하세요");

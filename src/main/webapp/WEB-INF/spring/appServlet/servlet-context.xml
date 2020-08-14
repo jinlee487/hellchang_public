@@ -133,14 +133,14 @@
 	
     <beans:bean id="facebookConnectionFactory"
         class="org.springframework.social.facebook.connect.FacebookConnectionFactory">
-        <beans:constructor-arg value="343236546688686" />
-        <beans:constructor-arg value="5068bd9adb80516cd3b1fd7793efcad2" />
+        <beans:constructor-arg value="301270684623340" />
+        <beans:constructor-arg value="fbe2564d63978a53ed2485e5f94061cb" />
     </beans:bean>
  
     <beans:bean id="facebookOAuth2Parameters"
         class="org.springframework.social.oauth2.OAuth2Parameters">
         <beans:property name="scope" value="email" />
-        <beans:property name="redirectUri" value="http://localhost:8080/green/facebook_callback" />
+        <beans:property name="redirectUri" value="http://hellchang-env.eba-vupqzpdc.ap-northeast-2.elasticbeanstalk.com/facebook_callback" />
     </beans:bean>
 	
 	<beans:bean id="googleConnectionFactory"
@@ -151,7 +151,7 @@
 
 	<beans:bean id="googleOAuth2Parameters" class="org.springframework.social.oauth2.OAuth2Parameters">
 		<beans:property name="scope" value="profile email"/>
-		<beans:property name="redirectUri" value="http://localhost:8080/green/google_callback" />
+		<beans:property name="redirectUri" value="http://hellchang-env.eba-vupqzpdc.ap-northeast-2.elasticbeanstalk.com/google_callback" />
 	</beans:bean> 
 	
 </beans:beans>

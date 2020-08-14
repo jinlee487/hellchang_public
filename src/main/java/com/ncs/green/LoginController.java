@@ -98,7 +98,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/loginf")
-	public ModelAndView loginf(String message, HttpSession session, ModelAndView mv) {
+	public ModelAndView loginf(String message, String joinID, HttpSession session, ModelAndView mv) {
 		mv.setViewName("login/loginForm");
 
 		OAuth2Operations oauthOperations = facebookConnectionFactory.getOAuthOperations();
@@ -119,6 +119,11 @@ public class LoginController {
 		}
 		if(message!=null&&message.equals("i")) {
 			mv.addObject("message", "없는 ID입니다.");
+			System.out.println("this is message => " + message );
+		}
+		if(message!=null&&message.equals("s")) {
+			mv.addObject("joinID", joinID);
+			mv.addObject("fCode", "JS");		
 			System.out.println("this is message => " + message );
 		}
 		// 네이버 로그인
