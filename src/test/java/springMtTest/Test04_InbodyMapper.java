@@ -43,7 +43,7 @@ public class Test04_InbodyMapper {
 		System.out.println("** Member 전체 Record count : "+count);
 	} // totalRowCountTest()
 	
-	@Test	
+	
 	public void joinTest() {
 		int cnt=0;
 		for (int i=0;i<99;i++) {
@@ -79,20 +79,20 @@ public class Test04_InbodyMapper {
 		
 	} // joinTest
 	
-
+	@Test
 	public void insertInbody() {
 		int cnt=0;
 		String d;
 		for (int i=1;i<13;i++) {
 			InbodyVO vo = new InbodyVO() ;
-			if (i<10) d = "2020" +"/0"+ i + "/" + "01/" +"17:30";
-			else d = "2020" +"/"+ i + "/" + "01 " +"17:30";
+			if (i<10) d = "2020-0"+i+"-16 07:15:00";
+			else d = "2020-"+i+"-16 07:15:00";
 						
 			vo.setId("hcdummytest@gmail.com");
 			//vo.setId("banana@naver.com");
 
 			vo.setDate_date(d);
-			vo.setDate_string(d);
+			vo.setDate_string(vo.getDate_date());
 			vo.setWeight(85-i);
 			vo.setWeight_under(59.2);
 			vo.setWeight_over(80.2);

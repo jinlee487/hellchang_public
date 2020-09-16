@@ -23,7 +23,7 @@ public class Test01_DataSource {
 	//		->  AbstractDataSource
 	//		->  AbstractDriverBasedDataSource
 	//		->  DriverManagerDataSource
-
+	@Test
 	public void connectionTest() throws Exception {
 		try {
 			Connection cn = ds.getConnection();

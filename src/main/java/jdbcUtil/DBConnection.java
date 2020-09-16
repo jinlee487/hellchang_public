@@ -9,7 +9,7 @@ public class DBConnection {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			String url="jdbc:mysql://hellchang.csddfvc4uyqc.ap-northeast-2.rds.amazonaws.com:3306/hellchang_schema_test?serverTimezone=UTC&autoReconnect=true&useSSL=false"; 
 
-			return DriverManager.getConnection(url,"admin","hellchang");
+			return DriverManager.getConnection(url,"admin","password");
 		} catch (Exception e) {
 			System.out.println("getConnection Exception =>"+e.toString());
 			System.out.println("** DB Connection 실패 ~~~ ");

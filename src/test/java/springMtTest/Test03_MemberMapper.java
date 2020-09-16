@@ -3,6 +3,7 @@ package springMtTest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
+import org.junit.experimental.theories.suppliers.TestedOn;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -20,12 +21,12 @@ public class Test03_MemberMapper {
 	BCryptPasswordEncoder passwordEncoder;
 	
 	private static final String NS="green.mappers.memberMapper.";
-	
+	@Test
 	public void selectOneTest() {
 		MemberVO vo = new MemberVO();
 		// 존재하는 id 사용시 해당 Row return
 		// 없는 id 사용시 null return
-		vo.setId("admin@gmail.com");
+		vo.setId("test0@gmail.com");
 		vo=sqlsession.selectOne(NS+"selectOne",vo);
 		if (vo!=null) 
 			 System.out.println("** Find : "+vo);
@@ -37,7 +38,7 @@ public class Test03_MemberMapper {
 		int count = sqlsession.selectOne(NS+"totalRowCount") ;
 		System.out.println("** Member 전체 Record count : "+count);
 	} // totalRowCountTest()
-	
+
 	public void joinTest() {
 		int cnt=0;
 		for (int i=0;i<99;i++) {
