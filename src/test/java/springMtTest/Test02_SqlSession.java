@@ -25,7 +25,7 @@ public class Test02_SqlSession {
 		System.out.println("** SqlSessionFactory 자동주입 확인: sqlFactory \n=> "+sqlFactory+'\n');
 	} //testSqlFactory() 
 	
-	@Test
+
 	public void testSqlSession() {
 		// SqlSession -> 실제 DB 연결, Mapper의 Sql 구문을 이용해 DAO의 요청을 처리.	
 		try {

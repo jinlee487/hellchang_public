@@ -42,6 +42,8 @@ public class Test04_InbodyMapper {
 		int count = sqlsession.selectOne(NS+"totalRowCount") ;
 		System.out.println("** Member 전체 Record count : "+count);
 	} // totalRowCountTest()
+	
+	@Test	
 	public void joinTest() {
 		int cnt=0;
 		for (int i=0;i<99;i++) {
@@ -77,7 +79,7 @@ public class Test04_InbodyMapper {
 		
 	} // joinTest
 	
-	@Test	
+
 	public void insertInbody() {
 		int cnt=0;
 		String d;

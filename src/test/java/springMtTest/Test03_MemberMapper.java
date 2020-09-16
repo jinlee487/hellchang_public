@@ -20,7 +20,7 @@ public class Test03_MemberMapper {
 	BCryptPasswordEncoder passwordEncoder;
 	
 	private static final String NS="green.mappers.memberMapper.";
-	@Test
+	
 	public void selectOneTest() {
 		MemberVO vo = new MemberVO();
 		// 존재하는 id 사용시 해당 Row return
