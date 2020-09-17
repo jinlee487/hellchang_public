@@ -1,0 +1,24 @@
+/* 내용 없을때 */
+.footfont{
+	color: black;
+}
+
+address {
+	color: black;
+	margin-bottom:20px;
+}
+
+#footer{
+	position: relative;
+	color: black;
+	clear: both;
+    padding: 30px 0 15px 0;
+    text-align: center;
+	height: 50px;
+    max-width: 100%;
+    min-width: 460px;
+    background-color: white;    
+    width:100%;
+    bottom: 0px;
+    margin-bottom:0px;
+}
